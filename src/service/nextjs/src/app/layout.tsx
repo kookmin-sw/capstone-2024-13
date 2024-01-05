@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ReactNode, useContext } from "react";
-import "./globals.css";
+import { ReactNode } from "react";
 import "./font.css";
-import style from "@/style/app/layout.module.css";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import "./globals.css";
 import ContextProviders from "@/context";
 import Device from "./device";
 
