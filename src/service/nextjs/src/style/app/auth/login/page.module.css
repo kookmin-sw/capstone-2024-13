@@ -1,0 +1,14 @@
+.container {
+    width: 100cqw;
+    height: 100cqh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10cqh;
+}
+
+.container > img {
+    width: 70cqw;
+    height: 45cqw;
+}

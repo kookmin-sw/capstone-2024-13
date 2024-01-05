@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.25);
+
+    container-type: size;
+}
+
+.container > svg {
+    width: 100cqh;
+    height: 100cqh;
+}
+
+.container > svg g[id="button"] {
+    filter: none;
+}
+
+.container > span {
+    font-family: "Roboto-Medium";
+    font-size: 40cqh;
+}
