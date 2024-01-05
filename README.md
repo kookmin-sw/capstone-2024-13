@@ -9,7 +9,7 @@
 </h3>
 
 <h3 align="center">
-	Dairy service with AI conversation
+	Diary service with AI conversation
 </h3>
 
 </br>
