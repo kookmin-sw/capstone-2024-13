@@ -2,6 +2,9 @@
 	아니 근데 오늘 진짜
 </h1>
 
+</br>
+</br>
+
 <h3 align="center">
 	AI 대화형 일기 서비스
 </h3>
@@ -9,6 +12,9 @@
 <h3 align="center">
 	Dairy service with AI conversation
 </h3>
+
+</br>
+</br>
 
 <div align="center">
 	<img src="https://img.shields.io/badge/-Nginx-009639?style=flat-square&logo=Nginx&logoColor=white">
