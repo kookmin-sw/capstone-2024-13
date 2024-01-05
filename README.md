@@ -8,7 +8,7 @@
 
 <div align="center">
 	<img src="https://img.shields.io/badge/-Nginx-009639?style=flat-square&logo=Nginx&logoColor=white">
-	<img src="https://img.shields.io/badge/-nextdotjs-000000?style=flat-square&logo=NextJS&logoColor=white">
+	<img src="https://img.shields.io/badge/-NextJS-000000?style=flat-square&logo=nextdotjs&logoColor=white">
 	<img src="https://img.shields.io/badge/-NestJS-E0234E?style=flat-square&logo=NestJS&logoColor=white">
 	<img src="https://img.shields.io/badge/-MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white">
 	<img src="https://img.shields.io/badge/-Flask-000000?style=flat-square&logo=Flask&logoColor=white">
