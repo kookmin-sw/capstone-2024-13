@@ -1,6 +1,10 @@
 <h1 align="center">
-	아니 근데 오늘 진짜 (AI 대화형 일기 서비스)
+	아니 근데 오늘 진짜
 </h1>
+
+<h3 align="center">
+	AI 대화형 일기 서비스
+</h3>
 
 <h3 align="center">
 	Dairy service with AI conversation
