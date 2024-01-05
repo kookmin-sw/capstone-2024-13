@@ -1,0 +1,74 @@
+@font-face {
+    font-family: "Roboto-Black";
+    src: url("../font/Roboto/Roboto-Black.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url("../font/Roboto/Roboto-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Light";
+    src: url("../font/Roboto/Roboto-Light.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url("../font/Roboto/Roboto-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url("../font/Roboto/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Roboto-Thin";
+    src: url("../font/Roboto/Roboto-Thin.ttf");
+}
+
+@font-face {
+    font-family: "Pretendard-Black";
+    src: url("../font/Pretendard/Pretendard-Black.ttf");
+}
+
+@font-face {
+    font-family: "Pretendard-Bold";
+    src: url("../font/Pretendard/Pretendard-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Pretendard-ExtraBold";
+    src: url("../font/Pretendard/Pretendard-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: "Pretendard-ExtraLight";
+    src: url("../font/Pretendard/Pretendard-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: "Pretendard-Light";
+    src: url("../font/Pretendard/Pretendard-Light.ttf");
+}
+
+@font-face {
+    font-family: "Pretendard-Medium";
+    src: url("../font/Pretendard/Pretendard-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Pretendard-Regular";
+    src: url("../font/Pretendard/Pretendard-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Pretendard-SemiBold";
+    src: url("../font/Pretendard/Pretendard-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Pretendard-Thin";
+    src: url("../font/Pretendard/Pretendard-Thin.ttf");
+}
