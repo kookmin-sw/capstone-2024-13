@@ -3,7 +3,6 @@
 </h1>
 
 </br>
-</br>
 
 <h3 align="center">
 	AI 대화형 일기 서비스
