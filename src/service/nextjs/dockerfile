@@ -1,0 +1,24 @@
+FROM node:21-alpine3.19
+
+LABEL 	name="NextJS" \
+		version="1.0" \
+		description="NextJS"
+
+EXPOSE $PORT
+
+ENV HOME /app
+
+WORKDIR $HOME
+
+COPY . .
+
+COPY ./tool/docker-entrypoint.sh /usr/local/bin/
+
+RUN cp ./tool/docker-entrypoint.sh /usr/local/bin/ && \
+	chmod +x /usr/local/bin/docker-entrypoint.sh
+
+RUN yarn install --frozen-lockfile && yarn build
+
+ENTRYPOINT [ "docker-entrypoint.sh" ]
+
+CMD [ "yarn", "run", "dev" ]

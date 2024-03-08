@@ -1,0 +1,51 @@
+.container {
+	display: flex;
+	justify-content: center;
+	container-type: size;
+}
+
+.container > div:first-child {
+	display: flex;
+	flex-direction: column;
+	width: 60cqw;
+	height: 100cqh;
+	align-items: center;
+	justify-content: center;
+	container-type: size;
+	gap: 8cqh;
+}
+
+.container > div:first-child > * {
+	width: 100cqw;
+	container-type: size;
+}
+
+.container > div:first-child > div:first-child {
+	display: flex;
+	height: 100cqw;
+	flex-direction: column;
+	gap: 5cqw;
+	justify-content: center;
+}
+
+.container > div:first-child > div:first-child > :first-child {
+	height: 10cqw;
+	line-height: 10cqw;
+}
+
+.container > div:first-child > div:first-child > :nth-child(2) {
+	align-self: center;
+}
+
+.container > div:first-child > div:nth-child(2) {
+	height: 20cqw;
+}
+
+.container > div:first-child > div:nth-child(3) {
+	height: 15cqw;
+}
+
+.container > div:first-child > div:nth-child(3) > button {
+	width: 100cqw;
+	height: 100cqh;
+}
