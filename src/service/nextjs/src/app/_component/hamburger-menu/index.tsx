@@ -2,9 +2,9 @@
 
 import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import style from '@/app/_style/component/hamburger-menu/index.module.css';
 import { IconButton } from '@mui/material';
 import { Close } from '@mui/icons-material';
+import style from '../../_style/component/hamburger-menu/index.module.css';
 
 const HambugerMenu = (props: {
 	setIsOpened: Dispatch<SetStateAction<boolean>>;
@@ -28,15 +28,18 @@ const HambugerMenu = (props: {
 					style={{ margin: position === 'left' ? '0 auto 0 0' : '0 0 0 auto' }}
 				>
 					<div className={style.header}>
-						<span>{title}</span>
-						<IconButton
-							aria-label="close"
-							color="inherit"
-							size="large"
-							onClick={() => setIsOpened(false)}
-						>
-							<Close fontSize="inherit" />
-						</IconButton>
+						<div></div>
+						<div>
+							<span>{title}</span>
+							<IconButton
+								aria-label="close"
+								color="inherit"
+								size="large"
+								onClick={() => setIsOpened(false)}
+							>
+								<Close fontSize="inherit" />
+							</IconButton>
+						</div>
 					</div>
 					<div>{children}</div>
 				</div>

@@ -1,0 +1,74 @@
+.container {
+	width: 100cqw;
+	height: 15cqh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+
+	container-type: size;
+}
+
+.container > div:last-child {
+	width: 100cqw;
+	height: 40cqh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	container-type: size;
+}
+
+.container > div:last-child > div:first-child {
+	width: 100cqw;
+	height: 100cqh;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 5cqw;
+
+	container-type: size;
+}
+
+.container > div:last-child > div:first-child > div:first-child > span {
+	margin-left: 4cqw;
+	font-size: 50cqh;
+}
+
+.container > div:last-child > div:first-child > div:last-child {
+	width: 100cqh;
+	height: 100cqh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	container-type: size;
+}
+
+.container > div:last-child > div:last-child > button {
+	padding: 0;
+}
+
+.container > div:last-child > div:last-child > button > svg {
+	width: 80cqw;
+	height: 80cqh;
+}
+
+.menu {
+	width: 80cqw;
+	height: 80cqh;
+	container-type: size;
+}
+
+.menu > div {
+	width: 100cqw;
+	height: 100cqh;
+	display: flex;
+	align-items: flex-end;
+	container-type: size;
+}
+
+.menu > div > button {
+	height: 8cqh;
+	font-size: 3.5cqh;
+}

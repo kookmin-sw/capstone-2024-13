@@ -3,9 +3,11 @@
 	height: 100cqh;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
 	gap: 15cqh;
+
+	container-type: size;
 }
 
 .container > img {

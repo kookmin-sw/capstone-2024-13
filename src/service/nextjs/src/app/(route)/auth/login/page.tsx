@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import GoogleLoginButton from '@/app/_component/google-login';
-import style from '@/app/_style/(route)/auth/login/index.module.css';
+import style from '../../../_style/(route)/auth/login/index.module.css';
 
 const LoginPage = () => {
 	return (
