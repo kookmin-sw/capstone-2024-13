@@ -17,6 +17,7 @@ logs:
 
 prune:
 	@docker system prune -af 2>/dev/null || true
+	@docker volume rm -f $(docker volume ls -q) 2>/dev/null || true
 
 .PHONY: up down stop start fclean
 

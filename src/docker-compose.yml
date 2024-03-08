@@ -1,91 +1,91 @@
-version: "3.9"
+version: '3.9'
 
 services:
-    mongodb:
-        container_name: mongodb
-        image: mongodb
-        build:
-            context: ./service/mongodb
-            dockerfile: Dockerfile
-        env_file:
-            - ./service/mongodb/.env
-        volumes:
-            - mongodb_volume:/data/db
-        networks:
-            - hey_listen_to_this
-        restart: unless-stopped
-        tty: true
-    nestjs:
-        container_name: nestjs
-        build:
-            context: ./service/nestjs
-            dockerfile: Dockerfile
-        env_file:
-            - ./service/nestjs/.env
-        volumes:
-            - nestjs_src_volume:/app/src
-        networks:
-            - hey_listen_to_this
-        restart: unless-stopped
-        tty: true
-        depends_on:
-            - mongodb
-    nextjs:
-        container_name: nextjs
-        build:
-            context: ./service/nextjs
-            dockerfile: Dockerfile
-        env_file:
-            - ./service/nextjs/.env
-        volumes:
-            - nextjs_src_volume:/app/src
-        networks:
-            - hey_listen_to_this
-        restart: unless-stopped
-        tty: true
-        depends_on:
-            - nestjs
-    nginx:
-        container_name: nginx
-        build:
-            context: ./service/nginx
-            dockerfile: Dockerfile
-        env_file:
-            - ./service/nginx/.env
-        ports:
-            - 80:80
-            - 443:443
-        networks:
-            - hey_listen_to_this
-        restart: unless-stopped
-        tty: true
-        depends_on:
-            - nextjs
+  mongodb:
+    container_name: mongodb
+    image: mongodb
+    build:
+      context: ./service/mongodb
+      dockerfile: Dockerfile
+    env_file:
+      - ./service/mongodb/.env
+    volumes:
+      - mongodb_volume:/data/db
+    networks:
+      - you_know_what
+    restart: unless-stopped
+    tty: true
+  nestjs:
+    container_name: nestjs
+    build:
+      context: ./service/nestjs
+      dockerfile: Dockerfile
+    env_file:
+      - ./service/nestjs/.env
+    volumes:
+      - nestjs_src_volume:/app/src
+    networks:
+      - you_know_what
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - mongodb
+  nextjs:
+    container_name: nextjs
+    build:
+      context: ./service/nextjs
+      dockerfile: Dockerfile
+    env_file:
+      - ./service/nextjs/.env
+    volumes:
+      - nextjs_src_volume:/app/src
+    networks:
+      - you_know_what
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - nestjs
+  nginx:
+    container_name: nginx
+    build:
+      context: ./service/nginx
+      dockerfile: Dockerfile
+    env_file:
+      - ./service/nginx/.env
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - you_know_what
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - nextjs
 
 volumes:
-    mongodb_volume:
-        name: mongodb_volume
-        driver: local
-        driver_opts:
-            type: none
-            o: bind
-            device: ./service/mongodb/db
-    nestjs_src_volume:
-        name: nestjs_src_volume
-        driver: local
-        driver_opts:
-            type: none
-            o: bind
-            device: ./service/nestjs/src
-    nextjs_src_volume:
-        name: nextjs_src_volume
-        driver: local
-        driver_opts:
-            type: none
-            o: bind
-            device: ./service/nextjs/src
+  mongodb_volume:
+    name: mongodb_volume
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./service/mongodb/db
+  nestjs_src_volume:
+    name: nestjs_src_volume
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./service/nestjs/src
+  nextjs_src_volume:
+    name: nextjs_src_volume
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./service/nextjs/src
 
 networks:
-    hey_listen_to_this:
-        name: hey_listen_to_this
-        driver: bridge
+  you_know_what:
+    name: you_know_what
+    driver: bridge

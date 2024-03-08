@@ -1,0 +1,47 @@
+.container {
+	width: 98cqw;
+	height: 10cqh;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	container-type: size;
+}
+
+.container > div:first-child {
+	margin-left: 3cqw;
+}
+
+.container > div:last-child {
+	width: 100cqh;
+	height: 100cqh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	container-type: size;
+}
+
+.container > div:last-child > button > svg {
+	width: 50cqw;
+	height: 50cqh;
+}
+
+.menu {
+	width: 80cqw;
+	height: 80cqh;
+	container-type: size;
+}
+
+.menu > div {
+	width: 100cqw;
+	height: 100cqh;
+	display: flex;
+	align-items: flex-end;
+	container-type: size;
+}
+
+.menu > div > button {
+	height: 8cqh;
+	font-size: 3.5cqh;
+}
