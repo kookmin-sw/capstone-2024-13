@@ -5,6 +5,8 @@ import './font.css';
 import './globals.css';
 import ContextProviders from '@/app/_context';
 import Device from '@/app/_component/device';
+import Header from '../_component/header';
+import style from '../_style/(route)/index.module.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +22,12 @@ export default function RootLayout(props: { children: ReactNode }) {
 		<html lang="en">
 			<body className={inter.className}>
 				<ContextProviders>
-					<Device>{children}</Device>
+					<Device>
+						<div className={style.layout}>
+							<Header />
+							<div>{children}</div>
+						</div>
+					</Device>
 				</ContextProviders>
 			</body>
 		</html>

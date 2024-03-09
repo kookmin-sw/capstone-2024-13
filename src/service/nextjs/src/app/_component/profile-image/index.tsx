@@ -1,6 +1,6 @@
 'use client';
 
-import style from '@/app/_style/component/profile-image/index.module.css';
+import style from '../../_style/component/profile-image/index.module.css';
 import { AddAPhoto } from '@mui/icons-material';
 import { Avatar, Badge } from '@mui/material';
 

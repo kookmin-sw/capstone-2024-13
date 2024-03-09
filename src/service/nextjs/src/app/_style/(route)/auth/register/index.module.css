@@ -1,6 +1,9 @@
 .container {
+	width: 100cqw;
+	height: 100cqh;
 	display: flex;
 	justify-content: center;
+
 	container-type: size;
 }
 
@@ -12,7 +15,7 @@
 	align-items: center;
 	justify-content: center;
 	container-type: size;
-	gap: 8cqh;
+	gap: 15cqh;
 }
 
 .container > div:first-child > * {

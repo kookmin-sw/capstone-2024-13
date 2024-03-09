@@ -1,0 +1,68 @@
+.container {
+	width: 100cqw;
+	height: 100cqh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	container-type: size;
+}
+
+.container > * {
+	width: 100cqw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	container-type: size;
+}
+
+.container > div:not(:first-child) {
+	border-top: 0.5px solid #000000;
+}
+
+.profile {
+	height: 50cqh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	gap: 3cqh;
+}
+
+.profile > div {
+	width: 70cqw;
+	height: 70cqw;
+}
+
+.profile > span {
+	font-size: 5cqh;
+}
+
+.edit {
+	height: 10cqh;
+}
+
+.edit > button {
+	width: 90cqw;
+	border-radius: 10cqh;
+}
+
+.email {
+	height: 10cqh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1cqh;
+
+	container-type: size;
+}
+
+.email > div {
+	width: 90cqw;
+	display: flex;
+	align-items: center;
+	gap: 1cqw;
+}

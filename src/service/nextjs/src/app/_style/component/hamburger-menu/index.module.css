@@ -26,25 +26,38 @@
 
 .header {
 	width: 100cqw;
-	height: 10cqh;
+	height: 15cqh;
+	display: flex;
+	flex-direction: column;
+	container-type: size;
+}
+
+.header > :last-child {
+	width: 100cqw;
+	height: 40cqh;
+	margin-top: auto;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	padding: 0 3cqw;
+
 	container-type: size;
 }
 
-.header > span {
-	margin-left: 40cqh;
-	font-size: 30cqh;
+.header > :last-child > span {
+	margin-left: 7cqw;
+	font-size: 50cqh;
 }
 
-.header > button {
+.header > :last-child > button {
 	width: 100cqh;
 	height: 100cqh;
+	padding: 0;
+
 	container-type: size;
 }
 
-.header > button > svg {
+.header > :last-child > button > svg {
 	width: 60cqw;
 	height: 60cqh;
 }
