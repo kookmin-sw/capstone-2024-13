@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory, SchemaOptions } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
+import { Types } from 'mongoose';
 
 const userSchemaOptions: SchemaOptions = {
 	autoCreate: true,
@@ -31,13 +32,33 @@ export class User {
 	})
 	nickname: string;
 
-	@Prop({ type: String, required: false, default: null })
-	@ApiProperty({
-		type: String,
-		description: 'Profile image url',
+	@Prop({
+		type: Types.ObjectId,
 		required: false,
+		unique: true,
+		sparse: true,
+		ref: 'images',
+	})
+	@ApiProperty({
+		example: '49fafa4d2ca3602935816679',
+		type: Types.ObjectId,
+		required: false,
+		uniqueItems: true,
 	})
 	profileImageUrl?: string;
+
+	@Prop({
+		type: [Types.ObjectId],
+		required: false,
+		ref: 'Diary',
+	})
+	@ApiProperty({
+		example: ['37fafa4d2ca3382535816679', '82fafa4d2ca3600165816679'],
+		type: Array,
+		required: false,
+		items: { type: 'Types.ObjectId', uniqueItems: true },
+	})
+	diaries?: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

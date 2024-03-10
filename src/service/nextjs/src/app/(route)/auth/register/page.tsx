@@ -1,7 +1,7 @@
 'use client';
 
-import ProfileImage from '@/app/_component/profile-image';
-import style from '@/app/_style/(route)/auth/register/index.module.css';
+import ProfileImage from '../../../_component/profile-image';
+import style from '../../../_style/(route)/auth/register/index.module.css';
 import NicknameField from './nickname-field';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ const RegisterPage = () => {
 			<div>
 				<div>
 					<span>프로필 이미지</span>
-					<ProfileImage width="85cqw" height="85cqw" />
+					<ProfileImage width="90cqw" height="90cqw" />
 				</div>
 				<NicknameField value={nickname} onChange={event => setNickname(event.target.value)} />
 				<RegisterButton profileImageSrc={profileImageSrc} nickname={nickname} />

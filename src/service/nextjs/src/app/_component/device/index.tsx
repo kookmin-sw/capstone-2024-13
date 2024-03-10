@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode, useEffect, useState } from 'react';
-import style from '@/app/_style/component/device/index.module.css';
+import style from '../../_style/component/device/index.module.css';
 import MobileDetect from 'mobile-detect';
 
 const Device = (props: { children: ReactNode }) => {

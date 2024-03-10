@@ -9,7 +9,7 @@ const ProfileImage = (props: {
 	width?: number | string;
 	height?: number | string;
 }) => {
-	const src = props.src || '/default_profile_image.png';
+	const src = props.src || '/default-profile-image.png';
 	const width = props.width || '100%';
 	const height = props.height || '100%';
 

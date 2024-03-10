@@ -24,7 +24,7 @@
 }
 
 .profile {
-	height: 50cqh;
+	height: 55cqh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -33,8 +33,8 @@
 }
 
 .profile > div {
-	width: 70cqw;
-	height: 70cqw;
+	width: 70cqh;
+	height: 70cqh;
 }
 
 .profile > span {
@@ -47,21 +47,24 @@
 
 .edit > button {
 	width: 90cqw;
+	height: 60cqh;
+	font-size: 20cqh;
 	border-radius: 10cqh;
 }
 
 .email {
-	height: 10cqh;
+	height: 15cqh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	gap: 1cqh;
+	gap: 1.5cqh;
 
 	container-type: size;
 }
 
 .email > div {
 	width: 90cqw;
+	font-size: 15cqh;
 	display: flex;
 	align-items: center;
 	gap: 1cqw;
