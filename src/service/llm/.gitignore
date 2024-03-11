@@ -1,0 +1,5 @@
+## gitignore for python
+venv
+.env
+vector_store
+__pycache__
