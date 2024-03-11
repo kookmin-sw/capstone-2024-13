@@ -4,7 +4,7 @@
 	flex-shrink: 0;
 	background-color: #ffffff;
 	border-radius: 1cqh;
-	box-shadow: 0 0 1cqh 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 0.8cqh 0 rgba(0, 0, 0, 0.2);
 
 	container-type: size;
 }
@@ -18,12 +18,12 @@
 	container-type: size;
 }
 
-.container > div:first-child {
+.title {
 	height: 15cqh;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.container > div:first-child > div {
+.title > div {
 	width: 90cqw;
 	height: 100cqh;
 	display: flex;
@@ -32,6 +32,15 @@
 	color: rgba(0, 0, 0, 0.75);
 }
 
-.container > div:last-child {
+.content {
 	height: 85cqh;
+}
+
+.content > div {
+	width: 96cqw;
+	height: 94cqh;
+	border-radius: 2cqh;
+	display: flex;
+
+	container-type: size;
 }

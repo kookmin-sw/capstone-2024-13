@@ -23,7 +23,8 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 10cqh;
+	gap: 6cqh;
+	padding: 1cqh 0;
 
 	container-type: size;
 }
