@@ -1,0 +1,27 @@
+.container {
+	width: 100cqw;
+	height: 100cqh;
+	position: relative;
+
+	container-type: size;
+}
+
+.vertical {
+	width: 49cqw;
+	height: 100cqh;
+	border-radius: 2cqh;
+	overflow: hidden;
+	position: relative;
+
+	container-type: size;
+}
+
+.horizontal {
+	width: 100cqw;
+	height: 60cqh;
+	border-radius: 2cqh;
+	overflow: hidden;
+	position: relative;
+
+	container-type: size;
+}
