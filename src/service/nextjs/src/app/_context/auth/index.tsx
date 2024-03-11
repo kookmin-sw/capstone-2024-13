@@ -2,7 +2,7 @@
 
 import { Dispatch, ReactNode, SetStateAction, createContext, useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { Me } from '@/app/_type/me.type';
+import { Me } from '../../_type/index';
 import { getFetcher } from '@/app/_service/api';
 
 const AuthContext = createContext<{

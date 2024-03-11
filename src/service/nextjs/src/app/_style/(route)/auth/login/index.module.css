@@ -13,4 +13,6 @@
 .container > img {
 	width: 70cqw;
 	height: 45cqw;
+	border-radius: 1cqw;
+	box-shadow: 0 0 1cqh 0 rgba(0, 0, 0, 0.3);
 }

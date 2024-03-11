@@ -1,13 +1,13 @@
 .container {
 	width: 100vw;
 	height: 100vh;
-	background-color: lightgray;
+	background-color: #606060;
 	container-type: size;
 }
 
 .container > div {
 	margin: 0 auto;
-	background-color: #ffffff;
+	background-image: url('/background-image.png');
 	container-type: size;
 }
 

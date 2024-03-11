@@ -1,2 +1,33 @@
 .container {
+	width: 100cqw;
+	height: 100cqh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	container-type: size;
+}
+
+.container > div {
+	width: 100cqw;
+}
+
+.container > div:first-child {
+	height: 5cqh;
+	flex-shrink: 0;
+}
+
+.container > div:last-child {
+	height: 95cqh;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10cqh;
+
+	container-type: size;
+}
+
+.container > div:last-child::-webkit-scrollbar {
+	display: none;
 }

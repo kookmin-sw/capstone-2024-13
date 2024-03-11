@@ -19,6 +19,22 @@
 	container-type: size;
 }
 
+.container > span > span {
+	width: 20cqh;
+	height: 20cqh;
+	container-type: size;
+}
+
 .container > span > span > div {
-	border: 3px solid #ffffff;
+	width: 100cqh;
+	height: 100cqh;
+	border: 7.5cqh solid #fafafa;
+	cursor: pointer;
+	container-type: size;
+}
+
+.container > span > span > div > svg {
+	width: 60cqh;
+	height: 60cqh;
+	container-type: size;
 }
