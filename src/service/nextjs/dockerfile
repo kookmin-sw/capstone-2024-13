@@ -4,7 +4,7 @@ LABEL 	name="NextJS" \
 		version="1.0" \
 		description="NextJS"
 
-EXPOSE $PORT
+#EXPOSE $PORT
 
 ENV HOME /app
 
