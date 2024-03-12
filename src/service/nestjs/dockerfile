@@ -4,7 +4,7 @@ LABEL 	name="NestJS" \
 		version="1.0" \
 		description="NestJS"
 
-EXPOSE $PORT
+#EXPOSE $PORT
 
 ENV HOME /app
 

@@ -12,9 +12,24 @@ services:
     volumes:
       - mongodb_volume:/data/db
     networks:
-      - you_know_what
+      - you-know-what
     restart: unless-stopped
     tty: true
+  langserve:
+    container_name: langserve
+    build:
+      context: ./service/langserve
+      dockerfile: Dockerfile
+    env_file:
+      - ./service/langserve/.env
+    volumes:
+      - uvicorn_src_volume:/code/app
+    networks:
+      - you-know-what
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - mongodb
   nestjs:
     container_name: nestjs
     build:
@@ -25,11 +40,11 @@ services:
     volumes:
       - nestjs_src_volume:/app/src
     networks:
-      - you_know_what
+      - you-know-what
     restart: unless-stopped
     tty: true
     depends_on:
-      - mongodb
+      - langserve
   nextjs:
     container_name: nextjs
     build:
@@ -40,7 +55,7 @@ services:
     volumes:
       - nextjs_src_volume:/app/src
     networks:
-      - you_know_what
+      - you-know-what
     restart: unless-stopped
     tty: true
     depends_on:
@@ -56,7 +71,7 @@ services:
       - 80:80
       - 443:443
     networks:
-      - you_know_what
+      - you-know-what
     restart: unless-stopped
     tty: true
     depends_on:
@@ -70,6 +85,13 @@ volumes:
       type: none
       o: bind
       device: ./service/mongodb/db
+  uvicorn_src_volume:
+    name: uvicorn_src_volume
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./service/langserve/app
   nestjs_src_volume:
     name: nestjs_src_volume
     driver: local
@@ -86,6 +108,6 @@ volumes:
       device: ./service/nextjs/src
 
 networks:
-  you_know_what:
-    name: you_know_what
+  you-know-what:
+    name: you-know-what
     driver: bridge
