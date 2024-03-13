@@ -1,57 +1,66 @@
 import os
-from dotenv 							import load_dotenv
-from langchain.chains					import ConversationalRetrievalChain, LLMChain
-from langchain_openai.chat_models		import ChatOpenAI
-from langchain_openai.embeddings		import OpenAIEmbeddings
-from langchain_community.vectorstores	import FAISS
-from langchain.schema					import AIMessage, HumanMessage, SystemMessage
-from langchain.memory					import ConversationBufferMemory
+import json
+from dotenv import load_dotenv
+# langchain 관련 라이브러리들을 가져옵니다.
+from langchain.chains import LLMChain
+from langchain_openai.chat_models import ChatOpenAI
+from langchain_openai.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain.memory import ConversationBufferMemory
 from langchain.prompts import (
-	ChatPromptTemplate,
-	MessagesPlaceholder,
-	SystemMessagePromptTemplate,
-	HumanMessagePromptTemplate
+    ChatPromptTemplate,
+    MessagesPlaceholder,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate
 )
 
+# .env 파일에서 환경변수를 로드합니다.
 load_dotenv()
 
-# os.environ['OPENAI_API_KEY'] = os.environ.get("OPENAI_API_KEY")
-# os.environ["HUGINGFACEHUB_API_TOKEN"] = os.environ.get("HUGINGFACEHUB_API_TOKEN")
+# JSON 파일로부터 설정을 로드하는 함수를 정의합니다.
+def load_settings_from_json(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return json.load(file)
 
-vector_store = FAISS.from_texts(
-	'../vector_store/a.txt',
-	embedding=OpenAIEmbeddings(),
+# 설정 파일을 로드합니다. 파일 경로는 필요에 따라 조정하세요.
+settings = load_settings_from_json('../template/1.json')
+
+# 시스템 메시지 템플릿을 생성합니다. {Q_list} 부분은 질문 리스트로 대체됩니다.
+system_template = SystemMessagePromptTemplate.from_template(
+    settings["system_template_content"].format(Q_list=settings["question_list"])
 )
 
-retreiver = vector_store.as_retriever()
+# 벡터 스토어를 생성합니다. 여기서는 텍스트 파일로부터 FAISS 인덱스를 생성합니다.
+vector_store = FAISS.from_texts(
+    '../vector_store/a.txt',
+    embedding=OpenAIEmbeddings(),
+)
 
-system_template = SystemMessagePromptTemplate.from_template(\
-	"너는 내 대화를 통해서 일기를 작성해주는 친절한 말투의 작가야.\
-	오늘 나의 하루에 대해서 {질문리스트}중에서 하나씩 골라서 중복되지 않게 10번 질문해줘. \
-	답변을 들은 후에 최대한 친근하게 공감해주고 다음 질문을 이어가 줘\
-	혹시 대화가 그만하고 싶다거나 10번의 질문에 모두 답하면 지금까지의 오늘 나의 정보를 정리해서 오늘 나에게 일어난 사실만으로 영어로 한줄일기를 50자내로 작성해서 보여줘.")
+# 검색기(retriever)를 벡터 스토어로부터 생성합니다.
+retriever = vector_store.as_retriever()
 
-system_message = system_template.format(질문리스트="오늘의 기분, 오늘의 일정, 오늘의 감정, 오늘의 사건, 오늘의 인상적인 사람, 오늘의 인상적인 대화, 오늘의 인상적인 장소, 오늘의 인상적인 음식, 오늘의 인상적인 음악, 오늘의 인상적인 영화, 오늘의 인상적인 책, 오늘의 인상적인 사진, 오늘의 인상적인 영상, 오늘의 인상적인 기사, 오늘의 인상적인 뉴스, 오늘의 인상적인 이슈, 오늘의 인상적인 트렌드")
-
+# OpenAI의 Chat 모델을 생성합니다. 모델명은 설정에 따라 달라질 수 있습니다.
 llm = ChatOpenAI(model_name='gpt-3.5-turbo')
 
+# 대화 프롬프트를 생성합니다. 이 프롬프트는 대화의 구조를 정의합니다.
 prompt = ChatPromptTemplate.from_messages([
-	system_message,												# 역할부여
-	MessagesPlaceholder(variable_name="chat_history"),			# 메모리 저장소 설정. ConversationBufferMemory의 memory_key 와 동일하게 설정
-	HumanMessagePromptTemplate.from_template("{human_input}"),	# 사용자 메시지 injection
+    system_template,                                                # 역할 부여
+    MessagesPlaceholder(variable_name="chat_history"),              # 대화 내역을 메모리 저장소에 저장
+    HumanMessagePromptTemplate.from_template("{human_input}"),      # 사용자 입력을 템플릿에 삽입
 ])
 
-
+# 대화 메모리를 생성합니다. 이 메모리는 대화 내역을 저장하고 관리합니다.
 memory = ConversationBufferMemory(
-	memory_key="chat_history",
-	ai_prefix="작가",
-	human_prefix="사용자",
-	return_messages=True
+    memory_key="chat_history",                                      # 대화 내역의 키
+    ai_prefix=settings["ai_prefix"],                                # AI 메시지 접두사
+    human_prefix=settings["human_prefix"],                          # 사용자 메시지 접두사
+    return_messages=True                                            # 메시지 반환 여부
 )
 
+# LLM 체인을 생성합니다. 이 체인은 대화 프롬프트, 메모리, 모델 등을 연결하여 대화를 처리합니다.
 Chain = LLMChain(
-	llm=llm,
-	prompt=prompt,
-	memory=memory,
-	verbose=True,
+    llm=llm,
+    prompt=prompt,
+    memory=memory,
+    verbose=True,                                                   # 자세한 로그 출력 여부
 )
