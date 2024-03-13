@@ -1,7 +1,8 @@
 import { BadRequestException, Controller, Get, Request, UseGuards } from '@nestjs/common';
-import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/common';
 import DiaryService from './diary.service';
+import { Diary } from 'src/common/database/schema';
 
 @Controller('diary')
 @ApiTags('diary')
@@ -10,14 +11,19 @@ class DiaryController {
 	constructor(private readonly diaryService: DiaryService) {}
 
 	@Get()
-	@ApiProperty({ description: 'Get user diary' })
+	@ApiOperation({ summary: 'Get user diaries', description: 'Get user diaries' })
+	@ApiOkResponse({ type: [Diary] })
 	async get(@Request() req) {
 		try {
-			const diaries = [];
 			const user = req.user;
+
+			const diaries = [];
 			for (const diaryId of user.diaries) {
 				const diary = await this.diaryService.get(diaryId);
-				diaries.push(diary);
+
+				if (diary) {
+					diaries.push(diary);
+				}
 			}
 
 			return diaries;

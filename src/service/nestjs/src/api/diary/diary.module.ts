@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { DiarySchema } from 'src/common/database/schema/diary.schema';
+import { DiarySchema } from 'src/common/database/schema';
 import DiaryController from './diary.controller';
 import DiaryService from './diary.service';
 

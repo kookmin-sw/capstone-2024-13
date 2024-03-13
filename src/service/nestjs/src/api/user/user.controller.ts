@@ -1,7 +1,8 @@
 import { Controller, Get, Request, UseGuards } from '@nestjs/common';
 import UserService from './user.service';
 import { Auth } from 'src/common';
-import { ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { User } from 'src/common/database/schema';
 
 @Controller('user')
 @ApiTags('user')
@@ -10,7 +11,8 @@ class UserController {
 	constructor(private readonly userService: UserService) {}
 
 	@Get('me')
-	@ApiProperty({ description: 'Get user info' })
+	@ApiOperation({ summary: 'Get my information', description: 'Get my information' })
+	@ApiOkResponse({ type: User })
 	async me(@Request() req) {
 		return req.user;
 	}

@@ -10,9 +10,10 @@ import {
 } from '@nestjs/common';
 import { AuthService, CookieService } from './service';
 import { ConfigService } from '@nestjs/config';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Auth } from '../../common';
 import * as Dto from './dto';
+import { User } from 'src/common/database/schema';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -25,14 +26,14 @@ class AuthController {
 
 	@Get('google')
 	@UseGuards(Auth.Guard.GoogleOAuth2)
-	@ApiOperation({ summary: 'Google OAuth2' })
+	@ApiOperation({ summary: 'Google OAuth2', description: 'Google OAuth2' })
 	async googleOAuth2(): Promise<void> {
 		return;
 	}
 
 	@Get('google/callback')
 	@UseGuards(Auth.Guard.GoogleOAuth2)
-	@ApiOperation({ summary: 'Google OAuth2 callback' })
+	@ApiOperation({ summary: 'Google OAuth2 callback', description: 'Google OAuth2 callback' })
 	async googleOAuth2Callback(@Request() req, @Response() res): Promise<void> {
 		try {
 			const jwt = await this.cookieService.createJwt(req.user);
@@ -49,7 +50,7 @@ class AuthController {
 
 	@Get('login')
 	@UseGuards(Auth.Guard.GoogleJwt)
-	@ApiOperation({ summary: 'Login' })
+	@ApiOperation({ summary: 'Login', description: 'Login to service' })
 	async login(@Request() req, @Response() res) {
 		try {
 			const user = await this.authService.login(req.user.email);
@@ -74,7 +75,10 @@ class AuthController {
 
 	@Post('register')
 	@UseGuards(Auth.Guard.GoogleJwt)
-	@ApiOperation({ summary: 'Register' })
+	@ApiOperation({ summary: 'Register', description: 'Register to service' })
+	@ApiBadRequestResponse({ description: 'User already registered' })
+	@ApiBadRequestResponse({ description: 'Failed to register' })
+	@ApiOkResponse({ type: User })
 	async register(
 		@Request() req,
 		@Body() registerRequestDto: Dto.Request.Register,
