@@ -23,7 +23,7 @@ def load_settings_from_json(file_path):
         return json.load(file)
 
 # 설정 파일을 로드합니다. 파일 경로는 필요에 따라 조정하세요.
-settings = load_settings_from_json('../template/1.json')
+settings = load_settings_from_json('template/1.json')
 
 # 시스템 메시지 템플릿을 생성합니다. {Q_list} 부분은 질문 리스트로 대체됩니다.
 system_template = SystemMessagePromptTemplate.from_template(
