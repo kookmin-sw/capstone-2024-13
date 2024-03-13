@@ -14,6 +14,13 @@ const parseDate = (date: Date) => {
 	return `${month}월 ${day}일 ${weekday}`;
 };
 
+const trimContent = (content: string) => {
+	if (120 < content.length) {
+		return content.slice(0, 120) + '...';
+	}
+	return content;
+};
+
 const DiaryPreview = (props: { diary: Diary }) => {
 	const { diary } = props;
 	const src = 0.5 < Math.random() ? '/test-image-00.png' : '/test-image-01.png';
@@ -28,12 +35,15 @@ const DiaryPreview = (props: { diary: Diary }) => {
 				</div>
 			</div>
 			<div className={style.content}>
-				<div style={{ flexDirection: isColumnDirection ? 'column' : 'row' }}>
+				<div className={isColumnDirection ? style.vertical : style.horizontal}>
 					<DiaryPreviewImage
 						src={src}
 						isColumnDirection={isColumnDirection}
 						setIsColumnDirection={setIsColumnDirection}
 					/>
+					<div>
+						<span>{trimContent(diary.content)}</span>
+					</div>
 				</div>
 			</div>
 		</div>

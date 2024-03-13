@@ -15,7 +15,7 @@ const DiaryPreviewImage = (props: {
 	return (
 		<div
 			className={
-				isLoaded ? (isColumnDirection ? style.vertical : style.horizontal) : style.container
+				isLoaded ? (isColumnDirection ? style.horizontal : style.vertical) : style.container
 			}
 		>
 			<Image
@@ -26,7 +26,7 @@ const DiaryPreviewImage = (props: {
 				sizes="100cqw"
 				onLoad={(event: any) => {
 					if (event.target) {
-						setIsColumnDirection(event.target.naturalWidth < event.target.naturalHeight);
+						setIsColumnDirection(event.target.naturalHeight < event.target.naturalWidth);
 					}
 					setIsLoaded(true);
 				}}
