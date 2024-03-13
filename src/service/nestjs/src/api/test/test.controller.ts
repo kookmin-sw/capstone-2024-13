@@ -15,7 +15,7 @@ class TestController {
 			console.log(req.user);
 
 			return await axios
-				.post('http://langserve:8000/chat', { content })
+				.post('http://langserve:8000/v2/chat', { content })
 				.then(response => response.data.content)
 				.catch(error => {
 					console.log(error);
