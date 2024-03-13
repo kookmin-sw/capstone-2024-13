@@ -13,7 +13,12 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     content: str
 
-@app.post("/chat", response_model=ChatResponse)
+# 자체 제작하는 LLM을 v1으로, GPT-3.5-turbo를 v2로 설정하면 어떨까?
+@app.post("/v1/chat", response_model=ChatResponse)
+async def chat(request: ChatRequest):
+	return ChatResponse(content=Chain(request.content)['text'])
+
+@app.post("/v2/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     return ChatResponse(content=Chain(request.content)['text'])
 
