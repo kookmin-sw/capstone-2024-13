@@ -23,7 +23,7 @@ services:
     env_file:
       - ./service/langserve/.env
     volumes:
-      - uvicorn_src_volume:/code/app
+      - langserve_src_volume:/code/app
     networks:
       - you-know-what
     restart: unless-stopped
@@ -67,6 +67,8 @@ services:
       dockerfile: Dockerfile
     env_file:
       - ./service/nginx/.env
+    volumes:
+      - nginx_log_volume:/var/log/nginx
     ports:
       - 80:80
       - 443:443
@@ -85,8 +87,8 @@ volumes:
       type: none
       o: bind
       device: ./service/mongodb/db
-  uvicorn_src_volume:
-    name: uvicorn_src_volume
+  langserve_src_volume:
+    name: langserve_src_volume
     driver: local
     driver_opts:
       type: none
@@ -106,6 +108,13 @@ volumes:
       type: none
       o: bind
       device: ./service/nextjs/src
+  nginx_log_volume:
+    name: nginx_log_volume
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./service/nginx/log
 
 networks:
   you-know-what:

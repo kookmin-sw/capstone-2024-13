@@ -4,7 +4,7 @@
 set -e
 
 # Certificates
-$LOCAL && openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $NEXTJS_CERTS_KEY -out $NEXTJS_CERTS -subj "/C=MO/L=KH/O=1337/OU=student/CN=www.$DOMAIN_NAME"
+$LOCAL && openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $NEXTJS_CERTS_KEY -out $NEXTJS_CERTS -subj "/C=MO/L=KH/O=1337/OU=student/CN=$DOMAIN_NAME"
 $LOCAL && openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $NESTJS_CERTS_KEY -out $NESTJS_CERTS -subj "/C=MO/L=KH/O=1337/OU=student/CN=dev.$DOMAIN_NAME"
 
 # Server config
