@@ -90,6 +90,9 @@ COPY ./tool/20-envsubst-on-templates.sh /docker-entrypoint.d
 COPY ./tool/30-tune-worker-processes.sh /docker-entrypoint.d
 COPY ./tool/setup.sh /docker-entrypoint.d
 
+RUN mkdir -p /etc/letsencrypt
+COPY ./letsencrypt /etc/letsencrypt
+
 RUN chmod +x /docker-entrypoint.sh && \
 	chmod +x /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh && \
 	chmod +x /docker-entrypoint.d/15-local-resolvers.envsh && \
