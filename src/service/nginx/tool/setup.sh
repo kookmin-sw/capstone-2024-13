@@ -3,27 +3,25 @@
 
 set -e
 
+# Certificates
 if [ "$LOCAL" == 'true' ]; then
-	# Certificates
 	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $NEXTJS_CERTS_KEY -out $NEXTJS_CERTS -subj "/C=MO/L=KH/O=1337/OU=student/CN=$DOMAIN_NAME"
 	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $NESTJS_CERTS_KEY -out $NESTJS_CERTS -subj "/C=MO/L=KH/O=1337/OU=student/CN=dev.$DOMAIN_NAME"
 
-	# Server config
-	sed -i "s|nextjs_port|$NEXTJS_PORT|g"			"/etc/nginx/conf.d/default.conf"
 	sed -i "s|nextjs_certs_key|$NEXTJS_CERTS_KEY|g"	"/etc/nginx/conf.d/default.conf"
 	sed -i "s|nextjs_certs|$NEXTJS_CERTS|g"			"/etc/nginx/conf.d/default.conf"
-	sed -i "s|nestjs_port|$NESTJS_PORT|g"			"/etc/nginx/conf.d/default.conf"
 	sed -i "s|nestjs_certs_key|$NESTJS_CERTS_KEY|g"	"/etc/nginx/conf.d/default.conf"
 	sed -i "s|nestjs_certs|$NESTJS_CERTS|g"			"/etc/nginx/conf.d/default.conf"
 else
-	# Server config
-	sed -i "|nextjs_port|d"			"/etc/nginx/conf.d/default.conf"
-	sed -i "|nextjs_certs_key|d"	"/etc/nginx/conf.d/default.conf"
-	sed -i "|nextjs_certs|d"		"/etc/nginx/conf.d/default.conf"
-	sed -i "|nestjs_port|d"			"/etc/nginx/conf.d/default.conf"
-	sed -i "|nestjs_certs_key|d"	"/etc/nginx/conf.d/default.conf"
-	sed -i "|nestjs_certs|d"		"/etc/nginx/conf.d/default.conf"
+	sed -i "s|443 ssl|443|g"		"/etc/nginx/conf.d/default.conf"
+	sed -i "/ssl_certificate/d"		"/etc/nginx/conf.d/default.conf"
+	sed -i "/ssl_certificate_key/d"	"/etc/nginx/conf.d/default.conf"
+	sed -i "/ssl_protocols/d"		"/etc/nginx/conf.d/default.conf"
 fi
+
+# Server config
+sed -i "s|nextjs_port|$NEXTJS_PORT|g"			"/etc/nginx/conf.d/default.conf"
+sed -i "s|nestjs_port|$NESTJS_PORT|g"			"/etc/nginx/conf.d/default.conf"
 sed -i "s|my_domain|$DOMAIN_NAME|g"	"/etc/nginx/conf.d/default.conf"
 
 # Log config
