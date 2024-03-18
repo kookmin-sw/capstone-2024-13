@@ -8,6 +8,10 @@
 	container-type: size;
 }
 
+.right {
+	justify-content: flex-end;
+}
+
 .left > div:first-child,
 .right > div:last-child {
 	width: 15cqw;
@@ -15,9 +19,16 @@
 
 .left > div:last-child,
 .right > div:first-child {
-	width: 70cqw;
 	display: flex;
 	flex-direction: column;
+}
+
+.left > div:last-child {
+	align-items: flex-start;
+}
+
+.right > div:first-child {
+	align-items: flex-end;
 }
 
 .left > div:last-child > span:first-child,
@@ -28,6 +39,7 @@
 
 .left > div:last-child > span:last-child,
 .right > div:first-child > span:last-child {
+	max-width: 60cqw;
 	position: relative;
 	padding: 20cqh;
 	background-color: lightgray;
@@ -50,6 +62,6 @@
 }
 
 .right > div:first-child > span:last-child::after {
-	border-color: black black transparent transparent;
-	right: 15cqh;
+	border-color: lightgray transparent transparent lightgray;
+	right: -15cqh;
 }

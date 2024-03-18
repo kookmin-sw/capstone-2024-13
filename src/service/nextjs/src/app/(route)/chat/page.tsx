@@ -7,7 +7,9 @@ import { useContext, useState } from 'react';
 
 const ChatPage = () => {
 	const { me } = useContext(AuthContext);
-	const [messages, setMessages] = useState<string[]>(['Hello world']);
+	const [messages, setMessages] = useState<string[]>([
+		'Hello world Hello world Hello world Hello world Hello world',
+	]);
 
 	if (!me) {
 		return null;
@@ -19,6 +21,7 @@ const ChatPage = () => {
 				{messages.map((message, index) => (
 					<Chat key={index} nickname={me.nickname} content={message} />
 				))}
+				<Chat nickname={'LLM'} content="Hello world" position="right" />
 			</div>
 		</div>
 	);

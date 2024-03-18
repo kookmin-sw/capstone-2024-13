@@ -1,7 +1,7 @@
 export const ChatIcon = (props: {
 	width: number | string;
 	height: number | string;
-	onClick?: () => void;
+	onClick?: (event?: any) => void;
 }) => {
 	const { width, height, onClick } = props;
 

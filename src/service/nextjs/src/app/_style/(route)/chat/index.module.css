@@ -12,6 +12,9 @@
 	width: 90cqw;
 	height: 100cqh;
 	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 15cqh;
 
 	container-type: size;
 }

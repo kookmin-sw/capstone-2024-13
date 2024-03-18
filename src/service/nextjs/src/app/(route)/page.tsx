@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import style from '../_style/(route)/index.module.css';
-import { ChatIcon } from '../_icon';
 import Link from 'next/link';
+import { ChatIcon } from '../_icon';
 
 const Footer = () => {
 	return (
