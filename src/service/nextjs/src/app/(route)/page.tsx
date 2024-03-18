@@ -1,13 +1,16 @@
 import Image from 'next/image';
 import style from '../_style/(route)/index.module.css';
 import { ChatIcon } from '../_icon';
+import Link from 'next/link';
 
 const Footer = () => {
 	return (
 		<div className={style.footer}>
 			<div>
 				<div>
-					<ChatIcon width={'80cqw'} height={'80cqh'} />
+					<Link href="/chat">
+						<ChatIcon width={'80cqw'} height={'80cqh'} />
+					</Link>
 				</div>
 			</div>
 		</div>

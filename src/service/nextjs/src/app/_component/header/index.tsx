@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 
 const Title: { [key: string]: string } = {
+	'/chat': '일기',
 	'/diary': '나의 일기',
 	'/mypage': '내 정보',
 	'/test1': 'Test1',
