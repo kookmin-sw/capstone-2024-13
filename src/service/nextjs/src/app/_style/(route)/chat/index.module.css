@@ -2,25 +2,19 @@
 	width: 100cqw;
 	height: 100cqh;
 	display: flex;
-	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 
 	container-type: size;
 }
 
 .container > div {
-	width: 100cqw;
+	width: 90cqw;
 	height: 100cqh;
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	gap: 6cqh;
-	padding: 1cqh 0;
+	gap: 15cqh;
 
 	container-type: size;
-}
-
-.container > div::-webkit-scrollbar {
-	display: none;
 }

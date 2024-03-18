@@ -9,6 +9,7 @@ COPY ./package[s] ./packages
 COPY ./app ./app
 
 COPY ./template ./template
+
 RUN apt-get update && \
 	pip install poetry==1.6.1 && \
 	poetry config virtualenvs.create false && \

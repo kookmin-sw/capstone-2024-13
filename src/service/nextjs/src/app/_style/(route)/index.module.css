@@ -4,6 +4,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 5cqh;
 
 	container-type: size;
 }
@@ -17,7 +18,7 @@
 
 .layout > :last-child {
 	width: 100cqw;
-	height: 85cqh;
+	height: 80cqh;
 
 	container-type: size;
 }
@@ -82,4 +83,8 @@
 	align-items: center;
 
 	container-type: size;
+}
+
+.footer > div > div > a {
+	cursor: none;
 }

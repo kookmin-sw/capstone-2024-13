@@ -10,7 +10,6 @@ const DiaryPage = () => {
 
 	return (
 		<div className={style.container}>
-			<div></div>
 			<div>{diary && diary?.map((item, index) => <DiaryPreview key={index} diary={item} />)}</div>
 		</div>
 	);

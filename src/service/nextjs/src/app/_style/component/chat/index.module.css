@@ -1,0 +1,67 @@
+.left,
+.right {
+	width: 100cqw;
+	height: min(15cqw);
+	display: flex;
+	gap: 5cqw;
+
+	container-type: size;
+}
+
+.right {
+	justify-content: flex-end;
+}
+
+.left > div:first-child,
+.right > div:last-child {
+	width: 15cqw;
+}
+
+.left > div:last-child,
+.right > div:first-child {
+	display: flex;
+	flex-direction: column;
+}
+
+.left > div:last-child {
+	align-items: flex-start;
+}
+
+.right > div:first-child {
+	align-items: flex-end;
+}
+
+.left > div:last-child > span:first-child,
+.right > div:first-child > span:first-child {
+	margin-bottom: 20cqh;
+	font-size: 35cqh;
+}
+
+.left > div:last-child > span:last-child,
+.right > div:first-child > span:last-child {
+	max-width: 60cqw;
+	position: relative;
+	padding: 20cqh;
+	background-color: lightgray;
+	border-radius: 10cqh;
+	font-size: 30cqh;
+}
+
+.left > div:last-child > span:last-child::after,
+.right > div:first-child > span:last-child::after {
+	content: '';
+	position: absolute;
+	top: 10cqh;
+	border-width: 10cqh;
+	border-style: solid;
+}
+
+.left > div:last-child > span:last-child::after {
+	border-color: lightgray lightgray transparent transparent;
+	left: -15cqh;
+}
+
+.right > div:first-child > span:last-child::after {
+	border-color: lightgray transparent transparent lightgray;
+	right: -15cqh;
+}
