@@ -46,10 +46,26 @@ case $choice in
 			echo "${RED}Aborted${NC}"
 			exit 1
 		fi
+
+		# 기존 인증서의 도메인 가져오기
+		old_domain=$(grep "^\s*domains =" /etc/letsencrypt/renewal/* | sed -e 's/^\s*domains =//')
+
 		docker run -it --rm --name certbot \
 			-v /etc/letsencrypt:/etc/letsencrypt \
 			-v /var/lib/letsencrypt:/var/lib/letsencrypt \
 			certbot/certbot renew --dry-run
+		# 오류가 발생했는지 확인
+		if [ $? -ne 0 ]; then
+				echo "${RED}오류: SSL 인증서 갱신에 실패했습니다.${NC}"
+				exit 1
+		fi
+		# 새로운 인증서의 도메인 가져오기
+		new_domain=$(grep "^\s*domains =" /etc/letsencrypt/renewal/* | sed -e 's/^\s*domains =//')
+		# 이전 인증서 도메인과 새 인증서 도메인이 일치하는지 확인
+		if [ "$old_domain" != "$new_domain" ]; then
+				echo "${RED}오류: 도메인 불일치. 인증서를 갱신할 수 없습니다.${NC}"
+				exit 1
+		fi
 		;;
 	3)
 		echo "${GREEN}Exiting ...${NC}"
