@@ -13,7 +13,7 @@ const handleClick = (
 	nickname: string,
 	setMe: Dispatch<SetStateAction<Me | null>>,
 	router: AppRouterInstance,
-	profileImageSrc?: string,
+	src?: string,
 ) => {
 	event.preventDefault();
 
@@ -32,8 +32,8 @@ const handleClick = (
 		});
 };
 
-const RegisterButton = (props: { profileImageSrc?: string; nickname: string }) => {
-	const { profileImageSrc, nickname } = props;
+const RegisterButton = (props: { src?: string; nickname: string }) => {
+	const { src, nickname } = props;
 	const { setMe } = useContext(AuthContext);
 	const router = useRouter();
 
@@ -43,7 +43,7 @@ const RegisterButton = (props: { profileImageSrc?: string; nickname: string }) =
 				variant="contained"
 				color="primary"
 				size="medium"
-				onClick={event => handleClick(event, nickname, setMe, router, profileImageSrc)}
+				onClick={event => handleClick(event, nickname, setMe, router, src)}
 			>
 				회원가입
 			</Button>

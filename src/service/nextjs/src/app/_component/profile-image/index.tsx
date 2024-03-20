@@ -1,17 +1,21 @@
 'use client';
 
 import style from '../../_style/component/profile-image/index.module.css';
-import { AddAPhoto } from '@mui/icons-material';
 import { Avatar, Badge } from '@mui/material';
+import { Dispatch, SetStateAction } from 'react';
+import ImageSelector from './image-selector';
 
 const ProfileImage = (props: {
-	src?: string;
 	width?: number | string;
 	height?: number | string;
+	src?: string | undefined;
+	setSrc?: Dispatch<SetStateAction<string | undefined>>;
+	setFile?: Dispatch<SetStateAction<File | null>>;
 }) => {
-	const src = props.src || '/default-profile-image.png';
 	const width = props.width || '100%';
 	const height = props.height || '100%';
+	const src = props.src || '/default-profile-image.png';
+	const { setSrc, setFile } = props;
 
 	return (
 		<div style={{ width, height }} className={style.container}>
@@ -19,9 +23,11 @@ const ProfileImage = (props: {
 				overlap="circular"
 				anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 				badgeContent={
-					<Avatar alt="Add a photo" onClick={() => alert('Add a photo')}>
-						<AddAPhoto />
-					</Avatar>
+					setSrc && setFile ? (
+						<Avatar alt="Add a photo">
+							<ImageSelector setSrc={setSrc} setFile={setFile} />
+						</Avatar>
+					) : null
 				}
 			>
 				<Avatar alt="Profile image" src={src} />
