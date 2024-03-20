@@ -35,11 +35,6 @@ class Settings:
 		self.ai_prefix = settings[type]['ai_prefix']
 		self.human_prefix = settings[type]['human_prefix']
 
-	def load_yaml(file_name):
-		with open(file_name) as file:
-			settings = yaml.safe_load(file)
-		return settings
-
 
 class ChainV1: #phi 2
 	def __init__(self, history_id, template):
@@ -70,7 +65,31 @@ class ChainV2: #gpt 3.5
 			verbose=True,                                                   # 자세한 로그 출력 여부
 		)
 
+	def process_user_input(self, user_input):
+			# 사용자 입력을 안전하게 처리하여 템플릿에 삽입
+			processed_input = self.process_input(user_input)
+			# 시스템 메시지 템플릿 역할이 변경되지 않도록 설정
+			self.system_template = self.settings.system_template
+			# 새로운 시스템 메시지 템플릿을 사용하여 새로운 프롬프트 생성
+			self.prompt = ChatPromptTemplate.from_messages([
+					self.system_template, # 역할 부여
+					MessagesPlaceholder(variable_name=self.history_id), # 대화 내역을 메모리 저장소에 저장
+					HumanMessagePromptTemplate.from_template(processed_input), # 안전하게 처리된 사용자 입력을 템플릿에 삽입
+			])
+			# 대화 기록 업데이트
+			self.memory.update_conversation(user_input)
+			# LLMChain 업데이트
+			self.model = LLMChain(
+					llm=self.llm,
+					prompt=self.prompt,
+					memory=self.memory,
+					verbose=True, # 자세한 로그 출력 여부
+			)
 
+	def process_input(self, user_input):
+			# 사용자 입력을 안전하게 처리하여 반환 (예: 특수문자 이스케이프 등)
+			processed_input = ... # 사용자 입력 처리 로직 구현
+			return processed_input
 class ChainV3: #gpt 2
 	def __init__(self) -> None:
 		pass
