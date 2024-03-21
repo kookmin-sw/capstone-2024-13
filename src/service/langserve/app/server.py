@@ -4,11 +4,14 @@ from pydantic 			import BaseModel, Field
 from typing				import List, Union
 from langchain.schema	import AIMessage, HumanMessage, SystemMessage
 from app.chain			import ChainV1, ChainV2, ChainV3
+from app.stt			import Stt
 from bson 				import ObjectId
 
 app = FastAPI(title = "LLMChain", description = "Large Language Model Chain", version = "0.1.0")
 
 models_dict = {}
+
+stt_set = Stt()
 
 # Pydantic 모델에서 ObjectId를 사용하기 위한 클래스
 class PyObjectId(ObjectId):
@@ -37,6 +40,12 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
 	content: str
+
+class STTRequest(BaseModel):
+    file: bytes
+
+class STTResponse(BaseModel):
+	text: str
 
 @app.post("/v1/chat/connect", response_model=ChatResponse)
 async def connect_v1(request : ConnectRequest):
@@ -85,6 +94,11 @@ async def chatV2(request: ChatRequest):
 @app.post("/v3/chat/invoke", response_model=ChatResponse)
 async def chatV2(request: ChatRequest):
 	return ChatResponse(content=models_dict[request.history_id](request.content)['text'])
+
+#stt api
+@app.post("/chat/stt", response_model=STTResponse)
+async def stt(request: STTRequest):
+	return ChatResponse(text = stt_set.execution(request.file))
 
 
 
