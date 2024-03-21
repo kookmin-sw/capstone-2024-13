@@ -73,18 +73,18 @@ async def disconnect_v3(request : ConnectRequest):
 	return ChatResponse(content="Disconnected from v3")
 
 
-# 자체 제작하는 LLM을 v1으로, GPT-3.5-turbo를 v2로 설정하면 어떨까?
+#phi2
 @app.post("/v1/chat/invoke", response_model=ChatResponse)
 async def chatV1(request: ChatRequest):
 	return ChatResponse(content=models_dict[request.history_id](request.content))
-
+#gpt2
 @app.post("/v2/chat/invoke", response_model=ChatResponse)
 async def chatV2(request: ChatRequest):
 	return ChatResponse(content=models_dict[request.history_id](request.content))
-
+#gpt3.5-turbo
 @app.post("/v3/chat/invoke", response_model=ChatResponse)
 async def chatV2(request: ChatRequest):
-	return ChatResponse(content=models_dict[request.history_id].model(request.content)['text'])
+	return ChatResponse(content=models_dict[request.history_id](request.content)['text'])
 
 
 
