@@ -4,17 +4,17 @@ import ProfileImage from '../profile-image';
 const Chat = (props: {
 	nickname: string;
 	content: string;
-	profileImageUrl?: string;
+	profileImageId?: string;
 	position?: 'left' | 'right';
 }) => {
-	const { nickname, content, profileImageUrl, position = 'left' } = props;
+	const { nickname, content, profileImageId, position = 'left' } = props;
 
 	return (
 		<div className={position == 'left' ? style.left : style.right}>
 			{position == 'left' ? (
 				<>
 					<div>
-						<ProfileImage src={profileImageUrl} />
+						<ProfileImage src={profileImageId} />
 					</div>
 					<div>
 						<span>{nickname}</span>
@@ -28,7 +28,7 @@ const Chat = (props: {
 						<span>{content}</span>
 					</div>
 					<div>
-						<ProfileImage src={profileImageUrl} />
+						<ProfileImage src={profileImageId} />
 					</div>
 				</>
 			)}

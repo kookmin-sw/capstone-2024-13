@@ -45,7 +45,7 @@ export class User {
 		required: false,
 		uniqueItems: true,
 	})
-	profileImageUrl?: string;
+	profileImageId?: string;
 
 	@Prop({
 		type: [Types.ObjectId],

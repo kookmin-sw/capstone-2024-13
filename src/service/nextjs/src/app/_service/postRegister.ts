@@ -15,8 +15,8 @@ const postRegister = async <Me>(query: object) => {
 		const presignedUrl = await postPresignedUrl('profile').catch(error => {
 			throw error;
 		});
-		const profileImageUrl = presignedUrl.fields.key;
-		user = await patchFetcher<Me>('/user/me', { profileImageUrl }).catch(error => {
+		const profileImageId = presignedUrl.fields.key.split('/')[2];
+		user = await patchFetcher<Me>('/user/me', { profileImageId }).catch(error => {
 			throw error;
 		});
 		const formData = new FormData();

@@ -16,7 +16,7 @@ for (let i = 0; i < 100; i++) {
   var id = (i < 10) ? "0" + i : i;
   var nickname = "test" + id;
   var email = nickname + "@test.com";
-  var profileImageUrl = null;
+  var profileImageId = null;
 
   var diaries = [];
   for (let j = 0; j < 10; j++) {
@@ -29,7 +29,7 @@ for (let i = 0; i < 100; i++) {
   }
   var createdAt, updatedAt;
   createdAt = updatedAt = new Date();
-  db.users.insertOne({ nickname, email, profileImageUrl, diaries, createdAt, updatedAt });
+  db.users.insertOne({ nickname, email, profileImageId, diaries, createdAt, updatedAt });
 }
   
 EOF

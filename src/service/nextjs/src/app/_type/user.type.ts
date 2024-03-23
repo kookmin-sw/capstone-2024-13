@@ -4,6 +4,6 @@ export interface User {
 	_id: Types.ObjectId;
 	email: string;
 	nickname: string;
-	profileImageUrl?: Types.ObjectId;
+	profileImageId?: Types.ObjectId;
 	diaries?: Types.ObjectId[];
 }
