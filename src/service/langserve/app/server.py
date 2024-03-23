@@ -4,10 +4,14 @@ from pydantic 			import BaseModel, Field
 from typing				import List, Union
 from langchain.schema	import AIMessage, HumanMessage, SystemMessage
 from app.chain			import ChainV1, ChainV2, ChainV3
-from bson import ObjectId
+from app.stt			import Stt
+from bson 				import ObjectId
+
 app = FastAPI(title = "LLMChain", description = "Large Language Model Chain", version = "0.1.0")
 
 models_dict = {}
+
+stt_set = Stt()
 
 # Pydantic 모델에서 ObjectId를 사용하기 위한 클래스
 class PyObjectId(ObjectId):
@@ -28,6 +32,7 @@ class PyObjectId(ObjectId):
 class ConnectRequest(BaseModel):
     #history_id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
 	history_id: str
+
 class ChatRequest(BaseModel):
     #history_id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     history_id: str
@@ -35,6 +40,12 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
 	content: str
+
+class STTRequest(BaseModel):
+    file: bytes
+
+class STTResponse(BaseModel):
+	text: str
 
 @app.post("/v1/chat/connect", response_model=ChatResponse)
 async def connect_v1(request : ConnectRequest):
@@ -71,18 +82,23 @@ async def disconnect_v3(request : ConnectRequest):
 	return ChatResponse(content="Disconnected from v3")
 
 
-# 자체 제작하는 LLM을 v1으로, GPT-3.5-turbo를 v2로 설정하면 어떨까?
+#phi2
 @app.post("/v1/chat/invoke", response_model=ChatResponse)
 async def chatV1(request: ChatRequest):
 	return ChatResponse(content=models_dict[request.history_id](request.content))
-
+#gpt2
 @app.post("/v2/chat/invoke", response_model=ChatResponse)
 async def chatV2(request: ChatRequest):
-	return ChatResponse(content=models_dict[request.history_id].model(request.content)['text'])
-
+	return ChatResponse(content=models_dict[request.history_id](request.content))
+#gpt3.5-turbo
 @app.post("/v3/chat/invoke", response_model=ChatResponse)
 async def chatV2(request: ChatRequest):
-	return ChatResponse(content=models_dict[request.history_id](request.content))
+	return ChatResponse(content=models_dict[request.history_id](request.content)['text'])
+
+#stt api
+@app.post("/chat/stt", response_model=STTResponse)
+async def stt(request: STTRequest):
+	return ChatResponse(text = stt_set.execution(request.file))
 
 
 
