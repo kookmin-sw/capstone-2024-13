@@ -28,7 +28,7 @@ class S3Service {
 	async getPresignedUrl(imageId: string): Promise<any> {
 		try {
 			return await createPresignedPost(this.s3Client, {
-				Bucket: this.configService.get('S3_BUCKET'),
+				Bucket: this.configService.getOrThrow('S3_BUCKET'),
 				Key: imageId,
 				Expires: 60, // seconds
 				Conditions: [
@@ -44,7 +44,7 @@ class S3Service {
 	async delete(keys: string[]) {
 		try {
 			return this.s3.deleteObjects({
-				Bucket: this.configService.get('S3_BUCKET'),
+				Bucket: this.configService.getOrThrow('S3_BUCKET'),
 				Delete: {
 					Objects: keys.map(key => ({ Key: key })),
 				},
