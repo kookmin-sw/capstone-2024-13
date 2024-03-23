@@ -1,10 +1,10 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import ProfileImage from '../../../_component/profile-image';
 import style from '../../../_style/(route)/auth/register/index.module.css';
 import NicknameField from './nickname-field';
-import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
 import RegisterButton from './button';
 
 const RegisterPage = () => {
@@ -21,7 +21,7 @@ const RegisterPage = () => {
 					<ProfileImage width="90cqw" height="90cqw" src={src} setSrc={setSrc} setFile={setFile} />
 				</div>
 				<NicknameField value={nickname} onChange={event => setNickname(event.target.value)} />
-				<RegisterButton src={src} nickname={nickname} />
+				<RegisterButton nickname={nickname} file={file} />
 			</div>
 		</div>
 	);

@@ -14,7 +14,7 @@ const MyPage = () => {
 		<div className={style.container}>
 			<div className={style.profile}>
 				<div>
-					<ProfileImage />
+					<ProfileImage src={me?.profileImageUrl?.toString()} />
 				</div>
 				<span>{me?.nickname}</span>
 			</div>

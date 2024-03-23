@@ -2,6 +2,7 @@
 
 import AuthContext from '@/app/_context/auth';
 import { postFetcher } from '@/app/_service/api';
+import postRegister from '@/app/_service/postRegister';
 import { Me } from '@/app/_type';
 import { Button } from '@mui/material';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
@@ -10,14 +11,14 @@ import { Dispatch, MouseEvent, SetStateAction, useContext } from 'react';
 
 const handleClick = (
 	event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
-	nickname: string,
 	setMe: Dispatch<SetStateAction<Me | null>>,
 	router: AppRouterInstance,
-	src?: string,
+	nickname: string,
+	file?: File | null,
 ) => {
 	event.preventDefault();
 
-	postFetcher<Me>('/auth/register', { nickname })
+	postRegister<Me>({ nickname, file })
 		.then(response => {
 			setMe(response);
 			router.push('/');
@@ -28,12 +29,11 @@ const handleClick = (
 				alert('이미 가입된 사용자입니다.');
 				router.push('/auth/login');
 			}
-			console.error(error);
 		});
 };
 
-const RegisterButton = (props: { src?: string; nickname: string }) => {
-	const { src, nickname } = props;
+const RegisterButton = (props: { nickname: string; file?: File | null }) => {
+	const { nickname, file } = props;
 	const { setMe } = useContext(AuthContext);
 	const router = useRouter();
 
@@ -43,7 +43,7 @@ const RegisterButton = (props: { src?: string; nickname: string }) => {
 				variant="contained"
 				color="primary"
 				size="medium"
-				onClick={event => handleClick(event, nickname, setMe, router, src)}
+				onClick={event => handleClick(event, setMe, router, nickname, file)}
 			>
 				회원가입
 			</Button>
