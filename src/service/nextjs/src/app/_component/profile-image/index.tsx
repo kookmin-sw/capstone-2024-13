@@ -14,7 +14,8 @@ const ProfileImage = (props: {
 }) => {
 	const width = props.width || '100%';
 	const height = props.height || '100%';
-	const src = props.src || '/default-profile-image.png';
+	const src =
+		`${process.env.NEXT_PUBLIC_S3_BUCKET_URL}/${props.src}` || '/default-profile-image.png';
 	const { setSrc, setFile } = props;
 
 	return (

@@ -15,7 +15,7 @@ const postRegister = async <Me>(query: object) => {
 		const presignedUrl = await postPresignedUrl('profile').catch(error => {
 			throw error;
 		});
-		const profileImageUrl = process.env.NEXT_PUBLIC_S3_BUCKET_URL + '/' + presignedUrl.fields.key;
+		const profileImageUrl = presignedUrl.fields.key;
 		user = await patchFetcher<Me>('/user/me', { profileImageUrl }).catch(error => {
 			throw error;
 		});
