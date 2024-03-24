@@ -4,6 +4,11 @@ import { AddAPhoto } from '@mui/icons-material';
 import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import style from '../../../_style/component/profile-image/image-selector/index.module.css';
 
+const isValidFileType = (type: string) => {
+	const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+	return allowedTypes.includes(type);
+};
+
 const handleChange = async (
 	event: ChangeEvent<HTMLInputElement>,
 	setSrc: Dispatch<SetStateAction<string | undefined>>,
@@ -12,6 +17,11 @@ const handleChange = async (
 	const file = event.target.files?.[0];
 
 	if (!file) {
+		return;
+	}
+
+	if (!isValidFileType(file.type)) {
+		alert('Invalid file type');
 		return;
 	}
 
@@ -30,7 +40,7 @@ const ImageSelector = (props: {
 			<input
 				id="image-input"
 				type="file"
-				accept="image/*"
+				accept="image/jpeg, image/jpg, image/png"
 				onChange={event => handleChange(event, setSrc, setFile)}
 			/>
 			<label htmlFor="image-input">
