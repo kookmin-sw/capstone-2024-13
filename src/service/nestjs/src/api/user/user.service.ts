@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/common/database/schema';
+import * as Dto from './dto';
 
 @Injectable()
 class UserService {
@@ -15,9 +16,17 @@ class UserService {
 		}
 	}
 
-	async findByEmail(email: string): Promise<User> {
+	async findOne(query: Dto.Request.Find): Promise<User> {
 		try {
-			return await this.userModel.findOne({ email });
+			return await this.userModel.findOne(query);
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async findOneAndUpdate(query: Dto.Request.Find, update: object): Promise<User> {
+		try {
+			return await this.userModel.findOneAndUpdate(query, update, { new: true });
 		} catch (error) {
 			throw error;
 		}

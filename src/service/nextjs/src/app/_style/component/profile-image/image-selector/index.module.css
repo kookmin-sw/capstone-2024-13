@@ -1,0 +1,28 @@
+.container {
+	width: 100cqw;
+	height: 100cqh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 0 1cqh 0 rgba(0, 0, 0, 0.8);
+
+	container-type: size;
+}
+
+.container > input {
+	display: none;
+}
+
+.container > label {
+	width: 60cqw;
+	height: 60cqh;
+
+	container-type: size;
+}
+
+.container > label > svg {
+	width: 100cqw;
+	height: 100cqh;
+
+	container-type: size;
+}

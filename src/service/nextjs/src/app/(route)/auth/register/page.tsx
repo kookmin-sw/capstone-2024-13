@@ -1,15 +1,16 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import ProfileImage from '../../../_component/profile-image';
 import style from '../../../_style/(route)/auth/register/index.module.css';
 import NicknameField from './nickname-field';
-import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
 import RegisterButton from './button';
 
 const RegisterPage = () => {
 	const searchParams = useSearchParams();
-	const [profileImageSrc, setProfileImageSrc] = useState<string | undefined>(undefined);
+	const [src, setSrc] = useState<string | undefined>(undefined);
+	const [file, setFile] = useState<File | null>(null);
 	const [nickname, setNickname] = useState<string>(searchParams.get('nickname') || '');
 
 	return (
@@ -17,10 +18,10 @@ const RegisterPage = () => {
 			<div>
 				<div>
 					<span>프로필 이미지</span>
-					<ProfileImage width="90cqw" height="90cqw" />
+					<ProfileImage width="90cqw" height="90cqw" src={src} setSrc={setSrc} setFile={setFile} />
 				</div>
 				<NicknameField value={nickname} onChange={event => setNickname(event.target.value)} />
-				<RegisterButton profileImageSrc={profileImageSrc} nickname={nickname} />
+				<RegisterButton nickname={nickname} file={file} />
 			</div>
 		</div>
 	);

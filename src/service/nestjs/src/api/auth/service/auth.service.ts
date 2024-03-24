@@ -8,7 +8,7 @@ class AuthService {
 
 	async login(email: string): Promise<User> {
 		try {
-			return await this.userService.findByEmail(email);
+			return await this.userService.findOne({ email });
 		} catch (error) {
 			throw error;
 		}

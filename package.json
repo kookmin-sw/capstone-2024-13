@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@aws-sdk/s3-presigned-post": "^3.540.0"
+  }
+}
