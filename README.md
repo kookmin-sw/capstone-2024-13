@@ -27,7 +27,7 @@
 </br>
 
 <h2 align="center">
-	<a href="">배포 페이지</a>
+	<a href="https://you-know-what.com">배포 페이지</a>
 </h2>
 
 </br>
