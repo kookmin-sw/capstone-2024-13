@@ -1,8 +1,5 @@
-import { Dispatch, SetStateAction } from 'react';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import postPresignedUrl from './postPresignedUrl';
-import { getFetcher, patchFetcher, postFetcher } from './api';
-import { Me } from '@/app/_type';
+import { patchFetcher, postFetcher } from './api';
 
 const postRegister = async <Me>(query: object) => {
 	const { file, ...rest } = query as { file?: File; [key: string]: any };

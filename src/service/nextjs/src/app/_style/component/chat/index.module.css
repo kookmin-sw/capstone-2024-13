@@ -39,11 +39,12 @@
 
 .left > div:last-child > span:last-child,
 .right > div:first-child > span:last-child {
-	max-width: 60cqw;
+	max-width: 70cqw;
 	position: relative;
 	padding: 20cqh;
 	background-color: lightgray;
 	border-radius: 10cqh;
+	word-break: break-all;
 	font-size: 30cqh;
 }
 

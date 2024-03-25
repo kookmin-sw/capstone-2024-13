@@ -15,15 +15,15 @@ services:
       - you-know-what
     restart: unless-stopped
     tty: true
-  langserve:
-    container_name: langserve
+  mystic:
+    container_name: mystic
     build:
-      context: ./service/langserve
+      context: ./service/mystic
       dockerfile: Dockerfile
     env_file:
-      - ./service/langserve/.env
+      - ./service/mystic/.env
     volumes:
-      - langserve_src_volume:/code/app
+      - mystic_src_volume:/code/app
     networks:
       - you-know-what
     restart: unless-stopped
@@ -44,7 +44,7 @@ services:
     restart: unless-stopped
     tty: true
     depends_on:
-      - langserve
+      - mystic
   nextjs:
     container_name: nextjs
     build:
@@ -87,13 +87,13 @@ volumes:
       type: none
       o: bind
       device: ./service/mongodb/db
-  langserve_src_volume:
-    name: langserve_src_volume
+  mystic_src_volume:
+    name: mystic_src_volume
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ./service/langserve/app
+      device: ./service/mystic/app
   nestjs_src_volume:
     name: nestjs_src_volume
     driver: local
