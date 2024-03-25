@@ -1,10 +1,11 @@
 from fastapi			import FastAPI
-from fastapi.responses	import RedirectResponse
+from fastapi.responses	import RedirectResponse, Response
 from pydantic 			import BaseModel, Field
 from typing				import List, Union
 from langchain.schema	import AIMessage, HumanMessage, SystemMessage
 from app.chain			import ChainV1, ChainV2, ChainV3
 from app.stt			import Stt
+from app.tts			import TTS
 from bson 				import ObjectId
 
 app = FastAPI(title = "Mystic", description = "LLM, STT, TTS intergrated server", version = "0.1.0")
@@ -46,6 +47,12 @@ class STTRequest(BaseModel):
 
 class STTResponse(BaseModel):
 	text: str
+
+class TTSRequest(BaseModel):
+	text: str
+	toSlow: bool = False
+
+
 
 @app.post("/connect/v1", response_model=ChatResponse)
 async def connect_v1(request : ConnectRequest):
@@ -99,7 +106,12 @@ async def chatV2(request: ChatRequest):
 async def stt(request: STTRequest):
 	return ChatResponse(text = stt_set.execution(request.file))
 
-
+#tts api
+@app.post("/tts")
+async def tts(request: TTSRequest):
+	# TTS.invoke 함수를 수정하여 BytesIO 대신 바이트 데이터를 직접 반환하게 해야 합니다.
+	audio_data = TTS.invoke(request.text, request.toSlow)
+	return Response(content=audio_data, media_type="audio/mp3")
 
 if __name__ == "__main__":
 	import uvicorn
