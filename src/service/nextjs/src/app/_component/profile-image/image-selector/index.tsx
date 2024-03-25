@@ -5,7 +5,7 @@ import { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import style from '../../../_style/component/profile-image/image-selector/index.module.css';
 
 const isValidFileType = (type: string) => {
-	const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+	const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
 	return allowedTypes.includes(type);
 };
 
