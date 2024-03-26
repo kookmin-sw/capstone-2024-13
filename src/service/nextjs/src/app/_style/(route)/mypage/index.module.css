@@ -4,68 +4,13 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
 
 	container-type: size;
 }
 
-.container > * {
-	width: 100cqw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+.container > div:last-child {
+	width: 85cqw;
+	flex: 1;
 
 	container-type: size;
-}
-
-.container > div:not(:first-child) {
-	border-top: 0.5px solid #000000;
-}
-
-.profile {
-	height: 55cqh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-
-	gap: 3cqh;
-}
-
-.profile > div {
-	width: 70cqh;
-	height: 70cqh;
-}
-
-.profile > span {
-	font-size: 5cqh;
-}
-
-.edit {
-	height: 10cqh;
-}
-
-.edit > button {
-	width: 90cqw;
-	height: 60cqh;
-	font-size: 20cqh;
-	border-radius: 10cqh;
-}
-
-.email {
-	height: 15cqh;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 1.5cqh;
-
-	container-type: size;
-}
-
-.email > div {
-	width: 90cqw;
-	font-size: 15cqh;
-	display: flex;
-	align-items: center;
-	gap: 1cqw;
 }
