@@ -33,6 +33,7 @@ class PyObjectId(ObjectId):
 class ConnectRequest(BaseModel):
     #connection_id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
 	connection_id: str
+	template: str
 
 class ChatRequest(BaseModel):
     #connection_id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
@@ -56,19 +57,19 @@ class TTSRequest(BaseModel):
 
 @app.post("/connect/v1", response_model=ChatResponse)
 async def connect_v1(request : ConnectRequest):
-	chain = ChainV1(connection_id = request.connection_id, template = "cool_headed")
+	chain = ChainV1(connection_id = request.connection_id, template = request.template)
 	models_dict[request.connection_id]= chain
 	return ChatResponse(content="Connect v1 successfully")
 
 @app.post("/connect/v2", response_model=ChatResponse)
 async def connect_v2(request : ConnectRequest):
-	chain = ChainV2(connection_id = request.connection_id, template = "cool_headed")
+	chain = ChainV2(connection_id = request.connection_id, template = request.template)
 	models_dict[request.connection_id]= chain
 	return ChatResponse(content="Connect v2 successfully")
 
 @app.post("/connect/v3", response_model=ChatResponse)
 async def connect_v3(request : ConnectRequest):
-	chain = ChainV3(connection_id = request.connection_id, template = "cool_headed")
+	chain = ChainV3(connection_id = request.connection_id, template = request.template)
 	models_dict[request.connection_id]= chain
 	return ChatResponse(content="Connect v3 successfully")
 
