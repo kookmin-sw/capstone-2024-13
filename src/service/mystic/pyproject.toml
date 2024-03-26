@@ -19,6 +19,7 @@ python-dotenv = "^1.0.1"
 faiss-cpu = "^1.8.0"
 pymongo = "^4.6.2"
 pydub = "^0.25.1"
+gtts = "^2.5.1"
 
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.15"

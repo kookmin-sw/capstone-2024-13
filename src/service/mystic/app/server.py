@@ -1,17 +1,18 @@
 from fastapi			import FastAPI
-from fastapi.responses	import RedirectResponse
+from fastapi.responses	import RedirectResponse, Response
 from pydantic 			import BaseModel, Field
 from typing				import List, Union
 from langchain.schema	import AIMessage, HumanMessage, SystemMessage
 from app.chain			import ChainV1, ChainV2, ChainV3
-from app.stt			import Stt
+from app.stt			import STT
+from app.tts			import tts as TTS
 from bson 				import ObjectId
 
 app = FastAPI(title = "Mystic", description = "LLM, STT, TTS intergrated server", version = "0.1.0")
 
 models_dict = {}
 
-stt_set = Stt()
+stt = STT()
 
 # Pydantic 모델에서 ObjectId를 사용하기 위한 클래스
 class PyObjectId(ObjectId):
@@ -46,6 +47,12 @@ class STTRequest(BaseModel):
 
 class STTResponse(BaseModel):
 	text: str
+
+class TTSRequest(BaseModel):
+	text: str
+	slow: bool = False
+
+
 
 @app.post("/connect/v1", response_model=ChatResponse)
 async def connect_v1(request : ConnectRequest):
@@ -97,9 +104,13 @@ async def chatV2(request: ChatRequest):
 #stt api
 @app.post("/stt", response_model=STTResponse)
 async def stt(request: STTRequest):
-	return ChatResponse(text = stt_set.execution(request.file))
+	return ChatResponse(text = stt(request.file))
 
-
+#tts api
+@app.post("/tts")
+async def tts(request: TTSRequest):
+	audio_data = TTS(request.text, request.slow)
+	return Response(content=audio_data, media_type="audio/mp3")
 
 if __name__ == "__main__":
 	import uvicorn
