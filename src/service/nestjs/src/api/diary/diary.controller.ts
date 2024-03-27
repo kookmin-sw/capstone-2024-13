@@ -14,9 +14,8 @@ import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/common';
 import DiaryService from './diary.service';
 import { Diary } from 'src/common/database/schema';
-import { CreateDiaryDto } from './dto/createDiary.dto';
 import { Types } from 'mongoose';
-
+import * as Dto from './dto';
 @Controller('diary')
 @ApiTags('diary')
 @UseGuards(Auth.Guard.UserJwt)
@@ -29,7 +28,7 @@ class DiaryController {
 	@ApiOkResponse({ type: Diary })
 	async get(@Param('id') diaryId: string) {
 		try {
-			return await this.diaryService.get(diaryId);
+			return await this.diaryService.find({ _id: diaryId });
 		} catch (error) {
 			throw new BadRequestException(`Get diary failed: ${error.status}: ${error.message}`);
 		}
@@ -46,7 +45,7 @@ class DiaryController {
 		try {
 			const userId = req.user._id;
 
-			return await this.diaryService.getUser(userId);
+			return await this.diaryService.find({ userId: userId });
 		} catch (error) {
 			throw new BadRequestException(`Get user diary failed: ${error.status}: ${error.message}`);
 		}
@@ -56,7 +55,7 @@ class DiaryController {
 	@Post()
 	@ApiOperation({ summary: '다이어리 생성', description: '다이어리 생성' })
 	@ApiOkResponse({ type: Diary })
-	async create(@Request() req, @Body() createDiaryDto: CreateDiaryDto) {
+	async create(@Request() req, @Body() createDiaryDto: Dto.Request.Diary) {
 		try {
 			const userId = req.user._id;
 			const { title, content } = createDiaryDto;
@@ -71,7 +70,7 @@ class DiaryController {
 	@Patch(':id')
 	@ApiOperation({ summary: '다이어리 수정', description: '다이어리 수정' })
 	@ApiOkResponse({ type: Diary })
-	async update(@Param('id') diaryId: string, @Body() createDiaryDto: CreateDiaryDto) {
+	async update(@Param('id') diaryId: string, @Body() createDiaryDto: Dto.Request.Diary) {
 		try {
 			const { title, content } = createDiaryDto;
 
