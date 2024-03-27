@@ -15,6 +15,15 @@ const diarySchemaOptions: SchemaOptions = {
 
 @Schema(diarySchemaOptions)
 export class Diary {
+	//One-to-Squillions
+	@Prop({ type: String, required: true })
+	@ApiProperty({
+		type: String,
+		description: 'User ID',
+		example: '49fafa4d2ca3602935816679',
+	})
+	userId: string;
+
 	@Prop({ type: String, required: true })
 	@ApiProperty({
 		type: String,

@@ -46,19 +46,6 @@ export class User {
 		uniqueItems: true,
 	})
 	profileImageId?: string;
-
-	@Prop({
-		type: [Types.ObjectId],
-		required: false,
-		ref: 'Diary',
-	})
-	@ApiProperty({
-		example: ['37fafa4d2ca3382535816679', '82fafa4d2ca3600165816679'],
-		type: Array,
-		required: false,
-		items: { type: 'Types.ObjectId', uniqueItems: true },
-	})
-	diaries?: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
