@@ -19,6 +19,10 @@
 	color: #b2b2b2;
 }
 
+.container > div > span {
+	border-radius: 40%;
+}
+
 .container > div > span > div {
-	border-radius: 35%;
+	border-radius: 40%;
 }

@@ -4,6 +4,7 @@ import style from '../../_style/component/profile-image/index.module.css';
 import { Avatar, Badge } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
 import ImageSelector from './image-selector';
+import { Person } from '@mui/icons-material';
 
 const ProfileImage = (props: {
 	width?: number | string;
@@ -14,9 +15,7 @@ const ProfileImage = (props: {
 }) => {
 	const width = props.width || '100%';
 	const height = props.height || '100%';
-	const src = props.src
-		? `${process.env.NEXT_PUBLIC_S3_BUCKET_URL}/w512/profile/${props.src}`
-		: '/default-profile-image.png';
+	const src = props.src || '/default-profile-image.png';
 	const { setSrc, setFile } = props;
 
 	return (
@@ -32,7 +31,7 @@ const ProfileImage = (props: {
 					) : null
 				}
 			>
-				<Avatar alt="Profile image" src={src} />
+				{props.src ? <Avatar alt="Profile image" src={src} /> : <Person />}
 			</Badge>
 		</div>
 	);

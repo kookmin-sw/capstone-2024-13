@@ -1,7 +1,6 @@
 'use client';
 
 import AuthContext from '@/app/_context/auth';
-import { postFetcher } from '@/app/_service/api';
 import postRegister from '@/app/_service/postRegister';
 import { Me } from '@/app/_type';
 import { Button } from '@mui/material';

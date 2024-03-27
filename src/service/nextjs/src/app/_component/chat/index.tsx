@@ -5,17 +5,15 @@ const Chat = (props: {
 	nickname: string;
 	content: string;
 	profileImageId?: string;
-	position?: 'left' | 'right';
+	align?: 'left' | 'right';
 }) => {
-	const { nickname, content, profileImageId, position = 'left' } = props;
+	const { nickname, content, profileImageId, align = 'left' } = props;
 
 	return (
-		<div className={position == 'left' ? style.left : style.right}>
-			{position == 'left' ? (
+		<div className={align == 'left' ? style.left : style.right}>
+			{align == 'left' ? (
 				<>
-					<div>
-						<ProfileImage src={profileImageId} />
-					</div>
+					<ProfileImage src={profileImageId} width="15cqw" height="15cqw" />
 					<div>
 						<span>{nickname}</span>
 						<span>{content}</span>
@@ -27,9 +25,7 @@ const Chat = (props: {
 						<span>{nickname}</span>
 						<span>{content}</span>
 					</div>
-					<div>
-						<ProfileImage src={profileImageId} />
-					</div>
+					<ProfileImage src={profileImageId} width="15cqw" height="15cqw" />
 				</>
 			)}
 		</div>

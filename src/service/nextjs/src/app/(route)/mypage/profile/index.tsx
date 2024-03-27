@@ -9,7 +9,14 @@ const MyPageProfile = () => {
 	return (
 		me && (
 			<div className={style.container}>
-				<ProfileImage src={me.profileImageId?.toString()} width={'60cqw'} height={'60cqh'} />
+				<ProfileImage
+					src={
+						me.profileImageId &&
+						`${process.env.NEXT_PUBLIC_S3_BUCKET_URL}/w512/profile/${me.profileImageId}`
+					}
+					width={'60cqw'}
+					height={'60cqh'}
+				/>
 				<span>{me.nickname}</span>
 				<span>{me.email}</span>
 			</div>
