@@ -6,6 +6,7 @@ class YamlParser:
 		try:
 			with open(self.filename, 'r') as file:
 				self.configuration = yaml.safe_load(file)
+				print(self.configuration)
 		except FileNotFoundError:
 			raise FileNotFoundError(f"File not found: {self.filename}")
 		except IOError:
