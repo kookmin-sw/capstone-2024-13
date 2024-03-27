@@ -2,22 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Diary } from 'src/common/database/schema';
 import { Types } from 'mongoose';
+import * as Dto from './dto';
 
 @Injectable()
 class DiaryService {
 	constructor(@InjectModel('Diary') private readonly diaryModel) {}
 
-	async get(diaryId: string) {
+	async find(query: Dto.Request.Find): Promise<Diary[]> {
 		try {
-			return await this.diaryModel.findById(diaryId);
-		} catch (error) {
-			throw error;
-		}
-	}
-
-	async getUser(userId: Types.ObjectId) {
-		try {
-			return await this.diaryModel.find({ userId: userId });
+			return await this.diaryModel.find(query);
 		} catch (error) {
 			throw error;
 		}
