@@ -11,6 +11,11 @@
 .container > div:last-child {
 	width: 85cqw;
 	flex: 1;
+	overflow-y: auto;
 
 	container-type: size;
+}
+
+.container > div:last-child::-webkit-scrollbar {
+	display: none;
 }
