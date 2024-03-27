@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 const TabBarButton = (props: { url: string; icon: ReactNode }) => {
 	const { url, icon } = props;
-	const pathname = usePathname();
+	const pathname = '/' + usePathname().split('/')[1];
 	const router = useRouter();
 
 	return (

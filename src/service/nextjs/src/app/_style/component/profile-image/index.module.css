@@ -9,14 +9,32 @@
 	display: block;
 	width: 100cqw;
 	height: 100cqh;
+	overflow: hidden;
+	border-radius: 50%;
+	background-color: #dddddd;
+	box-shadow: 0 0 0.5cqh 0 rgba(0, 0, 0, 0.8);
+
 	container-type: size;
+}
+
+.container > span > svg {
+	width: 100cqw;
+	height: 100cqh;
+
+	container-type: size;
+}
+
+.container > span > svg > path {
+	transform: translateY(2.5%);
+
+	fill: #ffffff;
 }
 
 .container > span > div {
 	display: block;
 	width: 100cqw;
 	height: 100cqh;
-	box-shadow: 0 0 0.5cqh 0 rgba(0, 0, 0, 0.8);
+
 	container-type: size;
 }
 
