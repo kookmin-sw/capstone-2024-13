@@ -1,0 +1,8 @@
+.container {
+	width: 100cqw;
+	height: 25cqw;
+	box-shadow: 0 -0.1cqh 0.4cqh 0 rgba(0, 0, 0, 0.2);
+	display: flex;
+
+	container-type: size;
+}

@@ -1,0 +1,24 @@
+.inactive,
+.active {
+	width: 25cqw;
+	height: 100cqh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	container-type: size;
+}
+
+.inactive > svg,
+.active > svg {
+	width: 30cqw;
+	height: 30cqh;
+}
+
+.inactive > svg > path {
+	fill: #b2b2b2;
+}
+
+.active > svg > path {
+	fill: #000000;
+}

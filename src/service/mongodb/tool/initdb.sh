@@ -16,20 +16,19 @@ for (let i = 0; i < 100; i++) {
   var id = (i < 10) ? "0" + i : i;
   var nickname = "test" + id;
   var email = nickname + "@test.com";
-  var profileImageId = null;
+  var createdAt, updatedAt;
+  
+  createdAt = updatedAt = new Date();
+  var user = db.users.insertOne({ nickname, email, createdAt, updatedAt });
+  var userId = user.insertedId;
 
-  var diaries = [];
   for (let j = 0; j < 10; j++) {
 	var title = "title0" + j;
 	var content = "content0" + j;
-	var createdAt, updatedAt;
+
 	createdAt = updatedAt = new Date();
-    var diary = db.diaries.insertOne({ title, content, createdAt, updatedAt });
-	diaries.push(diary.insertedId);
+    db.diaries.insertOne({ userId, title, content, createdAt, updatedAt });
   }
-  var createdAt, updatedAt;
-  createdAt = updatedAt = new Date();
-  db.users.insertOne({ nickname, email, profileImageId, diaries, createdAt, updatedAt });
 }
   
 EOF
