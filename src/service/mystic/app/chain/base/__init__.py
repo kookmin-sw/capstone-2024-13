@@ -14,8 +14,8 @@ from langchain.prompts					import (
 										)
 
 class BaseChain(LLMChain):
-	def __init__(self, connection_id, template, llm, filename="template/default.yml"):
-		prompt, memory = self.__set_configuration(connection_id, template, filename)
+	def __init__(self, connection_id, template_id, llm, filename="template/default.yml"):
+		prompt, memory = self.__set_configuration(connection_id, template_id, filename)
 		
 		super().__init__(
 			llm=llm,
@@ -24,14 +24,14 @@ class BaseChain(LLMChain):
 			verbose=True,
 		)
 
-	def __set_configuration(self, connection_id, template, filename):
+	def __set_configuration(self, connection_id, template_id, filename):
 		yaml_parser = YamlParser(filename)
 
 		system_template = SystemMessagePromptTemplate.from_template(
-			yaml_parser[template]["system_template_content"].format(Q_list=yaml_parser[template]["question_list"])
+			yaml_parser[template_id]["system_template_content"].format(Q_list=yaml_parser[template_id]["question_list"])
 		)
-		ai_prefix = yaml_parser[template]['ai_prefix']
-		human_prefix = yaml_parser[template]['human_prefix']
+		ai_prefix = yaml_parser[template_id]['ai_prefix']
+		human_prefix = yaml_parser[template_id]['human_prefix']
 		prompt = ChatPromptTemplate.from_messages([
 					system_template,											# 역할 부여
 					MessagesPlaceholder(variable_name=connection_id),				# 대화 내역을 메모리 저장소에 저장
