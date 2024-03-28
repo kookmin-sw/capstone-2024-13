@@ -52,7 +52,7 @@
 
 ## Preview
 
-<div style="display: flex; justify-content: space-between;">
+<div style="width: 100%; display: flex; gap: 3%;">
 	<img src="/assets/diary-preview-image.png" width="30%" height="30%" alt="Diary preview image">
 	<img src="/assets/mypage-preview-image.png" width="30%" height="30%" alt="Mypage preview image">
 </div>
