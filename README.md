@@ -77,6 +77,8 @@ Email: inetty@kookmin.ac.kr
 Role:
 ```
 
+<br/>
+
 #### 황영서 [@younganswer](https://github.com/younganswer)
 
 <img align="left" src="" width="135" height="135" alt="younganswer">
@@ -90,6 +92,8 @@ Role: 클라우드, 풀스택
 	• NextJS, NestJS 풀스택 개발
 ```
 
+<br/>
+
 #### 윤현승 [@yoon2000](https://github.com/yoon2000)
 
 <img align="left" src="" width="135" height="135" alt="yoon2000">
@@ -100,6 +104,8 @@ Email: yoonhs02@kookmin.ac.kr
 Role:
 ```
 
+<br/>
+
 #### 조현준 [@hyunjoon0208](https://github.com/hyunjoon0208)
 
 <img align="left" src="" width="135" height="135" alt="hyunjoon0208">
@@ -109,6 +115,8 @@ Student ID: 20191674
 Email: juatis96@kookmin.ac.kr
 Role:
 ```
+
+<br/>
 
 #### 최선우 [@woonsango](https://github.com/woonsango)
 
