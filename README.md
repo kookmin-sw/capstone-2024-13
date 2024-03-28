@@ -52,8 +52,8 @@
 
 ## Preview
 
-![Diary preview image](./assets/diary-preview-image.png)
-![Mypage preview image](./assets/mypage-preview-image.png)
+![Diary preview image](./assets/diary-preview-image.png){: width="30%" height="30%"}
+![Mypage preview image](./assets/mypage-preview-image.png){: width="30%" height="30%"}
 
 </br>
 </br>
