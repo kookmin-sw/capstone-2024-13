@@ -72,7 +72,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 #### 장정안 (팀장) &nbsp;&nbsp;[@jeongahn](https://github.com/jeongahn)
 
-<img align="left" src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/1e1510b1-ef67-4b51-a26f-c43732682617" width="150" height="150" alt="jeongahn">
+<img align="left" src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/1e1510b1-ef67-4b51-a26f-c43732682617" width="148" height="160" alt="jeongahn">
 
 ```
 Student ID: 20191658
@@ -89,7 +89,7 @@ Role: Offensive Security Researcher, Front-end Developer
 
 #### 황영서 &nbsp;&nbsp;[@younganswer](https://github.com/younganswer)
 
-<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/71a27285-3ab5-4829-a82f-16e9af05dcd5" width="150" height="150" alt="younganswer">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/71a27285-3ab5-4829-a82f-16e9af05dcd5" width="148" height="148" alt="younganswer">
 
 ```
 Student ID: 20191691
@@ -105,15 +105,15 @@ Role: Cloud Engineer, Full Stack Developer
 
 #### 윤현승 &nbsp;&nbsp;[@yoon2000](https://github.com/yoon2000)
 
-<img align="left" src="" width="150" height="150" alt="yoon2000">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/dce87a63-8710-4f3e-b134-ff55cf87bcf0" width="148" height="148" alt="yoon2000">
 
 ```
 Student ID: 20191634
 Email: yoonhs02@kookmin.ac.kr
-Role: Full-stack Developer
+Role: Full stack Developer
 	• 데이터베이스 스키마 구조 설계
 	• API 문서 작성 및 백엔드 개발
-	• NestJS를 활용한 프론트엔드 개발
+	• NextJS를 활용한 프론트엔드 개발
 ```
 
 <br/>
@@ -121,7 +121,7 @@ Role: Full-stack Developer
 
 #### 조현준 &nbsp;&nbsp;[@hyunjoon0208](https://github.com/hyunjoon0208)
 
-<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/37d0be8a-e810-4f8b-a533-911db150b45e" width="150" height="150" alt="hyunjoon0208">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/8c76e63a-607f-4002-b6ff-a693b20ff926" width="148" height="148" alt="hyunjoon0208">
 
 ```
 Student ID: 20191674
@@ -136,10 +136,13 @@ Role: MLOps
 
 #### 최선우 &nbsp;&nbsp;[@woonsango](https://github.com/woonsango)
 
-<img align="left" src="" width="150" height="150" alt="woonsango">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/a1a824ba-6fbc-47a3-9d9d-6b9c2e5e4302" width="148" height="148" alt="woonsango">
 
 ```
 Student ID: 20223149
 Email: doldol9080@kookmin.ac.kr
-Role:
+Role: AI Developer
+	• LLM fine tuning
+	• Prompt Engineering
+	• Image Captioning
 ```
