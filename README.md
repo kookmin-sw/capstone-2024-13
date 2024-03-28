@@ -77,7 +77,11 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 ```
 Student ID: 20191658
 Email: inetty@kookmin.ac.kr
-Role:
+Role: Offensive Security Researcher, Front-end Developer
+	• 코드 취약점 분석
+	• 버그 패턴 분석 및 버그 픽스
+	• 보안 컨설팅 (서비스 보안 요소 문서화)
+	• NextJS 프론트 개발
 ```
 
 <br/>
@@ -90,7 +94,7 @@ Role:
 ```
 Student ID: 20191691
 Email: younganswer@kookmin.ac.kr
-Role: 클라우드, 풀스택
+Role: Cloud Engineer, Full Stack Developer
 	• AWS 서비스 구축
 	• 시스템 Dockerize
 	• NextJS, NestJS 풀스택 개발
@@ -106,7 +110,10 @@ Role: 클라우드, 풀스택
 ```
 Student ID: 20191634
 Email: yoonhs02@kookmin.ac.kr
-Role:
+Role: Full-stack Developer
+	• 데이터베이스 스키마 구조 설계
+	• API 문서 작성 및 백엔드 개발
+	• NestJS를 활용한 프론트엔드 개발
 ```
 
 <br/>
