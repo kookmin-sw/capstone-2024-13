@@ -54,8 +54,8 @@
 ## Preview
 
 <div width="100%">
-	<img src="/assets/diary-preview-image.png" width="33%" height="33%" alt="Diary preview image">
-	<img src="/assets/mypage-preview-image.png" width="33%" height="33%" alt="Mypage preview image">
+	<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/63761a9d-0f90-4c97-9b15-89443d08bf2c" width="33%" height="33%" alt="Diary preview image">
+	<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/d8b149c8-14c2-45b8-8bcf-c517cc44abe2" width="33%" height="33%" alt="Mypage preview image">
 </div>
 
 <br/>
