@@ -73,11 +73,9 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 <img align="left" src="" width="135" height="135" alt="jeongahn">
 
-```
 Student ID: 20191658
 Email: inetty@kookmin.ac.kr
 Role:
-```
 
 <br/>
 
@@ -85,14 +83,12 @@ Role:
 
 <img align="left" src="" width="135" height="135" alt="younganswer">
 
-```
 Student ID: 20191691
 Email: younganswer@kookmin.ac.kr
 Role: 클라우드, 풀스택
 	• AWS 서비스 구축
 	• 시스템 Dockerize
 	• NextJS, NestJS 풀스택 개발
-```
 
 <br/>
 
@@ -100,11 +96,9 @@ Role: 클라우드, 풀스택
 
 <img align="left" src="" width="135" height="135" alt="yoon2000">
 
-```
 Student ID: 20191634
 Email: yoonhs02@kookmin.ac.kr
 Role:
-```
 
 <br/>
 
@@ -112,11 +106,9 @@ Role:
 
 <img align="left" src="" width="135" height="135" alt="hyunjoon0208">
 
-```
 Student ID: 20191674
 Email: juatis96@kookmin.ac.kr
 Role:
-```
 
 <br/>
 
@@ -124,8 +116,6 @@ Role:
 
 <img align="left" src="" width="135" height="135" alt="woonsango">
 
-```
 Student ID: 20223149
 Email: doldol9080@kookmin.ac.kr
 Role:
-```
