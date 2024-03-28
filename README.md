@@ -71,7 +71,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 #### 장정안 (팀장) &nbsp;&nbsp;[@jeongahn](https://github.com/jeongahn)
 
-<div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
+<div width="100%" height="135" border="1px solid #000000">
 	<img src="" width="135" height="135" alt="jeongahn">
 	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20191658</span>
@@ -83,7 +83,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 #### 황영서 &nbsp;&nbsp;[@younganswer](https://github.com/younganswer)
 
-<div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
+<div width="100%" height="135" border="1px solid #000000">
 	<img src="" width="135" height="135" alt="younganswer">
 	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20191691</span>
@@ -99,7 +99,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 #### 윤현승 &nbsp;&nbsp;[@yoon2000](https://github.com/yoon2000)
 
-<div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
+<div width="100%" height="135" border="1px solid #000000">
 	<img src="" width="135" height="135" alt="yoon2000">
 	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20191634</span>
@@ -111,7 +111,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 #### 조현준 &nbsp;&nbsp;[@hyunjoon0208](https://github.com/hyunjoon0208)
 
-<div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
+<div width="100%" height="135" border="1px solid #000000">
 	<img src="" width="135" height="135" alt="hyunjoon0208">
 	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20191674</span>
@@ -123,7 +123,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 #### 최선우 &nbsp;&nbsp;[@woonsango](https://github.com/woonsango)
 
-<div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
+<div width="100%" height="135" border="1px solid #000000">
 	<img src="" width="135" height="135" alt="woonsango">
 	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20223149</span>
