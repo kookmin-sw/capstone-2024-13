@@ -73,7 +73,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 <div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
 	<img src="" width="135" height="135" alt="jeongahn">
-	<div style="flex: 1; border-left: 1px solid #000000">
+	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20191658</span>
 		<span>Email: inetty@kookmin.ac.kr</span>
 		<span>Role:</span>
@@ -85,7 +85,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 <div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
 	<img src="" width="135" height="135" alt="younganswer">
-	<div style="flex: 1; border-left: 1px solid #000000">
+	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20191691</span>
 		<span>Email: younganswer@kookmin.ac.kr</span>
 		<span>Role: 클라우드, 풀스택</span>
@@ -101,7 +101,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 <div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
 	<img src="" width="135" height="135" alt="yoon2000">
-	<div style="flex: 1; border-left: 1px solid #000000">
+	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20191634</span>
 		<span>Email: yoonhs02@kookmin.ac.kr</span>
 		<span>Role: </span>
@@ -113,7 +113,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 <div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
 	<img src="" width="135" height="135" alt="hyunjoon0208">
-	<div style="flex: 1; border-left: 1px solid #000000">
+	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20191674</span>
 		<span>Email: juatis96@kookmin.ac.kr</span>
 		<span>Role: </span>
@@ -125,7 +125,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 <div width="100%" height="135" style="display: flex; border: 1px solid #000000;">
 	<img src="" width="135" height="135" alt="woonsango">
-	<div style="flex: 1; border-left: 1px solid #000000">
+	<div style="flex: 1; display: flex; flex-direction: column; border-left: 1px solid #000000">
 		<span>Student ID: 20223149</span>
 		<span>Email: doldol9080@kookmin.ac.kr</span>
 		<span>Role: </span>
