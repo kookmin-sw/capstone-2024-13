@@ -2,7 +2,7 @@
 	아니 근데 오늘 진짜
 </h1>
 
-</br>
+<br/>
 
 <h3 align="center">
 	AI 대화형 일기 서비스
@@ -12,8 +12,8 @@
 	Diary service with AI conversation
 </h3>
 
-</br>
-</br>
+<br/>
+<br/>
 
 <div align="center">
 	<img src="https://img.shields.io/badge/-Nginx-009639?style=flat-square&logo=Nginx&logoColor=white">
@@ -23,15 +23,15 @@
 	<img src="https://img.shields.io/badge/-Flask-000000?style=flat-square&logo=Flask&logoColor=white">
 </div>
 
-</br>
-</br>
+<br/>
+<br/>
 
 <h2 align="center">
 	<a href="https://you-know-what.com">배포 페이지</a>
 </h2>
 
-</br>
-</br>
+<br/>
+<br/>
 
 ## Index
 
@@ -41,15 +41,15 @@
 -   [Licence](#licence)
 -   [Contact](#contact)
 
-</br>
-</br>
+<br/>
+<br/>
 
 ## Software Architecture
 
 ![Software Architecture](./assets/Software%20Architecture.png)
 
-</br>
-</br>
+<br/>
+<br/>
 
 ## Preview
 
@@ -58,15 +58,15 @@
 	<img src="/assets/mypage-preview-image.png" width="33%" height="33%" alt="Mypage preview image">
 </div>
 
-</br>
-</br>
+<br/>
+<br/>
 
 ## Licence
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
-</br>
-</br>
+<br/>
+<br/>
 
 ## Contact
 
