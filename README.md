@@ -71,7 +71,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 #### 장정안 (팀장) &nbsp;&nbsp;[@jeongahn](https://github.com/jeongahn)
 
-<img align="left" src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/1e1510b1-ef67-4b51-a26f-c43732682617" width="135" height="135" alt="jeongahn">
+<img align="left" src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/1e1510b1-ef67-4b51-a26f-c43732682617" width="150" height="150" alt="jeongahn">
 
 ```
 Student ID: 20191658
@@ -84,7 +84,7 @@ Role:
 
 #### 황영서 &nbsp;&nbsp;[@younganswer](https://github.com/younganswer)
 
-<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/71a27285-3ab5-4829-a82f-16e9af05dcd5" width="135" height="135" alt="younganswer">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/71a27285-3ab5-4829-a82f-16e9af05dcd5" width="150" height="150" alt="younganswer">
 
 ```
 Student ID: 20191691
@@ -100,7 +100,7 @@ Role: 클라우드, 풀스택
 
 #### 윤현승 &nbsp;&nbsp;[@yoon2000](https://github.com/yoon2000)
 
-<img align="left" src="" width="135" height="135" alt="yoon2000">
+<img align="left" src="" width="150" height="150" alt="yoon2000">
 
 ```
 Student ID: 20191634
@@ -113,7 +113,7 @@ Role:
 
 #### 조현준 &nbsp;&nbsp;[@hyunjoon0208](https://github.com/hyunjoon0208)
 
-<img align="left" src="" width="135" height="135" alt="hyunjoon0208">
+<img align="left" src="" width="150" height="150" alt="hyunjoon0208">
 
 ```
 Student ID: 20191674
@@ -126,7 +126,7 @@ Role:
 
 #### 최선우 &nbsp;&nbsp;[@woonsango](https://github.com/woonsango)
 
-<img align="left" src="" width="135" height="135" alt="woonsango">
+<img align="left" src="" width="150" height="150" alt="woonsango">
 
 ```
 Student ID: 20223149
