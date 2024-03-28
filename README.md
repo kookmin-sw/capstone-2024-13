@@ -121,12 +121,14 @@ Role: Full-stack Developer
 
 #### 조현준 &nbsp;&nbsp;[@hyunjoon0208](https://github.com/hyunjoon0208)
 
-<img align="left" src="" width="150" height="150" alt="hyunjoon0208">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/37d0be8a-e810-4f8b-a533-911db150b45e" width="150" height="150" alt="hyunjoon0208">
 
 ```
 Student ID: 20191674
 Email: juatis96@kookmin.ac.kr
-Role:
+Role: MLOps
+	• STT, TTS 모델 구현 및 학습
+	• AI API 개발 및 배포
 ```
 
 <br/>
