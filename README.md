@@ -52,8 +52,8 @@
 
 ## Preview
 
-![Diary preview image](./assets/diary-preview-image.png){: width="30%" height="30%"}
-![Mypage preview image](./assets/mypage-preview-image.png){: width="30%" height="30%"}
+<img src="/assets/diary-preview-image.png" width="30%" height="30%" alt="Diary preview image">
+<img src="/assets/mypage-preview-image.png" width="30%" height="30%" alt="Mypage preview image">
 
 </br>
 </br>
