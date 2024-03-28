@@ -67,7 +67,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## Contact
 
-#### 장정안 (팀장) [@jeongahn](https://github.com/jeongahn)
+#### 장정안 (팀장) &nbsp;&nbsp;[@jeongahn](https://github.com/jeongahn)
 
 <img align="left" src="" width="135" height="135" alt="jeongahn">
 
@@ -79,7 +79,7 @@ Role:
 
 <br/>
 
-#### 황영서 [@younganswer](https://github.com/younganswer)
+#### 황영서 &nbsp;&nbsp;[@younganswer](https://github.com/younganswer)
 
 <img align="left" src="" width="135" height="135" alt="younganswer">
 
@@ -94,7 +94,7 @@ Role: 클라우드, 풀스택
 
 <br/>
 
-#### 윤현승 [@yoon2000](https://github.com/yoon2000)
+#### 윤현승 &nbsp;&nbsp;[@yoon2000](https://github.com/yoon2000)
 
 <img align="left" src="" width="135" height="135" alt="yoon2000">
 
@@ -106,7 +106,7 @@ Role:
 
 <br/>
 
-#### 조현준 [@hyunjoon0208](https://github.com/hyunjoon0208)
+#### 조현준 &nbsp;&nbsp;[@hyunjoon0208](https://github.com/hyunjoon0208)
 
 <img align="left" src="" width="135" height="135" alt="hyunjoon0208">
 
@@ -118,7 +118,7 @@ Role:
 
 <br/>
 
-#### 최선우 [@woonsango](https://github.com/woonsango)
+#### 최선우 &nbsp;&nbsp;[@woonsango](https://github.com/woonsango)
 
 <img align="left" src="" width="135" height="135" alt="woonsango">
 
