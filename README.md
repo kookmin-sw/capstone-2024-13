@@ -80,10 +80,11 @@ Role:
 ```
 
 <br/>
+<br/>
 
 #### 황영서 &nbsp;&nbsp;[@younganswer](https://github.com/younganswer)
 
-<img align="left" src="" width="135" height="135" alt="younganswer">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/71a27285-3ab5-4829-a82f-16e9af05dcd5" width="135" height="135" alt="younganswer">
 
 ```
 Student ID: 20191691
@@ -94,6 +95,7 @@ Role: 클라우드, 풀스택
 	• NextJS, NestJS 풀스택 개발
 ```
 
+<br/>
 <br/>
 
 #### 윤현승 &nbsp;&nbsp;[@yoon2000](https://github.com/yoon2000)
@@ -107,6 +109,7 @@ Role:
 ```
 
 <br/>
+<br/>
 
 #### 조현준 &nbsp;&nbsp;[@hyunjoon0208](https://github.com/hyunjoon0208)
 
@@ -118,6 +121,7 @@ Email: juatis96@kookmin.ac.kr
 Role:
 ```
 
+<br/>
 <br/>
 
 #### 최선우 &nbsp;&nbsp;[@woonsango](https://github.com/woonsango)
