@@ -71,7 +71,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 #### 장정안 (팀장) &nbsp;&nbsp;[@jeongahn](https://github.com/jeongahn)
 
-<img align="left" src="" width="135" height="135" alt="jeongahn">
+<img align="left" src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/1e1510b1-ef67-4b51-a26f-c43732682617" width="135" height="135" alt="jeongahn">
 
 ```
 Student ID: 20191658
