@@ -32,7 +32,15 @@ const DiaryCreatePage = (props: { params: { id: string } }) => {
 							<Chat
 								key={index}
 								nickname={me.nickname}
-								profileImageId={`/${me.profileImageId?.toString()}.png`}
+								profileImageId={
+									me.profileImageId
+										? me.profileImageId.toString().startsWith('default')
+											? `/${me.profileImageId.toString()}.png`
+											: `${
+													process.env.NEXT_PUBLIC_S3_BUCKET_URL
+											  }/w512/profile/${me.profileImageId.toString()}`
+										: undefined
+								}
 								content={message}
 							/>
 						),
