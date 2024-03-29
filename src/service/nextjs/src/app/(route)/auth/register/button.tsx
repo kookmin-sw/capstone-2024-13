@@ -24,10 +24,14 @@ const handleClick = (
 			alert('회원가입이 완료되었습니다.');
 		})
 		.catch(error => {
-			if (error.response.data.message === 'Failed to register: 400: User already registered') {
+			console.error(error);
+			if (
+				error.response &&
+				error.response.data.message === 'Failed to register: 400: User already registered'
+			) {
 				alert('이미 가입된 사용자입니다.');
-				router.push('/auth/login');
 			}
+			router.push('/auth/login');
 		});
 };
 
