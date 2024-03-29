@@ -21,9 +21,20 @@ const DiaryCreatePage = (props: { params: { id: string } }) => {
 				<div>
 					{messages.map((message, index) =>
 						index % 2 === 0 ? (
-							<Chat key={index} nickname={'Mystic'} content={message} align="right" />
+							<Chat
+								key={index}
+								nickname={'Mystic'}
+								profileImageId={'/default-profile-image.png'}
+								content={message}
+								align="right"
+							/>
 						) : (
-							<Chat key={index} nickname={me.nickname} content={message} />
+							<Chat
+								key={index}
+								nickname={me.nickname}
+								profileImageId={`/${me.profileImageId?.toString()}.png`}
+								content={message}
+							/>
 						),
 					)}
 				</div>

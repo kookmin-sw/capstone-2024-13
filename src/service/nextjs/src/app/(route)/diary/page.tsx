@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 const handleClick = async (router: AppRouterInstance) => {
-	const connectionId = await postConnectMystic({ version: 'v3' }).catch(error => {
+	const connectionId = await postConnectMystic({ version: 'v3', templateId: '1' }).catch(error => {
 		console.error(error);
 	});
 	router.push(`/diary/${connectionId}`);
