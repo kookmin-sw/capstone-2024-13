@@ -54,8 +54,9 @@
 ## Preview
 
 <div width="100%">
-	<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/63761a9d-0f90-4c97-9b15-89443d08bf2c" width="33%" height="33%" alt="Diary preview image">
-	<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/d8b149c8-14c2-45b8-8bcf-c517cc44abe2" width="33%" height="33%" alt="Mypage preview image">
+	<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/4a7bb561-a855-4a68-8bf1-a2bdf52f3ad5" width="33.3%" height="33.3%" alt="Home preview image">
+	<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/63761a9d-0f90-4c97-9b15-89443d08bf2c" width="33.3%" height="33.3%" alt="Diary preview image">
+	<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/d8b149c8-14c2-45b8-8bcf-c517cc44abe2" width="33.3%" height="33.3%" alt="Mypage preview image">
 </div>
 
 <br/>
