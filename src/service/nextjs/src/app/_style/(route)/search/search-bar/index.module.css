@@ -34,7 +34,7 @@
 	border: none;
 	outline: none;
 	background-color: transparent;
-	font-size: 4.5cqw;
+	font-size: max(16px, 4.5cqw);
 
 	container-type: size;
 }
