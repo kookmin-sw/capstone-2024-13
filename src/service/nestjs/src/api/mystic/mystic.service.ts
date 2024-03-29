@@ -6,11 +6,13 @@ import axios from 'axios';
 class MysticService {
 	constructor() {}
 
-	async connect(version: string): Promise<Types.ObjectId> {
+	async connect(version: string, templateId: string): Promise<Types.ObjectId> {
 		try {
-			const connectionId = new Types.ObjectId();
-			await axios
-				.post(`http://mystic:8000/connect/${version}`, { connection_id: connectionId })
+			const connectionId = await axios
+				.post(`http://mystic:8000/connect/${version}`, { template_id: templateId })
+				.then(response => {
+					return response.data.connection_id;
+				})
 				.catch(error => {
 					throw error;
 				});

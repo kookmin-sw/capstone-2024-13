@@ -15,9 +15,12 @@ class MysticController {
 	@ApiOperation({ summary: 'Connect', description: 'Connect to mystic' })
 	@ApiOkResponse({ description: 'Connected successfully' })
 	@ApiBadRequestResponse({ description: 'Bad request' })
-	async connect(@Param('version') version: string): Promise<Types.ObjectId> {
+	async connect(
+		@Param('version') version: string,
+		@Body() connectRequestDto: Dto.Request.Connect,
+	): Promise<Types.ObjectId> {
 		try {
-			return await this.mysticService.connect(version);
+			return await this.mysticService.connect(version, connectRequestDto.templateId);
 		} catch (error) {
 			throw new BadRequestException(`Failed to connect mystic: ${error.status}: ${error.message}`);
 		}

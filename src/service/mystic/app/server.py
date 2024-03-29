@@ -33,8 +33,10 @@ class PyObjectId(ObjectId):
 
 class ConnectRequest(BaseModel):
     #connection_id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
-	connection_id: str
 	template_id: int
+
+class ConnectResponse(BaseModel):
+	connection_id: str
 
 class ChatRequest(BaseModel):
     #connection_id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
@@ -69,23 +71,29 @@ def preprocess_user_input(content: str) -> str:
 			# 역할 변경 요청이 아닌 경우, 원본 입력 반환
 			return content
 
-@app.post("/connect/v1", response_model=ChatResponse)
+@app.post("/connect/v1", response_model=ConnectResponse)
 async def connect_v1(request : ConnectRequest):
-	chain = ChainV1(connection_id = request.connection_id, template_id = request.template_id)
-	models_dict[request.connection_id]= chain
-	return ChatResponse(content="Connect v1 successfully")
+	connection_id = str(ObjectId())
+	chain = ChainV1(connection_id = connection_id, template_id = request.template_id)
+	models_dict[connection_id] = chain
 
-@app.post("/connect/v2", response_model=ChatResponse)
+	return ConnectResponse(connection_id=connection_id)
+
+@app.post("/connect/v2", response_model=ConnectResponse)
 async def connect_v2(request : ConnectRequest):
-	chain = ChainV2(connection_id = request.connection_id, template_id = request.template_id)
-	models_dict[request.connection_id]= chain
-	return ChatResponse(content="Connect v2 successfully")
+	connection_id = str(ObjectId())
+	chain = ChainV2(connection_id = connection_id, template_id = request.template_id)
+	models_dict[connection_id] = chain
 
-@app.post("/connect/v3", response_model=ChatResponse)
+	return ConnectResponse(connection_id=connection_id)
+
+@app.post("/connect/v3", response_model=ConnectResponse)
 async def connect_v3(request : ConnectRequest):
-	chain = ChainV3(connection_id = request.connection_id, template_id = request.template_id)
-	models_dict[request.connection_id]= chain
-	return ChatResponse(content="Connect v3 successfully")
+	connection_id = str(ObjectId())
+	chain = ChainV3(connection_id = connection_id, template_id = request.template_id)
+	models_dict[connection_id] = chain
+
+	return ConnectResponse(connection_id=connection_id)
 
 # 이렇게 하면 v1, v2, v3 모두 같은 endpoint를 사용할 수 있게 됩니다.
 @app.post("/disconnect", response_model=ChatResponse)
