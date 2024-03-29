@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 0.5cqh;
+	padding: 0.5cqw;
 
 	container-type: size;
 }
@@ -13,7 +13,7 @@
 	height: 100cqh;
 	border-radius: 50%;
 	background-color: #dddddd;
-	box-shadow: 0 0 0.5cqh 0 rgba(0, 0, 0, 0.8);
+	box-shadow: 0 0 0.8cqh 0 rgba(0, 0, 0, 0.2);
 
 	container-type: size;
 }
