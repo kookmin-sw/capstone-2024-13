@@ -15,7 +15,7 @@ const ProfileImage = (props: {
 }) => {
 	const width = props.width || '100%';
 	const height = props.height || '100%';
-	const src = props.src || '/default-profile-image.png';
+	const src = props.src || '/default-image-00.png';
 	const { setSrc, setFile } = props;
 
 	return (
@@ -31,7 +31,7 @@ const ProfileImage = (props: {
 					) : null
 				}
 			>
-				{props.src ? <Avatar alt="Profile image" src={src} /> : <Person />}
+				<Avatar alt="Profile image" src={src} />
 			</Badge>
 		</div>
 	);

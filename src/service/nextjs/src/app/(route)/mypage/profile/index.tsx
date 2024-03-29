@@ -11,8 +11,13 @@ const MyPageProfile = () => {
 			<div className={style.container}>
 				<ProfileImage
 					src={
-						me.profileImageId &&
-						`${process.env.NEXT_PUBLIC_S3_BUCKET_URL}/w512/profile/${me.profileImageId}`
+						me.profileImageId
+							? me.profileImageId.toString().startsWith('default')
+								? `/${me.profileImageId.toString()}.png`
+								: `${
+										process.env.NEXT_PUBLIC_S3_BUCKET_URL
+								  }/w512/profile/${me.profileImageId.toString()}`
+							: undefined
 					}
 					width={'60cqw'}
 					height={'60cqh'}
