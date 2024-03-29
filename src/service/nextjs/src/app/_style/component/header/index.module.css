@@ -1,11 +1,15 @@
 .container {
 	width: 100cqw;
-	height: 20cqw;
+	height: 25cqw;
 	display: flex;
 	justify-content: center;
-	margin-bottom: 5cqw;
+	margin-bottom: 2cqw;
 
 	container-type: size;
+}
+
+.divider {
+	border-bottom: 1px solid #dddddd;
 }
 
 .container > div {
@@ -19,5 +23,6 @@
 }
 
 .title {
-	font-size: 30cqh;
+	font-size: 25cqh;
+	font-weight: 600;
 }
