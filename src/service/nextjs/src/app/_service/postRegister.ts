@@ -28,7 +28,6 @@ const postRegister = async <Me>(query: object) => {
 		});
 	} else {
 		const profileImageId = `default-image-0${Math.floor(Math.random() * 10)}`;
-		console.log('profileImageId', profileImageId);
 		user = await patchFetcher<Me>('/user/me', { profileImageId }).catch(error => {
 			throw error;
 		});

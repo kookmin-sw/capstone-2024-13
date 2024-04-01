@@ -5,3 +5,14 @@
 
 	container-type: size;
 }
+
+.container > a {
+	width: 100cqw;
+	height: 100cqh;
+	position: relative;
+	display: block;
+}
+
+.container > a > img {
+	object-fit: cover;
+}
