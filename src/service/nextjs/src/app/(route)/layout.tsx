@@ -5,8 +5,8 @@ import './font.css';
 import './globals.css';
 import ContextProviders from '@/app/_context';
 import Device from '@/app/_component/device';
-import style from '../_style/(route)/index.module.css';
 import TabBar from '../_component/tab-bar';
+import style from '../_style/(route)/layout.module.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +23,7 @@ export default function RootLayout(props: { children: ReactNode }) {
 			<body className={inter.className}>
 				<ContextProviders>
 					<Device>
-						<div className={style.layout}>
+						<div className={style.container}>
 							<div>{children}</div>
 							<TabBar />
 						</div>

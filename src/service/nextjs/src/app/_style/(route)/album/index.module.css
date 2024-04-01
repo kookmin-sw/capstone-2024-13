@@ -1,0 +1,42 @@
+.container {
+	width: 46.66cqw;
+	height: 56.66cqw;
+	display: flex;
+	flex-direction: column;
+
+	container-type: size;
+}
+
+.container > a {
+	width: 100cqw;
+	height: 100cqw;
+
+	container-type: size;
+}
+
+.container > a > div:first-child {
+	width: 100cqw;
+	height: 100cqw;
+	position: relative;
+	border-radius: 8cqw;
+	overflow: hidden;
+	box-shadow: 0 0 2cqw 0 rgba(0, 0, 0, 0.1);
+
+	container-type: size;
+}
+
+.container > a > div:last-child {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 2cqw;
+}
+
+.container > a > div:last-child > span:first-child {
+	font-size: 10cqw;
+}
+
+.container > a > div:last-child > span:last-child {
+	color: #b2b2b2;
+}
