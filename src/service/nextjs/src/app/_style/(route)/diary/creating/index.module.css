@@ -1,20 +1,30 @@
 .container {
 	width: 100cqw;
-	height: 100cqh;
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	gap: 25cqw;
 
 	container-type: size;
 }
 
 .container > div:last-child {
-	width: 90cqw;
-	flex: 1;
+	width: 100cqw;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 8cqw;
+	gap: 5cqw;
 
 	container-type: size;
+}
+
+.container > div:last-child > span:first-child {
+	font-size: 5cqw;
+	font-weight: 500;
+}
+
+.container > div:last-child > span:last-child {
+	color: #b0b0b0;
 }

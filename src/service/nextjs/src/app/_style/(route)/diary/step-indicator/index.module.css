@@ -1,0 +1,47 @@
+.container {
+	width: 100cqw;
+	height: 25cqw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10cqw;
+
+	container-type: size;
+}
+
+.container > div:first-child {
+	width: 100cqw;
+	height: 30cqh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5cqw;
+	container-type: size;
+}
+
+.current {
+	width: 8cqw;
+	background-color: #000000;
+}
+
+.default {
+	width: 2.5cqw;
+	background-color: #d9d9d9;
+}
+
+.current,
+.default {
+	height: 2.5cqw;
+	border-radius: 10cqw;
+}
+
+.title {
+	font-size: 5cqw;
+	font-weight: 500;
+}
+
+.description {
+	font-size: 4cqw;
+	color: #b2b2b2;
+}
