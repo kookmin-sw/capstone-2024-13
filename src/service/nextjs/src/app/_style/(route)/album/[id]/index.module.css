@@ -9,14 +9,9 @@
 }
 
 .container > div:last-child {
-	width: 92cqw;
-	padding: 1cqw;
+	width: 85cqw;
 	flex: 1;
-	display: grid;
-	grid-template-rows: repeat(auto-fill, 51cqw);
-	grid-template-columns: repeat(auto-fill, 42cqw);
-	gap: 6cqw;
-	overflow-y: auto;
+	overflow-y: scroll;
 
 	container-type: size;
 }

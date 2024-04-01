@@ -1,14 +1,10 @@
-'use client';
-
-import { useState } from 'react';
-import { Diary } from '@/app/_type';
 import { Types } from 'mongoose';
+import style from '../../../_style/(route)/album/[id]/index.module.css';
 import Header from '@/app/_component/header';
-import style from '../../_style/(route)/search/index.module.css';
-import SearchBar from './search-bar';
-import SearchPageDiary from './diary';
+import AlbumPageDiary from './diary';
+import { Diary } from '@/app/_type';
 
-const createMockDiaries = (count: number): Diary[] => {
+const CreateMockDiaries = (count: number): Diary[] => {
 	const diaries: Diary[] = [];
 
 	for (let i = 0; i < count; i++) {
@@ -35,27 +31,21 @@ const createMockDiaries = (count: number): Diary[] => {
 	return diaries;
 };
 
-const SearchPage = () => {
-	const [isSearching, setIsSearching] = useState<boolean>(false);
-	const [diaries, setDiaries] = useState<Diary[]>(createMockDiaries(13));
+const AlbumPage = (props: { params: { id: string } }) => {
+	const { id } = props.params;
+	const title = 'Album';
+	const diaries = CreateMockDiaries(10);
 
 	return (
 		<div className={style.container}>
-			<Header title="검색" />
-			<SearchBar setIsSearching={setIsSearching} />
+			<Header title={title} divider />
 			<div>
-				{isSearching ? (
-					<div>검색 중...</div>
-				) : (
-					<>
-						{diaries.map((diary, index) => (
-							<SearchPageDiary key={index} {...diary} />
-						))}
-					</>
-				)}
+				{diaries.map((diary, index) => (
+					<AlbumPageDiary key={index} {...diary} />
+				))}
 			</div>
 		</div>
 	);
 };
 
-export default SearchPage;
+export default AlbumPage;
