@@ -2,7 +2,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, Length } from 'class-validator';
 
-export class Diary {
+export class Create {
 	@ApiProperty({
 		type: String,
 		description: 'Title',
@@ -23,4 +23,4 @@ export class Diary {
 	content: string;
 }
 
-export default Diary;
+export default Create;

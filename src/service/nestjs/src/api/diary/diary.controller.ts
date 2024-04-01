@@ -55,7 +55,7 @@ class DiaryController {
 	@Post()
 	@ApiOperation({ summary: '다이어리 생성', description: '다이어리 생성' })
 	@ApiOkResponse({ type: Diary })
-	async create(@Request() req, @Body() createDiaryDto: Dto.Request.Diary) {
+	async create(@Request() req, @Body() createDiaryDto: Dto.Request.Create) {
 		try {
 			const userId = req.user._id;
 			const { title, content } = createDiaryDto;
@@ -70,7 +70,7 @@ class DiaryController {
 	@Patch(':id')
 	@ApiOperation({ summary: '다이어리 수정', description: '다이어리 수정' })
 	@ApiOkResponse({ type: Diary })
-	async update(@Param('id') diaryId: string, @Body() createDiaryDto: Dto.Request.Diary) {
+	async update(@Param('id') diaryId: string, @Body() createDiaryDto: Dto.Request.Create) {
 		try {
 			const { title, content } = createDiaryDto;
 

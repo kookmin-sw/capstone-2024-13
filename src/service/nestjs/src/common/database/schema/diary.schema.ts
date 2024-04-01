@@ -36,6 +36,15 @@ export class Diary {
 	})
 	content: string;
 
+	//image filename array
+	@Prop({ type: [String], required: false })
+	@ApiProperty({
+		type: [String],
+		description: 'Image filename array',
+		example: ['image1.jpg', 'image2.jpg'],
+	})
+	images?: string[];
+
 	//One-to-Squillions album id
 	@Prop({ type: String, required: false, ref: Album.name })
 	@ApiProperty({

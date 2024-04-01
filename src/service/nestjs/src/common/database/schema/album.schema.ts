@@ -26,6 +26,10 @@ export class Album {
 		example: 'Album example',
 	})
 	title: string;
+
+	//count of Diary Default 0
+	@Prop({ type: Number, default: 0 })
+	count: number;
 }
 
 export const AlbumSchema = SchemaFactory.createForClass(Album);
