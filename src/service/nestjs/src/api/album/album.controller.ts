@@ -40,7 +40,7 @@ class AlbumController {
 		description: 'Get user albums by One-to-Squillions relationship',
 	})
 	@ApiOkResponse({ type: [Album] })
-	async getUser(@Request() req) {
+	async getUser(@Request() req:any) {
 		try {
 			const userId = req.user._id;
 

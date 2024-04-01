@@ -46,7 +46,7 @@ class S3Service {
 			return this.s3.deleteObjects({
 				Bucket: this.configService.getOrThrow('S3_BUCKET'),
 				Delete: {
-					Objects: keys.map(key => ({ Key: key })),
+					Objects: keys.map((key: string) => ({ Key: key })),
 				},
 			});
 		} catch (error) {

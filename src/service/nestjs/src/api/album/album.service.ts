@@ -5,7 +5,7 @@ import { Types } from 'mongoose';
 
 @Injectable()
 class AlbumService {
-	constructor(@InjectModel('Album') private readonly albumModel) {}
+	constructor(@InjectModel('Album') private readonly albumModel: any) {}
 
 	async find(query: any): Promise<Album[]> {
 		try {
