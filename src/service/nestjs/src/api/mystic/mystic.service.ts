@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Types } from 'mongoose';
-import axios from 'axios';
+import axios, { AxiosResponse, AxiosError } from 'axios';
+
 
 @Injectable()
 class MysticService {
@@ -10,10 +11,10 @@ class MysticService {
 		try {
 			const connectionId = await axios
 				.post(`http://mystic:8000/connect/${version}`, { template_id: templateId })
-				.then(response => {
+				.then((response: AxiosResponse<any>) => {
 					return response.data.connection_id;
 				})
-				.catch(error => {
+				.catch((error: AxiosError) => {
 					throw error;
 				});
 
@@ -27,10 +28,10 @@ class MysticService {
 		try {
 			return await axios
 				.post('http://mystic:8000/disconnect', { connection_id: connectionId })
-				.then(response => {
+				.then((response: AxiosResponse<any>) => {
 					return response.data;
 				})
-				.catch(error => {
+				.catch((error: AxiosError) => {
 					console.log(error);
 					throw error;
 				});
@@ -43,10 +44,10 @@ class MysticService {
 		try {
 			return await axios
 				.post(`http://mystic:8000/chat/invoke/${version}`, { connection_id: connectionId, content })
-				.then(response => {
+				.then((response: AxiosResponse<any>) => {
 					return response.data;
 				})
-				.catch(error => {
+				.catch((error: AxiosError) => {
 					throw error;
 				});
 		} catch (error) {

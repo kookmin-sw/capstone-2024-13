@@ -6,7 +6,7 @@ const albumSchemaOptions: SchemaOptions = {
 	timestamps: true,
 	collection: 'albums',
 	toJSON: {
-		transform: (doc, ret) => {
+		transform: (doc: any, ret: any) => {
 			delete ret.__v;
 			return ret;
 		},

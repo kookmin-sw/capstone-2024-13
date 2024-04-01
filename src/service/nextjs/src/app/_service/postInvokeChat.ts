@@ -8,10 +8,10 @@ const postInvokeChat = async (query: object): Promise<any> => {
 	};
 
 	return await postFetcher<any>(`/mystic/chat/invoke/${version}`, { connectionId, content })
-		.then(response => {
+		.then((response: any) => {
 			return response.content;
 		})
-		.catch(error => {
+		.catch((error: any) => {
 			throw error;
 		});
 };

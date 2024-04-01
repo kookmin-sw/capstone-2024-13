@@ -1,4 +1,5 @@
 import axiosInstance from './base';
+import { AxiosResponse, AxiosError } from 'axios';
 
 const getFetcher = async <ResType>(
 	url: string,
@@ -6,8 +7,8 @@ const getFetcher = async <ResType>(
 ): Promise<ResType> =>
 	axiosInstance
 		.get<ResType>(url, { params })
-		.then(res => res.data)
-		.catch(error => {
+		.then((res: AxiosResponse<ResType>) => res.data)
+		.catch((error: AxiosError) => {
 			throw error;
 		});
 

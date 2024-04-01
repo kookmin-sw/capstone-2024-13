@@ -31,7 +31,7 @@ class GoogleOAuth2Strategy extends PassportStrategy(Strategy, 'google-oauth2') {
 				.get(configService.getOrThrow('GOOGLE_USERINFO_URL'), {
 					headers: { Authorization: `Bearer ${accessToken}` },
 				})
-				.then(response => {
+				.then((response: { data: { email: any; name: any; }; }) => {
 					return {
 						email: response.data.email,
 						nickname: response.data.name,

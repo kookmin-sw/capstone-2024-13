@@ -6,7 +6,7 @@ import * as Dto from './dto';
 
 @Injectable()
 class DiaryService {
-	constructor(@InjectModel('Diary') private readonly diaryModel) {}
+	constructor(@InjectModel('Diary') private readonly diaryModel: any) {}
 
 	async find(query: Dto.Request.Find): Promise<Diary[]> {
 		try {

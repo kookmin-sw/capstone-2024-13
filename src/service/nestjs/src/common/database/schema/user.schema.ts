@@ -7,7 +7,7 @@ const userSchemaOptions: SchemaOptions = {
 	timestamps: true,
 	collection: 'users',
 	toJSON: {
-		transform: (doc, ret) => {
+		transform: (doc: any, ret: any) => {
 			delete ret.__v;
 			return ret;
 		},

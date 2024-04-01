@@ -41,7 +41,7 @@ class DiaryController {
 		description: 'Get user diaries by One-to-Squillions relationship',
 	})
 	@ApiOkResponse({ type: [Diary] })
-	async getUser(@Request() req) {
+	async getUser(@Request() req: any) {
 		try {
 			const userId = req.user._id;
 
@@ -55,7 +55,7 @@ class DiaryController {
 	@Post()
 	@ApiOperation({ summary: '다이어리 생성', description: '다이어리 생성' })
 	@ApiOkResponse({ type: Diary })
-	async create(@Request() req, @Body() createDiaryDto: Dto.Request.Create) {
+	async create(@Request() req: any, @Body() createDiaryDto: Dto.Request.Create) {
 		try {
 			const userId = req.user._id;
 			const { title, content } = createDiaryDto;
