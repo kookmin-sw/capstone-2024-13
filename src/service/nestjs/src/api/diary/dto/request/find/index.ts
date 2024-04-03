@@ -9,6 +9,13 @@ class Find {
 	@ApiProperty({ description: 'Diary ID', required: false })
 	_id?: string;
 
+	// add albumId
+	@IsOptional()
+	@IsString()
+	@Trim()
+	@ApiProperty({ description: 'Album ID', required: false })
+	albumId?: string;
+
 	@IsOptional()
 	@IsString()
 	@Trim()

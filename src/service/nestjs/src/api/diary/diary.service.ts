@@ -39,6 +39,22 @@ class DiaryService {
 			throw error;
 		}
 	}
+
+	async updateMany(query: Dto.Request.Find, update: object): Promise<Diary[]> {
+		try {
+			return await this.diaryModel.updateMany(query, update, { new: true });
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async changeAlbum(diaryId: string, albumId: string) {
+		try {
+			return await this.diaryModel.findByIdAndUpdate(diaryId, { albumId }, { new: true });
+		} catch (error) {
+			throw error;
+		}
+	}
 }
 
 export default DiaryService;
