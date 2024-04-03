@@ -6,14 +6,10 @@ import DiaryService from 'src/api/diary/diary.service';
 
 @Injectable()
 class AlbumService {
-<<<<<<< HEAD
 	constructor(
-		@InjectModel('Album') private readonly albumModel,
+		@InjectModel('Album') private readonly albumModel: any,
 		private readonly diaryService: DiaryService,
 	) {}
-=======
-	constructor(@InjectModel('Album') private readonly albumModel: any) {}
->>>>>>> main
 
 	async find(query: any): Promise<Album[]> {
 		try {
@@ -43,14 +39,6 @@ class AlbumService {
 		try {
 			await this.diaryService.updateMany({ albumId: albumId }, { albumId: null });
 			return await this.albumModel.findByIdAndDelete(albumId);
-		} catch (error) {
-			throw error;
-		}
-	}
-
-	async addDiary(albumId: string, diaryId: string) {
-		try {
-			return await this.diaryService.update(diaryId, { albumId }, { new: true });
 		} catch (error) {
 			throw error;
 		}
