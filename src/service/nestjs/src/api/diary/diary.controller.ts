@@ -14,8 +14,8 @@ import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/common';
 import DiaryService from './diary.service';
 import { Diary } from 'src/common/database/schema';
-import { Types } from 'mongoose';
 import * as Dto from './dto';
+
 @Controller('diary')
 @ApiTags('diary')
 @UseGuards(Auth.Guard.UserJwt)
@@ -89,6 +89,30 @@ class DiaryController {
 			return await this.diaryService.delete(diaryId);
 		} catch (error) {
 			throw new BadRequestException(`다이어리 삭제 실패: ${error.status}: ${error.message}`);
+		}
+	}
+
+	// change diary album
+	@Patch(':id/album/:albumId')
+	@ApiOperation({ summary: '다이어리 앨범 변경', description: '다이어리 앨범 변경' })
+	@ApiOkResponse({ type: Diary })
+	async changeAlbum(@Param('id') diaryId: string, @Param('albumId') albumId: string) {
+		try {
+			return await this.diaryService.changeAlbum(diaryId, albumId);
+		} catch (error) {
+			throw new BadRequestException(`다이어리 앨범 변경 실패: ${error.status}: ${error.message}`);
+		}
+	}
+
+	// diaries find by album
+	@Get('album/:albumId')
+	@ApiOperation({ summary: '다이어리 앨범별 조회', description: '다이어리 앨범별 조회' })
+	@ApiOkResponse({ type: [Diary] })
+	async findByAlbum(@Param('albumId') albumId: string) {
+		try {
+			return await this.diaryService.find({ albumId: albumId });
+		} catch (error) {
+			throw new BadRequestException(`다이어리 앨범별 조회 실패: ${error.status}: ${error.message}`);
 		}
 	}
 }

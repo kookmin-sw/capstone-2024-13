@@ -2,10 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Album } from 'src/common/database/schema/album.schema';
 import { Types } from 'mongoose';
+import DiaryService from 'src/api/diary/diary.service';
 
 @Injectable()
 class AlbumService {
-	constructor(@InjectModel('Album') private readonly albumModel: any) {}
+	constructor(
+		@InjectModel('Album') private readonly albumModel: any,
+		private readonly diaryService: DiaryService,
+	) {}
 
 	async find(query: any): Promise<Album[]> {
 		try {
@@ -15,13 +19,30 @@ class AlbumService {
 		}
 	}
 
-	async create(userId: Types.ObjectId, title: string, content: string) {
+	async create(userId: Types.ObjectId, title: string) {
 		try {
 			return await new this.albumModel({ userId, title }).save();
 		} catch (error) {
 			throw error;
 		}
 	}
+
+	async update(albumId: string, updatedFields: Record<string, any>) {
+		try {
+			return await this.albumModel.findByIdAndUpdate(albumId, updatedFields, { new: true });
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async delete(albumId: string) {
+		try {
+			await this.diaryService.updateMany({ albumId: albumId }, { albumId: null });
+			return await this.albumModel.findByIdAndDelete(albumId);
+		} catch (error) {
+			throw error;
+		}
+	}
 }
 
-export default AlbumService;
+export { AlbumService as default };
