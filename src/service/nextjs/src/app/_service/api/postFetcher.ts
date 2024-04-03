@@ -1,4 +1,4 @@
-import { RawAxiosRequestConfig } from 'axios';
+import { RawAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import axiosInstance from './base';
 
 const postFetcher = async <ResType>(
@@ -8,8 +8,8 @@ const postFetcher = async <ResType>(
 ): Promise<ResType> =>
 	axiosInstance
 		.post<ResType>(url, reqData, options)
-		.then(response => response.data)
-		.catch(error => {
+		.then((res: AxiosResponse<ResType>) => res.data)
+		.catch((error: AxiosError) => {
 			throw error;
 		});
 

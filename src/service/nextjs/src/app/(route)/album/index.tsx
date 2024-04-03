@@ -2,7 +2,6 @@ import { Types } from 'mongoose';
 import Image from 'next/image';
 import style from '../../_style/(route)/album/index.module.css';
 import Link from 'next/link';
-import { useState } from 'react';
 
 const Album = (props: { _id: Types.ObjectId; thumbnail: string; title: string; count: number }) => {
 	const { _id, thumbnail, title, count } = props;

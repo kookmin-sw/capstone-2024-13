@@ -6,10 +6,14 @@ import DiaryService from 'src/api/diary/diary.service';
 
 @Injectable()
 class AlbumService {
+<<<<<<< HEAD
 	constructor(
 		@InjectModel('Album') private readonly albumModel,
 		private readonly diaryService: DiaryService,
 	) {}
+=======
+	constructor(@InjectModel('Album') private readonly albumModel: any) {}
+>>>>>>> main
 
 	async find(query: any): Promise<Album[]> {
 		try {

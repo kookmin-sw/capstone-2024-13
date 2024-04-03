@@ -1,4 +1,4 @@
-import { RawAxiosRequestConfig } from 'axios';
+import { RawAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'; // AxiosResponse 및 AxiosError 임포트
 import axiosInstance from './base';
 
 const patchFetcher = async <ResType>(
@@ -8,8 +8,8 @@ const patchFetcher = async <ResType>(
 ): Promise<ResType> =>
 	axiosInstance
 		.patch<ResType>(url, reqData, options)
-		.then(res => res.data)
-		.catch(error => {
+		.then((res: AxiosResponse<ResType>) => res.data)
+		.catch((error: AxiosError) => {
 			throw error;
 		});
 

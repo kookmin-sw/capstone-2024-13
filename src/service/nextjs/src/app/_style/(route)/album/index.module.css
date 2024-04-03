@@ -1,15 +1,16 @@
 .container {
 	width: 46.66cqw;
 	height: 56.66cqw;
-	display: flex;
-	flex-direction: column;
 
 	container-type: size;
 }
 
 .container > a {
 	width: 100cqw;
-	height: 100cqw;
+	height: 100cqh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 
 	container-type: size;
 }

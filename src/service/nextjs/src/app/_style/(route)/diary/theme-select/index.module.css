@@ -1,0 +1,6 @@
+.container {
+	width: 100cqw;
+	flex: 1;
+
+	container-type: size;
+}

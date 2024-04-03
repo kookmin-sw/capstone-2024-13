@@ -34,7 +34,7 @@ class AuthController {
 	@Get('google/callback')
 	@UseGuards(Auth.Guard.GoogleOAuth2)
 	@ApiOperation({ summary: 'Google OAuth2 callback', description: 'Google OAuth2 callback' })
-	async googleOAuth2Callback(@Request() req, @Response() res): Promise<void> {
+	async googleOAuth2Callback(@Request() req: any, @Response() res: any): Promise<void> {
 		try {
 			const jwt = await this.cookieService.createJwt(req.user);
 			const cookieOption = this.cookieService.getCookieOption();
@@ -51,7 +51,7 @@ class AuthController {
 	@Get('login')
 	@UseGuards(Auth.Guard.GoogleJwt)
 	@ApiOperation({ summary: 'Login', description: 'Login to service' })
-	async login(@Request() req, @Response() res) {
+	async login(@Request() req: any, @Response() res: any) {
 		try {
 			const user = await this.authService.login(req.user.email);
 			if (!user) {
@@ -80,9 +80,9 @@ class AuthController {
 	@ApiBadRequestResponse({ description: 'Failed to register' })
 	@ApiOkResponse({ type: User })
 	async register(
-		@Request() req,
+		@Request() req: any,
 		@Body() registerRequestDto: Dto.Request.Register,
-		@Response() res,
+		@Response() res: any,
 	) {
 		try {
 			let user = await this.authService.login(req.user.email);
