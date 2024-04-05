@@ -29,9 +29,6 @@
 <h2 align="center">
 	<a href="https://you-know-what.com">배포 페이지</a>
 </h2>
-
-<br/>
-
 <h4 align="center">
 	<a href="https://drive.google.com/file/d/18bqswDEOVcPu1D90FBGsr8glIwOlZeSm/view?usp=sharing">
 		중간 발표 자료
