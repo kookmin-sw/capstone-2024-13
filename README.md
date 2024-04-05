@@ -29,6 +29,15 @@
 <h2 align="center">
 	<a href="https://you-know-what.com">배포 페이지</a>
 </h2>
+<h4 align="center">
+	<a href="https://drive.google.com/file/d/18bqswDEOVcPu1D90FBGsr8glIwOlZeSm/view?usp=sharing">
+		중간 발표 자료
+	</a>
+	&nbsp;·&nbsp;
+	<a href="https://drive.google.com/file/d/1XJN7Vt2rrojm7XwnVydat9RvGgAZMH4X/view?usp=drive_link">
+		중간 보고서
+	</a>
+</h4>
 
 <br/>
 <br/>
@@ -36,10 +45,77 @@
 ## Index
 
 -   [Abstract](#abstract)
+-   [Requirements](#requirements)
+-   [Install](#install)
 -   [Software Architecture](#software-architecture)
 -   [Preview](#preview)
 -   [Licence](#licence)
 -   [Contact](#contact)
+
+<br/>
+<br/>
+
+## Abstract
+
+<br/>
+<br/>
+
+## Requirements
+
+### [Docker](https://www.docker.com)
+
+-   Download docker for your OS
+
+#### Current version of docker with this repository
+
+-   Docker version 25.0.3
+-   Docker Compose version v2.24.5-desktop.1
+
+### Make
+
+#### Install make for your OS
+
+<br/>
+<br/>
+
+## Install
+
+### .env
+
+    $ cp .env.sample .env
+
+-   Set your own value of environment variables in `.env` file
+-   **You have to protect your `.env` file from being exposed to the public**
+
+<br/>
+
+### Dockerfile
+
+-   You can change the contents of the Dockerfile to suit your needs.
+
+<br/>
+
+### Volumes
+
+-   Check the volumes' path in the `docker-compose.yml` file
+-   The path will be mounted to the container
+
+<br/>
+<br/>
+
+## Usage
+
+### Supported Makefile commands
+
+-   `make (up)`: Run and build containers, networks, volumes and images
+-   `make down`: Stop and remove containers, networks, volumes and images
+-   `make start`: Start containers
+-   `make stop`: Stop containers
+
+### Status
+
+-   You can get the status of the containers with `docker ps`
+-   You can get the log of the containers with `docker logs <container_name>`
 
 <br/>
 <br/>
