@@ -4,6 +4,8 @@ import { Types } from 'mongoose';
 import style from '../../../../_style/(route)/album/[id]/diary/index.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
+import MeetballsMenu from '@/app/_component/meetballs-menu';
+import { Button } from '@mui/material';
 
 const ParseDate = (date: Date) => {
 	const year = date.getFullYear();
@@ -17,7 +19,7 @@ const ParseDate = (date: Date) => {
 };
 
 const ParseContent = (content: string) => {
-	const maxLength = 110;
+	const maxLength = 95;
 	const contentLength = content.length;
 
 	if (contentLength > maxLength) {
@@ -41,7 +43,12 @@ const AlbumPageDiary = (props: {
 
 	return (
 		<div className={style.container}>
-			<span className={style.date}>{ParseDate(createdAt)}</span>
+			<div>
+				<span className={style.date}>{ParseDate(createdAt)}</span>
+				{/*<MeetballsMenu width="550cqw">
+					<Button>Add to Album</Button>
+				</MeetballsMenu>*/}
+			</div>
 			<>
 				{isLoaded && images.length === 3 ? (
 					<div
