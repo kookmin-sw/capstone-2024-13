@@ -1,7 +1,7 @@
-import postPresignedUrl from './postPresignedUrl';
+import { postPresignedUrl } from '@/app/_service';
 import { patchFetcher, postFetcher } from './api';
 
-const postRegister = async <Me>(query: object) => {
+export const postRegister = async <Me>(query: object) => {
 	const { file, ...rest } = query as { file?: File; [key: string]: any };
 
 	let user = await postFetcher<Me>('/auth/register', rest).catch((error: any) => {
@@ -35,5 +35,3 @@ const postRegister = async <Me>(query: object) => {
 
 	return user;
 };
-
-export default postRegister;

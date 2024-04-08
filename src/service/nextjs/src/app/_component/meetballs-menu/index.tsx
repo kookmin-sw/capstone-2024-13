@@ -29,7 +29,7 @@ const MeetballsMenu = (props: { width?: number | string; children?: ReactNode })
 				handleClickOutside(event, isOpened, setIsOpened),
 			);
 		};
-	}, []);
+	}, [isOpened]);
 
 	return (
 		<div className={style.container}>

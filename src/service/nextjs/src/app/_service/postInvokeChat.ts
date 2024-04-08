@@ -1,6 +1,6 @@
 import { postFetcher } from './api';
 
-const postInvokeChat = async (query: object): Promise<any> => {
+export const postInvokeChat = async (query: object): Promise<any> => {
 	const { version, connectionId, content } = query as {
 		version: string;
 		connectionId: string;
@@ -15,5 +15,3 @@ const postInvokeChat = async (query: object): Promise<any> => {
 			throw error;
 		});
 };
-
-export default postInvokeChat;
