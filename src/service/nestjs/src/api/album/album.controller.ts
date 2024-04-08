@@ -41,7 +41,7 @@ class AlbumController {
 		description: 'Get user albums by One-to-Squillions relationship',
 	})
 	@ApiOkResponse({ type: [Album] })
-	async getUser(@Request() req: any) {
+	async getByUserId(@Request() req: any) {
 		try {
 			const userId = req.user._id;
 
@@ -80,7 +80,7 @@ class AlbumController {
 	@Patch(':id')
 	@ApiOperation({ summary: '앨범 수정', description: '앨범 수정' })
 	@ApiOkResponse({ type: Album })
-	async update(@Param('id') albumId: string, @Body() createAlbumDto: Dto.Request.CreateAlbumDto) {
+	async update(@Param('id') albumId: string, @Body() createAlbumDto: Dto.Request.UpdateAlbumDto) {
 		try {
 			const { title } = createAlbumDto;
 
