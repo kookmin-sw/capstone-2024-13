@@ -9,8 +9,18 @@
 	container-type: size;
 }
 
-.date {
+.container > div:first-child {
 	width: 100cqw;
+	height: 5cqh;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 10;
+
+	container-type: size;
+}
+
+.date {
 	font-size: 4cqw;
 	color: #b2b2b2;
 }
@@ -18,8 +28,8 @@
 .image {
 	width: 100cqw;
 	height: 100cqw;
-	margin-top: 2cqw;
-	margin-bottom: 4cqw;
+	margin-top: 1cqw;
+	margin-bottom: 3cqw;
 
 	container-type: size;
 }
