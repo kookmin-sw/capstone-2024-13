@@ -19,9 +19,9 @@ class AlbumService {
 		}
 	}
 
-	async create(userId: Types.ObjectId, title: string) {
+	async create(userId: Types.ObjectId, createdFields: Record<string, any>) {
 		try {
-			return await new this.albumModel({ userId, title }).save();
+			return await new this.albumModel({ userId, ...createdFields }).save();
 		} catch (error) {
 			throw error;
 		}
