@@ -2,7 +2,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, Length } from 'class-validator';
 
-export class Create {
+export class CreateAlbumDto {
 	@ApiProperty({
 		type: String,
 		description: 'Title',
@@ -14,4 +14,4 @@ export class Create {
 	title: string;
 }
 
-export default Create;
+export default CreateAlbumDto;
