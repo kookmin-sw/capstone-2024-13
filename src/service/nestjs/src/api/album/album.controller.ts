@@ -41,7 +41,7 @@ class AlbumController {
 		description: 'Get user albums by One-to-Squillions relationship',
 	})
 	@ApiOkResponse({ type: [Album] })
-	async getUser(@Request() req:any) {
+	async getUser(@Request() req: any) {
 		try {
 			const userId = req.user._id;
 
@@ -55,14 +55,24 @@ class AlbumController {
 	@Post()
 	@ApiOperation({ summary: '앨범 생성', description: '앨범 생성' })
 	@ApiOkResponse({ type: Album })
-	async create(@Request() req, @Body() createAlbumDto: Dto.Request.Create) {
+	async create(@Request() req, @Body() createAlbumDto: Dto.Request.CreateAlbumDto) {
 		try {
 			const userId = req.user._id;
-			const { title } = createAlbumDto;
-
-			return await this.albumService.create(userId, title);
+			return await this.albumService.create(userId, createAlbumDto);
 		} catch (error) {
 			throw new BadRequestException(`Create album failed: ${error.status}: ${error.message}`);
+		}
+	}
+
+	// find album
+	@Post('find')
+	@ApiOperation({ summary: '앨범 검색', description: '앨범 검색' })
+	@ApiOkResponse({ type: Album })
+	async find(@Body() findAlbumDto: Dto.Request.FindAlbumDto) {
+		try {
+			return await this.albumService.find(findAlbumDto);
+		} catch (error) {
+			throw new BadRequestException(`Find album failed: ${error.status}: ${error.message}`);
 		}
 	}
 
@@ -70,7 +80,7 @@ class AlbumController {
 	@Patch(':id')
 	@ApiOperation({ summary: '앨범 수정', description: '앨범 수정' })
 	@ApiOkResponse({ type: Album })
-	async update(@Param('id') albumId: string, @Body() createAlbumDto: Dto.Request.Create) {
+	async update(@Param('id') albumId: string, @Body() createAlbumDto: Dto.Request.CreateAlbumDto) {
 		try {
 			const { title } = createAlbumDto;
 
