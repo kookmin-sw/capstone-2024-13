@@ -10,10 +10,10 @@ import {
 	UseGuards,
 	Patch,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/common';
 import AlbumService from './album.service';
-import { Album } from 'src/common/database/schema';
+import { Album, AlbumDocument } from 'src/common/database/schema';
 import * as Dto from 'src/api/album/dto';
 
 @Controller('album')
@@ -22,57 +22,48 @@ import * as Dto from 'src/api/album/dto';
 class AlbumController {
 	constructor(private readonly albumService: AlbumService) {}
 
-	// Get album by id
-	@Get(':id')
-	@ApiOperation({ summary: 'Get album by id', description: 'Get album by id' })
-	@ApiOkResponse({ type: Album })
-	async get(@Param('id') albumId: string) {
-		try {
-			return await this.albumService.find({ _id: albumId });
-		} catch (error) {
-			throw new BadRequestException(`Get album failed: ${error.status}: ${error.message}`);
-		}
-	}
-
 	// Get user albums by One-to-Squillions relationship
 	@Get()
 	@ApiOperation({
 		summary: 'Get user albums by One-to-Squillions relationship',
 		description: 'Get user albums by One-to-Squillions relationship',
 	})
-	@ApiOkResponse({ type: [Album] })
-	async getByUserId(@Request() req: any) {
+	@ApiOkResponse({ description: "Get user's albums successfully", type: [Album] })
+	@ApiBadRequestResponse({ description: 'Failed to get user album' })
+	async getByUserId(@Request() req: any): Promise<AlbumDocument[]> {
 		try {
-			const userId = req.user._id;
-
-			return await this.albumService.find({ userId: userId });
+			return await this.albumService.find({ userId: req.user._id });
 		} catch (error) {
-			throw new BadRequestException(`Get user album failed: ${error.status}: ${error.message}`);
+			throw new BadRequestException(`Failed to get user album: ${error.status}: ${error.message}`);
 		}
 	}
 
 	// Create album
 	@Post()
 	@ApiOperation({ summary: '앨범 생성', description: '앨범 생성' })
-	@ApiOkResponse({ type: Album })
-	async create(@Request() req, @Body() createAlbumDto: Dto.Request.CreateAlbumDto) {
+	@ApiOkResponse({ description: 'Create album successfully', type: Album })
+	@ApiBadRequestResponse({ description: 'Failed to create album' })
+	async create(
+		@Request() req,
+		@Body() createRequestDto: Dto.Request.CreateAlbumDto,
+	): Promise<AlbumDocument> {
 		try {
-			const userId = req.user._id;
-			return await this.albumService.create(userId, createAlbumDto);
+			return await this.albumService.create(req.user._id, createRequestDto);
 		} catch (error) {
-			throw new BadRequestException(`Create album failed: ${error.status}: ${error.message}`);
+			throw new BadRequestException(`Failed to create album: ${error.status}: ${error.message}`);
 		}
 	}
 
-	// find album
-	@Post('find')
-	@ApiOperation({ summary: '앨범 검색', description: '앨범 검색' })
-	@ApiOkResponse({ type: Album })
-	async find(@Body() findAlbumDto: Dto.Request.FindAlbumDto) {
+	// Get album by id
+	@Get(':id')
+	@ApiOperation({ summary: 'Get album by id', description: 'Get album by id' })
+	@ApiOkResponse({ description: 'Get album successfully', type: Album })
+	@ApiBadRequestResponse({ description: 'Failed to get album' })
+	async get(@Param('id') albumId: string): Promise<AlbumDocument> {
 		try {
-			return await this.albumService.find(findAlbumDto);
+			return await this.albumService.findById(albumId);
 		} catch (error) {
-			throw new BadRequestException(`Find album failed: ${error.status}: ${error.message}`);
+			throw new BadRequestException(`Failed to get album: ${error.status}: ${error.message}`);
 		}
 	}
 
@@ -80,11 +71,12 @@ class AlbumController {
 	@Patch(':id')
 	@ApiOperation({ summary: '앨범 수정', description: '앨범 수정' })
 	@ApiOkResponse({ type: Album })
-	async update(@Param('id') albumId: string, @Body() createAlbumDto: Dto.Request.UpdateAlbumDto) {
+	async update(
+		@Param('id') albumId: string,
+		@Body() updateRequestDto: Dto.Request.UpdateAlbumDto,
+	): Promise<AlbumDocument> {
 		try {
-			const { title } = createAlbumDto;
-
-			return await this.albumService.update(albumId, { title });
+			return await this.albumService.update(albumId, updateRequestDto);
 		} catch (error) {
 			throw new BadRequestException(`Update album failed: ${error.status}: ${error.message}`);
 		}
@@ -94,11 +86,23 @@ class AlbumController {
 	@Delete(':id')
 	@ApiOperation({ summary: '앨범 삭제', description: '앨범 삭제' })
 	@ApiOkResponse({ type: Album })
-	async delete(@Param('id') albumId: string) {
+	async delete(@Param('id') albumId: string): Promise<AlbumDocument> {
 		try {
 			return await this.albumService.delete(albumId);
 		} catch (error) {
 			throw new BadRequestException(`Delete album failed: ${error.status}: ${error.message}`);
+		}
+	}
+
+	// find album
+	@Post('find')
+	@ApiOperation({ summary: '앨범 검색', description: '앨범 검색' })
+	@ApiOkResponse({ type: Album })
+	async find(@Body() findAlbumDto: Dto.Request.FindAlbumDto): Promise<AlbumDocument[]> {
+		try {
+			return await this.albumService.find(findAlbumDto);
+		} catch (error) {
+			throw new BadRequestException(`Find album failed: ${error.status}: ${error.message}`);
 		}
 	}
 }

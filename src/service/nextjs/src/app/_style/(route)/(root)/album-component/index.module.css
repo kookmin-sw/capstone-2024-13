@@ -21,6 +21,7 @@
 	position: relative;
 	border-radius: 8cqw;
 	overflow: hidden;
+	background-color: #dddddd;
 	box-shadow: 0 0 2cqw 0 rgba(0, 0, 0, 0.1);
 
 	container-type: size;

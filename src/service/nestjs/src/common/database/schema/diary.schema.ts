@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory, SchemaOptions } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Album } from './album.schema';
+import { Document } from 'mongoose';
 
 const diarySchemaOptions: SchemaOptions = {
 	autoCreate: true,
@@ -18,6 +19,11 @@ const diarySchemaOptions: SchemaOptions = {
 export class Diary {
 	//One-to-Squillions
 	@Prop({ type: String, required: true })
+	@ApiProperty({
+		type: String,
+		description: 'User id',
+		example: '49fafa4d2ca3602935816679',
+	})
 	userId: string;
 
 	@Prop({ type: String, required: true })
@@ -35,6 +41,14 @@ export class Diary {
 		example: 'Today diary content',
 	})
 	content: string;
+
+	@Prop({ type: Boolean, required: true, default: false })
+	@ApiProperty({
+		type: Boolean,
+		description: 'Public',
+		example: false,
+	})
+	isPublic: boolean;
 
 	//image filename array
 	@Prop({ type: [String], required: false })

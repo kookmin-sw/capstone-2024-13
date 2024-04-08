@@ -42,10 +42,23 @@
 	width: 80cqw;
 }
 
+.input > label {
+	color: #b2b2b2;
+}
+
+.input > div {
+	background-color: #f5f5f5;
+}
+
+.input > div::before,
+.input > div::after {
+	display: none;
+}
+
 .footer {
 	width: 100cqw;
 	height: 16cqw;
-	border-top: 1px solid #000000;
+	border-top: 1px solid #dddddd;
 
 	container-type: size;
 }
@@ -59,5 +72,5 @@
 }
 
 .footer > button:first-child {
-	border-right: 1px solid #000000;
+	border-right: 1px solid #dddddd;
 }

@@ -1,14 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Diary } from 'src/common/database/schema';
-import { Types } from 'mongoose';
+import { Diary, DiaryDocument } from 'src/common/database/schema';
+import { Model, Types } from 'mongoose';
 import * as Dto from './dto';
 
 @Injectable()
 class DiaryService {
-	constructor(@InjectModel('Diary') private readonly diaryModel: any) {}
+	constructor(@InjectModel('Diary') private readonly diaryModel: Model<Diary>) {}
 
-	async find(query: Dto.Request.Find): Promise<Diary[]> {
+	async findById(diaryId: string): Promise<DiaryDocument> {
+		try {
+			return await this.diaryModel.findById(diaryId);
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async find(query: Dto.Request.Find): Promise<DiaryDocument[]> {
 		try {
 			return await this.diaryModel.find(query);
 		} catch (error) {
@@ -16,23 +24,30 @@ class DiaryService {
 		}
 	}
 
-	async create(userId: Types.ObjectId, title: string, content: string) {
+	async create(
+		userId: Types.ObjectId,
+		createRequestDto: Dto.Request.Create,
+	): Promise<DiaryDocument> {
 		try {
-			return await new this.diaryModel({ userId, title, content }).save();
+			return await new this.diaryModel({ userId, ...createRequestDto }).save();
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async update(diaryId: string, title: string, content: string) {
+	async update(diaryId: string, updateRequestDto: Dto.Request.Update): Promise<DiaryDocument> {
 		try {
-			return await this.diaryModel.findByIdAndUpdate(diaryId, { title, content }, { new: true });
+			return await this.diaryModel.findByIdAndUpdate(
+				diaryId,
+				{ ...updateRequestDto },
+				{ new: true },
+			);
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async delete(diaryId: string) {
+	async delete(diaryId: string): Promise<DiaryDocument> {
 		try {
 			return await this.diaryModel.findByIdAndDelete(diaryId);
 		} catch (error) {
@@ -40,17 +55,9 @@ class DiaryService {
 		}
 	}
 
-	async updateMany(query: Dto.Request.Find, update: object): Promise<Diary[]> {
+	async updateMany(query: object, updateRequestDto: Dto.Request.Update): Promise<any> {
 		try {
-			return await this.diaryModel.updateMany(query, update, { new: true });
-		} catch (error) {
-			throw error;
-		}
-	}
-
-	async changeAlbum(diaryId: string, albumId: string) {
-		try {
-			return await this.diaryModel.findByIdAndUpdate(diaryId, { albumId }, { new: true });
+			return await this.diaryModel.updateMany(query, updateRequestDto, { new: true });
 		} catch (error) {
 			throw error;
 		}

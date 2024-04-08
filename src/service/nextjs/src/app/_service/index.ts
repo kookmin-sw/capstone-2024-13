@@ -1,4 +1,4 @@
-export * from './getAlbum';
+export * from './getAlbums';
 export * from './postConnectMystic';
 export * from './postCreateAlbum';
 export * from './postInvokeChat';

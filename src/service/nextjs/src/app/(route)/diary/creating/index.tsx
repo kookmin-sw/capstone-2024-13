@@ -1,7 +1,8 @@
+import { Dispatch, SetStateAction } from 'react';
 import style from '../../../_style/(route)/diary/creating/index.module.css';
 import { CreatingIcon } from '../icon';
 
-const DiaryPageCreating = () => {
+const DiaryPageCreating = (props: { setContent: Dispatch<SetStateAction<string>> }) => {
 	return (
 		<div className={style.container}>
 			<CreatingIcon width={'50cqw'} height={'50cqw'} />

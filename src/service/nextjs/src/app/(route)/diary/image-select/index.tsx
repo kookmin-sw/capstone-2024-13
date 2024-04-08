@@ -1,6 +1,12 @@
+import { Dispatch, SetStateAction } from 'react';
 import style from '../../../_style/(route)/diary/image-select/index.module.css';
 
-const DiaryPageImageSelect = () => {
+const DiaryPageImageSelect = (props: {
+	images: string[];
+	setImages: Dispatch<SetStateAction<string[]>>;
+}) => {
+	const { images, setImages } = props;
+
 	return (
 		<div className={style.container}>
 			<div>

@@ -3,8 +3,8 @@ import style from '../../../_style/(route)/search/diary/index.module.css';
 import { Types } from 'mongoose';
 import Link from 'next/link';
 
-const SearchPageDiary = (props: { _id: Types.ObjectId; images: string[] }) => {
-	const { _id, images } = props;
+const SearchPageDiary = (props: { _id: Types.ObjectId; images?: string[] }) => {
+	const { _id, images = [] } = props;
 
 	return (
 		<div className={style.container}>

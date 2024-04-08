@@ -1,10 +1,8 @@
-import { Album } from '../../../../nestjs/src/common/database/schema/album.schema';
+import { Album } from '../_type';
 import { postFetcher } from './api';
 
-export const postCreateAlbum = async (query: object): Promise<Album[]> => {
-	const { title } = query as { title: string };
-
-	return await postFetcher<Album[]>('/album/create', { title }).catch((error: any) => {
+export const postCreateAlbum = async (query: object): Promise<Album> => {
+	return await postFetcher<Album>('/album', query).catch((error: any) => {
 		throw error;
 	});
 };
