@@ -1,4 +1,4 @@
-from fastapi			import FastAPI
+from fastapi			import FastAPI, File, UploadFile
 from fastapi.responses	import RedirectResponse, Response
 from pydantic 			import BaseModel, Field
 from typing				import List, Union
@@ -6,8 +6,9 @@ from langchain.schema	import AIMessage, HumanMessage, SystemMessage
 from app.chain			import ChainV1, ChainV2, ChainV3
 from app.stt			import STT
 from app.tts			import tts as TTS
+from app.greeneye		import greenEye
 from bson 				import ObjectId
-import re
+import re, json
 
 app = FastAPI(title = "Mystic", description = "LLM, STT, TTS intergrated server", version = "0.1.0")
 
@@ -56,6 +57,13 @@ class TTSRequest(BaseModel):
 	text: str
 	slow: bool = False
 
+class ImageRequest(BaseModel):
+	path : str
+
+class ImageResponse(BaseModel):
+	flag : str
+	confidence : dict
+	
 # 사용자 입력 전처리 함수
 def preprocess_user_input(content: str) -> str:
 	# 역할 변경 요청 감지를 위한 일반화된 정규 표현식
@@ -70,6 +78,11 @@ def preprocess_user_input(content: str) -> str:
 	else:
 			# 역할 변경 요청이 아닌 경우, 원본 입력 반환
 			return content
+
+@app.post("/ImageFiltering", response_model=ImageResponse)
+async def image_filtering(request: ImageRequest):
+	flag, confidence = greenEye(path=request.path)
+	return ImageResponse(flag=flag, confidence=confidence)
 
 @app.post("/connect/v1", response_model=ConnectResponse)
 async def connect_v1(request : ConnectRequest):
