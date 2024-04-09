@@ -38,6 +38,8 @@ class ConnectRequest(BaseModel):
 class ConnectResponse(BaseModel):
 	connection_id: str
 
+class DisconnectRequest(BaseModel):
+	connection_id: str
 class ChatRequest(BaseModel):
     #connection_id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
     connection_id: str
@@ -97,7 +99,7 @@ async def connect_v3(request : ConnectRequest):
 
 # 이렇게 하면 v1, v2, v3 모두 같은 endpoint를 사용할 수 있게 됩니다.
 @app.post("/disconnect", response_model=ChatResponse)
-async def disconnect(request : ConnectRequest):
+async def disconnect(request : DisconnectRequest):
 	if models_dict.get(request.connection_id) is not None:
 		models_dict.pop(request.connection_id)
 	return ChatResponse(content="Disconnected from mystic successfully")

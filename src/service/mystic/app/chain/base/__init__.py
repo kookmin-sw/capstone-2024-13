@@ -14,7 +14,7 @@ from langchain.prompts					import (
 										)
 
 class BaseChain(LLMChain):
-	def __init__(self, connection_id, template_id, llm, filename="template/default.yml"):
+	def __init__(self, connection_id, template_id, llm, filename="template/character.yml"):
 		prompt, memory = self.__set_configuration(connection_id, template_id, filename)
 		
 		super().__init__(
@@ -28,7 +28,7 @@ class BaseChain(LLMChain):
 		yaml_parser = YamlParser(filename)
 
 		system_template = SystemMessagePromptTemplate.from_template(
-			yaml_parser[template_id]["system_template_content"].format(Q_list=yaml_parser[template_id]["question_list"])
+			yaml_parser[template_id]["system_template_content"].format(question_list=yaml_parser[template_id]["question_list"])
 		)
 		ai_prefix = yaml_parser[template_id]['ai_prefix']
 		human_prefix = yaml_parser[template_id]['human_prefix']
