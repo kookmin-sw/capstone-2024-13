@@ -7,6 +7,7 @@ import UserModule from '../user/user.module';
 import AuthController from './auth.controller';
 import { AuthService, CookieService } from './service';
 import GoogleOAuth2Module from './google-oauth2/google-oauth2.module';
+import AlbumModule from '../album/album.module';
 
 @Module({
 	imports: [
@@ -22,6 +23,7 @@ import GoogleOAuth2Module from './google-oauth2/google-oauth2.module';
 		GoogleOAuth2Module,
 		JwtAuthModule,
 		UserModule,
+		AlbumModule,
 	],
 	controllers: [AuthController],
 	providers: [AuthService, CookieService],

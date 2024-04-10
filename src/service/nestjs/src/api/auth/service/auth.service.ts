@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import UserService from 'src/api/user/user.service';
-import { User } from 'src/common/database/schema';
+import { UserDocument } from 'src/common/database/schema';
 
 @Injectable()
 class AuthService {
 	constructor(private readonly userService: UserService) {}
 
-	async login(email: string): Promise<User> {
+	async login(email: string): Promise<UserDocument> {
 		try {
 			return await this.userService.findOne({ email });
 		} catch (error) {
@@ -14,7 +14,7 @@ class AuthService {
 		}
 	}
 
-	async register(email: string, nickname: string): Promise<User> {
+	async register(email: string, nickname: string): Promise<UserDocument> {
 		try {
 			return await this.userService.create(email, nickname);
 		} catch (error) {

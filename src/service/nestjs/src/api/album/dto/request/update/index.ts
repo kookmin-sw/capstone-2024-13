@@ -1,9 +1,9 @@
 import { Trim } from '@miaooo/class-transformer-trim';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
-import { CreateAlbumDto } from '../album';
+import { Album } from 'src/common/database/schema';
 
-class UpdateAlbumDto extends PartialType(CreateAlbumDto) {
+class UpdateAlbumDto extends PartialType(Album) {
 	@IsOptional()
 	@IsString()
 	@Trim()
@@ -21,6 +21,10 @@ class UpdateAlbumDto extends PartialType(CreateAlbumDto) {
 	@Trim()
 	@ApiProperty({ description: 'Album title', required: false })
 	title?: string;
+
+	@IsOptional()
+	@ApiProperty({ description: 'Album count', required: false })
+	$inc?: { count: number };
 }
 
 export default UpdateAlbumDto;

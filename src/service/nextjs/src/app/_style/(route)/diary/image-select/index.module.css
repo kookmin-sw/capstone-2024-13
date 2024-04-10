@@ -3,8 +3,13 @@
 	flex: 1;
 	display: flex;
 	justify-content: center;
+	overflow-y: auto;
 
 	container-type: size;
+}
+
+.container::-webkit-scrollbar {
+	display: none;
 }
 
 .container > div {

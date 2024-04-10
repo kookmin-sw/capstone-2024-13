@@ -1,13 +1,9 @@
 import { postFetcher } from './api';
 
-const postInvokeChat = async (query: object): Promise<any> => {
-	const { version, connectionId, content } = query as {
-		version: string;
-		connectionId: string;
-		content: string;
-	};
+export const postInvokeChat = async (query: object): Promise<any> => {
+	const { version, ...rest } = query as { version: string; [key: string]: any };
 
-	return await postFetcher<any>(`/mystic/chat/invoke/${version}`, { connectionId, content })
+	return await postFetcher<any>(`/mystic/chat/invoke/${version}`, rest)
 		.then((response: any) => {
 			return response.content;
 		})
@@ -15,5 +11,3 @@ const postInvokeChat = async (query: object): Promise<any> => {
 			throw error;
 		});
 };
-
-export default postInvokeChat;

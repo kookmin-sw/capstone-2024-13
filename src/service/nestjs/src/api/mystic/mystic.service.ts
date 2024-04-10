@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Types } from 'mongoose';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 
-
 @Injectable()
 class MysticService {
 	constructor() {}
@@ -32,7 +31,6 @@ class MysticService {
 					return response.data;
 				})
 				.catch((error: AxiosError) => {
-					console.log(error);
 					throw error;
 				});
 		} catch (error) {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import style from '../../../_style/(route)/diary/chat-interface/index.module.css';
 import Chat from '@/app/_component/chat';
 import AuthContext from '@/app/_context/auth';

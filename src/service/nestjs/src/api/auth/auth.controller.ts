@@ -14,14 +14,18 @@ import { ApiBadRequestResponse, ApiOkResponse, ApiOperation, ApiTags } from '@ne
 import { Auth } from '../../common';
 import * as Dto from './dto';
 import { User } from 'src/common/database/schema';
+import AlbumService from '../album/album.service';
+import UserService from '../user/user.service';
 
 @Controller('auth')
 @ApiTags('auth')
 class AuthController {
 	constructor(
 		private readonly configService: ConfigService,
-		private readonly authService: AuthService,
 		private readonly cookieService: CookieService,
+		private readonly authService: AuthService,
+		private readonly userService: UserService,
+		private readonly albumService: AlbumService,
 	) {}
 
 	@Get('google')
@@ -93,6 +97,19 @@ class AuthController {
 			user = await this.authService.register(req.user.email, registerRequestDto.nickname);
 			if (!user) {
 				throw new BadRequestException('Failed to register');
+			}
+
+			const album = await this.albumService.create(user._id, { title: 'Recents' });
+			if (!album) {
+				throw new BadRequestException('Failed to create album');
+			}
+
+			user = await this.userService.findOneAndUpdate(
+				{ _id: user._id.toString() },
+				{ albumId: album._id },
+			);
+			if (!user) {
+				throw new BadRequestException('Failed to update user');
 			}
 
 			const jwt = await this.cookieService.createJwt({

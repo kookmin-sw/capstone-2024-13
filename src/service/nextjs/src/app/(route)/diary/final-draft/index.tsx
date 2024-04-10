@@ -1,23 +1,23 @@
 import Image from 'next/image';
 import style from '../../../_style/(route)/diary/final-draft/index.module.css';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
-const DiaryPageFinalDraft = () => {
-	const randomIndex = Math.floor(Math.random() * 10);
-	const [title, setTitle] = useState<string>('');
+const DiaryPageFinalDraft = (props: {
+	title: string;
+	setTitle: Dispatch<SetStateAction<string>>;
+	content: string;
+	images: string[];
+	isPublic: boolean;
+	setIsPublic: Dispatch<SetStateAction<boolean>>;
+}) => {
+	const { title, setTitle, content, images, isPublic, setIsPublic } = props;
 
 	return (
 		<div className={style.container}>
 			<div>
-				<Image
-					src={`/default-image-0${randomIndex}.png`}
-					alt="Thumbnail"
-					fill
-					sizes="100%"
-					priority
-				/>
+				<Image src={images[0]} alt="Thumbnail" fill sizes="100%" priority />
 			</div>
-			<span>ContentContentContentContentContentContentContentContentContentContent</span>
+			<span>{content}</span>
 			<div>
 				<label>
 					<input
@@ -29,7 +29,13 @@ const DiaryPageFinalDraft = () => {
 				</label>
 				<div>
 					<span>공개여부</span>
-					<input type="checkbox" id="toggle" hidden className={style.checkbox} />
+					<input
+						type="checkbox"
+						id="toggle"
+						hidden
+						className={style.checkbox}
+						onChange={() => setIsPublic(!isPublic)}
+					/>
 					<label htmlFor="toggle" className={style.toggle}>
 						<span className={style.slider} />
 					</label>

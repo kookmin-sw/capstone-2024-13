@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory, SchemaOptions } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { Types } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 const userSchemaOptions: SchemaOptions = {
 	autoCreate: true,

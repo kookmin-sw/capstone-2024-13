@@ -1,7 +1,7 @@
 'use client';
 
 import AuthContext from '@/app/_context/auth';
-import postRegister from '@/app/_service/postRegister';
+import { postRegister } from '@/app/_service';
 import { Me } from '@/app/_type';
 import { Button } from '@mui/material';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';

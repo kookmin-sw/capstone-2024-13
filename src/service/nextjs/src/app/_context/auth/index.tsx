@@ -27,7 +27,7 @@ export const AuthProvider = (props: { children: ReactNode }) => {
 				.then((response: any) => {
 					setMe(response);
 				})
-				.catch(error => {
+				.catch((error: Error) => {
 					setMe(null);
 					if (!isAuthPage) {
 						router.push('/auth/login');
