@@ -1,0 +1,22 @@
+.container {
+	width: 100cqw;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-y: auto;
+
+	container-type: size;
+}
+
+.container::-webkit-scrollbar {
+	display: none;
+}
+
+.button {
+	width: 100cqw;
+	height: 15cqw;
+	font-size: 4.5cqw !important;
+	color: #000000 !important;
+	background-color: #f0f0f0 !important;
+}
