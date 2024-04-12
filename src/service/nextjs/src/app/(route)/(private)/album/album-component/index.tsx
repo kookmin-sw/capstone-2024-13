@@ -2,13 +2,19 @@ import Image from 'next/image';
 import style from '../../../../_style/(route)/(private)/album/album-component/index.module.css';
 import Link from 'next/link';
 import { Album } from '@/app/_type';
+import { MouseEvent } from 'react';
 
 const AlbumComponent = (props: { album: Album }) => {
 	const { _id, title, count, thumbnail } = props.album;
 
 	return (
 		<div className={style.container}>
-			<Link href={`/album/${_id}`}>
+			<Link
+				href={`/album/${_id}`}
+				onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+					event.stopPropagation();
+				}}
+			>
 				<div>{thumbnail && <Image src={thumbnail} alt={title} fill sizes="100%" priority />}</div>
 				<div>
 					<span>{title}</span>

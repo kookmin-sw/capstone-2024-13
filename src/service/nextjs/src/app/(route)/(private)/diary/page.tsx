@@ -3,7 +3,7 @@
 import style from '../../../_style/(route)/(private)/diary/index.module.css';
 import DiaryPageStepIndicator from './step-indicator';
 import { Button } from '@mui/material';
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
+import { Dispatch, MouseEvent, SetStateAction, useContext, useEffect, useState } from 'react';
 import DiaryPageThemeSelect from './theme-select';
 import DiaryPageImageSelect from './image-select';
 import DiaryPageChatInterface from './chat-interface';
@@ -40,7 +40,6 @@ const handleUploadDiary = (
 	isPublic: boolean,
 	images: string[],
 	setAlbums: Dispatch<SetStateAction<Album[]>>,
-	handleScroll: (currentScrollTop: number, scrollHeight?: number, clientHeight?: number) => void,
 	router: AppRouterInstance,
 ) => {
 	postCreateDiary({ title, content, isPublic, images })
@@ -56,7 +55,6 @@ const handleUploadDiary = (
 		.catch((error: Error) => {
 			console.error(error);
 		});
-	handleScroll(0);
 	router.push('/');
 };
 
@@ -69,7 +67,6 @@ const handleClick = (
 	isPublic: boolean,
 	images: string[],
 	setAlbums: Dispatch<SetStateAction<Album[]>>,
-	handleScroll: (currentScrollTop: number, scrollHeight?: number, clientHeight?: number) => void,
 	router: AppRouterInstance,
 ) => {
 	if (step <= 2) {
@@ -77,7 +74,7 @@ const handleClick = (
 	} else if (step === 3) {
 		handleCreateDiary(step, setStep, setIsCreating);
 	} else {
-		handleUploadDiary(title, content, isPublic, images, setAlbums, handleScroll, router);
+		handleUploadDiary(title, content, isPublic, images, setAlbums, router);
 	}
 };
 
@@ -113,7 +110,6 @@ const DiaryPage = () => {
 		createMockImages(Math.floor(Math.random() * 5) + 1),
 	);
 	const { setTitle: setHeaderTitle, setComponent: setHeaderComponent } = useContext(HeaderContext);
-	const { handleScroll } = useContext(TabBarVisibilityContext);
 	const BodyState = [
 		<DiaryPageThemeSelect key={1} theme={theme} setTheme={setTheme} />,
 		<DiaryPageImageSelect key={2} images={images} setImages={setImages} />,
@@ -138,20 +134,16 @@ const DiaryPage = () => {
 	return (
 		<>
 			<DiaryPageStepIndicator current={step} total={4} {...StepIndicatorState[step - 1]} />
-			<div
-				className={style.container}
-				onScroll={event => {
-					const div = event.target as HTMLDivElement;
-
-					handleScroll(div.scrollTop, div.scrollHeight, div.clientHeight);
-				}}
-			>
+			<div className={style.container}>
 				{isCreating ? <DiaryPageCreating setContent={setContent} /> : BodyState[step - 1]}
 			</div>
 			{!isCreating && (
 				<Button
 					className={style.button}
-					onClick={() =>
+					onClick={(event: MouseEvent<HTMLButtonElement>) => {
+						event.preventDefault();
+						event.stopPropagation();
+
 						handleClick(
 							step,
 							setStep,
@@ -161,10 +153,9 @@ const DiaryPage = () => {
 							isPublic,
 							images,
 							setAlbums,
-							handleScroll,
 							router,
-						)
-					}
+						);
+					}}
 				>
 					{step === 4 ? '업로드' : '다음으로'}
 				</Button>

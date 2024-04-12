@@ -1,5 +1,6 @@
 import { Button } from '@mui/material';
 import style from '../../../../_style/(route)/(private)/mypage/edit-button/index.module.css';
+import { MouseEvent } from 'react';
 
 const MyPageEditButton = () => {
 	return (
@@ -7,7 +8,9 @@ const MyPageEditButton = () => {
 			<Button
 				variant="outlined"
 				color="primary"
-				onClick={() => {
+				onClick={(event: MouseEvent<HTMLButtonElement>) => {
+					event.preventDefault();
+					event.stopPropagation();
 					alert('수정 버튼 클릭');
 				}}
 			>

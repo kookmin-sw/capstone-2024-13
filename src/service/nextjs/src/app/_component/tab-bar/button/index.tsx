@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { MouseEvent, ReactNode } from 'react';
 import style from '../../../_style/component/tab-bar/button/index.module.css';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -12,7 +12,11 @@ const TabBarButton = (props: { url: string; icon: ReactNode }) => {
 	return (
 		<div
 			className={pathname.includes(url) ? style.active : style.inactive}
-			onClick={() => router.push(url)}
+			onClick={(event: MouseEvent<HTMLDivElement>) => {
+				event.preventDefault();
+				event.stopPropagation();
+				router.push(url);
+			}}
 		>
 			{icon}
 		</div>

@@ -1,7 +1,9 @@
+import { MouseEvent } from 'react';
+
 export const ChatIcon = (props: {
 	width: number | string;
 	height: number | string;
-	onClick?: (event?: any) => void;
+	onClick?: (event?: MouseEvent<SVGSVGElement>) => void;
 }) => {
 	const { width, height, onClick } = props;
 
@@ -29,7 +31,7 @@ export const ChatIcon = (props: {
 export const MenuIcon = (props: {
 	width: number | string;
 	height: number | string;
-	onClick?: () => void;
+	onClick?: (event: MouseEvent<SVGSVGElement>) => void;
 }) => {
 	const { width, height, onClick } = props;
 

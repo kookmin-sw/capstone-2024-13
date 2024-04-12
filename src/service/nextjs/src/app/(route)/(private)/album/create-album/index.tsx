@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, SetStateAction, useContext, useState } from 'react';
+import { Dispatch, MouseEvent, SetStateAction, useContext, useState } from 'react';
 import { Button, TextField } from '@mui/material';
 import { postCreateAlbum } from '@/app/_service';
 import { Album } from '@/app/_type';
@@ -45,14 +45,26 @@ const CreateAlbum = (props: { setIsOpened: Dispatch<SetStateAction<boolean>> }) 
 					className={style.input}
 				/>
 				<div className={style.footer}>
-					<Button variant="outlined" color="primary" onClick={() => setIsOpened(false)}>
+					<Button
+						variant="outlined"
+						color="primary"
+						onClick={(event: MouseEvent<HTMLButtonElement>) => {
+							event.preventDefault();
+							event.stopPropagation();
+							setIsOpened(false);
+						}}
+					>
 						취소
 					</Button>
 					<Button
 						variant="outlined"
 						color="primary"
 						disabled={!title}
-						onClick={() => handleSubmit(title, albums, setAlbums, setIsOpened)}
+						onClick={(event: MouseEvent<HTMLButtonElement>) => {
+							event.preventDefault();
+							event.stopPropagation();
+							handleSubmit(title, albums, setAlbums, setIsOpened);
+						}}
 					>
 						완료
 					</Button>
