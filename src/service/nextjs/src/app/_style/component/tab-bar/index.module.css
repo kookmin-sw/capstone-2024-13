@@ -1,8 +1,18 @@
 .container {
 	width: 100cqw;
-	height: 25cqw;
 	box-shadow: 0 -0.1cqh 0.4cqh 0 rgba(0, 0, 0, 0.2);
 	display: flex;
+	transition: transform 0.1s, height 0.1s;
 
 	container-type: size;
+}
+
+.visible {
+	height: 25cqw;
+	transform: translateY(0);
+}
+
+.hidden {
+	height: 0;
+	transform: translateY(100%);
 }

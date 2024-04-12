@@ -1,25 +1,16 @@
 .container {
-	width: 100cqw;
+	width: 86cqw;
 	height: 25cqw;
+	margin: 0 7cqw 2cqw 7cqw;
 	display: flex;
-	justify-content: center;
-	margin-bottom: 2cqw;
-
-	container-type: size;
-}
-
-.divider {
-	border-bottom: 1px solid #dddddd;
-}
-
-.container > div {
-	width: 85cqw;
-	height: 100cqh;
-	display: flex;
-	align-items: center;
+	flex-grow: 0;
 	justify-content: space-between;
 
 	container-type: size;
+}
+
+.container > * {
+	margin: auto 0;
 }
 
 .title {
