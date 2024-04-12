@@ -30,7 +30,7 @@ export default function PrivateLayout(props: { children: ReactNode }) {
 				onScroll={event => {
 					const div = event.target as HTMLDivElement;
 
-					handleScroll(div.scrollTop, div.scrollHeight);
+					handleScroll(div.scrollTop, div.scrollHeight, div.clientHeight);
 				}}
 			>
 				{children}

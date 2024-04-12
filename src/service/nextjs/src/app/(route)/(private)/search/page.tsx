@@ -44,7 +44,7 @@ const createMockDiaries = (count: number): Diary[] => {
 
 const SearchPage = () => {
 	const [isSearching, setIsSearching] = useState<boolean>(false);
-	const [diaries, setDiaries] = useState<Diary[]>(createMockDiaries(13));
+	const [diaries, setDiaries] = useState<Diary[]>(createMockDiaries(20));
 	const { setTitle, setComponent } = useContext(HeaderContext);
 	const { handleScroll } = useContext(TabBarVisibilityContext);
 
@@ -61,7 +61,7 @@ const SearchPage = () => {
 				onScroll={event => {
 					const div = event.target as HTMLDivElement;
 
-					handleScroll(div.scrollTop, div.scrollHeight);
+					handleScroll(div.scrollTop, div.scrollHeight, div.clientHeight);
 				}}
 			>
 				{isSearching ? (

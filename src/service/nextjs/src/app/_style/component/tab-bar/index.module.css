@@ -2,7 +2,7 @@
 	width: 100cqw;
 	box-shadow: 0 -0.1cqh 0.4cqh 0 rgba(0, 0, 0, 0.2);
 	display: flex;
-	transition: transform 0.1s, height 0.1s;
+	transition: transform 0s, height 0s;
 
 	container-type: size;
 }
