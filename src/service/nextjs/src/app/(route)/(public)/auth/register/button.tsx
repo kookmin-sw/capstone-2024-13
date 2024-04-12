@@ -9,14 +9,11 @@ import { useRouter } from 'next/navigation';
 import { Dispatch, MouseEvent, SetStateAction, useContext } from 'react';
 
 const handleClick = (
-	event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
 	setMe: Dispatch<SetStateAction<Me | null>>,
 	router: AppRouterInstance,
 	nickname: string,
 	file?: File | null,
 ) => {
-	event.preventDefault();
-
 	postRegister<Me>({ nickname, file })
 		.then(response => {
 			setMe(response);
@@ -46,7 +43,11 @@ const RegisterButton = (props: { nickname: string; file?: File | null }) => {
 				variant="contained"
 				color="primary"
 				size="medium"
-				onClick={event => handleClick(event, setMe, router, nickname, file)}
+				onClick={(event: MouseEvent<HTMLButtonElement>) => {
+					event.preventDefault();
+					event.stopPropagation();
+					handleClick(setMe, router, nickname, file);
+				}}
 			>
 				회원가입
 			</Button>

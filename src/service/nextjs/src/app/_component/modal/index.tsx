@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, MouseEvent, ReactNode, SetStateAction } from 'react';
 import { createPortal } from 'react-dom';
 import { Close } from '@mui/icons-material';
 import style from '../../_style/component/modal/index.module.css';
@@ -13,12 +13,32 @@ const Modal = (props: {
 	return (
 		isOpened &&
 		createPortal(
-			<div className={style.container} onClick={() => setIsOpened(false)}>
+			<div
+				className={style.container}
+				onClick={(event: MouseEvent<HTMLDivElement>) => {
+					event.preventDefault();
+					event.stopPropagation();
+					setIsOpened(false);
+				}}
+			>
 				<div className={style.inner}>
 					<div>
-						<Close onClick={() => setIsOpened(false)} />
+						<Close
+							onClick={(event: MouseEvent<SVGSVGElement>) => {
+								event.preventDefault();
+								event.stopPropagation();
+								setIsOpened(false);
+							}}
+						/>
 					</div>
-					<div onClick={event => event.stopPropagation()}>{children}</div>
+					<div
+						onClick={(event: MouseEvent<HTMLDivElement>) => {
+							event.preventDefault();
+							event.stopPropagation();
+						}}
+					>
+						{children}
+					</div>
 				</div>
 			</div>,
 			document.body,

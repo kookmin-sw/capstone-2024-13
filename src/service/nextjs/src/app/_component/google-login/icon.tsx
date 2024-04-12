@@ -1,7 +1,9 @@
+import { MouseEvent } from 'react';
+
 const GoogleLogo = (props: {
 	width?: number | string;
 	height?: number | string;
-	onClick?: () => void;
+	onClick?: (event: MouseEvent<SVGSVGElement>) => void;
 }) => {
 	const width = props.width || '100%';
 	const height = props.height || '100%';

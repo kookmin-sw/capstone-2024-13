@@ -1,11 +1,11 @@
 'use client';
 
-import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, MouseEvent, ReactNode, SetStateAction, useEffect, useState } from 'react';
 import style from '../../_style/component/meetballs-menu/index.module.css';
 import { Button } from '@mui/material';
 
 const handleClickOutside = (
-	event: MouseEvent,
+	event: globalThis.MouseEvent,
 	isOpened: boolean,
 	setIsOpened: Dispatch<SetStateAction<boolean>>,
 ) => {
@@ -22,10 +22,12 @@ const MeetballsMenu = (props: { width?: number | string; children?: ReactNode })
 	const [isOpened, setIsOpened] = useState<boolean>(false);
 
 	useEffect(() => {
-		document.addEventListener('click', event => handleClickOutside(event, isOpened, setIsOpened));
+		document.addEventListener('click', (event: globalThis.MouseEvent) =>
+			handleClickOutside(event, isOpened, setIsOpened),
+		);
 
 		return () => {
-			document.removeEventListener('click', event =>
+			document.removeEventListener('click', (event: globalThis.MouseEvent) =>
 				handleClickOutside(event, isOpened, setIsOpened),
 			);
 		};
@@ -34,7 +36,9 @@ const MeetballsMenu = (props: { width?: number | string; children?: ReactNode })
 	return (
 		<div className={style.container}>
 			<Button
-				onClick={() => {
+				onClick={(event: MouseEvent<HTMLButtonElement>) => {
+					event.preventDefault();
+					event.stopPropagation();
 					setIsOpened(!isOpened);
 				}}
 			>

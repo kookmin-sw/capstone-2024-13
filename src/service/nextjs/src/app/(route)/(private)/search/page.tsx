@@ -46,7 +46,6 @@ const SearchPage = () => {
 	const [isSearching, setIsSearching] = useState<boolean>(false);
 	const [diaries, setDiaries] = useState<Diary[]>(createMockDiaries(20));
 	const { setTitle, setComponent } = useContext(HeaderContext);
-	const { handleScroll } = useContext(TabBarVisibilityContext);
 
 	useEffect(() => {
 		setTitle('검색');
@@ -56,14 +55,7 @@ const SearchPage = () => {
 	return (
 		<>
 			<SearchBar setIsSearching={setIsSearching} />
-			<div
-				className={style.container}
-				onScroll={event => {
-					const div = event.target as HTMLDivElement;
-
-					handleScroll(div.scrollTop, div.scrollHeight, div.clientHeight);
-				}}
-			>
+			<div className={style.container}>
 				{isSearching ? (
 					<div>검색 중...</div>
 				) : (

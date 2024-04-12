@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@mui/material';
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import style from '../../../../_style/(route)/(private)/album/create-album-button/index.module.css';
 import Modal from '@/app/_component/modal';
 import CreateAlbum from '../create-album';
@@ -14,7 +14,9 @@ const CreateAlbumButton = () => {
 			<Button
 				variant="outlined"
 				color="primary"
-				onClick={() => {
+				onClick={(event: MouseEvent<HTMLButtonElement>) => {
+					event.preventDefault();
+					event.stopPropagation();
 					setIsOpened(true);
 				}}
 			>

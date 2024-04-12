@@ -1,10 +1,12 @@
+import { MouseEvent } from 'react';
+
 export const CreatingIcon = (props: {
 	width?: number | string;
 	height?: number | string;
-	onClick?: () => void;
+	onClick?: (event: MouseEvent<SVGSVGElement>) => void;
 	className?: string;
 }) => {
-	const { width = '100%', height = '100%', onClick, className } = props;
+	const { width = '100%', height = '100%', onClick = () => {}, className = '' } = props;
 
 	return (
 		<svg
