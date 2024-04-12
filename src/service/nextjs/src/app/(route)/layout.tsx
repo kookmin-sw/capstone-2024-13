@@ -19,6 +19,7 @@ export default function RootLayout(props: { children: ReactNode }) {
 	return (
 		<html lang="en">
 			<head>
+				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<link rel="icon-192" href="/icon-192.png" />
 				<link rel="icon-440" href="/icon-440.png" />
 				<link rel="manifest" href="/manifest.webmanifest" />

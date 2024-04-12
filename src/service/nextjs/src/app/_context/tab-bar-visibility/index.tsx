@@ -5,7 +5,7 @@ import { ReactNode, createContext, useCallback, useState } from 'react';
 const TabBarVisibilityContext = createContext<{
 	isVisible: boolean;
 	setIsVisible: (isVisible: boolean) => void;
-	handleScroll: (currentScrollTop: number) => void;
+	handleScroll: (currentScrollTop: number, scrollHeight?: number) => void;
 }>({
 	isVisible: true,
 	setIsVisible: () => {},
@@ -18,8 +18,16 @@ export const TabBarVisibilityProvider = (props: { children: ReactNode }) => {
 	const [isVisible, setIsVisible] = useState<boolean>(true);
 
 	const handleScroll = useCallback(
-		(currentScrollTop: number) => {
-			setIsVisible(!currentScrollTop || currentScrollTop < lastScrollTop);
+		(currentScrollTop: number, scrollHeight?: number) => {
+			const threshold = 10;
+
+			if (currentScrollTop <= threshold) {
+				setIsVisible(true);
+			} else if (scrollHeight && scrollHeight < currentScrollTop + threshold) {
+				setIsVisible(false);
+			} else {
+				setIsVisible(currentScrollTop < lastScrollTop);
+			}
 			setLastScrollTop(currentScrollTop);
 		},
 		[lastScrollTop],

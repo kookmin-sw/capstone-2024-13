@@ -28,7 +28,9 @@ export default function PrivateLayout(props: { children: ReactNode }) {
 			<Header title={title} component={component} />
 			<div
 				onScroll={event => {
-					handleScroll((event.target as HTMLDivElement).scrollTop);
+					const div = event.target as HTMLDivElement;
+
+					handleScroll(div.scrollTop, div.scrollHeight);
 				}}
 			>
 				{children}

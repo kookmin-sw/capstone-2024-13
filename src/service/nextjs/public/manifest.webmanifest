@@ -12,8 +12,8 @@
 			"type": "image/png"
 		}
 	],
-	"display": "fullscreen",
-	"start_url": "/",
+	"display": "standalone",
+	"start_url": "/album",
 	"description": "아니 근데 오늘 진짜 - AI에게 말하는 오늘 하루 일기",
 	"orientation": "portrait"
 }

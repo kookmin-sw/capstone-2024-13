@@ -59,7 +59,9 @@ const SearchPage = () => {
 			<div
 				className={style.container}
 				onScroll={event => {
-					handleScroll((event.target as HTMLDivElement).scrollTop);
+					const div = event.target as HTMLDivElement;
+
+					handleScroll(div.scrollTop, div.scrollHeight);
 				}}
 			>
 				{isSearching ? (
