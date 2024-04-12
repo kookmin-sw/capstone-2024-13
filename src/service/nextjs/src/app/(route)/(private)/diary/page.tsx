@@ -40,7 +40,7 @@ const handleUploadDiary = (
 	isPublic: boolean,
 	images: string[],
 	setAlbums: Dispatch<SetStateAction<Album[]>>,
-	handleScroll: (currentScrollTop: number, scrollHeight?: number) => void,
+	handleScroll: (currentScrollTop: number, scrollHeight?: number, clientHeight?: number) => void,
 	router: AppRouterInstance,
 ) => {
 	postCreateDiary({ title, content, isPublic, images })
@@ -69,7 +69,7 @@ const handleClick = (
 	isPublic: boolean,
 	images: string[],
 	setAlbums: Dispatch<SetStateAction<Album[]>>,
-	handleScroll: (currentScrollTop: number, scrollHeight?: number) => void,
+	handleScroll: (currentScrollTop: number, scrollHeight?: number, clientHeight?: number) => void,
 	router: AppRouterInstance,
 ) => {
 	if (step <= 2) {
@@ -143,7 +143,7 @@ const DiaryPage = () => {
 				onScroll={event => {
 					const div = event.target as HTMLDivElement;
 
-					handleScroll(div.scrollTop, div.scrollHeight);
+					handleScroll(div.scrollTop, div.scrollHeight, div.clientHeight);
 				}}
 			>
 				{isCreating ? <DiaryPageCreating setContent={setContent} /> : BodyState[step - 1]}
