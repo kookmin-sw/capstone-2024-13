@@ -16,7 +16,6 @@ import { getAlbums } from '@/app/_service';
 import AlbumContext from '@/app/_context/album';
 import { Album } from '@/app/_type';
 import HeaderContext from '@/app/_context/header';
-import TabBarVisibilityContext from '@/app/_context/tab-bar-visibility';
 
 const handleNextStep = (step: number, setStep: Dispatch<SetStateAction<number>>) => {
 	setStep(step + 1);
@@ -100,7 +99,7 @@ const DiaryPage = () => {
 	const { setAlbums } = useContext(AlbumContext);
 	const [step, setStep] = useState<number>(1);
 	const [isCreating, setIsCreating] = useState<boolean>(false);
-	const [theme, setTheme] = useState<string>('hmpark');
+	const [theme, setTheme] = useState<string>('');
 	const [title, setTitle] = useState<string>('');
 	const [content, setContent] = useState<string>(
 		'content'.repeat(Math.floor(Math.random() * 30) + 1),
