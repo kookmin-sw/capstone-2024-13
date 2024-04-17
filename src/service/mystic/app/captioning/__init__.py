@@ -14,5 +14,5 @@ class ImageCaptioning:
         return result
     
 
-tmp = ImageCaptioning()
-print(tmp('/home/woonsan/문서/카카오톡 받은 파일/test.jpg'))
+# tmp = ImageCaptioning()
+# print(tmp('/home/woonsan/문서/카카오톡 받은 파일/test.jpg'))
