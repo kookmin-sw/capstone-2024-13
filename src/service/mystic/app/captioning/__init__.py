@@ -11,7 +11,7 @@ class ImageCaptioning:
         
         result = self.model(path)
 
-        return result
+        return result[0]['generated_text']
     
 
 # tmp = ImageCaptioning()
