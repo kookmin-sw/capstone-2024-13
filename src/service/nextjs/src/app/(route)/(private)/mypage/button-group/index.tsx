@@ -1,5 +1,5 @@
+import Button from '@/app/_component/button';
 import style from '../../../../_style/(route)/(private)/mypage/button-group/index.module.css';
-import { Button } from '@mui/material';
 
 const MyPageButtonGroup = () => {
 	return (

@@ -1,12 +1,12 @@
 'use client';
 
+import Button from '@/app/_component/button';
 import AuthContext from '@/app/_context/auth';
 import { postRegister } from '@/app/_service';
 import { Me } from '@/app/_type';
-import { Button } from '@mui/material';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { useRouter } from 'next/navigation';
-import { Dispatch, MouseEvent, SetStateAction, useContext } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 
 const handleClick = (
 	setMe: Dispatch<SetStateAction<Me | null>>,
@@ -14,7 +14,7 @@ const handleClick = (
 	nickname: string,
 	file?: File | null,
 ) => {
-	postRegister<Me>({ nickname, file })
+	postRegister({ nickname }, undefined, undefined, file)
 		.then(response => {
 			setMe(response);
 			router.push('/');
@@ -43,11 +43,7 @@ const RegisterButton = (props: { nickname: string; file?: File | null }) => {
 				variant="contained"
 				color="primary"
 				size="medium"
-				onClick={(event: MouseEvent<HTMLButtonElement>) => {
-					event.preventDefault();
-					event.stopPropagation();
-					handleClick(setMe, router, nickname, file);
-				}}
+				onClick={() => handleClick(setMe, router, nickname, file)}
 			>
 				회원가입
 			</Button>

@@ -12,10 +12,10 @@ import { AuthService, CookieService } from './service';
 import { ConfigService } from '@nestjs/config';
 import { ApiBadRequestResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Auth } from '../../common';
-import * as Dto from './dto';
-import { User } from 'src/common/database/schema';
 import AlbumService from '../album/album.service';
 import UserService from '../user/user.service';
+import * as Dto from '../../common/dto';
+import { UserDocument } from 'src/common/database/schema';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -80,12 +80,12 @@ class AuthController {
 	@Post('register')
 	@UseGuards(Auth.Guard.GoogleJwt)
 	@ApiOperation({ summary: 'Register', description: 'Register to service' })
+	@ApiOkResponse({ description: 'User registered' })
 	@ApiBadRequestResponse({ description: 'User already registered' })
 	@ApiBadRequestResponse({ description: 'Failed to register' })
-	@ApiOkResponse({ type: User })
 	async register(
 		@Request() req: any,
-		@Body() registerRequestDto: Dto.Request.Register,
+		@Body() createRequestDto: Dto.Request.Create<any>,
 		@Response() res: any,
 	) {
 		try {
@@ -94,20 +94,21 @@ class AuthController {
 				throw new BadRequestException('User already registered');
 			}
 
-			user = await this.authService.register(req.user.email, registerRequestDto.nickname);
+			createRequestDto.doc = { email: req.user.email, ...createRequestDto.doc };
+			user = await this.authService.register(createRequestDto as Dto.Request.Create<UserDocument>);
 			if (!user) {
 				throw new BadRequestException('Failed to register');
 			}
 
-			const album = await this.albumService.create(user._id, { title: 'Recents' });
+			const album = await this.albumService.create({ doc: { userId: user._id, title: 'Recents' } });
 			if (!album) {
 				throw new BadRequestException('Failed to create album');
 			}
 
-			user = await this.userService.findOneAndUpdate(
-				{ _id: user._id.toString() },
-				{ albumId: album._id },
-			);
+			user = await this.userService.findByIdAndUpdate({
+				id: user._id,
+				update: { albumId: album._id },
+			});
 			if (!user) {
 				throw new BadRequestException('Failed to update user');
 			}

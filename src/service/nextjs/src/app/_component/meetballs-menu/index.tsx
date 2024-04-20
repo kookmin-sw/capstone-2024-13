@@ -1,53 +1,35 @@
 'use client';
 
-import { Dispatch, MouseEvent, ReactNode, SetStateAction, useEffect, useState } from 'react';
 import style from '../../_style/component/meetballs-menu/index.module.css';
-import { Button } from '@mui/material';
+import Button from '../button';
+import { Dispatch, MouseEvent, ReactNode, SetStateAction } from 'react';
+import { ButtonGroup } from '@mui/material';
 
-const handleClickOutside = (
-	event: globalThis.MouseEvent,
-	isOpened: boolean,
-	setIsOpened: Dispatch<SetStateAction<boolean>>,
-) => {
-	const target = event.target as HTMLElement;
-	const menu = target.closest(`.${style.menu}`);
-
-	if (isOpened && !menu) {
-		setIsOpened(false);
-	}
-};
-
-const MeetballsMenu = (props: { width?: number | string; children?: ReactNode }) => {
-	const { width, children } = props;
-	const [isOpened, setIsOpened] = useState<boolean>(false);
-
-	useEffect(() => {
-		document.addEventListener('click', (event: globalThis.MouseEvent) =>
-			handleClickOutside(event, isOpened, setIsOpened),
-		);
-
-		return () => {
-			document.removeEventListener('click', (event: globalThis.MouseEvent) =>
-				handleClickOutside(event, isOpened, setIsOpened),
-			);
-		};
-	}, [isOpened]);
+const MeetballsMenu = (props: {
+	isOpened: boolean;
+	setIsOpened: Dispatch<SetStateAction<boolean>>;
+	width?: number | string;
+	children?: ReactNode;
+}) => {
+	const { isOpened, setIsOpened, width, children } = props;
 
 	return (
 		<div className={style.container}>
-			<Button
-				onClick={(event: MouseEvent<HTMLButtonElement>) => {
-					event.preventDefault();
-					event.stopPropagation();
-					setIsOpened(!isOpened);
-				}}
-			>
-				···
-			</Button>
+			<Button onClick={() => setIsOpened(!isOpened)}>···</Button>
 			{isOpened && (
-				<div className={style.menu} style={{ width }}>
+				<ButtonGroup className={style.menu} style={{ width }} orientation="vertical" variant="text">
 					{children}
-				</div>
+				</ButtonGroup>
+			)}
+			{isOpened && (
+				<div
+					className={style.background}
+					onClick={(event: MouseEvent<HTMLDivElement>) => {
+						event.preventDefault();
+						event.stopPropagation();
+						setIsOpened(false);
+					}}
+				></div>
 			)}
 		</div>
 	);

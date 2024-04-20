@@ -7,7 +7,7 @@ const getFetcher = async <ResType>(
 ): Promise<ResType> =>
 	axiosInstance
 		.get<ResType>(url, { params })
-		.then((res: AxiosResponse<ResType>) => res.data)
+		.then((response: AxiosResponse<ResType>) => response.data)
 		.catch((error: AxiosError) => {
 			throw error;
 		});

@@ -1,63 +1,83 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Diary, DiaryDocument } from 'src/common/database/schema';
-import { Model, Types } from 'mongoose';
-import * as Dto from './dto';
+import { DiaryDocument } from 'src/common/database/schema';
+import { Model, UpdateWriteOpResult } from 'mongoose';
+import { DeleteResult } from 'mongodb';
+import * as Dto from '../../common/dto';
 
 @Injectable()
 class DiaryService {
-	constructor(@InjectModel('Diary') private readonly diaryModel: Model<Diary>) {}
+	constructor(@InjectModel('Diary') private readonly diaryModel: Model<DiaryDocument>) {}
 
-	async findById(diaryId: string): Promise<DiaryDocument> {
+	async findById(findByIdRequestDto: Dto.Request.FindById<DiaryDocument>): Promise<DiaryDocument> {
 		try {
-			return await this.diaryModel.findById(diaryId);
+			const { id, projection, options } = findByIdRequestDto;
+
+			return await this.diaryModel.findById(id, projection, options);
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async find(query: Dto.Request.Find): Promise<DiaryDocument[]> {
+	async find(findRequestDto: Dto.Request.Find<DiaryDocument>): Promise<DiaryDocument[]> {
 		try {
-			return await this.diaryModel.find(query);
+			const { filter, projection, options } = findRequestDto;
+
+			return await this.diaryModel.find(filter, projection, options);
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async create(
-		userId: Types.ObjectId,
-		createRequestDto: Dto.Request.Create,
+	async create(createRequestDto: Dto.Request.Create<DiaryDocument>): Promise<DiaryDocument> {
+		try {
+			const { doc, fields, options } = createRequestDto;
+
+			return await new this.diaryModel(doc, fields, options).save();
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async findByIdAndUpdate(
+		findByIdAndUpdateRequestDto: Dto.Request.FindByIdAndUpdate<DiaryDocument>,
 	): Promise<DiaryDocument> {
 		try {
-			return await new this.diaryModel({ userId, ...createRequestDto }).save();
+			const { id, update, options } = findByIdAndUpdateRequestDto;
+
+			return await this.diaryModel.findByIdAndUpdate(id, update, options);
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async update(diaryId: string, updateRequestDto: Dto.Request.Update): Promise<DiaryDocument> {
+	async deleteOne(deleteRequestDto: Dto.Request.DeleteOne<DiaryDocument>): Promise<DeleteResult> {
 		try {
-			return await this.diaryModel.findByIdAndUpdate(
-				diaryId,
-				{ ...updateRequestDto },
-				{ new: true },
-			);
+			const { filter, options } = deleteRequestDto;
+
+			return await this.diaryModel.deleteOne(filter, options);
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async delete(diaryId: string): Promise<DiaryDocument> {
+	async updateMany(
+		updateManyRequestDto: Dto.Request.UpdateMany<DiaryDocument>,
+	): Promise<UpdateWriteOpResult> {
 		try {
-			return await this.diaryModel.findByIdAndDelete(diaryId);
+			const { filter, update, options } = updateManyRequestDto;
+
+			return await this.diaryModel.updateMany(filter, update, options);
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async updateMany(query: object, updateRequestDto: Dto.Request.Update): Promise<any> {
+	async aggregate(aggregateRequestDto: Dto.Request.Aggregate): Promise<DiaryDocument[]> {
 		try {
-			return await this.diaryModel.updateMany(query, updateRequestDto, { new: true });
+			const { pipeline, options } = aggregateRequestDto;
+
+			return await this.diaryModel.aggregate(pipeline, options);
 		} catch (error) {
 			throw error;
 		}

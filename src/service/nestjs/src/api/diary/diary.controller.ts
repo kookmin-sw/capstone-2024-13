@@ -16,8 +16,9 @@ import { ApiBadRequestResponse, ApiOkResponse, ApiOperation, ApiTags } from '@ne
 import { Auth } from 'src/common';
 import DiaryService from './diary.service';
 import { Diary, DiaryDocument } from 'src/common/database/schema';
-import * as Dto from './dto';
+import * as Dto from '../../common/dto';
 import AlbumService from '../album/album.service';
+import { DeleteResult } from 'mongodb';
 
 @Controller('diary')
 @ApiTags('diary')
@@ -44,7 +45,10 @@ class DiaryController {
 	})
 	async getByUserId(@Request() req: any): Promise<DiaryDocument[]> {
 		try {
-			return await this.diaryService.find({ userId: req.user._id });
+			return await this.diaryService.find({
+				filter: { userId: req.user._id },
+				options: { sort: { createdAt: -1 } },
+			});
 		} catch (error) {
 			throw new BadRequestException(`Get user diary failed: ${error.status}: ${error.message}`);
 		}
@@ -57,21 +61,26 @@ class DiaryController {
 	@ApiBadRequestResponse({ description: 'Failed to create diary' })
 	async create(
 		@Request() req: any,
-		@Body() createRequestDto: Dto.Request.Create,
+		@Body() createRequestDto: Dto.Request.Create<any>,
 	): Promise<DiaryDocument> {
 		try {
+			const userId = req.user._id;
 			const recents = await this.albumService
-				.find({ userId: req.user._id, title: 'Recents' })
-				.then(albums => {
-					return albums[0];
-				});
-			const diary = await this.diaryService.create(req.user._id, {
-				...createRequestDto,
-				albumId: recents._id.toString(),
-			});
-			await this.albumService.update(recents._id, {
-				thumbnail: diary.images[0],
-				$inc: { count: 1 },
+				.find({
+					filter: { userId, title: 'Recents' },
+					options: { limit: 1 },
+				})
+				.then(albums => albums[0]);
+			createRequestDto.doc = { userId, albumId: [recents._id], ...createRequestDto.doc };
+			const diary = await this.diaryService.create(
+				createRequestDto as Dto.Request.Create<DiaryDocument>,
+			);
+			await this.albumService.findByIdAndUpdate({
+				id: recents._id,
+				update: {
+					thumbnail: diary.images[0],
+					$inc: { count: 1 },
+				},
 			});
 
 			return diary;
@@ -80,14 +89,42 @@ class DiaryController {
 		}
 	}
 
+	@Post('find')
+	@ApiOperation({ summary: 'Find diary', description: 'Find diary' })
+	@ApiOkResponse({ description: 'Find diary successfully', type: [Diary] })
+	@ApiBadRequestResponse({ description: 'Failed to find diary' })
+	async find(@Body() findRequestDto: Dto.Request.Find<Diary>): Promise<DiaryDocument[]> {
+		try {
+			return await this.diaryService.find(findRequestDto);
+		} catch (error) {
+			throw new BadRequestException(`Failed to find diary: ${error.status}: ${error.message}`);
+		}
+	}
+
+	@Get('random')
+	@ApiOperation({ summary: 'Get random diary', description: 'Get random diary' })
+	@ApiOkResponse({ description: 'Get random diary successfully', type: [Diary] })
+	@ApiBadRequestResponse({ description: 'Failed to get random diary' })
+	async getRandom(): Promise<DiaryDocument[]> {
+		try {
+			return await this.diaryService.aggregate({
+				pipeline: [{ $sample: { size: 20 } }],
+			});
+		} catch (error) {
+			throw new BadRequestException(
+				`Failed to get random diary: ${error.status}: ${error.message}`,
+			);
+		}
+	}
+
 	// Get diary by id
 	@Get(':id')
 	@ApiOperation({ summary: 'Find diary by id', description: 'Find diary by id' })
 	@ApiOkResponse({ description: 'Find diary by id successfully', type: Diary })
 	@ApiBadRequestResponse({ description: 'Failed to find diary by id' })
-	async findById(@Param('id') diaryId: string): Promise<DiaryDocument> {
+	async findById(@Param('id') id: string): Promise<DiaryDocument> {
 		try {
-			return await this.diaryService.findById(diaryId);
+			return await this.diaryService.findById({ id });
 		} catch (error) {
 			throw new BadRequestException(`Get diary failed: ${error.status}: ${error.message}`);
 		}
@@ -98,12 +135,15 @@ class DiaryController {
 	@ApiOperation({ summary: 'Update diary', description: 'Update diary' })
 	@ApiOkResponse({ description: 'Update diary successfully', type: Diary })
 	@ApiBadRequestResponse({ description: 'Failed to update diary' })
-	async update(
-		@Param('id') diaryId: string,
-		@Body() updateRequestDto: Dto.Request.Update,
+	async findByIdAndUpdate(
+		@Param('id') id: string,
+		@Body() findByIdAndUpdateRequestDto: Dto.Request.FindByIdAndUpdate<Diary>,
 	): Promise<DiaryDocument> {
 		try {
-			return await this.diaryService.update(diaryId, updateRequestDto);
+			return await this.diaryService.findByIdAndUpdate({
+				id,
+				...findByIdAndUpdateRequestDto,
+			});
 		} catch (error) {
 			throw new BadRequestException(`다이어리 수정 실패: ${error.status}: ${error.message}`);
 		}
@@ -114,23 +154,11 @@ class DiaryController {
 	@ApiOperation({ summary: 'Delete diary', description: 'Delete diary' })
 	@ApiOkResponse({ description: 'Delete diary successfully', type: Diary })
 	@ApiBadRequestResponse({ description: 'Failed to delete diary' })
-	async delete(@Param('id') diaryId: string): Promise<DiaryDocument> {
+	async deleteOne(@Param('id') _id: string): Promise<DeleteResult> {
 		try {
-			return await this.diaryService.delete(diaryId);
+			return await this.diaryService.deleteOne({ filter: { _id } });
 		} catch (error) {
 			throw new BadRequestException(`다이어리 삭제 실패: ${error.status}: ${error.message}`);
-		}
-	}
-
-	@Post('find')
-	@ApiOperation({ summary: 'Find diaries', description: 'Find diaries' })
-	@ApiOkResponse({ description: 'Find diaries successfully', type: [Diary] })
-	@ApiBadRequestResponse({ description: 'Failed to find diaries' })
-	async find(@Body() findRequestDto: Dto.Request.Find): Promise<DiaryDocument[]> {
-		try {
-			return await this.diaryService.find(findRequestDto);
-		} catch (error) {
-			throw new BadRequestException(`Failed to find diaries: ${error.status}: ${error.message}`);
 		}
 	}
 }

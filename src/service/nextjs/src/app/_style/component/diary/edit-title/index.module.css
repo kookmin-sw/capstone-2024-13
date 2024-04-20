@@ -1,0 +1,21 @@
+.container {
+	width: 86cqw;
+	height: 15cqw;
+	margin: 2.5cqw 0;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+	display: flex;
+	align-items: center;
+
+	container-type: size;
+}
+
+.container > input {
+	width: 100cqw;
+	height: 70cqh;
+	line-height: 70cqh;
+	font-size: 5cqw;
+	background-color: transparent;
+	border: none;
+	border-radius: 1cqw;
+}

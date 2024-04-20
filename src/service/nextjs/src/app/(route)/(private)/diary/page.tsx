@@ -2,8 +2,7 @@
 
 import style from '../../../_style/(route)/(private)/diary/index.module.css';
 import DiaryPageStepIndicator from './step-indicator';
-import { Button } from '@mui/material';
-import { Dispatch, MouseEvent, SetStateAction, useContext, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import DiaryPageThemeSelect from './theme-select';
 import DiaryPageImageSelect from './image-select';
 import DiaryPageChatInterface from './chat-interface';
@@ -11,11 +10,12 @@ import DiaryPageCreating from './creating';
 import DiaryPageFinalDraft from './final-draft';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { postCreateDiary } from '@/app/_service/postCreateDiary';
-import { getAlbums } from '@/app/_service';
+import { postCreateDiary } from '@/app/_service';
+import { getAlbum } from '@/app/_service';
 import AlbumContext from '@/app/_context/album';
 import { Album } from '@/app/_type';
 import HeaderContext from '@/app/_context/header';
+import Button from '@/app/_component/button';
 
 const handleNextStep = (step: number, setStep: Dispatch<SetStateAction<number>>) => {
 	setStep(step + 1);
@@ -43,7 +43,7 @@ const handleUploadDiary = (
 ) => {
 	postCreateDiary({ title, content, isPublic, images })
 		.then(() => {
-			getAlbums()
+			getAlbum()
 				.then((albums: Album[]) => {
 					setAlbums(albums);
 				})
@@ -139,10 +139,7 @@ const DiaryPage = () => {
 			{!isCreating && (
 				<Button
 					className={style.button}
-					onClick={(event: MouseEvent<HTMLButtonElement>) => {
-						event.preventDefault();
-						event.stopPropagation();
-
+					onClick={() =>
 						handleClick(
 							step,
 							setStep,
@@ -153,8 +150,8 @@ const DiaryPage = () => {
 							images,
 							setAlbums,
 							router,
-						);
-					}}
+						)
+					}
 				>
 					{step === 4 ? '업로드' : '다음으로'}
 				</Button>

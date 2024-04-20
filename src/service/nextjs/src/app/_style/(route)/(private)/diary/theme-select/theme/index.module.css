@@ -39,6 +39,7 @@
 }
 
 .image {
+	position: relative;
 	width: 90cqw;
 	height: 110cqw;
 	flex-shrink: 0;

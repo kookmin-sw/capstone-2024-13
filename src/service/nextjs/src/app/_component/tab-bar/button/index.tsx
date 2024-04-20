@@ -11,7 +11,7 @@ const TabBarButton = (props: { url: string; icon: ReactNode }) => {
 
 	return (
 		<div
-			className={pathname.includes(url) ? style.active : style.inactive}
+			className={pathname.indexOf(url) === 0 ? style.active : style.inactive}
 			onClick={(event: MouseEvent<HTMLDivElement>) => {
 				event.preventDefault();
 				event.stopPropagation();

@@ -60,13 +60,13 @@ export class Diary {
 	images?: string[];
 
 	//One-to-Squillions album id
-	@Prop({ type: String, required: false, ref: Album.name })
+	@Prop({ type: [String], required: false, ref: Album.name })
 	@ApiProperty({
-		type: String,
+		type: [String],
 		description: 'Album id',
-		example: '49fafa4d2ca3602935816679',
+		example: ['49fafa4d2ca3602935816679', '49fafa4d2ca3602935816679'],
 	})
-	albumId?: string;
+	albumId?: string[];
 }
 
 export const DiarySchema = SchemaFactory.createForClass(Diary);

@@ -1,0 +1,31 @@
+.container {
+	width: 100cqw;
+	height: 100cqh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-y: scroll;
+
+	container-type: size;
+}
+
+.container::-webkit-scrollbar {
+	display: none;
+}
+
+.container > * {
+	flex-shrink: 0;
+	width: 86cqw;
+}
+
+.title {
+	width: 86cqw;
+	height: 15cqw;
+	line-height: 15cqw;
+	font-size: 5cqw;
+	margin: 2.5cqw 0;
+}
+
+.content {
+	word-break: break-word;
+}

@@ -8,6 +8,6 @@ export interface Diary {
 	isPublic: boolean;
 	createdAt: Date;
 	updatedAt: Date;
-	albumId?: Types.ObjectId;
+	albumId?: Types.ObjectId[];
 	images?: string[];
 }

@@ -1,0 +1,48 @@
+.container {
+	height: 16cqw;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 2.5cqw;
+	border-top: 1px solid #dddddd;
+}
+
+.label {
+	font-size: 4.5cqw;
+	font-weight: 500;
+}
+
+.toggle {
+	width: 17cqw;
+	height: 10cqw;
+	display: block;
+	position: relative;
+	border-radius: 5cqw;
+	background-color: #ffffff;
+	box-shadow: 0 0 0.5cqw 0 rgba(0, 0, 0, 0.2);
+}
+
+.slider {
+	width: 8cqw;
+	height: 8cqw;
+	position: absolute;
+	top: 50%;
+	left: 1cqw;
+	transform: translateY(-50%);
+	border-radius: 50%;
+	background-color: #000000;
+}
+
+.toggle,
+.slider {
+	transition: all 0.2s ease-in-out;
+}
+
+.checkbox:checked ~ .toggle {
+	background-color: #000000;
+}
+
+.checkbox:checked ~ .toggle .slider {
+	left: 8cqw;
+	background-color: #ffffff;
+}

@@ -13,3 +13,9 @@
 .container::-webkit-scrollbar {
 	display: none;
 }
+
+.container > span {
+	grid-row: 1;
+	grid-column: 2;
+	margin: auto;
+}

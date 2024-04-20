@@ -1,10 +1,15 @@
+import { FilterQuery, ProjectionType, QueryOptions } from 'mongoose';
 import { Diary } from '../_type';
 import { postFetcher } from './api';
 
-const postFindDiary = async (query: object): Promise<Diary[]> => {
-	return await postFetcher<Diary[]>('/diary/find', query).catch((error: any) => {
-		throw error;
-	});
+export const postFindDiary = async (
+	filter: FilterQuery<Diary>,
+	projection?: ProjectionType<Diary>,
+	options?: QueryOptions<Diary>,
+): Promise<Diary[]> => {
+	return await postFetcher<Diary[]>('/diary/find', { filter, projection, options }).catch(
+		(error: Error) => {
+			throw error;
+		},
+	);
 };
-
-export default postFindDiary;
