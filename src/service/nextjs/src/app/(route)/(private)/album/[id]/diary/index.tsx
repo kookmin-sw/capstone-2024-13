@@ -1,9 +1,10 @@
 'use client';
 
 import { Types } from 'mongoose';
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import style from '../../../../../_style/(route)/(private)/album/[id]/diary/index.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const ParseDate = (date: Date) => {
 	const year = date.getFullYear();
@@ -31,22 +32,22 @@ const AlbumPageDiary = (props: {
 	_id: Types.ObjectId;
 	title: string;
 	content: string;
-	isPublic: boolean;
 	createdAt: Date;
 	images?: string[];
 }) => {
-	const { title, content, isPublic, createdAt } = props;
+	const { _id, title, content, createdAt } = props;
 	const images = props.images?.slice(0, 3) || [];
 	const [isLoaded, setIsLoaded] = useState<boolean>(false);
 	const [isVertical, setIsVertical] = useState<boolean>(false);
 
 	return (
-		<div className={style.container}>
+		<Link
+			href={`/album/diary/${_id}`}
+			className={style.container}
+			onClick={(event: MouseEvent<HTMLAnchorElement>) => event.stopPropagation()}
+		>
 			<div>
 				<span className={style.date}>{ParseDate(new Date(createdAt))}</span>
-				{/*<MeetballsMenu width="550cqw">
-					<Button>Add to Album</Button>
-				</MeetballsMenu>*/}
 			</div>
 			<>
 				{isLoaded && images.length === 3 ? (
@@ -95,9 +96,8 @@ const AlbumPageDiary = (props: {
 				<span>{title}</span>
 				<span>{ParseContent(content)}</span>
 			</div>
-		</div>
+		</Link>
 	);
-	console.log(isPublic);
 };
 
 export default AlbumPageDiary;

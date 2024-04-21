@@ -11,9 +11,7 @@ const AlbumComponent = (props: { album: Album }) => {
 		<div className={style.container}>
 			<Link
 				href={`/album/${_id}`}
-				onClick={(event: MouseEvent<HTMLAnchorElement>) => {
-					event.stopPropagation();
-				}}
+				onClick={(event: MouseEvent<HTMLAnchorElement>) => event.stopPropagation()}
 			>
 				<div>{thumbnail && <Image src={thumbnail} alt={title} fill sizes="100%" priority />}</div>
 				<div>

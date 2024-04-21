@@ -1,0 +1,26 @@
+.container {
+	position: relative;
+	height: 15cqw;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	z-index: 1;
+
+	container-type: size;
+}
+
+.container > div {
+	width: 100cqw;
+	height: 8cqw;
+	padding-bottom: 1cqw;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	container-type: size;
+}
+
+.date {
+	font-size: 4cqw;
+	color: #b2b2b2;
+}

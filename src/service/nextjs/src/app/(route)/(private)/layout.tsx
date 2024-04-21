@@ -33,7 +33,6 @@ export default function PrivateLayout(props: { children: ReactNode }) {
 					handleClick();
 				}}
 			/>
-
 			<div
 				onClick={(event: MouseEvent<HTMLDivElement>) => {
 					event.preventDefault();

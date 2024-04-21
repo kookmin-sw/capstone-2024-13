@@ -2,7 +2,15 @@
 
 import Image from 'next/image';
 import style from '../../../../_style/(route)/(private)/diary/final-draft/index.module.css';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+	ChangeEvent,
+	Dispatch,
+	MouseEvent,
+	SetStateAction,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 
 const DiaryPageFinalDraft = (props: {
 	title: string;
@@ -32,7 +40,11 @@ const DiaryPageFinalDraft = (props: {
 			<textarea
 				ref={textareaRef}
 				value={content}
-				onChange={event => {
+				onClick={(event: MouseEvent<HTMLTextAreaElement>) => {
+					event.preventDefault();
+					event.stopPropagation();
+				}}
+				onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
 					const textarea = event.target;
 
 					setContent(textarea.value);
@@ -46,7 +58,11 @@ const DiaryPageFinalDraft = (props: {
 						type="text"
 						placeholder="제목"
 						value={title}
-						onChange={event => setTitle(event.target.value)}
+						onClick={(event: MouseEvent<HTMLInputElement>) => {
+							event.preventDefault();
+							event.stopPropagation();
+						}}
+						onChange={(event: ChangeEvent<HTMLInputElement>) => setTitle(event.target.value)}
 					/>
 				</label>
 				<div>
@@ -56,9 +72,18 @@ const DiaryPageFinalDraft = (props: {
 						id="toggle"
 						hidden
 						className={style.checkbox}
+						onClick={(event: MouseEvent<HTMLInputElement>) => {
+							event.stopPropagation();
+						}}
 						onChange={() => setIsPublic(!isPublic)}
 					/>
-					<label htmlFor="toggle" className={style.toggle}>
+					<label
+						htmlFor="toggle"
+						className={style.toggle}
+						onClick={(event: MouseEvent<HTMLLabelElement>) => {
+							event.stopPropagation();
+						}}
+					>
 						<span className={style.slider} />
 					</label>
 				</div>

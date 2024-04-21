@@ -9,6 +9,10 @@
 	container-type: size;
 }
 
+.hidden {
+	display: none;
+}
+
 .container > * {
 	margin: auto 0;
 }

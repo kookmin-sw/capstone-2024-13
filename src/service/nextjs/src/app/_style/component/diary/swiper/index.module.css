@@ -1,0 +1,42 @@
+.container {
+	width: auto;
+	position: relative;
+}
+
+.indicator {
+	position: absolute;
+	top: 3cqw;
+	right: 3cqw;
+	z-index: 1;
+	background-color: gray;
+	color: #ffffff;
+	border-radius: 3cqw;
+	padding: 0.6cqw 1.2cqw;
+	font-size: 3cqw;
+}
+
+.swiper {
+	width: 86cqw;
+	height: 86cqw;
+	background-color: #dddddd;
+	border-radius: 4cqw;
+	display: flex;
+	flex-direction: row;
+	overflow-x: scroll;
+	scroll-snap-type: inline mandatory;
+	white-space: nowrap;
+}
+
+.image {
+	position: relative;
+	width: 86cqw;
+	height: 86cqw;
+	flex-shrink: 0;
+	scroll-snap-align: start;
+
+	container-type: size;
+}
+
+.image > img {
+	object-fit: cover;
+}

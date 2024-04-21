@@ -1,11 +1,12 @@
 'use client';
 
-import { Dispatch, MouseEvent, SetStateAction, useContext, useState } from 'react';
-import { Button, TextField } from '@mui/material';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
+import { TextField } from '@mui/material';
 import { postCreateAlbum } from '@/app/_service';
 import { Album } from '@/app/_type';
 import AlbumContext from '@/app/_context/album';
 import style from '../../../../_style/(route)/(private)/album/create-album/index.module.css';
+import Button from '@/app/_component/button';
 
 const handleSubmit = async (
 	title: string,
@@ -45,26 +46,14 @@ const CreateAlbum = (props: { setIsOpened: Dispatch<SetStateAction<boolean>> }) 
 					className={style.input}
 				/>
 				<div className={style.footer}>
-					<Button
-						variant="outlined"
-						color="primary"
-						onClick={(event: MouseEvent<HTMLButtonElement>) => {
-							event.preventDefault();
-							event.stopPropagation();
-							setIsOpened(false);
-						}}
-					>
+					<Button variant="outlined" color="primary" onClick={() => setIsOpened(false)}>
 						취소
 					</Button>
 					<Button
 						variant="outlined"
 						color="primary"
 						disabled={!title}
-						onClick={(event: MouseEvent<HTMLButtonElement>) => {
-							event.preventDefault();
-							event.stopPropagation();
-							handleSubmit(title, albums, setAlbums, setIsOpened);
-						}}
+						onClick={() => handleSubmit(title, albums, setAlbums, setIsOpened)}
 					>
 						완료
 					</Button>

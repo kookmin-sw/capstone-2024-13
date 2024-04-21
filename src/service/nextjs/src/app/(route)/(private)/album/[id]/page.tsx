@@ -3,9 +3,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Diary } from '@/app/_type';
+import { postFindDiary } from '@/app/_service';
 import AlbumPageDiary from './diary';
 import AlbumContext from '@/app/_context/album';
-import postFindDiaries from '@/app/_service/postFindDiary';
 import HeaderContext from '@/app/_context/header';
 
 const AlbumPage = (props: { params: { id: string } }) => {
@@ -25,7 +25,7 @@ const AlbumPage = (props: { params: { id: string } }) => {
 				setIsInitialized(true);
 				setTitle(album.title);
 				setComponent(null);
-				postFindDiaries({ albumId: id })
+				postFindDiary({ albumId: { $in: [id] } })
 					.then((response: Diary[]) => {
 						setDiaries(response);
 					})

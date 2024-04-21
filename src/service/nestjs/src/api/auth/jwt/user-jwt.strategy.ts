@@ -25,7 +25,9 @@ class UserJwtStrategy extends PassportStrategy(Strategy, 'user-jwt') {
 	async validate(payload: any, done: (err: Error, data: User) => void) {
 		try {
 			const { email } = payload;
-			const user = await this.userService.findOne({ email });
+			const user = await this.userService
+				.find({ filter: { email }, options: { limit: 1 } })
+				.then(users => users[0]);
 			if (!user) {
 				throw new NotFoundException('User not found');
 			}
