@@ -1,7 +1,8 @@
 .container {
-	width: 86cqw;
+	width: 100cqw;
 	height: 25cqw;
-	margin: 0 7cqw 2cqw 7cqw;
+	padding: 0 7cqw;
+	margin: 0 0 2cqw 0;
 	display: flex;
 	flex-grow: 0;
 	justify-content: space-between;
@@ -9,15 +10,11 @@
 	container-type: size;
 }
 
-.hidden {
-	display: none;
-}
-
 .container > * {
 	margin: auto 0;
 }
 
 .title {
-	font-size: 25cqh;
+	font-size: 7cqw;
 	font-weight: 600;
 }

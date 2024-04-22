@@ -1,21 +1,19 @@
 .container {
-	width: 86cqw;
-	height: 86cqw;
+	width: 100cqw;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 7cqw;
-	border-bottom: 1px solid #dddddd;
-
-	container-type: size;
+	gap: 4cqw;
+	margin-bottom: 6cqw;
 }
 
-.container > span:nth-child(2) {
-	font-size: 6cqh;
+.nickname {
+	font-size: 5cqw;
+	font-weight: 400;
 }
 
-.container > span:nth-child(3) {
-	font-size: 4cqh;
+.email {
+	font-size: 3.5cqw;
 	color: #b2b2b2;
 }
 

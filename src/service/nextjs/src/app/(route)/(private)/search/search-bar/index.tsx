@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import { Search } from '@mui/icons-material';
 import style from '../../../../_style/(route)/(private)/search/search-bar/index.module.css';
 
@@ -20,13 +20,22 @@ const SearchBar = (props: { setIsSearching: Dispatch<SetStateAction<boolean>> })
 
 	return (
 		<div className={style.container}>
-			<label htmlFor="search" className={style.label}>
+			<label
+				htmlFor="search"
+				className={style.label}
+				onClick={(event: MouseEvent<HTMLLabelElement>) => {
+					event.stopPropagation();
+				}}
+			>
 				<Search />
 				<input
 					type="text"
 					value={content}
 					placeholder="검색어를 입력해주세요"
-					onChange={event => {
+					onClick={(event: MouseEvent<HTMLInputElement>) => {
+						event.stopPropagation();
+					}}
+					onChange={(event: ChangeEvent<HTMLInputElement>) => {
 						handleChange(event, setContent, setIsSearching);
 					}}
 				/>

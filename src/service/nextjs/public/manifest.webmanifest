@@ -4,16 +4,20 @@
 		{
 			"src": "icon-192.png",
 			"sizes": "192x192",
-			"type": "image/png"
+			"type": "image/png",
+			"purpose": "any maskable"
 		},
 		{
-			"src": "icon-440.png",
-			"sizes": "440x440",
-			"type": "image/png"
+			"src": "icon-512.png",
+			"sizes": "512x512",
+			"type": "image/png",
+			"purpose": "any maskable"
 		}
 	],
 	"display": "standalone",
 	"start_url": "/album",
 	"description": "아니 근데 오늘 진짜 - AI에게 말하는 오늘 하루 일기",
-	"orientation": "portrait"
+	"orientation": "portrait",
+	"background_color": "#ffffff",
+	"theme_color": "#ffffff"
 }

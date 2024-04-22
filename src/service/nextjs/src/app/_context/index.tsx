@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import { AuthProvider } from './auth';
 import { AlbumProvider } from './album';
 import { TabBarVisibilityProvider } from './tab-bar-visibility';
-import { HeaderProvider } from './header';
 
 const ContextProviders = (props: { children: ReactNode }) => {
 	const { children } = props;
@@ -10,9 +9,7 @@ const ContextProviders = (props: { children: ReactNode }) => {
 	return (
 		<AuthProvider>
 			<AlbumProvider>
-				<HeaderProvider>
-					<TabBarVisibilityProvider>{children}</TabBarVisibilityProvider>
-				</HeaderProvider>
+				<TabBarVisibilityProvider>{children}</TabBarVisibilityProvider>
 			</AlbumProvider>
 		</AuthProvider>
 	);

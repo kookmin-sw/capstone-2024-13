@@ -20,18 +20,9 @@ faiss-cpu = "^1.8.0"
 pymongo = "^4.6.2"
 pydub = "^0.25.1"
 gtts = "^2.5.1"
-transformers = "^4.39.3"
-torch = {version = "^2.2.2+cpu", source = "pytorch"}
-pillow = "^10.3.0"
 
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.15"
-
-
-[[tool.poetry.source]]
-name = "pytorch"
-url = "https://download.pytorch.org/whl/cpu"
-priority = "explicit"
 
 [build-system]
 requires = ["poetry-core"]

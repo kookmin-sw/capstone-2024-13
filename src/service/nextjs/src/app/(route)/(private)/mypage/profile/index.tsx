@@ -19,11 +19,11 @@ const MyPageProfile = () => {
 								  }/w512/profile/${me.profileImageId.toString()}`
 							: undefined
 					}
-					width={'60cqw'}
-					height={'60cqh'}
+					width={'50cqw'}
+					height={'50cqw'}
 				/>
-				<span>{me.nickname}</span>
-				<span>{me.email}</span>
+				<span className={style.nickname}>{me.nickname}</span>
+				<span className={style.email}>{me.email}</span>
 			</div>
 		)
 	);

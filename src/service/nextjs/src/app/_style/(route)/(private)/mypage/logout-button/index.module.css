@@ -1,14 +1,13 @@
 .container {
 	width: 86cqw;
 	height: 17.2cqw;
-
-	container-type: size;
+	border-top: 1px solid #dddddd;
 }
 
 .container > button {
-	width: 100cqw;
-	height: 100cqh;
-	font-size: 24cqh;
+	width: 86cqw;
+	height: 17.2cqw;
+	font-size: 4.128cqw;
 	color: #000000;
 	display: flex;
 	align-items: center;

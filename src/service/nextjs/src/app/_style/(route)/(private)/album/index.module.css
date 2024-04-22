@@ -1,6 +1,6 @@
 .container {
 	width: 100cqw;
-	height: 100cqh;
+	flex: 1;
 	padding: 1cqw 7cqw;
 	display: grid;
 	grid-template-rows: repeat(auto-fill, 48.73cqw);

@@ -20,8 +20,14 @@ export default function RootLayout(props: { children: ReactNode }) {
 		<html lang="en">
 			<head>
 				<meta name="apple-mobile-web-app-capable" content="yes" />
+				<meta name="theme-color" content="#000000" />
+				<link rel="preconnect" href="https://you-know-what.com" />
+				<link rel="preconnect" href="https://you-know-what.com/album" />
+				<link rel="preconnect" href="https://you-know-what.com/diary" />
+				<link rel="preconnect" href="https://you-know-what.com/search" />
+				<link rel="preconnect" href="https://you-know-what.com/mypage" />
 				<link rel="icon-192" href="/icon-192.png" />
-				<link rel="icon-440" href="/icon-440.png" />
+				<link rel="icon-512" href="/icon-512.png" />
 				<link rel="manifest" href="/manifest.webmanifest" />
 			</head>
 			<body className={inter.className}>
