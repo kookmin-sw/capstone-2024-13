@@ -24,7 +24,6 @@ gtts = "^2.5.1"
 transformers = "^4.39.3"
 
 
-
 pillow = "^10.3.0"
 
 [tool.poetry.group.dev.dependencies]
