@@ -3,12 +3,6 @@
 
 set -e
 
-# Certificates
-if [ "$LOCAL" = 'true' ]; then
-	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $NEXTJS_CERTS_KEY -out $NEXTJS_CERTS -subj "/C=MO/L=KH/O=1337/OU=student/CN=$DOMAIN_NAME"
-	openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout $NESTJS_CERTS_KEY -out $NESTJS_CERTS -subj "/C=MO/L=KH/O=1337/OU=student/CN=dev.$DOMAIN_NAME"
-fi
-
 # Server config
 sed -i "s|my_domain|$DOMAIN_NAME|g"				"/etc/nginx/conf.d/default.conf"
 sed -i "s|nextjs_port|$NEXTJS_PORT|g"			"/etc/nginx/conf.d/default.conf"

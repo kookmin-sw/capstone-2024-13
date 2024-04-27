@@ -19,7 +19,9 @@ case $choice in
 			exit 1
 		fi
 
-		read -p "$(echo "${BLUE}'$domain'${NC} will be used to generate SSL certificate. Continue? [y/N] ")" confirm
+		echo "${BLUE}SSL certificate will be generated at: ${NC} ${PWD}/letsencrypt/live/$domain/fullchain.pem"
+		echo "${BLUE}SSL private key will be generated at: ${NC} ${PWD}/letsencrypt/live/$domain/privkey.pem"
+		read -p "$(echo Continue? [y/N] )" confirm
 		if [ "$confirm" != "y" -a "$confirm" != "Y" ]; then
 			echo "${RED}Aborted${NC}"
 			exit 1
@@ -28,7 +30,7 @@ case $choice in
 		echo "${GREEN}Generating SSL certificate for '$domain' ...${NC}"
 
 		docker run -it --rm --name certbot \
-			-v /etc/letsencrypt:/etc/letsencrypt \
+			-v ${PWD}/letsencrypt:/etc/letsencrypt \
 			-v /var/lib/letsencrypt:/var/lib/letsencrypt \
 			certbot/certbot certonly -d $domain \
 			--manual --preferred-challenges dns \
@@ -44,7 +46,7 @@ case $choice in
 
 		echo "${GREEN}Renewing SSL certificates ...${NC}"
 		echo "${GREEN}The following domain certificates will be renewed: ${NC}"
-		ls /etc/letsencrypt/renewal
+		ls ${PWD}/letsencrypt/renewal
 
 		read -p "$(echo "${BLUE}Continue? [y/N] ${NC}")" confirm
 		if [ "$confirm" != "y" -a "$confirm" != "Y" ]; then
@@ -56,7 +58,7 @@ case $choice in
 		old_domain=$(grep "^\s*domains =" /etc/letsencrypt/renewal/* | sed -e 's/^\s*domains =//')
 
 		docker run -it --rm --name certbot \
-			-v /etc/letsencrypt:/etc/letsencrypt \
+			-v ${PWD}/letsencrypt:/etc/letsencrypt \
 			-v /var/lib/letsencrypt:/var/lib/letsencrypt \
 			certbot/certbot renew --dry-run
 
@@ -67,7 +69,7 @@ case $choice in
 		fi
 
 		# Get domains of new certificates
-		new_domain=$(grep "^\s*domains =" /etc/letsencrypt/renewal/* | sed -e 's/^\s*domains =//')
+		new_domain=$(grep "^\s*domains =" ../letsencrypt/renewal/* | sed -e 's/^\s*domains =//')
 
 		# Check if old and new domains match
 		if [ "$old_domain" != "$new_domain" ]; then

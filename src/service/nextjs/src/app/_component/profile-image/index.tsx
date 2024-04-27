@@ -4,7 +4,6 @@ import style from '../../_style/component/profile-image/index.module.css';
 import { Avatar, Badge } from '@mui/material';
 import { Dispatch, SetStateAction } from 'react';
 import ImageSelector from './image-selector';
-import { Person } from '@mui/icons-material';
 
 const ProfileImage = (props: {
 	width?: number | string;

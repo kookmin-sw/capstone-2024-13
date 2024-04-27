@@ -1,20 +1,18 @@
 .container {
 	width: 86cqw;
 	height: 51.6cqw;
-	border-bottom: 1px solid #dddddd;
+	border-top: 1px solid #dddddd;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
-	container-type: size;
 }
 
 .container > button {
-	width: 100cqw;
-	height: 33.3cqh;
+	width: 86cqw;
+	height: 17.2cqw;
 	color: #000000;
-	font-size: 8cqh;
+	font-size: 4.128cqw;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;

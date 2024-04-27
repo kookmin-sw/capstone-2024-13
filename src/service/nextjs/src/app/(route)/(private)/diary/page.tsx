@@ -1,21 +1,21 @@
 'use client';
 
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import { postCreateDiary } from '@/app/_service';
+import { getAlbum } from '@/app/_service';
+import { Album } from '@/app/_type';
 import style from '../../../_style/(route)/(private)/diary/index.module.css';
 import DiaryPageStepIndicator from './step-indicator';
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
 import DiaryPageThemeSelect from './theme-select';
 import DiaryPageImageSelect from './image-select';
 import DiaryPageChatInterface from './chat-interface';
 import DiaryPageCreating from './creating';
 import DiaryPageFinalDraft from './final-draft';
-import { useRouter } from 'next/navigation';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { postCreateDiary } from '@/app/_service';
-import { getAlbum } from '@/app/_service';
 import AlbumContext from '@/app/_context/album';
-import { Album } from '@/app/_type';
-import HeaderContext from '@/app/_context/header';
 import Button from '@/app/_component/button';
+import Header from '@/app/_component/header';
 
 const handleNextStep = (step: number, setStep: Dispatch<SetStateAction<number>>) => {
 	setStep(step + 1);
@@ -108,7 +108,6 @@ const DiaryPage = () => {
 	const [images, setImages] = useState<string[]>(
 		createMockImages(Math.floor(Math.random() * 5) + 1),
 	);
-	const { setTitle: setHeaderTitle, setComponent: setHeaderComponent } = useContext(HeaderContext);
 	const BodyState = [
 		<DiaryPageThemeSelect key={1} theme={theme} setTheme={setTheme} />,
 		<DiaryPageImageSelect key={2} images={images} setImages={setImages} />,
@@ -125,13 +124,9 @@ const DiaryPage = () => {
 		/>,
 	];
 
-	useEffect(() => {
-		setHeaderTitle('일기 작성');
-		setHeaderComponent(null);
-	}, [setHeaderTitle, setHeaderComponent]);
-
 	return (
 		<>
+			<Header title="일기 작성" />
 			<DiaryPageStepIndicator current={step} total={4} {...StepIndicatorState[step - 1]} />
 			<div className={style.container}>
 				{isCreating ? <DiaryPageCreating setContent={setContent} /> : BodyState[step - 1]}

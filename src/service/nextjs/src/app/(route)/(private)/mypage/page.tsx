@@ -1,25 +1,21 @@
 'use client';
 
-import { useContext, useEffect } from 'react';
 import MyPageEditButton from './edit-button';
 import MyPageProfile from './profile';
 import MyPageLogoutButton from './logout-button';
 import MyPageButtonGroup from './button-group';
-import HeaderContext from '@/app/_context/header';
+import Header from '@/app/_component/header';
+import style from '../../../_style/(route)/(private)/mypage/index.module.css';
 
 const MyPage = () => {
-	const { setTitle, setComponent } = useContext(HeaderContext);
-
-	useEffect(() => {
-		setTitle('마이페이지');
-		setComponent(<MyPageEditButton />);
-	}, [setTitle, setComponent]);
-
 	return (
 		<>
-			<MyPageProfile />
-			<MyPageButtonGroup />
-			<MyPageLogoutButton />
+			<Header title="마이페이지" component={<MyPageEditButton />} />
+			<div className={style.container}>
+				<MyPageProfile />
+				<MyPageButtonGroup />
+				<MyPageLogoutButton />
+			</div>
 		</>
 	);
 };

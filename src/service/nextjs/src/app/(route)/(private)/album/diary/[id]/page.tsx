@@ -5,7 +5,6 @@ import style from '../../../../../_style/(route)/(private)/album/diary/[id]/inde
 import DiaryComponent from '@/app/_component/diary';
 import MeetballsMenu from '@/app/_component/meetballs-menu';
 import AuthContext from '@/app/_context/auth';
-import HeaderContext from '@/app/_context/header';
 import { deleteDiary, postFindDiary } from '@/app/_service';
 import { Diary } from '@/app/_type';
 import { DeleteForever, Edit, LibraryAdd } from '@mui/icons-material';
@@ -40,7 +39,6 @@ const AlbumDiaryIdPage = (props: { params: { id: string } }) => {
 	const { id } = props.params;
 	const router = useRouter();
 	const { me } = useContext(AuthContext);
-	const { setTitle: setHeaderTitle, setComponent: setHeaderComponent } = useContext(HeaderContext);
 	const [diary, setDiary] = useState<Diary | null>(null);
 	const [title, setTitle] = useState<string>('');
 	const [content, setContent] = useState<string>('');
@@ -56,8 +54,6 @@ const AlbumDiaryIdPage = (props: { params: { id: string } }) => {
 						alert('일기를 찾을 수 없습니다.\n잘못된 접근입니다.');
 						router.push('/album');
 					}
-					setHeaderTitle('');
-					setHeaderComponent(null);
 					setDiary(diaries[0]);
 					setTitle(diaries[0].title);
 					setContent(diaries[0].content);
