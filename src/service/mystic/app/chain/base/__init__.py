@@ -5,7 +5,7 @@ from langchain.chains					import LLMChain
 from langchain_openai.chat_models		import ChatOpenAI
 from langchain_openai.embeddings		import OpenAIEmbeddings
 from langchain_community.vectorstores	import FAISS
-from langchain.memory					import ConversationBufferMemory
+from langchain.memory					import ConversationSummaryBufferMemory
 from langchain.prompts					import (
 											ChatPromptTemplate,
 											MessagesPlaceholder,
@@ -15,7 +15,7 @@ from langchain.prompts					import (
 
 class BaseChain(LLMChain):
 	def __init__(self, connection_id, template_id, llm, filename="template/character.yml"):
-		prompt, memory = self.__set_configuration(connection_id, template_id, filename)
+		prompt, memory = self.__set_configuration(connection_id, template_id, filename, llm)
 		
 		super().__init__(
 			llm=llm,
@@ -24,7 +24,7 @@ class BaseChain(LLMChain):
 			verbose=True,
 		)
 
-	def __set_configuration(self, connection_id, template_id, filename):
+	def __set_configuration(self, connection_id, template_id, filename, llm):
 		yaml_parser = YamlParser(filename)
 
 		system_template = SystemMessagePromptTemplate.from_template(
@@ -37,11 +37,13 @@ class BaseChain(LLMChain):
 					MessagesPlaceholder(variable_name=connection_id),				# 대화 내역을 메모리 저장소에 저장
 					HumanMessagePromptTemplate.from_template("{human_input}"),	# 사용자 입력을 템플릿에 삽입
 				])
-		memory = ConversationBufferMemory(
+		memory = ConversationSummaryBufferMemory(
+					llm = llm,					# LLM 모델
 					memory_key=connection_id,	# memory key
 					ai_prefix=ai_prefix,		# AI 메시지 접두사
 					human_prefix=human_prefix,	# 사용자 메시지 접두사
-					return_messages=True		# 메시지 반환 여부
+					return_messages=True,		# 메시지 반환 여부
+					max_token_limit=256			# 토큰 제한
 				)
 
 		return prompt, memory
