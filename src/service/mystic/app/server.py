@@ -6,7 +6,7 @@ from langchain.schema	import AIMessage, HumanMessage, SystemMessage
 from app.chain			import ChainV1, ChainV2, ChainV3
 from app.stt			import STT
 from app.tts			import tts as TTS
-from app.captioning		import ImageCaptioning
+#from app.captioning		import ImageCaptioning
 from app.greeneye		import greenEye
 from bson 				import ObjectId
 import re, json
@@ -17,7 +17,7 @@ models_dict = {}
 
 stt = STT()
 
-img_captioning = ImageCaptioning()
+#img_captioning = ImageCaptioning()
 
 # Pydantic 모델에서 ObjectId를 사용하기 위한 클래스
 class PyObjectId(ObjectId):
@@ -157,11 +157,11 @@ async def tts(request: TTSRequest):
 	audio_data = TTS(request.text, request.slow)
 	return Response(content=audio_data, media_type="audio/mp3")
 
-#image_captioning api
-@app.post("/captioning")
-async def captioning(request: ImageRequest):
-	text_data = img_captioning(request.path)
-	return Response(content= text_data)
+##image_captioning api
+#@app.post("/captioning")
+#async def captioning(request: ImageRequest):
+#	text_data = img_captioning(request.path)
+#	return Response(content= text_data)
 
 if __name__ == "__main__":
 	import uvicorn
