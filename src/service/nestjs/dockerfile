@@ -15,10 +15,12 @@ COPY . .
 COPY ./tool/docker-entrypoint.sh /usr/local/bin/
 
 RUN cp ./tool/docker-entrypoint.sh /usr/local/bin/ && \
-	chmod +x /usr/local/bin/docker-entrypoint.sh
+	cp ./tool/init.sh /usr/local/bin/ && \
+	chmod +x /usr/local/bin/docker-entrypoint.sh && \
+	chmod +x /usr/local/bin/init.sh
 
 RUN yarn install --frozen-lockfile && yarn build
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 
-CMD [ "yarn", "run", "start:dev" ]
+CMD [ "init.sh" ]

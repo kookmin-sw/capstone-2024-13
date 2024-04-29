@@ -1,0 +1,35 @@
+import { Dispatch, SetStateAction } from 'react';
+import Theme from './theme';
+import style from '@/style/container/(private)/diary/theme-select/index.module.css';
+
+type ThemeType = {
+	title: string;
+	name: string;
+	description: string;
+	src?: string;
+	audio?: string;
+};
+
+const themes: ThemeType[] = [
+	{ title: 'hmpark', name: '박하명', description: '게임 매니아 교수' },
+	{ title: 'sanghwan', name: '이상환', description: '자상한 교수' },
+	{ title: 'shin-chan', name: '짱구', description: '장난꾸러기' },
+	{ title: 'repoter', name: '인턴기자', description: 'MZ대표' },
+];
+
+const DiaryPageThemeSelect = (props: {
+	theme: string;
+	setTheme: Dispatch<SetStateAction<string>>;
+}) => {
+	const { theme: curTheme, setTheme } = props;
+
+	return (
+		<div className={style.container}>
+			{themes.map((theme: ThemeType, index: number) => {
+				return <Theme key={index} curTheme={curTheme} setTheme={setTheme} {...theme} />;
+			})}
+		</div>
+	);
+};
+
+export default DiaryPageThemeSelect;

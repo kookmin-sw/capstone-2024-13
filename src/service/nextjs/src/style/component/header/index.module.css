@@ -1,0 +1,19 @@
+.container {
+	width: 100cqw;
+	height: 30cqw;
+	margin-bottom: 3cqw;
+	display: flex;
+	flex-grow: 0;
+	justify-content: space-between;
+
+	container-type: size;
+}
+
+.container > * {
+	margin: auto 0;
+}
+
+.title {
+	font-size: 7.5cqw;
+	font-weight: 500;
+}

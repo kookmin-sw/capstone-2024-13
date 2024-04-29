@@ -1,0 +1,31 @@
+.container {
+	width: 100cqw;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	container-type: size;
+}
+
+.selector {
+	width: 85cqw;
+	height: 85cqw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #f0f0f0;
+	border-radius: 5cqw;
+
+	container-type: size;
+}
+
+.selector > svg {
+	width: 33cqw;
+	height: 33cqw;
+	color: #d2d2d2;
+}
+
+.selector > svg > path {
+	fill: #ffffff;
+}
