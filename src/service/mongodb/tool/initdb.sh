@@ -27,7 +27,7 @@ for (let i = 0; i < 100; i++) {
   nicknames.splice(index, 1);
 
   var email = nickname + "@test.com";
-  var profileImageId = '/default-image-0' + Math.floor(Math.random() * 10) + '.png';
+  var profileImageId = '/image/default-image-0' + Math.floor(Math.random() * 10) + '.png';
   var createdAt, updatedAt;
   createdAt = updatedAt = new Date();
   
@@ -42,7 +42,7 @@ for (let i = 0; i < 100; i++) {
 	var images = [];
 	var imageLength = Math.floor(Math.random() * 5);
 	for (let k = 0; k < imageLength; k++) {
-	  images.push('/default-image-0' + Math.floor(Math.random() * 10) + '.png');
+	  images.push('/image/default-image-0' + Math.floor(Math.random() * 10) + '.png');
 	}
 	createdAt = updatedAt = new Date();
     db.diaries.insertOne({ userId, title, content, isPublic, images, createdAt, updatedAt });

@@ -1,0 +1,26 @@
+.container {
+	width: 100cqw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6cqw;
+	margin-bottom: 10cqw;
+}
+
+.nickname {
+	font-size: 5.5cqw;
+	font-weight: 400;
+}
+
+.email {
+	font-size: 4cqw;
+	color: #b2b2b2;
+}
+
+.container > div > span {
+	border-radius: 40%;
+}
+
+.container > div > span > div {
+	border-radius: 40%;
+}

@@ -1,0 +1,15 @@
+.container {
+	width: 100cqw;
+	height: 20cqw;
+	border-top: 1px solid #dddddd;
+}
+
+.container > button {
+	width: 100cqw;
+	height: 20cqw;
+	font-size: 5cqw;
+	color: #000000;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}

@@ -1,0 +1,44 @@
+.container {
+	width: 100cqw;
+	height: 16cqw;
+	margin: 1.5cqw 0 10cqw 0;
+
+	container-type: size;
+}
+
+.container > label {
+	width: 100cqw;
+	height: 100cqh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 3cqw;
+	background-color: #eeeeee;
+	border-radius: 3cqw;
+
+	container-type: size;
+}
+
+.container > label:focus-within {
+	outline: 2px solid #4d90fe;
+}
+
+.container > label > svg {
+	width: 8cqw;
+	height: 8cqw;
+}
+
+.container > label > input {
+	width: 80cqw;
+	height: 50cqh;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	font-size: max(16px, 4.5cqw);
+
+	container-type: size;
+}
+
+.container > label > input::placeholder {
+	color: #b2b2b2;
+}

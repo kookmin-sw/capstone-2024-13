@@ -1,0 +1,104 @@
+.container {
+	width: 100cqw;
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5cqw;
+	overflow-y: auto;
+}
+
+.container::-webkit-scrollbar {
+	display: none;
+}
+
+.container > * {
+	width: 100cqw;
+	flex-shrink: 0;
+}
+
+.container > div:first-child {
+	height: 100cqw;
+	border-radius: 5cqw;
+	overflow: hidden;
+	position: relative;
+	box-shadow: 0 0 1cqw 0 rgba(0, 0, 0, 0.1);
+}
+
+.container > textarea:nth-child(2) {
+	font-size: 4.25cqw;
+	word-break: break-all;
+	padding: 2cqw;
+	border: 1px solid #dddddd;
+	background-color: transparent;
+	border-radius: 1cqw;
+}
+
+.container > div:last-child {
+	height: 40cqw;
+}
+
+.container > div:last-child > label {
+	display: flex;
+	align-items: center;
+	width: 100cqw;
+	height: 20cqw;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+
+.container > div:last-child > label > input {
+	width: 100cqw;
+	height: 16cqw;
+	background-color: transparent;
+	border: none;
+	border-radius: 1cqw;
+	font-size: 5cqw;
+}
+
+.container > div:last-child > div {
+	height: 20cqw;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.container > div:last-child > div > span {
+	font-size: 5cqw;
+}
+
+.toggle {
+	width: 17cqw;
+	height: 10cqw;
+	display: block;
+	position: relative;
+	border-radius: 5cqw;
+	background-color: #ffffff;
+	box-shadow: 0 0 0.5cqw 0 rgba(0, 0, 0, 0.2);
+}
+
+.slider {
+	width: 8cqw;
+	height: 8cqw;
+	position: absolute;
+	top: 50%;
+	left: 1cqw;
+	transform: translateY(-50%);
+	border-radius: 50%;
+	background-color: #000000;
+}
+
+.toggle,
+.slider {
+	transition: all 0.2s ease-in-out;
+}
+
+.checkbox:checked ~ .toggle {
+	background-color: #000000;
+}
+
+.checkbox:checked ~ .toggle .slider {
+	left: 8cqw;
+	background-color: #ffffff;
+}

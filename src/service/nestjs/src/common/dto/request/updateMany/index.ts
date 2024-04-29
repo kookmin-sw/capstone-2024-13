@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional } from 'class-validator';
+import { IsOptional } from 'class-validator';
 import { UpdateOptions } from 'mongodb';
 import {
 	FilterQuery,
@@ -9,7 +9,7 @@ import {
 } from 'mongoose';
 
 export class UpdateMany<TRawDocType> {
-	@IsNotEmpty()
+	@IsOptional()
 	@ApiProperty({
 		description: 'Filter query',
 		type: Object,

@@ -1,0 +1,14 @@
+.container {
+	width: 100cqw;
+	flex: 1;
+	padding: 5cqw 1cqw;
+	display: grid;
+	grid-template-rows: repeat(auto-fill, 65.1cqw);
+	grid-template-columns: repeat(auto-fill, 46.5cqw);
+	gap: 5cqw;
+	overflow-y: auto;
+}
+
+.container::-webkit-scrollbar {
+	display: none;
+}
