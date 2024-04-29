@@ -4,8 +4,10 @@ const withPWA = require('next-pwa')({
 	scope: '/',
 	sw: '/sw.js',
 	register: true,
+	skipWaiting: true,
 	runtimeCaching: require('next-pwa/cache'),
 	customWorkerDir: '/worker',
+	buildExcludes: [/manifest\.json$/],
 });
 
 const nextConfig = withPWA({
