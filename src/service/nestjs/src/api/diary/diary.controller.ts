@@ -140,10 +140,8 @@ class DiaryController {
 		@Body() findByIdAndUpdateRequestDto: Dto.Request.FindByIdAndUpdate<Diary>,
 	): Promise<DiaryDocument> {
 		try {
-			return await this.diaryService.findByIdAndUpdate({
-				id,
-				...findByIdAndUpdateRequestDto,
-			});
+			findByIdAndUpdateRequestDto.id = id;
+			return await this.diaryService.findByIdAndUpdate(findByIdAndUpdateRequestDto);
 		} catch (error) {
 			throw new BadRequestException(`다이어리 수정 실패: ${error.status}: ${error.message}`);
 		}

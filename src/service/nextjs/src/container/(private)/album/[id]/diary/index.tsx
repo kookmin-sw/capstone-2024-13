@@ -1,10 +1,10 @@
 'use client';
 
-import { Types } from 'mongoose';
 import { MouseEvent, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import style from '@/style/container/(private)/album/[id]/diary/index.module.css';
+import { Diary } from '@/type';
 
 const ParseDate = (date: Date) => {
 	const year = date.getFullYear();
@@ -28,26 +28,20 @@ const ParseContent = (content: string) => {
 	return content;
 };
 
-const AlbumPageDiary = (props: {
-	_id: Types.ObjectId;
-	title: string;
-	content: string;
-	createdAt: Date;
-	images?: string[];
-}) => {
-	const { _id, title, content, createdAt } = props;
-	const images = props.images?.slice(0, 3) || [];
+const AlbumPageDiary = (props: { albumId: string; diary: Diary }) => {
+	const { albumId, diary } = props;
+	const images = diary.images?.slice(0, 3) || [];
 	const [isLoaded, setIsLoaded] = useState<boolean>(false);
 	const [isVertical, setIsVertical] = useState<boolean>(false);
 
 	return (
 		<Link
-			href={`/album/diary/${_id}`}
+			href={`/album/${albumId}/diary/${diary._id.toString()}`}
 			className={style.container}
 			onClick={(event: MouseEvent<HTMLAnchorElement>) => event.stopPropagation()}
 		>
 			<div>
-				<span className={style.date}>{ParseDate(new Date(createdAt))}</span>
+				<span className={style.date}>{ParseDate(new Date(diary.createdAt))}</span>
 			</div>
 			<>
 				{isLoaded && images.length === 3 ? (
@@ -93,8 +87,8 @@ const AlbumPageDiary = (props: {
 				)}
 			</>
 			<div>
-				<span>{title}</span>
-				<span>{ParseContent(content)}</span>
+				<span>{diary.title}</span>
+				<span>{ParseContent(diary.content)}</span>
 			</div>
 		</Link>
 	);

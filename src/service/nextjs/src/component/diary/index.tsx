@@ -7,18 +7,18 @@ import DiaryComponentHeader from './header';
 import style from '@/style/component/diary/index.module.css';
 
 const DiaryComponent = (props: {
-	profileImageSrc: string;
-	author: string;
-	createdAt: Date;
-	title: string;
-	content: string;
+	profileImageSrc?: string;
+	author?: string;
+	createdAt?: Date;
+	title?: string;
+	content?: string;
 	images?: string[];
 	component?: ReactNode;
-	setTitle?: Dispatch<SetStateAction<string>>;
-	setContent?: Dispatch<SetStateAction<string>>;
 	isPublic?: boolean;
-	setIsPublic?: Dispatch<SetStateAction<boolean>>;
 	isEditing?: boolean;
+	setTitle?: Dispatch<SetStateAction<string | undefined>>;
+	setContent?: Dispatch<SetStateAction<string | undefined>>;
+	setIsPublic?: Dispatch<SetStateAction<boolean>>;
 	setIsEditing?: Dispatch<SetStateAction<boolean>>;
 }) => {
 	const {

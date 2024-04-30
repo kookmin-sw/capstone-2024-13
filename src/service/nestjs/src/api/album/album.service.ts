@@ -17,15 +17,6 @@ class AlbumService {
 			const { filter, projection, options } = findRequestDto;
 
 			return await this.albumModel.find(filter, projection, options);
-			//let albums = await this.albumModel.find(filter, projection, options);
-
-			//albums = albums.sort((a: Album, b: Album) => {
-			//	if (a.title === 'Recents') return -1;
-			//	if (b.title === 'Recents') return 1;
-			//	return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-			//});
-
-			//return albums;
 		} catch (error) {
 			throw error;
 		}
@@ -65,9 +56,28 @@ class AlbumService {
 
 	async findByIdAndDelete(id: string): Promise<AlbumDocument> {
 		try {
-			await this.diaryService.updateMany({ filter: { albumId: id }, update: { albumId: null } });
+			await this.diaryService.updateMany({
+				filter: { albumId: { $in: [id] } },
+				update: { albumId: { $pull: id } },
+				options: { multi: true },
+			});
 
 			return await this.albumModel.findByIdAndDelete(id);
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async updateMany(
+		updateManyRequestDto: Dto.Request.UpdateMany<AlbumDocument>,
+	): Promise<AlbumDocument[]> {
+		try {
+			const { filter, update, options } = updateManyRequestDto;
+			const result = await this.albumModel.updateMany(filter, update, options);
+
+			console.log(result);
+
+			return await this.albumModel.find(filter);
 		} catch (error) {
 			throw error;
 		}

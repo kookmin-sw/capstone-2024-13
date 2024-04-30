@@ -55,6 +55,31 @@ class AlbumController {
 		}
 	}
 
+	// find album
+	@Post('find')
+	@ApiOperation({ summary: '앨범 검색', description: '앨범 검색' })
+	@ApiOkResponse({ type: Album })
+	async find(@Body() findRequestDto: Dto.Request.Find<AlbumDocument>): Promise<AlbumDocument[]> {
+		try {
+			return await this.albumService.find(findRequestDto);
+		} catch (error) {
+			throw new BadRequestException(`Find album failed: ${error.status}: ${error.message}`);
+		}
+	}
+
+	@Patch('updateMany')
+	@ApiOperation({ summary: '앨범 수정', description: '앨범 수정' })
+	@ApiOkResponse({})
+	async updateMany(
+		@Body() updateManyRequestDto: Dto.Request.UpdateMany<AlbumDocument>,
+	): Promise<AlbumDocument[]> {
+		try {
+			return await this.albumService.updateMany(updateManyRequestDto);
+		} catch (error) {
+			throw new BadRequestException(`Update album failed: ${error.status}: ${error.message}`);
+		}
+	}
+
 	// Get album by id
 	@Get(':id')
 	@ApiOperation({ summary: 'Get album by id', description: 'Get album by id' })
@@ -77,10 +102,8 @@ class AlbumController {
 		@Body() findByIdAndUpdateRequestDto: Dto.Request.FindByIdAndUpdate<AlbumDocument>,
 	): Promise<AlbumDocument> {
 		try {
-			return await this.albumService.findByIdAndUpdate({
-				id,
-				...findByIdAndUpdateRequestDto,
-			});
+			findByIdAndUpdateRequestDto.id = id;
+			return await this.albumService.findByIdAndUpdate(findByIdAndUpdateRequestDto);
 		} catch (error) {
 			throw new BadRequestException(`Update album failed: ${error.status}: ${error.message}`);
 		}
@@ -95,18 +118,6 @@ class AlbumController {
 			return await this.albumService.findByIdAndDelete(id);
 		} catch (error) {
 			throw new BadRequestException(`Delete album failed: ${error.status}: ${error.message}`);
-		}
-	}
-
-	// find album
-	@Post('find')
-	@ApiOperation({ summary: '앨범 검색', description: '앨범 검색' })
-	@ApiOkResponse({ type: Album })
-	async find(@Body() findRequestDto: Dto.Request.Find<AlbumDocument>): Promise<AlbumDocument[]> {
-		try {
-			return await this.albumService.find(findRequestDto);
-		} catch (error) {
-			throw new BadRequestException(`Find album failed: ${error.status}: ${error.message}`);
 		}
 	}
 }
