@@ -9,3 +9,4 @@ export * from './postFindDiary';
 export * from './postInvokeChat';
 export * from './postPresignedUrl';
 export * from './postRegister';
+export * from './postLogout';
