@@ -9,6 +9,7 @@ const AlbumDiaryPage = () => {
 	useEffect(() => {
 		alert('일기를 찾을 수 없습니다.\n잘못된 접근입니다.');
 		router.push('/album');
+		return;
 	}, [router]);
 
 	return null;

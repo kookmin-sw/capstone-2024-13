@@ -2,8 +2,8 @@ import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useEffect, useRef } 
 import style from '@/style/component/diary/edit-content/index.module.css';
 
 const DiaryComponentEditContent = (props: {
-	content: string;
-	setContent: Dispatch<SetStateAction<string>>;
+	content?: string;
+	setContent: Dispatch<SetStateAction<string | undefined>>;
 }) => {
 	const { content, setContent } = props;
 	const textareaRef = useRef<HTMLTextAreaElement>(null);

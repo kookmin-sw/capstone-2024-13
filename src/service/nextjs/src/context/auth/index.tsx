@@ -31,6 +31,7 @@ export const AuthProvider = (props: { children: ReactNode }) => {
 					setMe(null);
 					if (!isAuthPage) {
 						router.push('/auth/login');
+						return;
 					}
 				})
 				.finally(() => {

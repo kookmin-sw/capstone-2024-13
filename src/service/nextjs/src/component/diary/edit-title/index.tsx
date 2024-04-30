@@ -2,8 +2,8 @@ import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from 'react';
 import style from '@/style/component/diary/edit-title/index.module.css';
 
 const DiaryComponentEditTitle = (props: {
-	title: string;
-	setTitle: Dispatch<SetStateAction<string>>;
+	title?: string;
+	setTitle: Dispatch<SetStateAction<string | undefined>>;
 }) => {
 	const { title, setTitle } = props;
 
