@@ -2,6 +2,7 @@ import {
 	BadRequestException,
 	Body,
 	Controller,
+	Delete,
 	Get,
 	Post,
 	Request,
@@ -124,6 +125,20 @@ class AuthController {
 			res.json(user);
 		} catch (error) {
 			throw new BadRequestException(`Failed to register: ${error.status}: ${error.message}`);
+		}
+	}
+
+	@Post('logout')
+	@ApiOperation({ summary: 'Logout', description: 'Logout from service' })
+	@ApiOkResponse({ description: 'User logged out' })
+	@ApiBadRequestResponse({ description: 'Failed to logout' })
+	async logout(@Request() req: any, @Response() res: any) {
+		try {
+			const cookieOption = this.cookieService.getCookieOption();
+			res.clearCookie('accessToken', cookieOption);
+			res.json({ message: 'User logged out' });
+		} catch (error) {
+			throw new BadRequestException(`Failed to logout: ${error.message}`);
 		}
 	}
 }
