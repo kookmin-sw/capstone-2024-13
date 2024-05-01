@@ -6,7 +6,7 @@ from langchain.schema	import AIMessage, HumanMessage, SystemMessage
 from app.chain			import ChainV1, ChainV2, ChainV3
 from app.stt			import STT
 from app.tts			import tts as TTS
-#from app.captioning		import ImageCaptioning
+from app.captioning		import ImageCaptioning
 from app.greeneye		import greenEye
 from bson 				import ObjectId
 import re, json
@@ -17,7 +17,7 @@ models_dict = {}
 
 stt = STT()
 
-#img_captioning = ImageCaptioning()
+img_captioning = ImageCaptioning()
 
 # Pydantic 모델에서 ObjectId를 사용하기 위한 클래스
 class PyObjectId(ObjectId):
@@ -108,7 +108,9 @@ async def connect_v2(request : ConnectRequest):
 @app.post("/connect/v3", response_model=ConnectResponse)
 async def connect_v3(request : ConnectRequest):
 	connection_id = str(ObjectId())
-	chain = ChainV3(connection_id = connection_id, template_id = request.template_id)
+	text_data = img_captioning("/home/hyunjoon/2024/subjects/capstone/src/service/mystic/app/img.jpg")
+	print('text_data:', text_data)
+	chain = ChainV3(connection_id = connection_id, template_id = request.template_id, caption=text_data)
 	models_dict[connection_id] = chain
 
 	return ConnectResponse(connection_id=connection_id)
@@ -138,12 +140,10 @@ async def chatV2(request: ChatRequest):
 #gpt3.5-turbo
 @app.post("/chat/invoke/v3", response_model=ChatResponse)
 async def chatV2(request: ChatRequest):
-	# 요청 받은 사용자 입력 전처리 적용
-	processed_content = preprocess_user_input(request.content)
+	processed_content = request.content
 
 	if models_dict.get(request.connection_id) is None:
 			return ChatResponse(content="Bad Request: Connection not found", status_code=400)
-	# 전처리된 입력을 모델에 전달
 	return ChatResponse(content=models_dict[request.connection_id](processed_content)['text'])
 
 #stt api
@@ -158,10 +158,10 @@ async def tts(request: TTSRequest):
 	return Response(content=audio_data, media_type="audio/mp3")
 
 ##image_captioning api
-#@app.post("/captioning")
-#async def captioning(request: ImageRequest):
-#	text_data = img_captioning(request.path)
-#	return Response(content= text_data)
+# @app.post("/captioning")
+# async def captioning(request: ImageRequest):
+# 	text_data = img_captioning(request.path)
+# 	return Response(content= text_data)
 
 if __name__ == "__main__":
 	import uvicorn
