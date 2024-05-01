@@ -31,10 +31,6 @@ class BaseChain(LLMChain):
 			return "Error: " + str(e)
 	def __set_configuration(self, connection_id, template_id, filename, llm, caption=None):
 		yaml_parser = YamlParser(filename)
-		# questions = YamlParser("template/questions.yml")
-
-		# ai_prefix = yaml_parser[template_id]['ai_prefix']
-		# human_prefix = yaml_parser[template_id]['human_prefix']
 		name = yaml_parser[template_id]['name']
 		age = yaml_parser[template_id]['age']
 		job = yaml_parser[template_id]['job']
@@ -42,7 +38,6 @@ class BaseChain(LLMChain):
 		background = yaml_parser[template_id]['background']
 		few_shot = yaml_parser[template_id]['few_shot']
 		counterpart = yaml_parser[template_id]['counterpart']
-		# question = '{'+'question'+'}'
 		with open("template/meta.xml", 'r') as f:
 			meta = f.read()
 		Template = meta.format(name=name, age=age, job=job, personality=personality, background=background, few_shot=few_shot, counterpart=counterpart, caption=caption)
