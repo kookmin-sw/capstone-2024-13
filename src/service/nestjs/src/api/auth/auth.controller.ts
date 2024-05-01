@@ -2,7 +2,6 @@ import {
 	BadRequestException,
 	Body,
 	Controller,
-	Delete,
 	Get,
 	Post,
 	Request,
@@ -132,7 +131,7 @@ class AuthController {
 	@ApiOperation({ summary: 'Logout', description: 'Logout from service' })
 	@ApiOkResponse({ description: 'User logged out' })
 	@ApiBadRequestResponse({ description: 'Failed to logout' })
-	async logout(@Request() req: any, @Response() res: any) {
+	async logout(@Response() res: any) {
 		try {
 			const cookieOption = this.cookieService.getCookieOption();
 			res.clearCookie('accessToken', cookieOption);
