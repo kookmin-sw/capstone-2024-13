@@ -9,21 +9,47 @@
 	container-type: size;
 }
 
-.container > * {
-	flex-shrink: 0;
-}
-
-.container > div:last-child {
+.body {
 	width: 100cqw;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	overflow-y: auto;
-
-	container-type: size;
 }
 
-.container > div:last-child::-webkit-scrollbar {
+.body::-webkit-scrollbar {
 	display: none;
+}
+
+.body > * {
+	flex-shrink: 0;
+}
+
+.body > div:first-child {
+	margin-bottom: 5cqw;
+}
+
+.body > div:first-child > span {
+	border-radius: 40%;
+}
+
+.body > div:first-child > span > div {
+	border-radius: 40%;
+}
+
+.body > div:first-child > span > span {
+	bottom: 12% !important;
+	right: 12% !important;
+}
+
+.nickname {
+	font-size: 5.5cqw;
+	margin-bottom: 5cqw;
+}
+
+.email {
+	font-size: 4cqw;
+	color: #b2b2b2;
+	margin-bottom: 10cqw;
 }

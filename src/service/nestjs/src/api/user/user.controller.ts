@@ -24,10 +24,8 @@ class UserController {
 	@ApiBadRequestResponse({ description: 'Bad request' })
 	async updateMe(@Req() req, @Body() findByIdAndUpdateRequestDto: any): Promise<UserDocument> {
 		try {
-			return await this.userService.findByIdAndUpdate({
-				id: req.user._id,
-				...findByIdAndUpdateRequestDto,
-			});
+			findByIdAndUpdateRequestDto.id = req.user._id;
+			return await this.userService.findByIdAndUpdate(findByIdAndUpdateRequestDto);
 		} catch (error) {
 			throw error;
 		}
