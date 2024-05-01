@@ -5,12 +5,9 @@
 	display: flex;
 	flex-grow: 0;
 	justify-content: space-between;
+	align-items: center;
 
 	container-type: size;
-}
-
-.container > * {
-	margin: auto 0;
 }
 
 .title {

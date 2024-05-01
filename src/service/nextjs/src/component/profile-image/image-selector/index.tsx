@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from 'react';
 import { AddAPhoto } from '@mui/icons-material';
 import style from '@/style/component/profile-image/image-selector/index.module.css';
 
