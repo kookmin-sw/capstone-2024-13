@@ -1,0 +1,17 @@
+.container {
+	width: 80cqw;
+	margin-top: 10cqw !important;
+}
+
+.container > label:first-child {
+	top: 1cqw;
+	font-size: 5.5cqw;
+}
+
+.container > div:nth-child(2) {
+	font-size: 6cqw;
+}
+
+.container > p:last-child {
+	font-size: 4cqw;
+}
