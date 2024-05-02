@@ -1,7 +1,6 @@
 export * from './deleteDiary';
 export * from './getAlbum';
 export * from './getDiary';
-export * from './patchMe';
 export * from './postConnectMystic';
 export * from './postCreateAlbum';
 export * from './postCreateDiary';
@@ -9,3 +8,4 @@ export * from './postFindDiary';
 export * from './postInvokeChat';
 export * from './postPresignedUrl';
 export * from './postRegister';
+export * from './postLogout';

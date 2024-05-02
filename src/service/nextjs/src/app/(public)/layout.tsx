@@ -12,6 +12,7 @@ export default function PublicLayout(props: { children: ReactNode }) {
 	useEffect(() => {
 		if (me) {
 			router.push('/');
+			return;
 		}
 	}, [me, router]);
 

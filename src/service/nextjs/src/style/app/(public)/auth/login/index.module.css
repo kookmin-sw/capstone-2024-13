@@ -1,18 +1,152 @@
 .container {
 	width: 100cqw;
 	height: 100cqh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 15cqh;
+	position: relative;
+	overflow-y: scroll;
+	overflow-x: hidden;
 
 	container-type: size;
 }
 
-.container > img {
-	width: 70cqw;
-	height: 45cqw;
-	border-radius: 1cqw;
-	box-shadow: 0 0 1cqh 0 rgba(0, 0, 0, 0.3);
+.container::-webkit-scrollbar {
+	display: none;
+}
+
+.container > * {
+	flex-shrink: 0;
+}
+
+.page1 {
+	width: 100cqw;
+	height: 100cqh;
+	background-color: black;
+	border-bottom-left-radius: 15cqw;
+	border-bottom-right-radius: 15cqw;
+
+	position: relative;
+	overflow: hidden;
+}
+
+.page1 > .header {
+	color: white;
+	height: 6.6cqh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 6cqh 4cqw;
+}
+
+.page1 > .header > .headerText {
+	padding: 0 0 0 3cqw;
+	font-size: 3cqh;
+	color: white;
+	font-weight: 500;
+	margin-right: 3cqw;
+}
+
+.page1 > .header > .loginButton {
+	padding: 2cqh 4cqw;
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(153, 153, 153, 0.3) 100%);
+	border: none;
+	border-radius: 3cqh;
+	cursor: pointer;
+	margin-right: 3cqw;
+
+	color: white;
+	font-family: Pretendard;
+	font-style: normal;
+	line-height: normal;
+	font-weight: 500;
+	font-size: 1.8cqh;
+}
+.page1 > .header > .loginButton:active {
+	transform: scale(0.95);
+	opacity: 0.8;
+}
+
+.page1 > .centerText {
+	color: var(--white, #fff);
+	text-align: center;
+	font-family: Pretendard;
+	font-size: 8cqw;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+
+	padding-top: 27cqh;
+}
+.page1 > .centerTailText {
+	color: white;
+	font-size: 3.6cqw;
+	font-weight: 300;
+	text-align: center;
+	padding-top: 3cqh;
+}
+
+/* star */
+
+.star {
+	position: absolute;
+	width: 13.781px;
+	height: 15px;
+	animation: fall 3s linear infinite;
+}
+.star::before {
+	content: '';
+	position: absolute;
+	top: -1100%;
+	left: 500%;
+
+	width: 1px;
+	height: 110px;
+	background: #5996f2;
+	transform: rotate(30deg); /* 선을 45도로 회전 */
+	animation: trail 3s linear infinite;
+}
+
+.starContainer {
+	position: relative;
+	z-index: 0; /* 별이 떨어지는 컨테이너의 스택 순서를 낮춤 */
+}
+
+@keyframes fall {
+	0% {
+		transform: translate(100vw, -100vh);
+	}
+	100% {
+		transform: translate(0, 100vh);
+	}
+}
+
+@keyframes trail {
+	0% {
+		height: 0;
+		opacity: 0;
+	}
+	50% {
+		height: 110px;
+		opacity: var(--trail-opacity);
+	}
+	100% {
+		height: 110px;
+		opacity: 0;
+	}
+}
+
+.page2 {
+	height: 100cqh;
+	width: 100cqw;
+	background-color: #00ff00;
+}
+
+.page3 {
+	height: 50cqh;
+	width: 100cqw;
+	background-color: #0000ff;
+}
+
+.page4 {
+	height: 100cqh;
+	width: 100cqw;
+	background-color: #ffff00;
 }

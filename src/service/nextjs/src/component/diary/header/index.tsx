@@ -12,13 +12,13 @@ const ParseDate = (date: Date) => {
 	}. ${dayOfWeek}`;
 };
 
-const DiaryComponentHeader = (props: { createdAt: Date; component?: ReactNode }) => {
+const DiaryComponentHeader = (props: { createdAt?: Date; component?: ReactNode }) => {
 	const { createdAt, component } = props;
 
 	return (
 		<div className={style.container}>
 			<div>
-				<span className={style.date}>{ParseDate(new Date(createdAt))}</span>
+				<span className={style.date}>{createdAt && ParseDate(new Date(createdAt))}</span>
 				{component}
 			</div>
 		</div>

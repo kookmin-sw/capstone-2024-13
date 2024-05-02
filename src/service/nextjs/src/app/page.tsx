@@ -18,6 +18,7 @@ export default function Home() {
 				})
 				.finally(() => {
 					router.push('/album');
+					return;
 				});
 		}
 	}, [router]);

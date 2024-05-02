@@ -25,18 +25,15 @@ const SearchDiaryPage = (props: { params: { id: string } }) => {
 	}, [diary, id]);
 
 	return (
-		diary &&
-		user && (
-			<DiaryComponent
-				profileImageSrc={user.profileImageId.toString()}
-				author={user.nickname}
-				createdAt={diary.createdAt}
-				title={diary.title}
-				content={diary.content}
-				isPublic={diary.isPublic}
-				images={diary.images}
-			/>
-		)
+		<DiaryComponent
+			profileImageSrc={user?.profileImageId.toString()}
+			author={user?.nickname}
+			createdAt={diary?.createdAt}
+			title={diary?.title}
+			content={diary?.content}
+			isPublic={diary?.isPublic}
+			images={diary?.images}
+		/>
 	);
 };
 

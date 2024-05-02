@@ -9,10 +9,10 @@ import Header from '@/component/header';
 import AlbumPageDiary from '@/container/(private)/album/[id]/diary';
 import style from '@/style/app/(private)/album/[id]/index.module.css';
 
-const AlbumPage = (props: { params: { id: string } }) => {
-	const { id } = props.params;
+const AlbumPage = (props: { params: { albumId: string } }) => {
+	const { albumId } = props.params;
 	const { albums } = useContext(AlbumContext);
-	const album = albums.find(album => album._id.toString() === id);
+	const album = albums.find(album => album._id.toString() === albumId);
 	const router = useRouter();
 	const [diaries, setDiaries] = useState<Diary[]>([]);
 	const [isInitialized, setIsInitialized] = useState<boolean>(false);
@@ -20,10 +20,11 @@ const AlbumPage = (props: { params: { id: string } }) => {
 	useEffect(() => {
 		if (!album) {
 			router.push('/');
+			return;
 		} else {
 			if (!isInitialized) {
 				setIsInitialized(true);
-				postFindDiary({ albumId: { $in: [id] } })
+				postFindDiary({ albumId: { $in: [albumId] } })
 					.then((response: Diary[]) => {
 						setDiaries(response);
 					})
@@ -32,14 +33,14 @@ const AlbumPage = (props: { params: { id: string } }) => {
 					});
 			}
 		}
-	}, [id, router, album, isInitialized]);
+	}, [albumId, router, album, isInitialized]);
 
 	return (
 		<div className={style.container}>
-			{album && <Header title={album.title} />}
+			<Header title={album?.title} />
 			<div>
 				{diaries.map((diary, index) => (
-					<AlbumPageDiary key={index} {...diary} />
+					<AlbumPageDiary key={index} albumId={albumId} diary={diary} />
 				))}
 			</div>
 		</div>
