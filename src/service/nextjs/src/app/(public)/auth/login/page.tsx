@@ -34,6 +34,9 @@ const LoginPage = () => {
 						</div>
 					))}
 				</div>
+				<div className={style.halfCircle}></div>
+				<div className={style.arrow}></div>
+				<div className={style.arrowHead}></div>
 			</div>
 
 			<div className={style.page2}>

@@ -133,6 +133,69 @@
 	}
 }
 
+.page1 > .halfCircle {
+	position: absolute;
+	bottom: -22cqw;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 40cqw;
+	height: 40cqw;
+	border: 1px solid white;
+	border-radius: 40cqw;
+	overflow: hidden;
+	animation: bounceHalfCircle 1s infinite;
+}
+.page1 > .arrowHead {
+	position: absolute;
+	bottom: 5cqh;
+	left: 50%;
+	width: 2cqw;
+	height: 2cqw;
+	border-left: 2px solid white;
+	border-bottom: 2px solid white;
+	transform: translate(-50%, 50%) rotate(-45deg);
+	animation: bounceArrowHead 1s infinite;
+}
+
+.page1 > .arrow {
+	position: absolute;
+	bottom: 5cqh;
+	left: 49.9%;
+	width: 1px;
+	height: 10cqh;
+	background-color: white;
+	transform: translateX(-50%);
+	animation: bounceArrow 1s infinite;
+}
+
+@keyframes bounceArrow {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10%);
+	}
+}
+@keyframes bounceArrowHead {
+	0%,
+	100% {
+		transform: translate(-50%, 0) rotate(-45deg);
+	}
+	50% {
+		transform: translate(-50%, -90%) rotate(-45deg);
+	}
+}
+@keyframes bounceHalfCircle {
+	0%,
+	100% {
+		transform: translateX(-50%);
+	}
+	50% {
+		transform: translate(-50%, -5%);
+	}
+}
+
 .page2 {
 	height: 100cqh;
 	width: 100cqw;
