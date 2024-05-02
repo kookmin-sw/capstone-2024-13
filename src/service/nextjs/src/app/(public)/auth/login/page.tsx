@@ -40,8 +40,53 @@ const LoginPage = () => {
 			</div>
 
 			<div className={style.page2}>
-				<h1>페이지 2</h1>
-				{/* 여기에 페이지 2의 내용을 추가하세요 */}
+				<div className={style.header}>
+					<span className={style.titleChatbot}>챗봇</span>
+					<span className={style.titleConversation}>과 대화해요</span>
+					<div className={style.titleDescribe}>
+						AI가 생성하는 질문과 대화로 <br /> 일기를 쉽고 편리하게 시작하세요.
+					</div>
+				</div>
+				<div className={style.rectangle}>
+					<div className={style.text}>
+						4가지 테마의 <br /> 다양한 성격
+					</div>
+					<div className={style.chatbotImages}>
+						<Image
+							className={`${style.chatbot} ${style.chatbot1}`}
+							src={'/svg/chatBot1.svg'}
+							alt="chatBot1"
+							width={100}
+							height={100}
+						/>
+						<Image
+							className={`${style.chatbot} ${style.chatbot2}`}
+							src={'/svg/chatBot2.svg'}
+							alt="chatBot2"
+							width={100}
+							height={100}
+						/>
+						<Image
+							className={`${style.chatbot} ${style.chatbot3}`}
+							src={'/svg/chatBot3.svg'}
+							alt="chatBot3"
+							width={100}
+							height={100}
+						/>
+						<Image
+							className={`${style.chatbot} ${style.chatbot4}`}
+							src={'/svg/chatBot4.svg'}
+							alt="chatBot4"
+							width={100}
+							height={100}
+						/>
+					</div>
+				</div>
+				<div className={style.rectangle}>
+					<div className={style.text}>
+						음성 인식으로 <br /> 간편한 기록
+					</div>
+				</div>
 			</div>
 
 			<div className={style.page3}>
@@ -51,6 +96,10 @@ const LoginPage = () => {
 
 			<div className={style.page4}>
 				<h1>페이지 4</h1>
+				{/* 여기에 페이지 4의 내용을 추가하세요 */}
+			</div>
+			<div className={style.emptyPage}>
+				<h1>스크롤 확인을 위한 빈페이지</h1>
 				{/* 여기에 페이지 4의 내용을 추가하세요 */}
 			</div>
 		</div>
