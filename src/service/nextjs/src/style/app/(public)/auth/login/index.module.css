@@ -1,4 +1,5 @@
 .container {
+	background-color: white;
 	width: 100cqw;
 	height: 100cqh;
 	position: relative;
@@ -133,20 +134,198 @@
 	}
 }
 
+.page1 > .halfCircle {
+	position: absolute;
+	bottom: -22cqw;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 40cqw;
+	height: 40cqw;
+	border: 1px solid white;
+	border-radius: 40cqw;
+	overflow: hidden;
+	animation: bounceHalfCircle 1s infinite;
+	opacity: 0.7;
+}
+.page1 > .arrowHead {
+	position: absolute;
+	bottom: 5cqh;
+	left: 50%;
+	width: 2cqw;
+	height: 2cqw;
+	border-left: 2px solid white;
+	border-bottom: 2px solid white;
+	transform: translate(-50%, 50%) rotate(-45deg);
+	animation: bounceArrowHead 1s infinite;
+	opacity: 0.7;
+}
+
+.page1 > .arrow {
+	position: absolute;
+	bottom: 5cqh;
+	left: 49.9%;
+	width: 1px;
+	height: 10cqh;
+	background-color: white;
+	transform: translateX(-50%);
+	animation: bounceArrow 1s infinite;
+	opacity: 0.7;
+}
+
+@keyframes bounceArrow {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10%);
+	}
+}
+@keyframes bounceArrowHead {
+	0%,
+	100% {
+		transform: translate(-50%, 0) rotate(-45deg);
+	}
+	50% {
+		transform: translate(-50%, -90%) rotate(-45deg);
+	}
+}
+@keyframes bounceHalfCircle {
+	0%,
+	100% {
+		transform: translateX(-50%);
+	}
+	50% {
+		transform: translate(-50%, -5%);
+	}
+}
+
 .page2 {
-	height: 100cqh;
+	height: 93cqh;
 	width: 100cqw;
-	background-color: #00ff00;
+	background-color: white;
+}
+
+.page2 > .header {
+	padding: 6cqh 0 2cqh 10cqw;
+}
+
+.page2 > .header > .titleChatbot {
+	color: #5996f2;
+
+	font-family: Pretendard;
+	font-size: 7cqw;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.page2 > .header > .titleConversation {
+	color: var(--black, #090909);
+	font-family: Pretendard;
+	font-size: 7cqw;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.page2 > .header > .titleDescribe {
+	color: var(--gray2, #a7a7a7);
+	font-family: Pretendard;
+	font-size: 4cqw;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	padding-top: 2cqh;
+}
+
+.page2 > .rectangle {
+	width: 80cqw;
+	height: 29cqh;
+	border-radius: 12px;
+	background: var(--gray-05, #f5f5f5);
+	margin: 3cqh 0 3cqh 10cqw;
+	overflow: hidden;
+}
+
+.page2 > .rectangle > .text {
+	color: var(--black, #090909);
+	font-family: Pretendard;
+	font-size: 5cqw;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+
+	margin: 0 0 0 7cqw;
+	padding: 7cqw 0 0 0;
+}
+.page2 > .rectangle > .chatbotImages {
+	display: flex;
+	width: 53cqw; /* 너비를 직접 지정 */
+	padding: 5.5cqw 0 0 16cqw;
+}
+.page2 > .rectangle > .chatbotImages > .chatbot {
+	position: relative;
+	width: 30cqw;
+	height: 30cqw;
+	animation: wave 2s infinite ease-in-out;
+}
+
+.page2 > .rectangle > .chatbotImages > .chatbot1 {
+	right: 0;
+	z-index: 4;
+}
+
+.page2 > .rectangle > .chatbotImages > .chatbot2 {
+	right: 18cqw;
+	z-index: 3;
+}
+
+.page2 > .rectangle > .chatbotImages > .chatbot3 {
+	right: 36cqw;
+	z-index: 2;
+}
+
+.page2 > .rectangle > .chatbotImages > .chatbot4 {
+	right: 56cqw;
+	z-index: 1;
+}
+
+@keyframes wave {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+.page2 > .rectangle > .chatbotImages > .chatbot:nth-child(2) {
+	animation-delay: 0.3s;
+}
+
+.page2 > .rectangle > .chatbotImages > .chatbot:nth-child(3) {
+	animation-delay: 0.6s;
+}
+
+.page2 > .rectangle > .chatbotImages > .chatbot:nth-child(4) {
+	animation-delay: 0.9s;
 }
 
 .page3 {
-	height: 50cqh;
+	height: 40cqh;
 	width: 100cqw;
-	background-color: #0000ff;
+	background-color: #eeeeee;
 }
 
 .page4 {
-	height: 100cqh;
+	height: 80cqh;
 	width: 100cqw;
-	background-color: #ffff00;
+	background-color: white;
+}
+
+.emptyPage {
+	height: 20cqh;
+	width: 100cqw;
+	background-color: white;
 }
