@@ -86,6 +86,36 @@ const LoginPage = () => {
 					<div className={style.text}>
 						음성 인식으로 <br /> 간편한 기록
 					</div>
+					<div className={style.micContainer}>
+						<Image
+							className={style.mic}
+							src={'/svg/mic.svg'}
+							alt="mic image"
+							width={50}
+							height={50}
+						/>
+						<Image
+							className={style.micWave1}
+							src={'/svg/micWave1.svg'}
+							alt="micWave1"
+							width={50}
+							height={50}
+						/>
+						<Image
+							className={style.micWave2}
+							src={'/svg/micWave2.svg'}
+							alt="micWave2"
+							width={50}
+							height={50}
+						/>
+						<Image
+							className={style.micWave3}
+							src={'/svg/micWave3.svg'}
+							alt="micWave3"
+							width={50}
+							height={50}
+						/>
+					</div>
 				</div>
 			</div>
 

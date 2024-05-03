@@ -312,6 +312,67 @@
 	animation-delay: 0.9s;
 }
 
+.page2 > .rectangle > .micContainer {
+	display: flex;
+	width: 53cqw; /* 너비를 직접 지정 */
+	padding: 5.5cqw 0 0 20cqw;
+	margin-left: 25cqw;
+}
+
+.page2 > .rectangle > .micContainer > .mic {
+	position: relative;
+	z-index: 4;
+	right: 0.5cqw;
+	bottom: -7.5cqw;
+	width: 20cqw;
+	height: 20cqw;
+}
+
+.page2 > .rectangle > .micContainer > .micWave1 {
+	position: relative;
+	width: 45cqw;
+	height: 45cqw;
+	z-index: 3;
+	right: 33cqw;
+	bottom: 11.5cqw;
+	animation: micWave 5s infinite ease-in-out;
+	animation-delay: 0s;
+}
+
+.page2 > .rectangle > .micContainer > .micWave2 {
+	position: relative;
+	width: 54cqw;
+	height: 54cqw;
+	right: 82.5cqw;
+	z-index: 2;
+	bottom: 19cqw;
+	animation: micWave 5s infinite ease-in-out;
+	animation-delay: 0.3s;
+}
+
+.page2 > .rectangle > .micContainer > .micWave3 {
+	position: relative;
+	width: 59cqw;
+	height: 59cqw;
+	right: 141.5cqw;
+	bottom: 24cqw;
+	z-index: 1;
+	animation: micWave 5s infinite ease-in-out;
+	animation-delay: 0.6s;
+}
+
+@keyframes micWave {
+	0% {
+		opacity: 0;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
 .page3 {
 	height: 40cqh;
 	width: 100cqw;
