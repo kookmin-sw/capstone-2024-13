@@ -1,0 +1,127 @@
+.container {
+	width: 80cqw;
+	height: 120cqw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	container-type: size;
+}
+
+.header {
+	width: 100cqw;
+	height: 17.5cqw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-bottom: 1px solid #dddddd;
+}
+
+.title {
+	font-size: 6.5cqw;
+	font-weight: 500;
+}
+
+.body {
+	width: 100cqw;
+	padding: 7.5cqw;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10cqw;
+	overflow-y: auto;
+
+	container-type: size;
+}
+
+.body::-webkit-scrollbar {
+	display: none;
+}
+
+.body > * {
+	flex-shrink: 0;
+}
+
+.new-album {
+	width: 100cqw;
+	height: 60cqw;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	container-type: size;
+}
+
+.new-album > div:first-child {
+	width: 46.5cqw;
+	height: 46.5cqw;
+	background-color: #f5f5f5;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	container-type: size;
+}
+
+.new-album > div:first-child > svg {
+	width: 50cqw;
+	height: 50cqw;
+}
+
+.new-album > div:first-child > svg > path {
+	fill: #ffffff;
+}
+
+.albums {
+	width: 100cqw;
+	display: flex;
+	flex-direction: column;
+	gap: 5cqw;
+}
+
+.albums > span:first-child {
+	font-weight: 600;
+}
+
+.albums > div:last-child {
+	width: 100cqw;
+	display: grid;
+	grid-template-rows: repeat(auto-fill, 56.5cqw);
+	grid-template-columns: repeat(auto-fill, 46.5cqw);
+	gap: 7cqw;
+}
+
+.album {
+	width: 46.5cqw;
+	height: 56.5cqw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.album > div:first-child {
+	width: 46.5cqw;
+	height: 46.5cqw;
+	background-color: #f5f5f5;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 2cqw;
+	overflow: hidden;
+
+	container-type: size;
+}
+
+.album > div:last-child {
+	width: 46.5cqw;
+	height: 7.5cqw;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.album > div:last-child > span:last-child {
+	color: #b2b2b2;
+}

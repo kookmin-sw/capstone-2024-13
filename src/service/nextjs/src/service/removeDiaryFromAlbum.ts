@@ -10,7 +10,7 @@ export const removeDiaryFromAlbum = async (albumId: string, diaryId: string): Pr
 	});
 
 	let diary = await patchFetcher<Diary>(`/diary/${diaryId}`, {
-		update: { albumId: { $pull: albumId } },
+		update: { $pull: { albumId } },
 		options: { new: true },
 	}).catch((error: Error) => {
 		throw error;
@@ -23,7 +23,7 @@ export const removeDiaryFromAlbum = async (albumId: string, diaryId: string): Pr
 		}).then(diaries => diaries[0]);
 
 		album = await patchFetcher<Album>(`/album/${albumId}`, {
-			update: { thumbnail: diary.images ? diary.images[0] : '' },
+			update: { thumbnail: diary && diary.images ? diary.images[0] : '' },
 			options: { new: true },
 		}).catch((error: Error) => {
 			throw error;

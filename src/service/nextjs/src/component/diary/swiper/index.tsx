@@ -26,9 +26,9 @@ const DiarySwiper = (props: { images?: string[] }) => {
 	useEffect(() => {
 		const divs = divRefs.current;
 
-		if (divs) {
+		if (divs && divs.length) {
 			const observer = new IntersectionObserver(
-				entries => {
+				(entries: IntersectionObserverEntry[]) => {
 					entries.forEach(entry => {
 						if (entry.isIntersecting) {
 							const index = divs.indexOf(entry.target as HTMLDivElement);
@@ -53,7 +53,7 @@ const DiarySwiper = (props: { images?: string[] }) => {
 				});
 			};
 		}
-	}, [divRefs]);
+	}, [divRefs.current.length]);
 
 	return (
 		<div className={style.container}>

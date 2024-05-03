@@ -23,11 +23,10 @@
 }
 
 .isNotEditing {
-	height: 10cqw;
 	border-color: rgba(0, 0, 0, 0.05) !important;
-	min-width: 15cqw !important;
-	padding: 5cqh 8cqh !important;
-	border-radius: 50cqh !important;
+	min-width: 14cqw !important;
+	padding: 0.5cqw 2cqw !important;
+	border-radius: 5cqw !important;
 	background-color: #ffffff !important;
 	color: #666666 !important;
 }
