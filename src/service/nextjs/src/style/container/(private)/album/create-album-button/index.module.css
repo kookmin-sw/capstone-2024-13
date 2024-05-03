@@ -1,8 +1,8 @@
 .container > button {
 	border-color: rgba(0, 0, 0, 0.05);
 	min-width: 14cqw;
-	padding: 5cqh 8cqh;
-	border-radius: 15cqh;
+	padding: 0.5cqw 2cqw;
+	border-radius: 5cqw;
 	background-color: #ffffff;
 	color: #666666;
 }

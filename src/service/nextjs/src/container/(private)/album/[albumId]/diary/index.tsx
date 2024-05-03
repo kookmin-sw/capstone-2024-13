@@ -3,7 +3,7 @@
 import { MouseEvent, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import style from '@/style/container/(private)/album/[id]/diary/index.module.css';
+import style from '@/style/container/(private)/album/[albumId]/diary/index.module.css';
 import { Diary } from '@/type';
 
 const ParseDate = (date: Date) => {

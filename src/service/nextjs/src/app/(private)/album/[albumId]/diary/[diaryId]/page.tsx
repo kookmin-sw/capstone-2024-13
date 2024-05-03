@@ -10,10 +10,19 @@ import DiaryComponent from '@/component/diary';
 import MeetballsMenu from '@/component/meetballs-menu';
 import Button from '@/component/button';
 import AuthContext from '@/context/auth';
-import style from '@/style/app/(private)/album/diary/[id]/index.module.css';
-import { DeleteResult } from 'mongodb';
 import { removeDiaryFromAlbum } from '@/service/removeDiaryFromAlbum';
 import AlbumContext from '@/context/album';
+import Modal from '@/component/modal';
+import style from '@/style/app/(private)/album/[albumId]/diary/[diaryId]/index.module.css';
+import AddToAlbum from '@/container/(private)/album/[albumId]/diary/[diaryId]/add-to-album';
+
+const handleAddToAlbum = (
+	setModalIsOpened: Dispatch<SetStateAction<boolean>>,
+	setIsOpened: Dispatch<SetStateAction<boolean>>,
+) => {
+	setModalIsOpened(true);
+	setIsOpened(false);
+};
 
 const handleEdit = (
 	setIsEditing: Dispatch<SetStateAction<boolean>>,
@@ -86,11 +95,12 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 	const [isPublic, setIsPublic] = useState<boolean>(false);
 	const [isEditing, setIsEditing] = useState<boolean>(false);
 	const [isOpened, setIsOpened] = useState<boolean>(false);
+	const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
 	const buttonProps = [
 		{
 			text: 'Add to album',
 			icon: <LibraryAdd fontSize="small" />,
-			handler: () => setIsOpened(false),
+			handler: () => handleAddToAlbum(setModalIsOpened, setIsOpened),
 		},
 		{
 			text: 'Edit',
@@ -133,30 +143,35 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 	}, [diaryId, router, me, diary]);
 
 	return (
-		<DiaryComponent
-			profileImageSrc={me?.profileImageId.toString()}
-			author={me?.nickname}
-			createdAt={diary?.createdAt}
-			title={title}
-			content={content}
-			isPublic={isPublic}
-			isEditing={isEditing}
-			images={diary?.images}
-			setTitle={setTitle}
-			setContent={setContent}
-			setIsPublic={setIsPublic}
-			setIsEditing={setIsEditing}
-			component={
-				<MeetballsMenu isOpened={isOpened} setIsOpened={setIsOpened} width={'800cqw'}>
-					{buttonProps.map((buttonProp, index) => (
-						<Button key={index} className={style.button} onClick={buttonProp.handler}>
-							<span style={buttonProp.style}>{buttonProp.text}</span>
-							{buttonProp.icon}
-						</Button>
-					))}
-				</MeetballsMenu>
-			}
-		/>
+		<>
+			<DiaryComponent
+				profileImageSrc={me?.profileImageId.toString()}
+				author={me?.nickname}
+				createdAt={diary?.createdAt}
+				title={title}
+				content={content}
+				isPublic={isPublic}
+				isEditing={isEditing}
+				images={diary?.images}
+				setTitle={setTitle}
+				setContent={setContent}
+				setIsPublic={setIsPublic}
+				setIsEditing={setIsEditing}
+				component={
+					<MeetballsMenu isOpened={isOpened} setIsOpened={setIsOpened} width={'800cqw'}>
+						{buttonProps.map((buttonProp, index) => (
+							<Button key={index} className={style.button} onClick={buttonProp.handler}>
+								<span style={buttonProp.style}>{buttonProp.text}</span>
+								{buttonProp.icon}
+							</Button>
+						))}
+					</MeetballsMenu>
+				}
+			/>
+			<Modal isOpened={modalIsOpened} setIsOpened={setModalIsOpened}>
+				{diary && <AddToAlbum diary={diary} />}
+			</Modal>
+		</>
 	);
 };
 

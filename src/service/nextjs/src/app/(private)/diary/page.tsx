@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { Album } from '@/type';
-import { getAlbum, postCreateDiary } from '@/service';
+import { getAlbums, postCreateDiary } from '@/service';
 import AlbumContext from '@/context/album';
 import DiaryPageThemeSelect from '@/container/(private)/diary/theme-select';
 import DiaryPageImageSelect from '@/container/(private)/diary/image-select';
@@ -42,7 +42,7 @@ const handleUploadDiary = (
 ) => {
 	postCreateDiary({ title, content, isPublic, images })
 		.then(() => {
-			getAlbum()
+			getAlbums()
 				.then((albums: Album[]) => {
 					setAlbums(albums);
 				})
