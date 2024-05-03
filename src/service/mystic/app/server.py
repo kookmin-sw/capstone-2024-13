@@ -5,16 +5,23 @@ from typing				import List, Union
 from langchain.schema	import AIMessage, HumanMessage, SystemMessage
 from app.chain			import ChainV1, ChainV2, ChainV3
 from app.stt			import STT
-from app.tts			import tts as TTS
+from app.tts			import Basic,Park, Lee, Joo, Son, Shin
 from app.captioning		import ImageCaptioning
 from app.greeneye		import greenEye
 from bson 				import ObjectId
 import re, json
 
-app = FastAPI(title = "Mystic", description = "LLM, STT, TTS intergrated server", version = "0.1.0")
+app = FastAPI(title = "Mystic", description = "LLM, STT, TTS intergrated server", version = "0.1.0", docs_url='/')
 
 models_dict = {}
-
+TTS_dict = {
+	"Basic": Basic(),
+	"Park": Park(),
+	"Lee": Lee(),
+	"Joo": Joo(),
+	"Son": Son(),
+	"Shin": Shin()
+}
 stt = STT()
 
 img_captioning = ImageCaptioning()
@@ -60,7 +67,11 @@ class STTResponse(BaseModel):
 
 class TTSRequest(BaseModel):
 	text: str
-	slow: bool = False
+	speaker: str = "Basic"
+
+class TTSResponse(BaseModel):
+	audio: bytes
+	text : str
 
 class ImageRequest(BaseModel):
 	path : str
@@ -152,10 +163,11 @@ async def stt(request: STTRequest):
 	return ChatResponse(text = stt(request.file))
 
 #tts api
-@app.post("/tts")
+@app.post("/tts", response_model = TTSResponse)
 async def tts(request: TTSRequest):
-	audio_data = TTS(request.text, request.slow)
-	return Response(content=audio_data, media_type="audio/mp3")
+	if request.speaker not in TTS_dict:
+		return ChatResponse(content="Bad Request: Speaker not found", status_code=400)
+	return Response(content=TTS_dict[request.speaker](request.text), media_type="audio/wav")
 
 ##image_captioning api
 # @app.post("/captioning")
@@ -165,4 +177,4 @@ async def tts(request: TTSRequest):
 
 if __name__ == "__main__":
 	import uvicorn
-	uvicorn.run(app, host="0.0.0.0", port=8000)
+	uvicorn.run(app, host="https://0.0.0.0", port=8000)
