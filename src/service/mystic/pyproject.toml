@@ -10,7 +10,7 @@ packages = [
 
 [tool.poetry.dependencies]
 torch = "*"
-python = "^3.9"
+python = ">3.9"
 uvicorn = "^0.23.2"
 langserve = {extras = ["all"], version = "^0.0.51"}
 pydantic = "<2"
@@ -25,6 +25,7 @@ transformers = "^4.39.3"
 
 
 pillow = "^10.3.0"
+tts = "^0.22.0"
 
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.15"

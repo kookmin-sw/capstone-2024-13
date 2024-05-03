@@ -4,3 +4,10 @@ venv
 vector_store
 __pycache__/
 *.pyc
+*.wav
+*.pt
+*.pth
+src/service/mystic/app/tts/park/training/*
+src/service/mystic/app/tts/park/reference/*
+src/service/mystic/app/tts/park/output/*
+
