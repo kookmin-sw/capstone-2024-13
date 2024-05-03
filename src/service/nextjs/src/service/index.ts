@@ -10,6 +10,7 @@ export * from './postCreateDiary';
 export * from './postFindDiary';
 export * from './postFindUserById';
 export * from './postInvokeChat';
+export * from './postLogout';
 export * from './postPresignedUrl';
 export * from './postRegister';
 export * from './removeDiaryFromAlbum';
