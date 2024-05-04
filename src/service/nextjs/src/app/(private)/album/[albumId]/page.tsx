@@ -19,7 +19,8 @@ const AlbumPage = (props: { params: { albumId: string } }) => {
 
 	useEffect(() => {
 		if (!album) {
-			router.push('/');
+			router.push('/album');
+			alert('잘못된 접근입니다.');
 			return;
 		} else {
 			if (!isInitialized) {

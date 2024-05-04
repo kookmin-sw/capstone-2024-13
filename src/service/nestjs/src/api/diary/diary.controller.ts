@@ -101,15 +101,13 @@ class DiaryController {
 		}
 	}
 
-	@Get('random')
-	@ApiOperation({ summary: 'Get random diary', description: 'Get random diary' })
-	@ApiOkResponse({ description: 'Get random diary successfully', type: [Diary] })
-	@ApiBadRequestResponse({ description: 'Failed to get random diary' })
-	async getRandom(): Promise<DiaryDocument[]> {
+	@Post('aggregate')
+	@ApiOperation({ summary: 'Aggregate diary', description: 'Aggregate diary' })
+	@ApiOkResponse({ description: 'Aggregate diary successfully', type: [Diary] })
+	@ApiBadRequestResponse({ description: 'Failed to aggregate diary' })
+	async getRandom(@Body() aggregateRequestDto: Dto.Request.Aggregate): Promise<DiaryDocument[]> {
 		try {
-			return await this.diaryService.aggregate({
-				pipeline: [{ $sample: { size: 20 } }],
-			});
+			return await this.diaryService.aggregate(aggregateRequestDto);
 		} catch (error) {
 			throw new BadRequestException(
 				`Failed to get random diary: ${error.status}: ${error.message}`,

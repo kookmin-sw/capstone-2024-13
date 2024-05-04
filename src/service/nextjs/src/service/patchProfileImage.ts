@@ -14,13 +14,10 @@ export const patchProfileImage = async (file: File): Promise<Me> => {
 	}
 	formData.append('Content-Type', file.type);
 	formData.append('file', file);
-	await postFetcher<any>(presignedUrl.url, formData)
-		.then((response: any) => {
-			console.log(response);
-		})
-		.catch((error: Error) => {
-			console.error(error);
-		});
+
+	await postFetcher<any>(presignedUrl.url, formData).catch((error: Error) => {
+		throw error;
+	});
 
 	return await patchFetcher<Me>('/user/me', {
 		update: { profileImageId },
