@@ -122,10 +122,10 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 
 	useEffect(() => {
 		if (me && !diary) {
-			postFindDiary({ _id: diaryId })
-				.then(diaries => {
+			postFindDiary({ _id: diaryId, userId: me._id, albumId: { $in: [albumId] } })
+				.then((diaries: Diary[]) => {
 					if (diaries.length === 0) {
-						alert('일기를 찾을 수 없습니다.\n잘못된 접근입니다.');
+						alert('잘못된 접근입니다.');
 						router.push('/album');
 						return;
 					}
@@ -134,8 +134,8 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 					setContent(diaries[0].content);
 					setIsPublic(diaries[0].isPublic);
 				})
-				.catch(error => {
-					alert('일기를 찾을 수 없습니다.\n잘못된 접근입니다.');
+				.catch((error: Error) => {
+					alert('잘못된 접근입니다.');
 					router.push('/album');
 					return;
 				});

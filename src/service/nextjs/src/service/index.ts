@@ -1,7 +1,6 @@
 export * from './deleteDiary';
 export * from './getAlbums';
 export * from './getDiary';
-export * from './getRandomDiary';
 export * from './patchAddToAlbum';
 export * from './patchProfileImage';
 export * from './postConnectMystic';
@@ -12,5 +11,6 @@ export * from './postFindUserById';
 export * from './postInvokeChat';
 export * from './postLogout';
 export * from './postPresignedUrl';
+export * from './postRandomDiary';
 export * from './postRegister';
 export * from './removeDiaryFromAlbum';
