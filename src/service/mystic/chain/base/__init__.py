@@ -1,5 +1,5 @@
 import os
-from ...util	import YamlParser
+from app.util	import YamlParser
 
 from langchain.chains					import LLMChain
 from langchain_openai.chat_models		import ChatOpenAI
