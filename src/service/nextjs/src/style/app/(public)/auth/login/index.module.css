@@ -335,7 +335,7 @@
 	z-index: 3;
 	right: 33cqw;
 	bottom: 11.5cqw;
-	animation: micWave 5s infinite ease-in-out;
+	animation: micWave1 5s infinite ease-in-out;
 	animation-delay: 0s;
 }
 
@@ -346,8 +346,8 @@
 	right: 82.5cqw;
 	z-index: 2;
 	bottom: 19cqw;
-	animation: micWave 5s infinite ease-in-out;
-	animation-delay: 0.3s;
+	animation: micWave2 5s infinite ease-in-out;
+	animation-delay: 0.2s;
 }
 
 .page2 > .rectangle > .micContainer > .micWave3 {
@@ -357,15 +357,15 @@
 	right: 141.5cqw;
 	bottom: 24cqw;
 	z-index: 1;
-	animation: micWave 5s infinite ease-in-out;
-	animation-delay: 0.6s;
+	animation: micWave3 5s infinite ease-in-out;
+	animation-delay: 0.4s;
 }
 
-@keyframes micWave {
+@keyframes micWave1 {
 	0% {
 		opacity: 0;
 	}
-	90% {
+	50% {
 		opacity: 1;
 	}
 	100% {
@@ -373,10 +373,130 @@
 	}
 }
 
+@keyframes micWave2 {
+	0% {
+		opacity: 0;
+	}
+	70% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes micWave3 {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 .page3 {
-	height: 40cqh;
+	height: 33cqh;
 	width: 100cqw;
 	background-color: #eeeeee;
+	position: relative;
+	overflow: hidden;
+}
+
+.page3 > .header {
+	padding: 7cqh 0 2cqh 10cqw;
+	margin: 0 12cqw 0 0;
+	text-align: right;
+}
+
+.page3 > .header > .titleMarker {
+	color: #5996f2;
+
+	font-family: Pretendard;
+	font-size: 7cqw;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.page3 > .header > .titleNormal {
+	color: var(--black, #090909);
+	font-family: Pretendard;
+	font-size: 7cqw;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.page3 > .header > .titleDescribe {
+	color: var(--gray2, #a7a7a7);
+	font-family: Pretendard;
+	font-size: 4cqw;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	padding-top: 2cqh;
+}
+
+.page3 > .rectangleContainer {
+	position: absolute;
+	display: flex;
+	width: 40cqw;
+	height: 35cqw;
+	top: 45%;
+}
+
+.page3 > .rectangleContainer > .rectangle1 {
+	width: 26.5cqw;
+	height: 23cqw;
+	border-radius: 1cqw;
+	position: absolute;
+	left: 15%;
+	background: var(--white, #fff);
+	z-index: 3;
+}
+.page3 > .rectangleContainer > .rectangle2 {
+	width: 26.5cqw;
+	height: 23cqw;
+	border-radius: 1cqw;
+	position: absolute;
+	transform: rotate(-22.109deg);
+	background-color: white;
+	bottom: 10%;
+	left: -5%;
+	z-index: 1;
+}
+.page3 > .rectangleContainer > .hole1 {
+	position: absolute;
+	width: 20.5cqw;
+	height: 17.5cqw;
+	background: #e7e7e7;
+	border: 1px solid var(--white, #fff);
+	border-radius: 4px;
+	left: 23%;
+	bottom: 42%;
+	z-index: 4;
+}
+
+.page3 > .rectangleContainer > .hole2 {
+	position: absolute;
+	width: 20.5cqw;
+	height: 17.5cqw;
+	background: #e7e7e7;
+	border: 1px solid var(--white, #fff);
+	border-radius: 4px;
+	bottom: 18%;
+	left: 3%;
+	transform: rotate(-22.109deg);
+	z-index: 2;
+}
+
+.page3 > .rectangleContainer > .heart {
+	position: absolute;
+	width: 10cqw;
+	height: 10cqw;
+	left: 23%;
+	bottom: 42%;
+	z-index: 5;
 }
 
 .page4 {

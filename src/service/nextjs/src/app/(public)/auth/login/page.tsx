@@ -120,8 +120,26 @@ const LoginPage = () => {
 			</div>
 
 			<div className={style.page3}>
-				<h1>페이지 3</h1>
-				{/* 여기에 페이지 3의 내용을 추가하세요 */}
+				<div className={style.header}>
+					<span className={style.titleMarker}>앨범</span>
+					<span className={style.titleNormal}>으로 저장해요</span>
+					<div className={style.titleDescribe}>
+						사진을 첨부하여 그날의 하루를 <br /> 더욱 생생하게 기록하세요.
+					</div>
+				</div>
+				<div className={style.rectangleContainer}>
+					<div className={style.rectangle1}></div>
+					<div className={style.rectangle2}></div>
+					<div className={style.hole1}></div>
+					<div className={style.hole2}></div>
+					<Image
+						className={style.heart}
+						src={'/svg/heart.svg'}
+						alt="heart"
+						width={50}
+						height={50}
+					/>
+				</div>
 			</div>
 
 			<div className={style.page4}>
