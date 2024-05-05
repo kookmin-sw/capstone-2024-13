@@ -1,9 +1,10 @@
-# feature green eye service
-from dotenv import load_dotenv
+from fastapi	import UploadFile, APIRouter
+from dotenv		import load_dotenv
 import os, json, requests, base64, uuid, time, tempfile as temp
-from fastapi import UploadFile
 
 load_dotenv()
+
+router = APIRouter(prefix="/greeneye", tags=["greeneye"])
 
 def load_image(path:str):
     #to tempfile
@@ -13,8 +14,6 @@ def load_image(path:str):
     return file_data
 
 def Image_filter(file_data: bytes):
-    
-
 	request_json = {
 		"images": [{
 			"format": "jpg",
@@ -64,4 +63,14 @@ def greenEye(path: str):
         flag = 'Private'
         return flag, confidence
 	
+class GreeneyeRequest(BaseModel):
+	path : str
+
+class GreeneyeResponse(BaseModel):
+	flag : str
+	confidence : dict
 	
+@router.post("/", response_model=GreeneyeResponse)
+async def image_filtering(request: GreeneyeRequest):
+	flag, confidence = greenEye(path=request.path)
+	return GreeneyeResponse(flag=flag, confidence=confidence)

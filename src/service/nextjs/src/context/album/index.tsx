@@ -11,7 +11,7 @@ import {
 } from 'react';
 import AuthContext from '../auth';
 import { Album } from '@/type';
-import { getAlbum } from '@/service';
+import { getAlbums } from '@/service';
 
 const AlbumContext = createContext<{
 	albums: Album[];
@@ -28,7 +28,7 @@ export const AlbumProvider = (props: { children: ReactNode }) => {
 
 	useEffect(() => {
 		if (me) {
-			getAlbum()
+			getAlbums()
 				.then((response: Album[]) => {
 					setAlbums(response);
 				})

@@ -35,6 +35,10 @@ for (let i = 0; i < 100; i++) {
   var userId = user.insertedId;
   db.users.dropIndex('profileImageId_1')
 
+  var album = db.albums.insertOne({ userId, title: 'Recents', count: 0, createdAt, updatedAt });
+  var albumId = [ album.insertedId ];
+  db.albums.dropIndex('userId_1')
+
   for (let j = 0; j < 10; j++) {
 	var title = titles[Math.floor(Math.random() * titles.length)];
 	var content = contents[Math.floor(Math.random() * contents.length)];
@@ -45,7 +49,7 @@ for (let i = 0; i < 100; i++) {
 	  images.push('/image/default-image-0' + Math.floor(Math.random() * 10) + '.png');
 	}
 	createdAt = updatedAt = new Date();
-    db.diaries.insertOne({ userId, title, content, isPublic, images, createdAt, updatedAt });
+    db.diaries.insertOne({ userId, title, content, isPublic, images, albumId, createdAt, updatedAt });
   }
 }
   

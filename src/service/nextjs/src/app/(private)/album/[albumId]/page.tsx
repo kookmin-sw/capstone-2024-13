@@ -6,8 +6,8 @@ import { Diary } from '@/type';
 import { postFindDiary } from '@/service';
 import AlbumContext from '@/context/album';
 import Header from '@/component/header';
-import AlbumPageDiary from '@/container/(private)/album/[id]/diary';
-import style from '@/style/app/(private)/album/[id]/index.module.css';
+import AlbumPageDiary from '@/container/(private)/album/[albumId]/diary';
+import style from '@/style/app/(private)/album/[albumId]/index.module.css';
 
 const AlbumPage = (props: { params: { albumId: string } }) => {
 	const { albumId } = props.params;
@@ -19,7 +19,8 @@ const AlbumPage = (props: { params: { albumId: string } }) => {
 
 	useEffect(() => {
 		if (!album) {
-			router.push('/');
+			router.push('/album');
+			alert('잘못된 접근입니다.');
 			return;
 		} else {
 			if (!isInitialized) {

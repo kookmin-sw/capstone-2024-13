@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 WORKDIR /code
 
@@ -10,9 +10,16 @@ COPY ./app ./app
 
 COPY ./template ./template
 
+# Build dependencies not supported by poetry PEP 518
 RUN apt-get update && \
+	apt-get install -y --no-install-recommends build-essential python3-dev curl && \
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
+    export PATH="$HOME/.cargo/bin:$PATH" && \
+	pip install --upgrade pip && \
 	pip install poetry==1.6.1 && \
-	poetry config virtualenvs.create false && \
+	pip install cython marisa-trie sudachipy
+
+RUN	poetry config virtualenvs.create false && \
 	poetry install --no-interaction --no-ansi
 
 #EXPOSE $PORT
