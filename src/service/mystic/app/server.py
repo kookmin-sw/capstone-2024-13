@@ -1,5 +1,5 @@
 from fastapi	import FastAPI
-from router		import llm, stt, tts
+from .router		import llm, stt, tts
 
 app = FastAPI(
 	title="Mystic",
