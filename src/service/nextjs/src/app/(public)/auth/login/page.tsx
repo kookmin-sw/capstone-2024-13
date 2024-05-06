@@ -3,6 +3,24 @@ import GoogleLoginButton from '@/component/google-login';
 import style from '@/style/app/(public)/auth/login/index.module.css';
 import Star from '../../../../../public/image/loginStar.png';
 
+// float 이미지 URL 배열
+const images = [
+	'/svg/float1.svg',
+	'/svg/float2.svg',
+	'/svg/float3.svg',
+	'/svg/float4.svg',
+	'/svg/float5.svg',
+	'/svg/float6.svg',
+];
+const imageStyles = [
+	style.float1,
+	style.float2,
+	style.float3,
+	style.float4,
+	style.float5,
+	style.float6,
+];
+
 const LoginPage = () => {
 	return (
 		<div className={style.container}>
@@ -143,12 +161,37 @@ const LoginPage = () => {
 			</div>
 
 			<div className={style.page4}>
-				<h1>페이지 4</h1>
-				{/* 여기에 페이지 4의 내용을 추가하세요 */}
+				{Array.from({ length: 10 }).map((_, i) => (
+					<div
+						key={i}
+						className={style.floatingImage}
+						style={{
+							left: `${Math.random() * 100}vw`,
+							animationDelay: `${Math.random() * 3}s`,
+							animationDuration: `${Math.random() * 10 + 3}s`,
+						}}
+					>
+						<Image
+							src={images[i % images.length]}
+							className={imageStyles[i % images.length]}
+							alt="Floating image"
+							width={50}
+							height={50}
+						/>
+					</div>
+				))}
+				<div className={style.header}>
+					<span className={style.titleNormal}>모두에게</span>
+					<span className={style.titleMarker}> 공유</span>
+					<span className={style.titleNormal}>해요</span>
+					<div className={style.titleDescribe}>
+						혼자 알기에 아까운 나의 재미있는 일기를 <br /> 다른 사람들과 공유하세요.
+					</div>
+				</div>
+				<div className={style.foggyBox}></div>
 			</div>
-			<div className={style.emptyPage}>
-				<h1>스크롤 확인을 위한 빈페이지</h1>
-				{/* 여기에 페이지 4의 내용을 추가하세요 */}
+			<div className={style.buttonPage}>
+				<GoogleLoginButton className={style.loginButton} text="지금 바로 시작" />
 			</div>
 		</div>
 	);
