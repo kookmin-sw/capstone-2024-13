@@ -23,7 +23,7 @@ services:
     env_file:
       - ./service/mystic/.env
     volumes:
-      - mystic_src_volume:/code/app
+      - mystic_src_volume:/code/src
     networks:
       - you-know-what
     restart: unless-stopped
@@ -93,7 +93,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ./service/mystic/app
+      device: ./service/mystic/src
   nestjs_src_volume:
     name: nestjs_src_volume
     driver: local

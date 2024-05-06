@@ -3,6 +3,7 @@ import Theme from './theme';
 import style from '@/style/container/(private)/diary/theme-select/index.module.css';
 
 type ThemeType = {
+	id: number;
 	title: string;
 	name: string;
 	description: string;
@@ -11,15 +12,15 @@ type ThemeType = {
 };
 
 const themes: ThemeType[] = [
-	{ title: 'hmpark', name: '박하명', description: '게임 매니아 교수' },
-	{ title: 'sanghwan', name: '이상환', description: '자상한 교수' },
-	{ title: 'shin-chan', name: '짱구', description: '장난꾸러기' },
-	{ title: 'repoter', name: '인턴기자', description: 'MZ대표' },
+	{ id: 0, title: 'hmpark', name: '박하명', description: '게임 매니아 교수' },
+	{ id: 1, title: 'sanghwan', name: '이상환', description: '자상한 교수' },
+	{ id: 2, title: 'shin-chan', name: '짱구', description: '장난꾸러기' },
+	{ id: 3, title: 'repoter', name: '인턴기자', description: 'MZ대표' },
 ];
 
 const DiaryPageThemeSelect = (props: {
-	theme: string;
-	setTheme: Dispatch<SetStateAction<string>>;
+	theme: number | null;
+	setTheme: Dispatch<SetStateAction<number | null>>;
 }) => {
 	const { theme: curTheme, setTheme } = props;
 

@@ -1,8 +1,7 @@
-from . import connect
-from . import disconnect
-from . import chat
-from fastapi import APIRouter
-
+from fastapi	import APIRouter
+from .			import connect
+from .			import disconnect
+from .			import chat
 
 router = APIRouter()
 router.include_router(connect.router, tags=["connect"])
