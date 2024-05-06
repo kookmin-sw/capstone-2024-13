@@ -1,6 +1,7 @@
 from fastapi 		import APIRouter, HTTPException
 from pydantic 		import BaseModel
 from app.connection	import connection
+from bson.objectid import ObjectId
 
 router = APIRouter(prefix="/chat", tags=["chat"])
 
@@ -19,7 +20,7 @@ class PyObjectId(ObjectId):
     def __modify_schema__(cls, field_schema):
         field_schema.update(type='string')
 
-class ChatInvokeResponse(BaseModel):
+class ChatInvokeRequest(BaseModel):
     connection_id: str
     content: str
 
@@ -27,7 +28,10 @@ class ChatInvokeResponse(BaseModel):
 	content: str
 
 @router.post("/invoke", response_model=ChatInvokeResponse)
-async def invoke(request: ChatInvokeResponse):
+async def invoke(request: ChatInvokeRequest):
 	if connection.get(request.connection_id) is None:
 		raise HTTPException(status_code=400, detail="Bad Request")
-	return ChatInvokeResponse(content=connection[request.connection_id](request.content))
+	tmp = connection[request.connection_id](request.content)['text']
+	print('tmp:')
+	print(tmp)
+	return ChatInvokeResponse(content=tmp)

@@ -5,10 +5,10 @@ from pydantic 				import BaseModel
 from bson					import ObjectId
 from chain					import ChainV1, ChainV2, ChainV3
 from app.connection			import connection
-from util.image_captioning	import ImageCaptioning
+from app.util.image_captioning	import ImageCaptioning
 
 router = APIRouter(prefix="/connect", tags=["connect"])
-
+ImageCaption = ImageCaptioning()
 chain = {
 	"v1": ChainV1,
 	"v2": ChainV2,
@@ -17,6 +17,7 @@ chain = {
 
 class ConnectRequest(BaseModel):
 	template_id: int
+	version: str = "v3"
 
 class ConnectResponse(BaseModel):
 	connection_id: str
@@ -29,7 +30,7 @@ async def connect_v1(request: ConnectRequest):
 	connection_id = str(ObjectId())
 	text_data = None
 	if request.version == "v3":
-		text_data = ImageCaptioning(os.getcwd() + '/public/test-image.jpg')
+		text_data = ImageCaption(os.getcwd() + '/public/test-image.jpg')
 		print('text_data:', text_data)
 	connection[connection_id] = chain[request.version](
 		connection_id=connection_id,

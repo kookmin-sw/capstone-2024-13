@@ -1,5 +1,5 @@
 import { Album, Diary } from '@/type';
-import { patchFetcher, postFetcher } from './api';
+import { patchFetcher, postFetcher, deleteFetcher } from './api';
 
 export const removeDiaryFromAlbum = async (albumId: string, diaryId: string): Promise<Album> => {
 	let album = await patchFetcher<Album>(`/album/${albumId}`, {
@@ -15,6 +15,12 @@ export const removeDiaryFromAlbum = async (albumId: string, diaryId: string): Pr
 	}).catch((error: Error) => {
 		throw error;
 	});
+
+	if ((diary.albumId ?? []).length === 0) {
+		await deleteFetcher(`/diary/${diaryId}`).catch((error: Error) => {
+			throw error;
+		});
+	}
 
 	if (diary.images && album.thumbnail === diary.images[0]) {
 		diary = await postFetcher<Diary[]>('/diary/find', {
