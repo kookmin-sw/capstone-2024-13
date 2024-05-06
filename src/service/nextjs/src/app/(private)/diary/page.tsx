@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { Album } from '@/type';
-import { getAlbums, postCreateDiary } from '@/service';
+import { getAlbums, postConnectMystic, postCreateDiary } from '@/service';
 import AlbumContext from '@/context/album';
 import DiaryPageThemeSelect from '@/container/(private)/diary/theme-select';
 import DiaryPageImageSelect from '@/container/(private)/diary/image-select';
@@ -15,6 +15,30 @@ import DiaryPageStepIndicator from '@/container/(private)/diary/step-indicator';
 import DiaryPageCreating from '@/container/(private)/diary/creating';
 import Button from '@/component/button';
 import style from '@/style/app/(private)/diary/index.module.css';
+import { Types } from 'mongoose';
+
+const handleThemeSelect = async (
+	theme: number | null,
+	setConnectionId: Dispatch<SetStateAction<Types.ObjectId | null>>,
+	step: number,
+	setStep: Dispatch<SetStateAction<number>>,
+) => {
+	if (theme === null) {
+		alert('테마를 선택해주세요.');
+		return;
+	}
+
+	await postConnectMystic('v3', theme)
+		.then((response: Types.ObjectId) => {
+			console.log(response);
+			setConnectionId(response);
+			setStep(step + 1);
+		})
+		.catch((error: Error) => {
+			console.error(error);
+			alert('테마 선택에 실패했습니다.');
+		});
+};
 
 const handleNextStep = (step: number, setStep: Dispatch<SetStateAction<number>>) => {
 	setStep(step + 1);
@@ -77,8 +101,9 @@ const DiaryPage = () => {
 	const router = useRouter();
 	const { setAlbums } = useContext(AlbumContext);
 	const [step, setStep] = useState<number>(0);
+	const [connectionId, setConnectionId] = useState<Types.ObjectId | null>(null);
 	const [isCreating, setIsCreating] = useState<boolean>(false);
-	const [theme, setTheme] = useState<string>('');
+	const [theme, setTheme] = useState<number | null>(null);
 	const [title, setTitle] = useState<string>('');
 	const [content, setContent] = useState<string>(
 		'content'.repeat(Math.floor(Math.random() * 30) + 1),
@@ -103,7 +128,7 @@ const DiaryPage = () => {
 		/>,
 	];
 	const handlers = [
-		() => handleNextStep(step, setStep),
+		() => handleThemeSelect(theme, setConnectionId, step, setStep),
 		() => handleNextStep(step, setStep),
 		() => handleCreateDiary(step, setStep, setIsCreating),
 		() =>

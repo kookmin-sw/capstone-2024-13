@@ -5,7 +5,7 @@ description = "mystic requirements"
 authors = ["Hyunjoon Cho <juatis96@kookmin.ac.kr>"]
 readme = "README.md"
 packages = [
-    { include = "app" },
+    { include = "src/app" },
 ]
 
 [tool.poetry.dependencies]

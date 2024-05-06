@@ -6,9 +6,7 @@ COPY ./pyproject.toml ./README.md ./poetry.lock* ./
 
 COPY ./package[s] ./packages
 
-COPY ./app ./app
-
-COPY ./template ./template
+COPY ./src ./src
 
 # Build dependencies not supported by poetry PEP 518
 RUN apt-get update && \
@@ -24,4 +22,4 @@ RUN	poetry config virtualenvs.create false && \
 
 #EXPOSE $PORT
 
-CMD [ "uvicorn", "app.server:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
+CMD [ "uvicorn", "src.app.server:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]

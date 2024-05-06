@@ -14,5 +14,4 @@ class DisconnectResponse(BaseModel):
 async def disconnect(request: DisconnectRequest):
 	if connection.get(request.connection_id) is not None:
 		connection.pop(request.connection_id)
-		
 	return DisconnectResponse(content="Disconnected from mystic successfully")

@@ -1,10 +1,11 @@
 import { Types } from 'mongoose';
 import { postFetcher } from './api';
 
-export const postConnectMystic = async (query: object): Promise<Types.ObjectId> => {
-	const { version, ...rest } = query as { version: string; [key: string]: any };
-
-	return await postFetcher<Types.ObjectId>(`/mystic/connect/${version}`, rest).catch(
+export const postConnectMystic = async (
+	version: string,
+	templateId: number,
+): Promise<Types.ObjectId> => {
+	return await postFetcher<Types.ObjectId>(`/mystic/connect/${version}`, { templateId }).catch(
 		(error: Error) => {
 			throw error;
 		},

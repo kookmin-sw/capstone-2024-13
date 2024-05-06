@@ -1,6 +1,6 @@
 from fastapi	import APIRouter
+from pydantic 	import BaseModel
 from model.stt	import STT
-from pydantic 		import BaseModel
 
 router = APIRouter(prefix="/stt", tags=["stt"])
 

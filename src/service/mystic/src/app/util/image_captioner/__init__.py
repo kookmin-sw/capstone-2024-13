@@ -1,7 +1,6 @@
-from typing import Any
 from transformers import pipeline
 
-class ImageCaptioning:
+class ImageCaptioner:
 	def __init__(self) :
 		self.model = pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning")
 

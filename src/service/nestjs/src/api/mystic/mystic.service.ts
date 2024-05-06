@@ -8,7 +8,8 @@ class MysticService {
 
 	async connect(version: string, templateId: string): Promise<Types.ObjectId> {
 		try {
-			const connectionId = await axios
+			console.log('connect', version, templateId);
+			return await axios
 				.post(`http://mystic:8000/connect/${version}`, { template_id: templateId })
 				.then((response: AxiosResponse<any>) => {
 					return response.data.connection_id;
@@ -16,8 +17,6 @@ class MysticService {
 				.catch((error: AxiosError) => {
 					throw error;
 				});
-
-			return connectionId;
 		} catch (error) {
 			throw error;
 		}
