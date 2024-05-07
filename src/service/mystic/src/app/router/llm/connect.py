@@ -22,17 +22,16 @@ class ConnectResponse(BaseModel):
 	connection_id: str
 
 @router.post("/{version}", response_model=ConnectResponse)
-async def connect(request: ConnectRequest):
-	print('request:', request)
-	if request.version not in chain:
+async def connect(version: str, request: ConnectRequest):
+	if version not in chain:
 		raise HTTPException(status_code=400, detail="Bad Request")
 
 	connection_id = str(ObjectId())
 	text_data = None
-	if request.version == "v3":
-		text_data = ImageCaptioning(os.getcwd() + '/public/test-image.jpg')
+	if version == "v3":
+		text_data = ImageCaptioning(os.getcwd() + '/src/public/test-image.jpg')
 		print('text_data:', text_data)
-	connection[connection_id] = chain[request.version](
+	connection[connection_id] = chain[version](
 		connection_id=connection_id,
 		template_id=request.template_id,
 		caption=text_data
