@@ -2,7 +2,7 @@ from transformers import pipeline
 
 class ImageCaptioner:
 	def __init__(self) :
-		self.model = pipeline("image-to-text", model="nlpconnect/vit-gpt2-image-captioning")
+		self.model = pipeline("image-to-text", model="src/model/nlpconnect/vit-gpt2-image-captioning")
 
 	def __call__(self, path) :
 		return self.model(path)[0]['generated_text']

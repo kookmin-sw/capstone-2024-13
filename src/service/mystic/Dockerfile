@@ -9,8 +9,13 @@ COPY ./package[s] ./packages
 COPY ./src ./src
 
 # Build dependencies not supported by poetry PEP 518
-RUN apt-get update && \
-	apt-get install -y --no-install-recommends build-essential python3-dev curl && \
+RUN apt-get update
+
+RUN mkdir -p ./src/model/nlpconnect/vit-gpt2-image-captioning && \
+	pip install -U "huggingface_hub[cli]" && \
+	huggingface-cli download nlpconnect/vit-gpt2-image-captioning --local-dir ./src/model/nlpconnect/vit-gpt2-image-captioning
+
+RUN	apt-get install -y --no-install-recommends build-essential python3-dev curl && \
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
     export PATH="$HOME/.cargo/bin:$PATH" && \
 	pip install --upgrade pip && \

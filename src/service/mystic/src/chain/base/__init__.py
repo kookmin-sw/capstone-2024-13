@@ -14,7 +14,7 @@ from langchain.prompts					import (
 										)
 
 class BaseChain(LLMChain):
-	def __init__(self, connection_id, template_id, llm, caption :str =None, filename="template/character.yml"):
+	def __init__(self, connection_id, template_id, llm, caption :str =None, filename="./src/template/character.yml"):
 		prompt, memory = self.__set_configuration(connection_id, template_id, filename, llm, caption=caption)
 		
 		super().__init__(
@@ -38,7 +38,7 @@ class BaseChain(LLMChain):
 		background = yaml_parser[template_id]['background']
 		few_shot = yaml_parser[template_id]['few_shot']
 		counterpart = yaml_parser[template_id]['counterpart']
-		with open("template/meta.xml", 'r') as f:
+		with open("./src/template/meta.xml", 'r') as f:
 			meta = f.read()
 		Template = meta.format(name=name, age=age, job=job, personality=personality, background=background, few_shot=few_shot, counterpart=counterpart, caption=caption)
 		system_template = SystemMessagePromptTemplate.from_template(Template)
