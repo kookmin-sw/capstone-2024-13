@@ -9,7 +9,7 @@ const DiarySwiper = (props: { images?: string[] }) => {
 	const [isSwiping, setIsSwiping] = useState<boolean>(false);
 	const [indicatorTimeout, setIndicatorTimeout] = useState<NodeJS.Timeout | undefined>(undefined);
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
-	const divRefs = useRef<(HTMLDivElement | null)[]>([]);
+	const divRefs = useRef<HTMLDivElement[]>([]);
 
 	const handleInteraction = () => {
 		setIsSwiping(true);
@@ -70,7 +70,11 @@ const DiarySwiper = (props: { images?: string[] }) => {
 					images.map((image, index) => (
 						<div
 							key={index}
-							ref={divRef => (divRefs.current[index] = divRef)}
+							ref={divRef => {
+								if (divRef) {
+									divRefs.current.push(divRef);
+								}
+							}}
 							className={style.image}
 						>
 							<Image src={image} alt="image" fill sizes="100%" priority />

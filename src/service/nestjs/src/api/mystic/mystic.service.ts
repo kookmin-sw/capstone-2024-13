@@ -36,10 +36,10 @@ class MysticService {
 		}
 	}
 
-	async invoke(version: string, connectionId: string, content: string): Promise<any> {
+	async invoke(connectionId: string, content: string): Promise<any> {
 		try {
 			return await axios
-				.post(`http://mystic:8000/chat/invoke/${version}`, { connection_id: connectionId, content })
+				.post(`http://mystic:8000/chat/invoke`, { connection_id: connectionId, content })
 				.then((response: AxiosResponse<any>) => {
 					return response.data;
 				})
