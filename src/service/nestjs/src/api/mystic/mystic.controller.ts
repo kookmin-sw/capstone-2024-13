@@ -40,17 +40,13 @@ class MysticController {
 		}
 	}
 
-	@Post('/chat/invoke/:version')
+	@Post('/chat/invoke')
 	@ApiOperation({ summary: 'Invoke', description: 'Invoke chat service' })
 	@ApiOkResponse({ description: 'Invoked successfully' })
 	@ApiBadRequestResponse({ description: 'Bad request' })
-	async invoke(
-		@Param('version') version: string,
-		@Body() invokeRequestDto: Dto.Request.Invoke,
-	): Promise<any> {
+	async invoke(@Body() invokeRequestDto: Dto.Request.Invoke): Promise<any> {
 		try {
 			return await this.mysticService.invoke(
-				version,
 				invokeRequestDto.connectionId,
 				invokeRequestDto.content,
 			);

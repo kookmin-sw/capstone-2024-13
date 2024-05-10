@@ -4,7 +4,7 @@ import { AxiosResponse, AxiosError } from 'axios';
 const deleteFetcher = async <ResType>(url: string, reqData?: any): Promise<ResType> =>
 	axiosInstance
 		.delete<ResType>(url, reqData)
-		.then((res: AxiosResponse<ResType>) => res.data)
+		.then((response: AxiosResponse<ResType>) => response.data)
 		.catch((error: AxiosError) => {
 			throw error;
 		});

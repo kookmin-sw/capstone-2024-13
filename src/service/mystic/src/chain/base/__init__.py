@@ -14,9 +14,8 @@ from langchain.prompts					import (
 										)
 
 class BaseChain(LLMChain):
-	def __init__(self, connection_id, template_id, llm, caption :str =None, filename="./src/template/character.yml"):
+	def __init__(self, connection_id, template_id, llm, caption: str = None, filename = "./src/template/character.yml"):
 		prompt, memory = self.__set_configuration(connection_id, template_id, filename, llm, caption=caption)
-		
 		super().__init__(
 			llm=llm,
 			prompt=prompt,
@@ -29,6 +28,7 @@ class BaseChain(LLMChain):
 			return super().__call__(content)
 		except Exception as e:
 			return "Error: " + str(e)
+
 	def __set_configuration(self, connection_id, template_id, filename, llm, caption=None):
 		yaml_parser = YamlParser(filename)
 		name = yaml_parser[template_id]['name']
@@ -50,7 +50,7 @@ class BaseChain(LLMChain):
 		memory = ConversationSummaryBufferMemory(
 					llm = llm,					# LLM 모델
 					memory_key=connection_id,	# memory key
-					ai_prefix=job,		# AI 메시지 접두사
+					ai_prefix=job,				# AI 메시지 접두사
 					human_prefix=counterpart,	# 사용자 메시지 접두사
 					return_messages=True,		# 메시지 반환 여부
 					max_token_limit=256			# 토큰 제한

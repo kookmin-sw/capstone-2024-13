@@ -1,7 +1,8 @@
 from fastapi 		import APIRouter, HTTPException
 from pydantic 		import BaseModel
-from app.connection	import connection
-from bson.objectid import ObjectId
+from app.util		import redis_instance
+from app.util		import connection
+from bson.objectid	import ObjectId
 
 router = APIRouter(prefix="/chat", tags=["chat"])
 
@@ -29,9 +30,9 @@ class ChatInvokeResponse(BaseModel):
 
 @router.post("/invoke", response_model=ChatInvokeResponse)
 async def invoke(request: ChatInvokeRequest):
-	if connection.get(request.connection_id) is None:
+	model = connection.get(request.connection_id)
+	if model is None:
 		raise HTTPException(status_code=400, detail="Bad Request")
-	tmp = connection[request.connection_id](request.content)['text']
-	print('tmp:')
-	print(tmp)
-	return ChatInvokeResponse(content=tmp)
+	invoke_output = model(request.content)['text']
+	print(f'invoke_output: {invoke_output}')
+	return ChatInvokeResponse(content=invoke_output)

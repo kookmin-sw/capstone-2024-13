@@ -26,6 +26,8 @@ transformers = "^4.39.3"
 
 pillow = "^10.3.0"
 tts = "^0.22.0"
+redis = "^5.0.4"
+asyncio = "^3.4.3"
 
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.15"
