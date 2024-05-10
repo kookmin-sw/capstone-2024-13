@@ -1,7 +1,6 @@
-import { BadRequestException, Body, Controller, Param, Post, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Auth } from 'src/common';
-import { Types } from 'mongoose';
 import MysticService from './mystic.service';
 import * as Dto from './dto';
 
@@ -11,31 +10,28 @@ import * as Dto from './dto';
 class MysticController {
 	constructor(private readonly mysticService: MysticService) {}
 
-	@Post('connect/:version')
+	@Post('/connect')
 	@ApiOperation({ summary: 'Connect', description: 'Connect to mystic' })
 	@ApiOkResponse({ description: 'Connected successfully' })
 	@ApiBadRequestResponse({ description: 'Bad request' })
-	async connect(
-		@Param('version') version: string,
-		@Body() connectRequestDto: Dto.Request.Connect,
-	): Promise<Types.ObjectId> {
+	async connect(@Body() connectRequestDto: Dto.Request.Connect): Promise<Dto.Response.Connect> {
 		try {
-			return await this.mysticService.connect(version, connectRequestDto.templateId);
+			return await this.mysticService.connect(connectRequestDto);
 		} catch (error) {
 			throw new BadRequestException(`Failed to connect mystic: ${error.status}: ${error.message}`);
 		}
 	}
 
-	@Post('disconnect')
-	@ApiOperation({ summary: 'Disconnect', description: 'Disconnect	from mystic' })
-	@ApiOkResponse({ description: 'Disconnected successfully' })
+	@Post('/image/upload')
+	@ApiOperation({ summary: 'Upload image', description: 'Upload image to mystic' })
+	@ApiOkResponse({ description: 'Image uploaded successfully' })
 	@ApiBadRequestResponse({ description: 'Bad request' })
-	async disconnect(@Body() disconnectRequestDto: Dto.Request.Disconnect): Promise<any> {
+	async uploadImage(@Body() uploadImageRequestDto: Dto.Request.UploadImage): Promise<any> {
 		try {
-			return await this.mysticService.disconnect(disconnectRequestDto.connectionId);
+			return await this.mysticService.uploadImage(uploadImageRequestDto);
 		} catch (error) {
 			throw new BadRequestException(
-				`Failed to disconnect mystic: ${error.status}: ${error.message}`,
+				`Failed to upload image to mystic: ${error.status}: ${error.message}`,
 			);
 		}
 	}
@@ -53,6 +49,20 @@ class MysticController {
 		} catch (error) {
 			throw new BadRequestException(
 				`Failed to invoke chat service: ${error.status}: ${error.message}`,
+			);
+		}
+	}
+
+	@Post('/disconnect')
+	@ApiOperation({ summary: 'Disconnect', description: 'Disconnect	from mystic' })
+	@ApiOkResponse({ description: 'Disconnected successfully' })
+	@ApiBadRequestResponse({ description: 'Bad request' })
+	async disconnect(@Body() disconnectRequestDto: Dto.Request.Disconnect): Promise<any> {
+		try {
+			return await this.mysticService.disconnect(disconnectRequestDto.connectionId);
+		} catch (error) {
+			throw new BadRequestException(
+				`Failed to disconnect mystic: ${error.status}: ${error.message}`,
 			);
 		}
 	}

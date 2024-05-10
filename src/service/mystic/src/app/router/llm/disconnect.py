@@ -1,6 +1,6 @@
 from fastapi 	import APIRouter
 from pydantic 	import BaseModel
-from app.util	import redis
+from app.util	import redis_instance
 
 router = APIRouter(prefix="/disconnect", tags=["disconnect"])
 
@@ -12,7 +12,7 @@ class DisconnectResponse(BaseModel):
 
 @router.post("/", response_model=DisconnectResponse)
 async def disconnect(request: DisconnectRequest):
-	model = redis.get(request.connection_id)
+	model = redis_instance.get(request.connection_id)
 	if model is not None:
-		redis.delete(request.connection_id)
+		redis_instance.delete(request.connection_id)
 	return DisconnectResponse(content="Disconnected from mystic successfully")
