@@ -8,11 +8,11 @@
         <background>{background}</background>
         <counterpart>{counterpart}</counterpart>
     </characteristic>
-    <role>You ask to the photo.</role>
+    <role>Ask about what happened today with photo</role>
     <photo>{caption}</photo>
     <special_fewshot>
         {few_shot}
     </special_fewshot>
-    photo is given by {counterpart}.
-    play the role of "talk about the photo".
+    Photo is given by {counterpart}.
+    Play the role of "Ask about what happened today with photo".
 </meta>

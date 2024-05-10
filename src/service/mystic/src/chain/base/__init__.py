@@ -1,10 +1,10 @@
 import os
 from app.util	import YamlParser
 
+#from langchain_openai.chat_models		import ChatOpenAI
+#from langchain_openai.embeddings		import OpenAIEmbeddings
+#from langchain_community.vectorstores	import FAISS
 from langchain.chains					import LLMChain
-from langchain_openai.chat_models		import ChatOpenAI
-from langchain_openai.embeddings		import OpenAIEmbeddings
-from langchain_community.vectorstores	import FAISS
 from langchain.memory					import ConversationSummaryBufferMemory
 from langchain.prompts					import (
 											ChatPromptTemplate,
@@ -44,11 +44,11 @@ class BaseChain(LLMChain):
 		system_template = SystemMessagePromptTemplate.from_template(Template)
 		prompt = ChatPromptTemplate.from_messages([
 					system_template,											# 역할 부여
-					MessagesPlaceholder(variable_name=connection_id),				# 대화 내역을 메모리 저장소에 저장
+					MessagesPlaceholder(variable_name=connection_id),			# 대화 내역을 메모리 저장소에 저장
 					HumanMessagePromptTemplate.from_template("{human_input}"),	# 사용자 입력을 템플릿에 삽입
 				])
 		memory = ConversationSummaryBufferMemory(
-					llm = llm,					# LLM 모델
+					llm=llm,					# LLM 모델
 					memory_key=connection_id,	# memory key
 					ai_prefix=job,				# AI 메시지 접두사
 					human_prefix=counterpart,	# 사용자 메시지 접두사

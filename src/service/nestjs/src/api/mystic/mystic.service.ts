@@ -1,17 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { Types } from 'mongoose';
 import axios, { AxiosResponse, AxiosError } from 'axios';
+import * as Dto from './dto';
+
+const axiosInstance = axios.create({
+	baseURL: 'http://mystic:8000',
+	withCredentials: true,
+});
 
 @Injectable()
 class MysticService {
 	constructor() {}
 
-	async connect(version: string, templateId: string): Promise<Types.ObjectId> {
+	async connect(connectRequestDto: Dto.Request.Connect): Promise<Dto.Response.Connect> {
 		try {
-			return await axios
-				.post(`http://mystic:8000/connect/${version}`, { template_id: templateId })
-				.then((response: AxiosResponse<any>) => {
-					return response.data.connection_id;
+			const { version, templateId } = connectRequestDto;
+
+			return await axiosInstance
+				.post<Dto.Response.Connect>('/connect', { version, template_id: templateId })
+				.then((response: AxiosResponse<Dto.Response.Connect>) => {
+					return response.data;
 				})
 				.catch((error: AxiosError) => {
 					throw error;
@@ -21,11 +28,16 @@ class MysticService {
 		}
 	}
 
-	async disconnect(connectionId: string): Promise<any> {
+	async uploadImage(uploadImageRequestDto: Dto.Request.UploadImage): Promise<any> {
 		try {
+			const { connectionId, url } = uploadImageRequestDto;
+
 			return await axios
-				.post('http://mystic:8000/disconnect', { connection_id: connectionId })
-				.then((response: AxiosResponse<any>) => {
+				.post<Dto.Response.UploadImage>('/image/upload', {
+					connection_id: connectionId,
+					url,
+				})
+				.then((response: AxiosResponse<Dto.Response.UploadImage>) => {
 					return response.data;
 				})
 				.catch((error: AxiosError) => {
@@ -39,7 +51,22 @@ class MysticService {
 	async invoke(connectionId: string, content: string): Promise<any> {
 		try {
 			return await axios
-				.post(`http://mystic:8000/chat/invoke`, { connection_id: connectionId, content })
+				.post<any>('/chat/invoke', { connection_id: connectionId, content })
+				.then((response: AxiosResponse<any>) => {
+					return response.data;
+				})
+				.catch((error: AxiosError) => {
+					throw error;
+				});
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async disconnect(connectionId: string): Promise<any> {
+		try {
+			return await axios
+				.post<any>('/disconnect', { connection_id: connectionId })
 				.then((response: AxiosResponse<any>) => {
 					return response.data;
 				})

@@ -2,18 +2,18 @@ import { Trim } from '@miaooo/class-transformer-trim';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
-class Connect {
+class UploadImage {
 	@IsNotEmpty()
 	@IsString()
 	@Trim()
-	@ApiProperty({ description: 'Version' })
-	version: string;
+	@ApiProperty({ description: 'Connection id' })
+	connectionId: string;
 
 	@IsNotEmpty()
 	@IsString()
 	@Trim()
-	@ApiProperty({ description: 'Template ID' })
-	templateId: string;
+	@ApiProperty({ description: 'Image url to upload' })
+	url: string;
 }
 
-export default Connect;
+export default UploadImage;
