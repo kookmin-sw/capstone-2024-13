@@ -1,6 +1,5 @@
 .container {
 	width: 100cqw;
-	height: 60cqw;
 	border-top: 1px solid #dddddd;
 	display: flex;
 	flex-direction: column;
@@ -16,4 +15,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
+	gap: 2cqw;
+}
+
+.container > button > span:nth-child(2) {
+	margin-top: 0.6cqw;
 }

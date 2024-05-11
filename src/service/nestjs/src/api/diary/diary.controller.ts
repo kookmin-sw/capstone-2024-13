@@ -105,7 +105,7 @@ class DiaryController {
 	@ApiOperation({ summary: 'Aggregate diary', description: 'Aggregate diary' })
 	@ApiOkResponse({ description: 'Aggregate diary successfully', type: [Diary] })
 	@ApiBadRequestResponse({ description: 'Failed to aggregate diary' })
-	async getRandom(@Body() aggregateRequestDto: Dto.Request.Aggregate): Promise<DiaryDocument[]> {
+	async aggregate(@Body() aggregateRequestDto: any): Promise<DiaryDocument[]> {
 		try {
 			return await this.diaryService.aggregate(aggregateRequestDto);
 		} catch (error) {

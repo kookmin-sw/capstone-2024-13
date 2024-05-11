@@ -99,23 +99,23 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 	const buttonProps = [
 		{
 			text: 'Add to album',
-			icon: <LibraryAdd fontSize="small" />,
+			icon: <LibraryAdd fontSize="medium" />,
 			handler: () => handleAddToAlbum(setModalIsOpened, setIsOpened),
 		},
 		{
 			text: 'Edit',
-			icon: <Edit fontSize="small" />,
+			icon: <Edit fontSize="medium" />,
 			handler: () => handleEdit(setIsEditing, setIsOpened),
 		},
 		{
 			text: 'Remove from album',
-			icon: <RemoveCircle fontSize="small" />,
+			icon: <RemoveCircle fontSize="medium" />,
 			handler: () => handleRemoveFromAlbum(albumId, diaryId, setAlbums, router),
 		},
 		{
 			text: 'Delete',
 			style: { color: '#ff0000' },
-			icon: <DeleteForever fontSize="small" />,
+			icon: <DeleteForever fontSize="medium" />,
 			handler: () => handleDelete(diaryId, setAlbums, router),
 		},
 	];
@@ -145,8 +145,6 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 	return (
 		<>
 			<DiaryComponent
-				profileImageSrc={me?.profileImageId.toString()}
-				author={me?.nickname}
 				createdAt={diary?.createdAt}
 				title={title}
 				content={content}

@@ -5,7 +5,7 @@ export const postConnectMystic = async (
 	version: string,
 	templateId: number,
 ): Promise<Types.ObjectId> => {
-	return await postFetcher<Types.ObjectId>(`/mystic/connect/${version}`, { templateId }).catch(
+	return await postFetcher<Types.ObjectId>('/mystic/connect', { version, templateId }).catch(
 		(error: Error) => {
 			throw error;
 		},
