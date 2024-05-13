@@ -56,11 +56,19 @@ class AlbumService {
 
 	async findByIdAndDelete(id: string): Promise<AlbumDocument> {
 		try {
-			await this.diaryService.updateMany({
-				filter: { albumId: { $in: [id] } },
-				update: { albumId: { $pull: id } },
-				options: { multi: true },
-			});
+			const diaries = await this.diaryService.find({ filter: { albumId: { $in: [id] } } });
+
+			for (const diary of diaries) {
+				if (diary.albumId.length === 1) {
+					await this.diaryService.findByIdAndDelete(diary._id);
+					continue;
+				} else {
+					await this.diaryService.findByIdAndUpdate({
+						id: diary._id,
+						update: { $pull: { albumId: id } },
+					});
+				}
+			}
 
 			return await this.albumModel.findByIdAndDelete(id);
 		} catch (error) {

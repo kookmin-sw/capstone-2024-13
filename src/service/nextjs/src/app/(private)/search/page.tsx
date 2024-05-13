@@ -30,7 +30,7 @@ const SearchPage = () => {
 	return (
 		<div className={style.container}>
 			<Header title="검색" />
-			<SearchBar setIsSearching={setIsSearching} />
+			<SearchBar setDiaries={setDiaries} setIsSearching={setIsSearching} />
 			<div>
 				{isSearching ? (
 					<CircularProgress />

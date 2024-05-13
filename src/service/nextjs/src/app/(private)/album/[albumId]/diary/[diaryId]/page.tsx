@@ -98,22 +98,22 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 	const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
 	const buttonProps = [
 		{
-			text: 'Add to album',
+			text: '앨범에 추가하기',
 			icon: <LibraryAdd fontSize="medium" />,
 			handler: () => handleAddToAlbum(setModalIsOpened, setIsOpened),
 		},
 		{
-			text: 'Edit',
+			text: '일기 수정하기',
 			icon: <Edit fontSize="medium" />,
 			handler: () => handleEdit(setIsEditing, setIsOpened),
 		},
 		{
-			text: 'Remove from album',
+			text: '앨범에서 삭제하기',
 			icon: <RemoveCircle fontSize="medium" />,
 			handler: () => handleRemoveFromAlbum(albumId, diaryId, setAlbums, router),
 		},
 		{
-			text: 'Delete',
+			text: '일기 삭제하기',
 			style: { color: '#ff0000' },
 			icon: <DeleteForever fontSize="medium" />,
 			handler: () => handleDelete(diaryId, setAlbums, router),
@@ -156,7 +156,7 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 				setIsPublic={setIsPublic}
 				setIsEditing={setIsEditing}
 				component={
-					<MeetballsMenu isOpened={isOpened} setIsOpened={setIsOpened} width={'800cqw'}>
+					<MeetballsMenu isOpened={isOpened} setIsOpened={setIsOpened} width={'650cqw'}>
 						{buttonProps.map((buttonProp, index) => (
 							<Button key={index} className={style.button} onClick={buttonProp.handler}>
 								<span style={buttonProp.style}>{buttonProp.text}</span>
