@@ -1,26 +1,44 @@
 .container {
 	position: relative;
-	height: 15cqw;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
 	z-index: 1;
-
-	container-type: size;
+	margin: 10cqw 0 2.5cqw 0;
 }
 
 .container > div {
-	width: 100cqw;
-	height: 8cqw;
+	width: 86cqw;
 	padding-bottom: 1cqw;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.container > div > div {
+	display: flex;
+	gap: 3cqw;
+}
+
+.profile-image {
+	width: 15cqw;
+	height: 15cqw;
 
 	container-type: size;
 }
 
+.container > div > div > div:last-child {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 2.5cqw;
+}
+
+.author {
+	font-size: 4.25cqw;
+}
+
 .date {
-	font-size: 4cqw;
+	font-size: 3.25cqw;
 	color: #b2b2b2;
 }

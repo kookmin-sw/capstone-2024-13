@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   mongodb:
     container_name: mongodb
@@ -15,21 +13,21 @@ services:
       - you-know-what
     restart: unless-stopped
     tty: true
-  mystic:
-    container_name: mystic
-    build:
-      context: ./service/mystic
-      dockerfile: Dockerfile
-    env_file:
-      - ./service/mystic/.env
-    volumes:
-      - mystic_src_volume:/code/src
-    networks:
-      - you-know-what
-    restart: unless-stopped
-    tty: true
-    depends_on:
-      - mongodb
+  #mystic:
+  #  container_name: mystic
+  #  build:
+  #    context: ./service/mystic
+  #    dockerfile: Dockerfile
+  #  env_file:
+  #    - ./service/mystic/.env
+  #  volumes:
+  #    - mystic_src_volume:/code/src
+  #  networks:
+  #    - you-know-what
+  #  restart: unless-stopped
+  #  tty: true
+  #  depends_on:
+  #    - mongodb
   nestjs:
     container_name: nestjs
     build:
@@ -44,7 +42,8 @@ services:
     restart: unless-stopped
     tty: true
     depends_on:
-      - mystic
+      - mongodb
+      #- mystic
   nextjs:
     container_name: nextjs
     build:
@@ -87,13 +86,13 @@ volumes:
       type: none
       o: bind
       device: ./service/mongodb/db
-  mystic_src_volume:
-    name: mystic_src_volume
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./service/mystic/src
+  #mystic_src_volume:
+  #  name: mystic_src_volume
+  #  driver: local
+  #  driver_opts:
+  #    type: none
+  #    o: bind
+  #    device: ./service/mystic/src
   nestjs_src_volume:
     name: nestjs_src_volume
     driver: local

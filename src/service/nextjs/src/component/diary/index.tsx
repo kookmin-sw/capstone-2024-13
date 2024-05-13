@@ -36,9 +36,15 @@ const DiaryComponent = (props: {
 		isEditing,
 		setIsEditing,
 	} = props;
+
 	return (
 		<div className={style.container}>
-			<DiaryComponentHeader createdAt={createdAt} component={component} />
+			<DiaryComponentHeader
+				profileImageSrc={profileImageSrc}
+				author={author}
+				createdAt={createdAt}
+				component={component}
+			/>
 			<DiarySwiper images={images} />
 			{isEditing && setTitle ? (
 				<DiaryComponentEditTitle title={title} setTitle={setTitle} />
