@@ -39,7 +39,15 @@ const SearchDiaryIdPage = (props: { params: { id: string } }) => {
 
 	return (
 		<DiaryComponent
-			profileImageSrc={user?.profileImageId.toString()}
+			profileImageSrc={
+				user?.profileImageId
+					? user?.profileImageId.toString().startsWith('/')
+						? user?.profileImageId.toString()
+						: `${
+								process.env.NEXT_PUBLIC_S3_BUCKET_URL
+						  }/w512/profile/${user?.profileImageId.toString()}`
+					: undefined
+			}
 			author={user?.nickname}
 			createdAt={diary?.createdAt}
 			title={diary?.title}

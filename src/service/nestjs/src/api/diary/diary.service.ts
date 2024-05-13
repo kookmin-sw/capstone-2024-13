@@ -51,6 +51,14 @@ class DiaryService {
 		}
 	}
 
+	async findByIdAndDelete(id: string): Promise<DiaryDocument> {
+		try {
+			return await this.diaryModel.findByIdAndDelete(id);
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	async deleteOne(deleteRequestDto: Dto.Request.DeleteOne<DiaryDocument>): Promise<DeleteResult> {
 		try {
 			const { filter, options } = deleteRequestDto;

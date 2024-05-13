@@ -35,9 +35,9 @@ class UserController {
 	@ApiOperation({ summary: 'Find user', description: 'Find user' })
 	@ApiOkResponse({ type: User })
 	@ApiBadRequestResponse({ description: 'Bad request' })
-	async find(@Body() findRequestDto: Dto.Request.Find<UserDocument>): Promise<UserDocument> {
+	async find(@Body() findRequestDto: Dto.Request.Find<UserDocument>): Promise<UserDocument[]> {
 		try {
-			return await this.userService.find(findRequestDto).then(users => users[0]);
+			return await this.userService.find(findRequestDto);
 		} catch (error) {
 			throw error;
 		}

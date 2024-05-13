@@ -30,7 +30,6 @@ const handleThemeSelect = async (
 
 	await postConnectMystic('v3', theme)
 		.then((response: Types.ObjectId) => {
-			console.log(response);
 			setConnectionId(response);
 			setStep(step + 1);
 		})

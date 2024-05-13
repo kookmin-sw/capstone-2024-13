@@ -27,3 +27,13 @@
 .container > div:last-child::-webkit-scrollbar {
 	display: none;
 }
+
+.button {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: space-between !important;
+}
+
+.button > span {
+	color: #ff0000;
+}
