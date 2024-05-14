@@ -50,46 +50,45 @@
 }
 
 .multiple {
-	display: flex;
 	display: grid;
-	grid-template-rows: repeat(2, 48cqw);
-	grid-template-columns: repeat(2, 48cqw);
+	grid-template-rows: repeat(auto-fill, 48.25cqw);
+	grid-template-columns: repeat(auto-fill, 48.25cqw);
 	padding: 1cqw;
-	gap: 2cqw;
+	gap: 1.5cqw;
 }
 
 .vertical > div,
 .horizontal > div {
 	overflow: hidden;
 	position: relative;
-	border-radius: 5cqw;
+	border-radius: 2.5cqw;
 	box-shadow: 0 0 1cqw 0 rgba(0, 0, 0, 0.1);
 }
 
 .vertical > div:first-child {
-	width: 48cqw;
-	height: 100cqh;
+	width: 49.23cqw;
+	height: 100cqw;
 
 	grid-row: 1 / 3;
 	grid-column: 1;
 }
 
 .vertical > div:not(:first-child) {
-	width: 48cqw;
-	height: 48cqw;
+	width: 49.23cqw;
+	height: 49.23cqw;
 }
 
 .horizontal > div:first-child {
 	width: 100cqw;
-	height: 48cqh;
+	height: 49.23cqw;
 
 	grid-row: 1;
 	grid-column: 1 / 3;
 }
 
 .horizontal > div:not(:first-child) {
-	width: 48cqw;
-	height: 48cqh;
+	width: 49.23cqw;
+	height: 49.23cqw;
 }
 
 .vertical > div > img,

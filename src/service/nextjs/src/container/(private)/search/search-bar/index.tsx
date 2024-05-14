@@ -4,8 +4,7 @@ import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useState } from 'rea
 import { Search } from '@mui/icons-material';
 import style from '@/style/container/(private)/search/search-bar/index.module.css';
 import { Diary } from '@/type';
-import { postFindDiary } from '@/service';
-import { postSearchDiary } from '@/service/postSearchDiary';
+import { postSearchDiary } from '@/service';
 
 let latestId = 0;
 

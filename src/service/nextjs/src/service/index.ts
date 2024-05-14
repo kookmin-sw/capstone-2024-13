@@ -13,4 +13,6 @@ export * from './postLogout';
 export * from './postPresignedUrl';
 export * from './postRandomDiary';
 export * from './postRegister';
+export * from './postSearchDiary';
+export * from './postUploadImage';
 export * from './removeDiaryFromAlbum';
