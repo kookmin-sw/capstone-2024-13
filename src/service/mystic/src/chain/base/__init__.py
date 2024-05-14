@@ -12,17 +12,16 @@ from langchain.prompts					import (
 											SystemMessagePromptTemplate,
 											HumanMessagePromptTemplate
 										)
-
+from time import time
 class BaseChain(LLMChain):
 	def __init__(self, connection_id, template_id, llm, caption: str = None, filename = "./src/template/character.yml"):
-		prompt, memory = self.__set_configuration(connection_id, template_id, filename, llm, caption=caption)
+		prompt, memory,latest = self.__set_configuration(connection_id, template_id, filename, llm, caption=caption)
 		super().__init__(
 			llm=llm,
 			prompt=prompt,
 			memory=memory,
 			verbose=True,
 		)
-
 	def __call__(self, content):
 		try:
 			return super().__call__(content)
@@ -56,4 +55,4 @@ class BaseChain(LLMChain):
 					max_token_limit=256			# 토큰 제한
 				)
 
-		return prompt, memory
+		return prompt, memory, time()

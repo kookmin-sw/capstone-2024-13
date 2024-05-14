@@ -23,6 +23,10 @@ RUN	apt-get install -y --no-install-recommends build-essential python3-dev curl 
 RUN	poetry config virtualenvs.create false && \
 	poetry install --no-interaction --no-ansi
 
+RUN mkdir -p ./src/model/nlpconnect/vit-gpt2-image-captioning && \
+	pip install -U "huggingface_hub[cli]" && \
+	huggingface-cli download nlpconnect/vit-gpt2-image-captioning --local-dir ./src/model/nlpconnect/vit-gpt2-image-captioning
+
 RUN apt-get install wget && \
 	wget https://download.redis.io/releases/redis-7.2.0.tar.gz && \
 	tar xzf redis-7.2.0.tar.gz && \
