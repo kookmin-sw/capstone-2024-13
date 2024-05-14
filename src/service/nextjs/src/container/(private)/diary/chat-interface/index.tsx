@@ -1,16 +1,39 @@
 'use client';
 
-import { useContext, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import AuthContext from '@/context/auth';
 import Chat from '@/component/chat';
 import style from '@/style/container/(private)/diary/chat-interface/index.module.css';
 
-const DiaryPageChatInterface = () => {
+type ThemeType = {
+	id: number;
+	title: string;
+	name: string;
+	description: string;
+	src?: string;
+	audio?: string;
+};
+
+const themes: ThemeType[] = [
+	{
+		id: 0,
+		title: 'hmpark',
+		name: '박하명',
+		description: '게임 매니아 교수',
+		src: '/image/Park.png',
+	},
+	{ id: 1, title: 'sanghwan', name: '이상환', description: '자상한 교수', src: '/image/Lee.png' },
+	{ id: 2, title: 'shin-chan', name: '짱구', description: '장난꾸러기', src: '/image/Shin.png' },
+	{ id: 3, title: 'repoter', name: '인턴기자', description: 'MZ대표' },
+];
+
+const DiaryPageChatInterface = (props: {
+	theme: number | null;
+	messages: string[];
+	setMessages: Dispatch<SetStateAction<string[]>>;
+}) => {
 	const { me } = useContext(AuthContext);
-	const [messages, setMessages] = useState<string[]>([
-		'안녕하세요. 저는 당신의 하루에 귀기울이는 Mystic입니다.',
-		'안녕, 반가워',
-	]);
+	const { theme, messages, setMessages } = props;
 
 	return (
 		<div className={style.container}>
@@ -19,8 +42,8 @@ const DiaryPageChatInterface = () => {
 					index % 2 === 0 ? (
 						<Chat
 							key={index}
-							nickname={'Mystic'}
-							profileImageId={'/image/default-profile-image.png'}
+							nickname={themes[theme].name}
+							profileImageId={themes[theme].src}
 							content={message}
 							align="right"
 						/>

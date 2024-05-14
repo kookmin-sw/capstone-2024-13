@@ -1,6 +1,6 @@
 import { Trim } from '@miaooo/class-transformer-trim';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 class UploadImage {
 	@IsNotEmpty()
@@ -9,11 +9,11 @@ class UploadImage {
 	@ApiProperty({ description: 'Connection id' })
 	connectionId: string;
 
-	@IsNotEmpty()
+	@IsOptional()
 	@IsString()
 	@Trim()
 	@ApiProperty({ description: 'Image url to upload' })
-	url: string;
+	url?: string;
 }
 
 export default UploadImage;

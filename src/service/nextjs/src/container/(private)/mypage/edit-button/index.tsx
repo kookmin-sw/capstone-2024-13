@@ -1,7 +1,7 @@
 import Button from '@/component/button';
 import AuthContext from '@/context/auth';
 import { patchFetcher } from '@/service/api';
-import { patchProfileImage } from '@/service/patchProfileImage';
+import { patchProfileImage } from '@/service';
 import style from '@/style/container/(private)/mypage/edit-button/index.module.css';
 import { Me } from '@/type';
 import { Dispatch, SetStateAction, useContext } from 'react';

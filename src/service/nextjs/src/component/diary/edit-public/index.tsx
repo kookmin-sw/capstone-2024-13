@@ -15,6 +15,7 @@ const DiaryComponentEditPublic = (props: {
 				id="toggle"
 				hidden
 				className={style.checkbox}
+				checked={isPublic}
 				onChange={() => {
 					setIsPublic(!isPublic);
 				}}

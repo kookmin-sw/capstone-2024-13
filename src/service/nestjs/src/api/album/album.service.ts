@@ -81,9 +81,7 @@ class AlbumService {
 	): Promise<AlbumDocument[]> {
 		try {
 			const { filter, update, options } = updateManyRequestDto;
-			const result = await this.albumModel.updateMany(filter, update, options);
-
-			console.log(result);
+			await this.albumModel.updateMany(filter, update, options);
 
 			return await this.albumModel.find(filter);
 		} catch (error) {

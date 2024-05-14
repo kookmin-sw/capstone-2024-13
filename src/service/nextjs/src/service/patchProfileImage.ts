@@ -1,21 +1,10 @@
 import { Me } from '@/type';
-import { postPresignedUrl } from './postPresignedUrl';
-import { patchFetcher, postFetcher } from './api';
+import { patchFetcher } from './api';
+import { postUploadImage } from './postUploadImage';
+import { AxiosError } from 'axios';
 
 export const patchProfileImage = async (file: File): Promise<Me> => {
-	const presignedUrl = await postPresignedUrl('profile').catch(error => {
-		throw error;
-	});
-	const profileImageId = presignedUrl.fields.key.split('/')[2];
-	const formData = new FormData();
-
-	for (const key in presignedUrl.fields) {
-		formData.append(key, presignedUrl.fields[key]);
-	}
-	formData.append('Content-Type', file.type);
-	formData.append('file', file);
-
-	await postFetcher<any>(presignedUrl.url, formData).catch((error: Error) => {
+	const profileImageId = await postUploadImage('profile', file).catch((error: AxiosError) => {
 		throw error;
 	});
 

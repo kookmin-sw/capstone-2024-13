@@ -29,3 +29,25 @@
 .content {
 	word-break: break-word;
 }
+
+.button {
+	width: 100cqw;
+	height: 15cqw;
+
+	container-type: size;
+}
+
+.button > button {
+	width: 50cqw;
+	height: 100cqh;
+	border: none !important;
+	border-top: 1px solid #dddddd !important;
+	border-radius: 0;
+	color: #000000;
+
+	container-type: size;
+}
+
+.button > button:first-child {
+	border-right: 1px solid #dddddd !important;
+}
