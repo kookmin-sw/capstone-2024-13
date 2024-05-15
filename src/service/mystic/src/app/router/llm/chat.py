@@ -37,4 +37,19 @@ async def invoke(request: ChatInvokeRequest):
 	invoke_output = model(request.content)['text']
 	connection[request.connection_id]['latest'] = time()
 	print(f'invoke_output: {invoke_output}')
-	return ChatInvokeResponse(content=invoke_output)
+	response = ChatInvokeResponse(content=invoke_output)
+	if '종료' in response.content:
+		print('DISCONNECTED')
+		response.content = 'END'
+		return response
+	else:
+		return response
+	
+@router.post("/summary", response_model=ChatInvokeResponse)
+async def summary(request: ChatInvokeRequest):
+	model = connection[request.connection_id]['chain']
+	if model is None:
+		raise HTTPException(status_code=400, detail="Bad Request")
+	summary = model('학생의 입장에서 일기로 만들어줘. 구구절절하게 쓰지 말고 사실로만 작성해줘. 대화에 대한 내용은 제외해줘.')['text']
+	response = ChatInvokeResponse(content=summary)
+	return response
