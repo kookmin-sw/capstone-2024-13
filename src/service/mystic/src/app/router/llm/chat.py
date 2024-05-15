@@ -41,7 +41,6 @@ async def invoke(request: ChatInvokeRequest):
 	if '종료' in response.content:
 		print('DISCONNECTED')
 		response.content = 'END'
-		del connection[request.connection_id]
 		return response
 	else:
 		return response
@@ -51,6 +50,6 @@ async def summary(request: ChatInvokeRequest):
 	model = connection[request.connection_id]['chain']
 	if model is None:
 		raise HTTPException(status_code=400, detail="Bad Request")
-	summary = model('일기로 만들어줘')['text']
+	summary = model('학생의 입장에서 일기로 만들어줘. 구구절절하게 쓰지 말고 사실로만 작성해줘. 대화에 대한 내용은 제외해줘.')['text']
 	response = ChatInvokeResponse(content=summary)
 	return response
