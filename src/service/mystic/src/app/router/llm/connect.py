@@ -14,11 +14,14 @@ router = APIRouter(prefix="/connect", tags=["connect"])
 
 def monitor_connection():
     global connection
-    if len(connection) != 0:
-        print('number of connection: ', len(connection))
-        flush_connections()
-    else:
-        print('no connection', exc_info=True)
+    try:
+        if len(connection) != 0:
+            print('number of connection: ', len(connection))
+            flush_connections()
+        else:
+            print('no connection')
+    except Exception as e:
+        print('monitor_connection error', exc_info=True)
 
 def flush_connections():
     global connection
