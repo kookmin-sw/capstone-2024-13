@@ -1,6 +1,6 @@
 .container {
 	width: 70cqw;
-	height: 50cqw;
+	height: 55cqw;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -38,21 +38,8 @@
 	font-size: 5cqw;
 }
 
-.input {
-	width: 80cqw;
-}
-
-.input > label {
-	color: #b2b2b2;
-}
-
-.input > div {
-	background-color: #f5f5f5;
-}
-
-.input > div::before,
-.input > div::after {
-	display: none;
+.form > p {
+	color: #ff0000 !important;
 }
 
 .footer {

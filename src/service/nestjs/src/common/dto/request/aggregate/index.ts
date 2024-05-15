@@ -11,5 +11,3 @@ export class Aggregate {
 	@ApiProperty()
 	options?: AggregateOptions;
 }
-
-export default Aggregate;

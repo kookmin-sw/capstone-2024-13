@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { Album } from '@/type';
-import { getAlbums, postConnectMystic, postCreateDiary } from '@/service';
+import { getAlbums, postConnectMystic, postCreateDiary, postPresignedUrl } from '@/service';
 import AlbumContext from '@/context/album';
 import DiaryPageThemeSelect from '@/container/(private)/diary/theme-select';
 import DiaryPageImageSelect from '@/container/(private)/diary/image-select';
@@ -16,6 +16,9 @@ import DiaryPageCreating from '@/container/(private)/diary/creating';
 import Button from '@/component/button';
 import style from '@/style/app/(private)/diary/index.module.css';
 import { Types } from 'mongoose';
+import { AxiosError } from 'axios';
+import { postUploadImage } from '@/service';
+import { postFetcher } from '@/service/api';
 
 const handleThemeSelect = async (
 	theme: number | null,
@@ -30,8 +33,7 @@ const handleThemeSelect = async (
 
 	await postConnectMystic('v3', theme)
 		.then((response: Types.ObjectId) => {
-			console.log(response);
-			setConnectionId(response);
+			setConnectionId(response['connection_id']);
 			setStep(step + 1);
 		})
 		.catch((error: Error) => {
@@ -40,8 +42,42 @@ const handleThemeSelect = async (
 		});
 };
 
-const handleNextStep = (step: number, setStep: Dispatch<SetStateAction<number>>) => {
-	setStep(step + 1);
+const handleUploadImage = async (
+	connectionId: Types.ObjectId | null,
+	files: File[],
+	setImages: Dispatch<SetStateAction<string[]>>,
+	setMessages: Dispatch<SetStateAction<string[]>>,
+	step: number,
+	setStep: Dispatch<SetStateAction<number>>,
+) => {
+	const newImages = [];
+	if (files.length) {
+		for (const file of files) {
+			const image = await postUploadImage('diary', file).catch((error: AxiosError) => {
+				console.error(error);
+				return '';
+			});
+			if (image === '') {
+				setImages([]);
+				alert('이미지 업로드에 실패했습니다.');
+				return;
+			}
+			newImages.push(`${process.env.NEXT_PUBLIC_S3_BUCKET_URL}/w512/diary/${image}`);
+		}
+	}
+
+	const url = newImages.length ? newImages[0] : undefined;
+
+	await postFetcher<{ content: string }>('/mystic/image/upload', { connectionId, url })
+		.then((response: { content: string }) => {
+			setStep(step + 1);
+			setMessages([response.content]);
+			setImages(newImages);
+		})
+		.catch((error: AxiosError) => {
+			console.error(error);
+			alert('이미지 업로드에 실패했습니다.');
+		});
 };
 
 const handleCreateDiary = (
@@ -77,17 +113,7 @@ const handleUploadDiary = (
 		.catch((error: Error) => {
 			console.error(error);
 		});
-	router.push('/');
-};
-
-const createMockImages = (length: number) => {
-	const images = [];
-	for (let i = 0; i < length; i++) {
-		const randomIndex = Math.floor(Math.random() * 10);
-
-		images.push(`/image/default-image-0${randomIndex}.png`);
-	}
-	return images;
+	router.push('/album');
 };
 
 const indicatorProps = [
@@ -109,13 +135,13 @@ const DiaryPage = () => {
 		'content'.repeat(Math.floor(Math.random() * 30) + 1),
 	);
 	const [isPublic, setIsPublic] = useState<boolean>(false);
-	const [images, setImages] = useState<string[]>(
-		createMockImages(Math.floor(Math.random() * 5) + 1),
-	);
+	const [images, setImages] = useState<string[]>([]);
+	const [files, setFiles] = useState<File[]>([]);
+	const [messages, setMessages] = useState<string[]>([]);
 	const diaryPageComponents = [
 		<DiaryPageThemeSelect key={1} theme={theme} setTheme={setTheme} />,
-		<DiaryPageImageSelect key={2} images={images} setImages={setImages} />,
-		<DiaryPageChatInterface key={3} />,
+		<DiaryPageImageSelect key={2} images={images} setImages={setImages} setFiles={setFiles} />,
+		<DiaryPageChatInterface key={3} theme={theme} messages={messages} setMessages={setMessages} />,
 		<DiaryPageFinalDraft
 			key={4}
 			title={title}
@@ -129,7 +155,7 @@ const DiaryPage = () => {
 	];
 	const handlers = [
 		() => handleThemeSelect(theme, setConnectionId, step, setStep),
-		() => handleNextStep(step, setStep),
+		() => handleUploadImage(connectionId, files, setImages, setMessages, step, setStep),
 		() => handleCreateDiary(step, setStep, setIsCreating),
 		() =>
 			handleUploadDiary(title, content, isPublic, images, setAlbums, router as AppRouterInstance),

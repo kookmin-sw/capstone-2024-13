@@ -2,10 +2,11 @@
 
 import DiaryComponent from '@/component/diary';
 import { getDiary } from '@/service';
-import { postFindUserById } from '@/service/postFindUserById';
+import { postFindUserById } from '@/service';
 import { Diary, User } from '@/type';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import style from '@/style/app/(private)/search/diary/[id]/index.module.css';
 
 const SearchDiaryIdPage = (props: { params: { id: string } }) => {
 	const { id } = props.params;
@@ -38,15 +39,25 @@ const SearchDiaryIdPage = (props: { params: { id: string } }) => {
 	}, [diary, id, router]);
 
 	return (
-		<DiaryComponent
-			profileImageSrc={user?.profileImageId.toString()}
-			author={user?.nickname}
-			createdAt={diary?.createdAt}
-			title={diary?.title}
-			content={diary?.content}
-			isPublic={diary?.isPublic}
-			images={diary?.images}
-		/>
+		<div className={style.container}>
+			<DiaryComponent
+				profileImageSrc={
+					user?.profileImageId
+						? user?.profileImageId.toString().startsWith('/')
+							? user?.profileImageId.toString()
+							: `${
+									process.env.NEXT_PUBLIC_S3_BUCKET_URL
+							  }/w512/profile/${user?.profileImageId.toString()}`
+						: undefined
+				}
+				author={user?.nickname}
+				createdAt={diary?.createdAt}
+				title={diary?.title}
+				content={diary?.content}
+				isPublic={diary?.isPublic}
+				images={diary?.images}
+			/>
+		</div>
 	);
 };
 

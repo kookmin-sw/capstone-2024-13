@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import { Diary } from '@/type';
-import { postRandomDiary } from '@/service/postRandomDiary';
+import { postRandomDiary } from '@/service';
 import Header from '@/component/header';
 import SearchBar from '@/container/(private)/search/search-bar';
 import SearchPageDiary from '@/container/(private)/search/diary';
 import style from '@/style/app/(private)/search/index.module.css';
-import { useRouter } from 'next/navigation';
 
 const SearchPage = () => {
 	const [isSearching, setIsSearching] = useState<boolean>(false);
@@ -24,14 +24,13 @@ const SearchPage = () => {
 			})
 			.catch((error: Error) => {
 				console.error(error);
-				router.refresh();
 			});
 	}, []);
 
 	return (
 		<div className={style.container}>
 			<Header title="검색" />
-			<SearchBar setIsSearching={setIsSearching} />
+			<SearchBar setDiaries={setDiaries} setIsSearching={setIsSearching} />
 			<div>
 				{isSearching ? (
 					<CircularProgress />

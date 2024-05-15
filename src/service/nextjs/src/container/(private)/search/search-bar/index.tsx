@@ -3,19 +3,51 @@
 import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useState } from 'react';
 import { Search } from '@mui/icons-material';
 import style from '@/style/container/(private)/search/search-bar/index.module.css';
+import { Diary } from '@/type';
+import { postSearchDiary } from '@/service';
 
-const handleChange = (
+let latestId = 0;
+
+const handleChange = async (
 	event: ChangeEvent<HTMLInputElement>,
 	setContent: Dispatch<SetStateAction<string>>,
+	setDiaries: Dispatch<SetStateAction<Diary[]>>,
 	setIsSearching: Dispatch<SetStateAction<boolean>>,
+	searchTimeout: NodeJS.Timeout | undefined,
+	setSearchTimeout: Dispatch<SetStateAction<NodeJS.Timeout | undefined>>,
 ) => {
 	const { value } = event.target;
 
 	setContent(value);
+	setIsSearching(true);
+
+	const id = ++latestId;
+
+	if (searchTimeout) {
+		clearTimeout(searchTimeout);
+	}
+	setSearchTimeout(
+		setTimeout(async () => {
+			await postSearchDiary(value)
+				.then((response: Diary[]) => {
+					if (id === latestId) {
+						setDiaries(response);
+						setIsSearching(false);
+					}
+				})
+				.catch((error: Error) => {
+					console.error(error);
+				});
+		}, 500),
+	);
 };
 
-const SearchBar = (props: { setIsSearching: Dispatch<SetStateAction<boolean>> }) => {
-	const { setIsSearching } = props;
+const SearchBar = (props: {
+	setDiaries: Dispatch<SetStateAction<Diary[]>>;
+	setIsSearching: Dispatch<SetStateAction<boolean>>;
+}) => {
+	const { setDiaries, setIsSearching } = props;
+	const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | undefined>(undefined);
 	const [content, setContent] = useState<string>('');
 
 	return (
@@ -36,7 +68,14 @@ const SearchBar = (props: { setIsSearching: Dispatch<SetStateAction<boolean>> })
 						event.stopPropagation();
 					}}
 					onChange={(event: ChangeEvent<HTMLInputElement>) => {
-						handleChange(event, setContent, setIsSearching);
+						handleChange(
+							event,
+							setContent,
+							setDiaries,
+							setIsSearching,
+							searchTimeout,
+							setSearchTimeout,
+						);
 					}}
 				/>
 			</label>

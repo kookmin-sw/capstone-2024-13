@@ -6,6 +6,7 @@
 	flex-grow: 0;
 	justify-content: space-between;
 	align-items: center;
+	z-index: 1;
 
 	container-type: size;
 }
