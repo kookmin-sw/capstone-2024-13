@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 
 const LoginCallbackPage = () => {
 	const router = useRouter();
-	router.push('/album');
+	router.push('/');
 	return null;
 };
 

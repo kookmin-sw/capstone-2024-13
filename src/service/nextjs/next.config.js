@@ -13,6 +13,15 @@ const withPWA = require('next-pwa')({
 const nextConfig = withPWA({
 	// Your Next.js config
 	reactStrictMode: false,
+	images: {
+		domains: [process.env.NEXT_PUBLIC_S3_BUCKET_URL, 'd1jmbceob3xhv5.cloudfront.net'],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: process.env.NEXT_PUBLIC_S3_BUCKET_URL,
+			},
+		],
+	},
 });
 
 module.exports = nextConfig;

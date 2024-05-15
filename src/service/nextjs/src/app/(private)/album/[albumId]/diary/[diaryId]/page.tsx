@@ -10,7 +10,7 @@ import DiaryComponent from '@/component/diary';
 import MeetballsMenu from '@/component/meetballs-menu';
 import Button from '@/component/button';
 import AuthContext from '@/context/auth';
-import { removeDiaryFromAlbum } from '@/service/removeDiaryFromAlbum';
+import { removeDiaryFromAlbum } from '@/service';
 import AlbumContext from '@/context/album';
 import Modal from '@/component/modal';
 import style from '@/style/app/(private)/album/[albumId]/diary/[diaryId]/index.module.css';
@@ -99,23 +99,23 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 	const buttonProps = [
 		{
 			text: '앨범에 추가하기',
-			icon: <LibraryAdd fontSize="medium" />,
+			icon: <LibraryAdd fontSize="small" />,
 			handler: () => handleAddToAlbum(setModalIsOpened, setIsOpened),
 		},
 		{
 			text: '일기 수정하기',
-			icon: <Edit fontSize="medium" />,
+			icon: <Edit fontSize="small" />,
 			handler: () => handleEdit(setIsEditing, setIsOpened),
 		},
 		{
 			text: '앨범에서 삭제하기',
-			icon: <RemoveCircle fontSize="medium" />,
+			icon: <RemoveCircle fontSize="small" />,
 			handler: () => handleRemoveFromAlbum(albumId, diaryId, setAlbums, router),
 		},
 		{
 			text: '일기 삭제하기',
 			style: { color: '#ff0000' },
-			icon: <DeleteForever fontSize="medium" />,
+			icon: <DeleteForever fontSize="small" />,
 			handler: () => handleDelete(diaryId, setAlbums, router),
 		},
 	];
@@ -144,28 +144,31 @@ const AlbumIdDiaryIdPage = (props: { params: { diaryId: string } }) => {
 
 	return (
 		<>
-			<DiaryComponent
-				createdAt={diary?.createdAt}
-				title={title}
-				content={content}
-				isPublic={isPublic}
-				isEditing={isEditing}
-				images={diary?.images}
-				setTitle={setTitle}
-				setContent={setContent}
-				setIsPublic={setIsPublic}
-				setIsEditing={setIsEditing}
-				component={
-					<MeetballsMenu isOpened={isOpened} setIsOpened={setIsOpened} width={'650cqw'}>
-						{buttonProps.map((buttonProp, index) => (
-							<Button key={index} className={style.button} onClick={buttonProp.handler}>
-								<span style={buttonProp.style}>{buttonProp.text}</span>
-								{buttonProp.icon}
-							</Button>
-						))}
-					</MeetballsMenu>
-				}
-			/>
+			<div className={style.container}>
+				<DiaryComponent
+					diaryId={diaryId}
+					createdAt={diary?.createdAt}
+					title={title}
+					content={content}
+					isPublic={isPublic}
+					isEditing={isEditing}
+					images={diary?.images}
+					setTitle={setTitle}
+					setContent={setContent}
+					setIsPublic={setIsPublic}
+					setIsEditing={setIsEditing}
+					component={
+						<MeetballsMenu isOpened={isOpened} setIsOpened={setIsOpened} width={'600cqw'}>
+							{buttonProps.map((buttonProp, index) => (
+								<Button key={index} className={style.button} onClick={buttonProp.handler}>
+									<span style={buttonProp.style}>{buttonProp.text}</span>
+									{buttonProp.icon}
+								</Button>
+							))}
+						</MeetballsMenu>
+					}
+				/>
+			</div>
 			<Modal isOpened={modalIsOpened} setIsOpened={setModalIsOpened}>
 				{diary && <AddToAlbum diary={diary} />}
 			</Modal>
