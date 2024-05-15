@@ -22,8 +22,9 @@ class ImageUploadResponse(BaseModel):
 
 @router.post("/upload", response_model=ImageUploadResponse)
 async def image_upload(request: ImageUploadRequest):
-	caption = None
-	if request.url is not None:
+	if request.url == " ":
+		caption = None
+	else:
 		caption = image_captioning(request.url)
 		print('caption:', caption)
 	connection[request.connection_id]["caption"] = caption
