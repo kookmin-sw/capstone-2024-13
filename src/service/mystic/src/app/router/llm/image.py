@@ -3,14 +3,14 @@ from fastapi	import APIRouter, HTTPException
 from pydantic 	import BaseModel
 from app.util	import connection
 from app.util	import image_captioning
-from chain		import V1, V2, V3
+from chain		import ChainV1, ChainV2, ChainV3
 
 router = APIRouter(prefix="/image", tags=["image"])
 
 chain = {
-	"v1": V1,
-	"v2": V2,
-	"v3": V3
+	"v1": ChainV1,
+	"v2": ChainV2,
+	"v3": ChainV3
 }
 
 class ImageUploadRequest(BaseModel):
@@ -26,11 +26,12 @@ async def image_upload(request: ImageUploadRequest):
 	if request.url is not None:
 		caption = image_captioning(request.url)
 		print('caption:', caption)
-	connection[request.connection_id].caption = caption
-	connection[request.connection_id].chain = chain[connection[request.connection_id].version](
+	connection[request.connection_id]["caption"] = caption
+	connection[request.connection_id]['chain'] = chain[connection[request.connection_id]['version']](
 		connection_id=request.connection_id,
-		template_id=connection[request.connection_id].template_id,
+		template_id=connection[request.connection_id]["template_id"],
 		caption=caption
 	)
-
+	print('connection:', connection[request.connection_id])
+	print('chain:', connection[request.connection_id]["chain"])
 	return ImageUploadResponse(content="Image uploaded successfully")

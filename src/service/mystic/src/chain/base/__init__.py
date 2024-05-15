@@ -12,7 +12,7 @@ from langchain.prompts					import (
 											SystemMessagePromptTemplate,
 											HumanMessagePromptTemplate
 										)
-
+from time import time
 class BaseChain(LLMChain):
 	def __init__(self, connection_id, template_id, llm, caption: str = None, filename = "./src/template/character.yml"):
 		prompt, memory = self.__set_configuration(connection_id, template_id, filename, llm, caption=caption)
@@ -22,7 +22,6 @@ class BaseChain(LLMChain):
 			memory=memory,
 			verbose=True,
 		)
-
 	def __call__(self, content):
 		try:
 			return super().__call__(content)
