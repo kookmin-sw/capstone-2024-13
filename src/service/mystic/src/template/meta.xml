@@ -3,7 +3,7 @@
 <name>{name}</name>
 <age>{age}</age>
 <job>{job}</job>
-<personality>kind</personality>
+<personality>{personality}</personality>
 <background>1명의 학생과의 대화 상황이야.</background>
 <counterpart>{counterpart}</counterpart>
 <language>Korean</language>
