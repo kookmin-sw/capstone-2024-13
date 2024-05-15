@@ -13,20 +13,20 @@ router = APIRouter(prefix="/connect", tags=["connect"])
 
 def monitor_connection():
     global connection
-    try:
+    if len(connection) != 0:
         print('number of connection: ', len(connection))
-    except:
+        flush_connections()
+    else:
         print('no connection', exc_info=True)
 
 def flush_connections():
     global connection
     for i in list(connection):
-        print('latest: ', connection[i]['latest'], 'time: ', time_module.time(), 'diff: ', time_module.time() - connection[i]['latest'])
         if time_module.time() - connection[i]['latest'] > 600:
+            print('latest: ', connection[i]['latest'], 'time: ', time_module.time(), 'diff: ', time_module.time() - connection[i]['latest'])
             del connection[i]
             print(f'connection {i} is deleted')
 
-schedule.every(10).minutes.do(flush_connections)
 schedule.every(5).minutes.do(monitor_connection)
 
 def run_schedule():

@@ -15,7 +15,7 @@ from langchain.prompts					import (
 from time import time
 class BaseChain(LLMChain):
 	def __init__(self, connection_id, template_id, llm, caption: str = None, filename = "./src/template/character.yml"):
-		prompt, memory,latest = self.__set_configuration(connection_id, template_id, filename, llm, caption=caption)
+		prompt, memory = self.__set_configuration(connection_id, template_id, filename, llm, caption=caption)
 		super().__init__(
 			llm=llm,
 			prompt=prompt,
@@ -55,4 +55,4 @@ class BaseChain(LLMChain):
 					max_token_limit=256			# 토큰 제한
 				)
 
-		return prompt, memory, time()
+		return prompt, memory
