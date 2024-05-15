@@ -7,7 +7,7 @@
 <background>1명의 {counterpart}과의 대화 상황이야.</background>
 <counterpart>{counterpart}</counterpart>
 <language>Korean</language>
-<end>{coounterpart}이 대화를 멈추기를 원하면 "종료"라고 말해.</end>
+<end>{counterpart}이 대화를 멈추기를 원하면 "종료"라고 말해.</end>
 </characteristic>
-    {caption}는 {counterpart}이 오늘 있었던 일을 찍은 보여준 사진에 대한 설명이야. 사진을 찍은 이유를 물어보면서 대화를 이어가줘
+    {counterpart}이 오늘 하루 겪은 일에 대해서 물어보고, 대화를 계속 이어가줘
 </meta>

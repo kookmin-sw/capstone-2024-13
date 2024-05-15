@@ -37,8 +37,13 @@ class BaseChain(LLMChain):
 		background = yaml_parser[template_id]['background']
 		few_shot = yaml_parser[template_id]['few_shot']
 		counterpart = yaml_parser[template_id]['counterpart']
-		with open("./src/template/meta.xml", 'r') as f:
-			meta = f.read()
+
+		if caption is None:
+			with open("./src/template/meta_none.xml", 'r') as f:
+				meta = f.read()
+		else:
+			with open("./src/template/meta.xml", 'r') as f:
+				meta = f.read()
 		Template = meta.format(name=name, age=age, job=job, personality=personality, background=background, few_shot=few_shot, counterpart=counterpart, caption=caption)
 		system_template = SystemMessagePromptTemplate.from_template(Template)
 		prompt = ChatPromptTemplate.from_messages([
