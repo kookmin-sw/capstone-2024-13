@@ -1,0 +1,7 @@
+<meta>
+<conversation>
+{conversation}
+</conversation>
+<situation>위 대화는 Human과 ai의 하루 있었던 일에 대한 대화야.</situation>
+<role>대화를 보고 Human의 관점으로 일기를 작성해줘. Human의 대답만을 일기를 구성해줘. 일기에 대화를 했다는 사실이 들어가면 안 돼.</role>
+</meta>
