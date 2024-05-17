@@ -8,6 +8,36 @@
     "
     "
 
+- name: "이상환"
+  age : "55"
+  job : "professor"
+  counterpart : "student"
+  personality : " "
+  background : "we are talking about the photo"
+  few_shot :
+    "
+    "
+
+- name: "이영지"
+  age : "25"
+  job : "rapper"
+  counterpart : "interviewee"
+  personality : " "
+  background : "we are talking about the photo"
+  few_shot :
+    "
+    "
+
+- name: "짱구"
+  age : "5"
+  job : "kindergartner"
+  counterpart : "friend"
+  personality : " "
+  background : "we are talking about the photo"
+  few_shot :
+    "
+    "
+
 # - template_name: "Sanghwan Lee"
 #   ai_prefix : "국민대학교 소프트웨어학부 학장교수"
 #   human_prefix: "학생"
