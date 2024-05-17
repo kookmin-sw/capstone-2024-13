@@ -22,13 +22,11 @@ class ImageUploadResponse(BaseModel):
 
 @router.post("/upload", response_model=ImageUploadResponse)
 async def image_upload(request: ImageUploadRequest):
-	if request.url == " ":
-		caption = None
-	else:
+	caption = None
+	if request.url:
 		caption = image_captioning(request.url)
 		print('caption:', caption)
 	
-	connection[request.connection_id]["caption"] = caption
 	connection[request.connection_id]['chain'] = chain[connection[request.connection_id]['version']](
 		connection_id=request.connection_id,
 		template_id=connection[request.connection_id]["template_id"],
@@ -37,5 +35,8 @@ async def image_upload(request: ImageUploadRequest):
 
 	print('connection:', connection[request.connection_id])
 	print('chain:', connection[request.connection_id]["chain"])
+
+	for key, value in connection.items():
+		print(f'connection {key}: {value}')
 
 	return ImageUploadResponse(content=connection[request.connection_id]['chain'].greeting)
