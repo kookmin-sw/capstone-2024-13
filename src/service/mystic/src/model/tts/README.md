@@ -11,6 +11,7 @@
  ### [Example](#example)
  ### [Reference](#reference)
 
+</div>
 
 ## Abstact
 ### 2024 캡스톤 디자인 프로젝트 팀 '아니 근데 오늘 진짜'는 사용자와 Large-Language-Model(이하 LLM)간의 음성대화를 통해 하루의 일기를 작성하는 서비스를 구현한다. 이를 위해 LLM의 Output인 Text를 Speech 즉, 음성데이터로 변환하는 기술이 필요하다. 이를 위해 Text-to-Speech 기능을 구현하였으며 추가적으로 유명인의 목소리를 합성하는 Voice Clonning 기능도 구현하였다.
@@ -41,7 +42,7 @@ Batch size|4
 Grad accumulation steps|1
 Max permitted audio size in seconds|20
 
-### Train Graph
+## Train result
 ### Train
 <p align="center">  <img src="./assets/train_avg_loss_mel_ce.png" align="center" width="45%">  <img src="./assets/train_avg_loss_text_ce.png" align="center" width="45%">  <figcaption align="center">
 
@@ -55,25 +56,25 @@ Max permitted audio size in seconds|20
 ### [이상환 교수님](https://scholar.google.co.kr/citations?user=r_IjG60AAAAJ&hl=ko&oi=ao)
 ### 내가 그린 얼룩달룩 표범그림은 참 잘 그린 얼룩달룩 표범그림이고, 네가 그린 알룩달룩 표범그림은 참 잘 못 그린 알룩달룩 표범그림이다.
 <audio controls>
-    <source src='./assets/lee_ex.wav'>
+    <source src='assets/lee_ex.mp3',type="audio/mpeg">
 </audio>
 
 ### [박하명 교수님](https://scholar.google.co.kr/citations?user=PqGNewQAAAAJ&hl=ko&oi=sra)
 ### 어느날 한라산 산삼이 먹고 싶다며 나를 데려간 제주도에서 저기저 돌하르방 코는 아들 날 코인가.
 <audio controls>
-    <source src='./assets/park_ex.wav'>
+    <source src='assets/park_ex.mp3'>
 </audio>
 
 ### [래퍼 이영지](https://namu.wiki/w/%EC%9D%B4%EC%98%81%EC%A7%80)
 ### 앞 집 팥죽은 붉은 팥 풋팥죽이고 , 뒷집 콩죽은 햇콩단콩 콩죽,우리집 깨죽은 검은깨 깨죽인데 사람들은 햇콩 단콩 콩죽 깨죽 죽먹기를 싫어하더라.
 <audio controls>
-    <source src='./assets/young_ex.wav'>
+    <source src='assets/young_ex.mp3'>
 </audio>
 
 ### [스트리머 랄로](https://namu.wiki/w/%EB%9E%84%EB%A1%9C)
 ### 불편해? 불편하면 자세를 고쳐 앉아~ 보는 자세가 잘못된 거 아니에요,,,편하게들 보세요!
 <audio controls>
-    <source src='./assets/ralo_ex.wav'>
+    <source src='assets/ralo_ex.mp3'>
 </audio>
 
 ## Reference
@@ -83,4 +84,3 @@ Max permitted audio size in seconds|20
 ### [래퍼 이영지 데이터셋1 출처](https://www.youtube.com/watch?v=97w6Sojb_Sw&t=8s)
 ### [래퍼 이영지 데이터셋2 출처](https://www.youtube.com/watch?v=TQtHNFv4uyI&t=31s)
 ### [스트리머 랄로 데이터셋 출처](https://www.youtube.com/watch?v=QfdXgZoyHl8&t=1276s)
-</div>
