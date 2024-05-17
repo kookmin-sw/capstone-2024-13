@@ -15,13 +15,14 @@ from langchain.prompts					import (
 from time import time
 class BaseChain(LLMChain):
 	def __init__(self, connection_id, template_id, llm, caption: str = None, filename = "./src/template/character.yml"):
-		prompt, memory = self.__set_configuration(connection_id, template_id, filename, llm, caption=caption)
+		prompt, memory, greeting = self.__set_configuration(connection_id, template_id, filename, llm, caption=caption)
 		super().__init__(
 			llm=llm,
 			prompt=prompt,
 			memory=memory,
 			verbose=True,
 		)
+		self.greeting = greeting
 
 	def __call__(self, content):
 		try:
@@ -36,10 +37,9 @@ class BaseChain(LLMChain):
 		job = yaml_parser[template_id]['job']
 		personality = yaml_parser[template_id]['personality']
 		background = yaml_parser[template_id]['background']
+		greeting = yaml_parser[template_id]['greeting']
 		few_shot = yaml_parser[template_id]['few_shot']
 		counterpart = yaml_parser[template_id]['counterpart']
-		
-		self.greeting = yaml_parser[template_id]['greeting']
 
 		if caption is None:
 			with open("./src/template/meta_none.xml", 'r') as f:
@@ -47,6 +47,7 @@ class BaseChain(LLMChain):
 		else:
 			with open("./src/template/meta.xml", 'r') as f:
 				meta = f.read()
+
 		Template = meta.format(name=name, age=age, job=job, personality=personality, background=background, few_shot=few_shot, counterpart=counterpart, caption=caption)
 		system_template = SystemMessagePromptTemplate.from_template(Template)
 		prompt = ChatPromptTemplate.from_messages([
@@ -55,7 +56,6 @@ class BaseChain(LLMChain):
 					HumanMessagePromptTemplate.from_template("{human_input}"),	# 사용자 입력을 템플릿에 삽입
 				])
 		memory = ConversationBufferWindowMemory(
-					# llm=llm,					# LLM 모델
 					memory_key=connection_id,	# memory key
 					ai_prefix=job,				# AI 메시지 접두사
 					human_prefix=counterpart,	# 사용자 메시지 접두사
@@ -64,4 +64,4 @@ class BaseChain(LLMChain):
 					max_token_limit=256			# 토큰 제한
 				)
 
-		return prompt, memory
+		return prompt, memory, greeting
