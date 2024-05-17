@@ -30,29 +30,33 @@ class ChatInvokeRequest(BaseModel):
 class ChatInvokeResponse(BaseModel):
 	content: str
 
+class ChatSummaryRequest(BaseModel):
+	connection_id: str
+
+class ChatSummaryResponse(BaseModel):
+	content: str
+
 @router.post("/invoke", response_model=ChatInvokeResponse)
 async def invoke(request: ChatInvokeRequest):
 	content = preprocess_user_input(request.content)
 	model = connection[request.connection_id]['chain']
-	print('model :', model)
 	if model is None:
 		raise HTTPException(status_code=400, detail="Bad Request")
+
 	invoke_output = model(content)['text']
 	connection[request.connection_id]['latest'] = time()
 	print(f'invoke_output: {invoke_output}')
+
 	response = ChatInvokeResponse(content=invoke_output)
 	print('memory: ', connection[request.connection_id]['chain'].memory.chat_memory)
-	if '종료' in response.content:
-		print('DISCONNECTED')
-		response.content = 'END'
-		connection[request.connection_id]['conversation'] = connection[request.connection_id]['chain'].memory.chat_memory
-		return response
-	else:
-		return response
-	
-@router.post("/summary", response_model=ChatInvokeResponse)
-async def summary(request: ChatInvokeRequest):
 
+	if '종료' in response.content:
+		connection[request.connection_id]['conversation'] = connection[request.connection_id]['chain'].memory.chat_memory
+
+	return response
+	
+@router.post("/summary", response_model=ChatSummaryResponse)
+async def summary(request: ChatSummaryRequest):
 	conversation = connection[request.connection_id]['conversation']
 	conversation = await conversation.aget_messages()
 	conversation = conversation[1:-2]
@@ -60,32 +64,29 @@ async def summary(request: ChatInvokeRequest):
 	print(type(conversation))
 	print(len(conversation))
 
-	client = OpenAI()
-	response = client.chat.completions.create(
-	model="gpt-3.5-turbo",
-	messages=[
-		{
-		"role": "system",
-		"content": [
+	response = OpenAI().chat.completions.create(
+		model="gpt-3.5-turbo",
+		messages=[
 			{
-			"type": "text",
-			"text": f"<meta>\n<conversation>\n{conversation}\n</conversation>\n<situation>위 대화는 Human과 ai의 하루 있었던 일에 대한 대화야.</situation>\n<role>대화를 보고 Human의 관점으로 일기를 작성해줘. Human의 대답만을 일기를 구성해줘. 일기에 대화를 했다는 사실이 들어가면 안 돼.</role>\n</meta>"
+				"role": "system",
+				"content": [
+					{
+					"type": "text",
+					"text": f"<meta>\n<conversation>\n{conversation}\n</conversation>\n<situation>위 대화는 Human과 ai의 하루 있었던 일에 대한 대화야.</situation>\n<role>대화를 보고 Human의 관점으로 일기를 작성해줘. Human의 대답만을 일기를 구성해줘. 일기에 대화를 했다는 사실이 들어가면 안 돼.</role>\n</meta>"
+					}
+				]
 			}
-		]
-		}
-	],
-	temperature=0.01,
-	max_tokens=256,
-	top_p=0.01,
-	frequency_penalty=0,
-	presence_penalty=0
+		],
+		temperature=0.01,
+		max_tokens=256,
+		top_p=0.01,
+		frequency_penalty=0,
+		presence_penalty=0
 	)
 
 	summary = response.choices[0].message.content
 
-	# model = connection[request.connection_id]['chain']
 	if summary is None:
 		raise HTTPException(status_code=400, detail="Bad Request")
-	summary = summary
-	response = ChatInvokeResponse(content=summary)
-	return response
+
+	return ChatSummaryResponse(content=summary)
