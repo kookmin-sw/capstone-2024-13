@@ -27,6 +27,10 @@
 	container-type: size;
 }
 
+.container > a > div:first-child > img {
+	object-fit: cover;
+}
+
 .container > a > div:last-child {
 	flex: 1;
 	display: flex;

@@ -27,12 +27,15 @@ async def image_upload(request: ImageUploadRequest):
 	else:
 		caption = image_captioning(request.url)
 		print('caption:', caption)
+	
 	connection[request.connection_id]["caption"] = caption
 	connection[request.connection_id]['chain'] = chain[connection[request.connection_id]['version']](
 		connection_id=request.connection_id,
 		template_id=connection[request.connection_id]["template_id"],
 		caption=caption
 	)
+
 	print('connection:', connection[request.connection_id])
 	print('chain:', connection[request.connection_id]["chain"])
-	return ImageUploadResponse(content="Image uploaded successfully")
+
+	return ImageUploadResponse(content=connection[request.connection_id]['chain'].greeting)
