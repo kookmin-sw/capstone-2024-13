@@ -2,6 +2,7 @@ from fastapi 		import APIRouter, HTTPException
 from pydantic 		import BaseModel
 from app.util		import redis_instance
 from app.util		import connection
+from app.util		import preprocess_user_input
 from bson.objectid	import ObjectId
 from time			import time
 router = APIRouter(prefix="/chat", tags=["chat"])
@@ -30,11 +31,12 @@ class ChatInvokeResponse(BaseModel):
 
 @router.post("/invoke", response_model=ChatInvokeResponse)
 async def invoke(request: ChatInvokeRequest):
+	content = preprocess_user_input(request.content)
 	model = connection[request.connection_id]['chain']
 	print('model :', model)
 	if model is None:
 		raise HTTPException(status_code=400, detail="Bad Request")
-	invoke_output = model(request.content)['text']
+	invoke_output = model(content)['text']
 	connection[request.connection_id]['latest'] = time()
 	print(f'invoke_output: {invoke_output}')
 	response = ChatInvokeResponse(content=invoke_output)
