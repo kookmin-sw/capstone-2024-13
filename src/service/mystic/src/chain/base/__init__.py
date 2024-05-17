@@ -22,6 +22,7 @@ class BaseChain(LLMChain):
 			memory=memory,
 			verbose=True,
 		)
+
 	def __call__(self, content):
 		try:
 			return super().__call__(content)
@@ -37,6 +38,8 @@ class BaseChain(LLMChain):
 		background = yaml_parser[template_id]['background']
 		few_shot = yaml_parser[template_id]['few_shot']
 		counterpart = yaml_parser[template_id]['counterpart']
+		
+		self.greeting = yaml_parser[template_id]['greeting']
 
 		if caption is None:
 			with open("./src/template/meta_none.xml", 'r') as f:

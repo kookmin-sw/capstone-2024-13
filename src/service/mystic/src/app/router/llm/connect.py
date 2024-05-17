@@ -61,10 +61,7 @@ async def connect(request: ConnectRequest):
 	connection[connection_id] = {
 		'version': request.version,
 		'template_id': request.template_id,
-		'caption': None,
-		"latest": time_module.time(),
-        "conversation": None
+		"latest": time_module.time()
 	}
-	content = YamlParser("src/template/character_first.yml")[request.template_id]
 
 	return ConnectResponse(connection_id=connection_id, content = content)

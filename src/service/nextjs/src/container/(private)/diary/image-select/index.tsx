@@ -1,7 +1,10 @@
-import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from 'react';
-import { InsertPhoto } from '@mui/icons-material';
+'use client';
+
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction, useState } from 'react';
+import { HelpOutlineOutlined, InsertPhoto } from '@mui/icons-material';
 import style from '@/style/container/(private)/diary/image-select/index.module.css';
 import Image from 'next/image';
+import Modal from '@/component/modal';
 
 const FileDropper = (props: {
 	images: string[];
