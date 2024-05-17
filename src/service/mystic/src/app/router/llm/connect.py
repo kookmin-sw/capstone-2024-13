@@ -49,9 +49,9 @@ async def startup_event():
 class ConnectRequest(BaseModel):
     version: str
     template_id: int
+
 class ConnectResponse(BaseModel):
 	connection_id: str
-	content : str
 
 @router.post("/", response_model=ConnectResponse)
 async def connect(request: ConnectRequest):
@@ -64,4 +64,4 @@ async def connect(request: ConnectRequest):
 		"latest": time_module.time()
 	}
 
-	return ConnectResponse(connection_id=connection_id, content = content)
+	return ConnectResponse(connection_id=connection_id)
