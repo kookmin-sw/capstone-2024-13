@@ -52,6 +52,11 @@ async def invoke(request: ChatInvokeRequest):
 async def summary(request: ChatInvokeRequest):
 
 	conversation = connection[request.connection_id]['conversation']
+	conversation = await conversation.aget_messages()
+	conversation = conversation[1:-2]
+	print(conversation)
+	print(type(conversation))
+	print(len(conversation))
 
 	client = OpenAI()
 	response = client.chat.completions.create(
