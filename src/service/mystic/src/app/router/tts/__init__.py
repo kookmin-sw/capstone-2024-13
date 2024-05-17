@@ -1,16 +1,15 @@
 from fastapi	import APIRouter, HTTPException, Response
 from pydantic	import BaseModel
-from model.tts	import Basic
+from model.tts      import tts
 
 router = APIRouter(prefix="/tts", tags=["tts"])
 
 speaker = {
-	"Basic": Basic(),
-	#"Park": Park(),
-	#"Lee": Lee(),
-	#"Joo": Joo(),
-	#"Son": Son(),
-	#"Shin": Shin()
+	"Basic": tts("basic"),
+	"Park": tts("park"),
+	"Lee": tts("lee"),
+	"Young": tts("young"),
+	'Ral': tts("ral"),
 }
 
 class TTSRequest(BaseModel):
