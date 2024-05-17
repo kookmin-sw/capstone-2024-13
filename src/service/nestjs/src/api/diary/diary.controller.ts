@@ -150,8 +150,14 @@ class DiaryController {
 	@ApiOperation({ summary: 'Delete diary', description: 'Delete diary' })
 	@ApiOkResponse({ description: 'Delete diary successfully', type: Diary })
 	@ApiBadRequestResponse({ description: 'Failed to delete diary' })
-	async deleteOne(@Param('id') _id: string): Promise<DeleteResult> {
+	async deleteOne(@Param('id') _id: string, @Request() req): Promise<DeleteResult> {
 		try {
+			// Check if the diary exists and the user is authorized to delete it
+			const diary = await this.diaryService.findById({ id: _id });
+
+			if (!diary || diary.userId !== req.user._id) {
+				throw new BadRequestException('You are not authorized to delete this diary.');
+			}
 			return await this.diaryService.deleteOne({ filter: { _id } });
 		} catch (error) {
 			throw new BadRequestException(`다이어리 삭제 실패: ${error.status}: ${error.message}`);

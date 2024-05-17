@@ -113,8 +113,15 @@ class AlbumController {
 	@Delete(':id')
 	@ApiOperation({ summary: '앨범 삭제', description: '앨범 삭제' })
 	@ApiOkResponse({ type: Album })
-	async delete(@Param('id') id: string): Promise<AlbumDocument> {
+	async delete(@Param('id') id: string, @Request() req): Promise<AlbumDocument> {
 		try {
+			// Check if the album exists and the user is authorized to delete it
+			const album = await this.albumService.findById({ id });
+
+			if (!album || album.userId !== req.user._id) {
+				throw new BadRequestException('You are not authorized to delete this album.');
+			}
+
 			return await this.albumService.findByIdAndDelete(id);
 		} catch (error) {
 			throw new BadRequestException(`Delete album failed: ${error.status}: ${error.message}`);
