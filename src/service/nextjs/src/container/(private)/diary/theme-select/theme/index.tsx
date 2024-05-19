@@ -5,7 +5,6 @@ import style from '@/style/container/(private)/diary/theme-select/theme/index.mo
 const Theme = (props: {
 	curTheme: number | null;
 	id: number;
-	title: string;
 	name: string;
 	description: string;
 	setTheme: Dispatch<SetStateAction<number | null>>;
@@ -16,7 +15,6 @@ const Theme = (props: {
 	const {
 		curTheme,
 		id,
-		title,
 		name,
 		description,
 		setTheme,

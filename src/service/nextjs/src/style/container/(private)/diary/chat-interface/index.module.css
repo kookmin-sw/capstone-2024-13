@@ -5,16 +5,32 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 4cqw;
+
+	container-type: size;
+}
+
+.container > * {
+	flex-shrink: 0;
+}
+
+.container > div:first-child {
+	width: 100cqw;
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	gap: 8cqw;
 	overflow-y: auto;
 
 	container-type: size;
 }
 
-.container::-webkit-scrollbar {
+.container > div:first-child::-webkit-scrollbar {
 	display: none;
 }
 
-.container > * {
+.container > div:first-child > * {
 	flex-shrink: 0;
 }

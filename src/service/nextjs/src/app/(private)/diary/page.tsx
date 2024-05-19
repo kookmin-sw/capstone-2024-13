@@ -141,7 +141,13 @@ const DiaryPage = () => {
 	const diaryPageComponents = [
 		<DiaryPageThemeSelect key={1} theme={theme} setTheme={setTheme} />,
 		<DiaryPageImageSelect key={2} images={images} setImages={setImages} setFiles={setFiles} />,
-		<DiaryPageChatInterface key={3} theme={theme} messages={messages} setMessages={setMessages} />,
+		<DiaryPageChatInterface
+			key={3}
+			theme={theme}
+			connectionId={connectionId}
+			messages={messages}
+			setMessages={setMessages}
+		/>,
 		<DiaryPageFinalDraft
 			key={4}
 			title={title}

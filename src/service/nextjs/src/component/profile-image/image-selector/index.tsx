@@ -25,8 +25,11 @@ const handleChange = async (
 		return;
 	}
 
-	setSrc(URL.createObjectURL(file));
 	setFile(file);
+
+	const fileReader = new FileReader();
+	fileReader.readAsDataURL(file);
+	fileReader.onload = () => setSrc(fileReader.result as string);
 };
 
 const ImageSelector = (props: {
