@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import setupSwagger from './util/swagger';
+import { json } from 'body-parser';
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
@@ -25,6 +26,7 @@ async function bootstrap() {
 		credentials: true,
 	});
 	app.use(cookieParser());
+	app.use(json({ limit: '10mb' }));
 
 	setupSwagger(app);
 

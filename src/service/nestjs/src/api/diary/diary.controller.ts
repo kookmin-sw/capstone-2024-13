@@ -155,7 +155,7 @@ class DiaryController {
 			// Check if the diary exists and the user is authorized to delete it
 			const diary = await this.diaryService.findById({ id: _id });
 
-			if (!diary || diary.userId !== req.user._id) {
+			if (!diary || diary.userId !== req.user._id.toString()) {
 				throw new BadRequestException('You are not authorized to delete this diary.');
 			}
 			return await this.diaryService.deleteOne({ filter: { _id } });

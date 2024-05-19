@@ -53,6 +53,20 @@ class MysticController {
 		}
 	}
 
+	@Post('/stt')
+	@ApiOperation({ summary: 'Speech to text', description: 'Convert speech to text' })
+	@ApiOkResponse({ description: 'Converted successfully' })
+	@ApiBadRequestResponse({ description: 'Bad request' })
+	async stt(@Body() sttRequestDto: Dto.Request.STT): Promise<any> {
+		try {
+			return await this.mysticService.stt(sttRequestDto.connectionId, sttRequestDto.audio);
+		} catch (error) {
+			throw new BadRequestException(
+				`Failed to convert speech to text: ${error.status}: ${error.message}`,
+			);
+		}
+	}
+
 	@Post('/disconnect')
 	@ApiOperation({ summary: 'Disconnect', description: 'Disconnect	from mystic' })
 	@ApiOkResponse({ description: 'Disconnected successfully' })

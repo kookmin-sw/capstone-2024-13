@@ -118,7 +118,7 @@ class AlbumController {
 			// Check if the album exists and the user is authorized to delete it
 			const album = await this.albumService.findById({ id });
 
-			if (!album || album.userId !== req.user._id) {
+			if (!album || album.userId !== req.user._id.toString()) {
 				throw new BadRequestException('You are not authorized to delete this album.');
 			}
 

@@ -1,0 +1,195 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 1px solid;
+
+	container-type: size;
+}
+
+@keyframes activateOuterCircleWave {
+	0% {
+		transform: scale(1);
+		border-color: rgba(255, 47, 47, 0.2);
+		box-shadow: 0 0 5cqw 0 rgba(255, 47, 47, 0.2);
+	}
+	25% {
+		transform: scale(1.015);
+		border-color: rgba(255, 47, 47, 0.1);
+		box-shadow: 0 0 5cqw 0 rgba(255, 47, 47, 0.1);
+	}
+	50%,
+	100% {
+		transform: scale(1);
+		border-color: rgba(255, 47, 47, 0.2);
+		box-shadow: 0 0 5cqw 0 rgba(255, 47, 47, 0.2);
+	}
+}
+
+@keyframes activateMiddleCircleWave {
+	0% {
+		transform: scale(1);
+		border-color: rgba(255, 47, 47, 0.4);
+		box-shadow: 0 0 5cqw 0 rgba(255, 47, 47, 0.4);
+	}
+	25% {
+		transform: scale(1.015);
+		border-color: rgba(255, 47, 47, 0.2);
+		box-shadow: 0 0 5cqw 0 rgba(255, 47, 47, 0.2);
+	}
+	50%,
+	100% {
+		transform: scale(1);
+		border-color: rgba(255, 47, 47, 0.4);
+		box-shadow: 0 0 5cqw 0 rgba(255, 47, 47, 0.4);
+	}
+}
+
+@keyframes activateInnerCircleWave {
+	0% {
+		transform: scale(1);
+	}
+	25% {
+		transform: scale(1.015);
+	}
+	50%,
+	100% {
+		transform: scale(1);
+	}
+}
+
+.activate {
+	border-color: rgba(255, 47, 47, 0.2);
+	box-shadow: 0 0 5cqw 0 rgba(255, 47, 47, 0.2);
+	animation: activateOuterCircleWave 4s infinite;
+}
+
+.activate > div {
+	border-color: rgba(255, 47, 47, 0.6);
+	box-shadow: 0 0 5cqw 0 rgba(255, 47, 47, 0.4);
+	animation: activateMiddleCircleWave 4s 0.33s infinite;
+}
+
+.activate > div > div {
+	border-color: #ff2f2f;
+	box-shadow: 0 0 5cqw 0 rgba(255, 47, 47, 0.8);
+	animation: activateInnerCircleWave 4s 0.66s infinite;
+}
+
+.activate > div > div > div {
+	background-color: #ff2f2f;
+}
+
+@keyframes deactivateOuterCircleWave {
+	0% {
+		transform: scale(1);
+		border-color: rgba(89, 150, 242, 0.2);
+		box-shadow: 0 0 5cqw 0 rgba(89, 150, 242, 0.2);
+	}
+	25% {
+		transform: scale(1.015);
+		border-color: rgba(89, 150, 242, 0.1);
+		box-shadow: 0 0 5cqw 0 rgba(89, 150, 242, 0.1);
+	}
+	50%,
+	100% {
+		transform: scale(1);
+		border-color: rgba(89, 150, 242, 0.2);
+		box-shadow: 0 0 5cqw 0 rgba(89, 150, 242, 0.2);
+	}
+}
+
+@keyframes deactivateMiddleCircleWave {
+	0% {
+		transform: scale(1);
+		border-color: rgba(89, 150, 242, 0.4);
+		box-shadow: 0 0 5cqw 0 rgba(89, 150, 242, 0.4);
+	}
+	25% {
+		transform: scale(1.015);
+		border-color: rgba(89, 150, 242, 0.2);
+		box-shadow: 0 0 5cqw 0 rgba(89, 150, 242, 0.2);
+	}
+	50%,
+	100% {
+		transform: scale(1);
+		border-color: rgba(89, 150, 242, 0.4);
+		box-shadow: 0 0 5cqw 0 rgba(89, 150, 242, 0.4);
+	}
+}
+
+@keyframes deactivateInnerCircleWave {
+	0% {
+		transform: scale(1);
+	}
+	25% {
+		transform: scale(1.015);
+	}
+	50%,
+	100% {
+		transform: scale(1);
+	}
+}
+
+.deactivate {
+	border-color: rgba(89, 150, 242, 0.2);
+	box-shadow: 0 0 5cqw 0 rgba(89, 150, 242, 0.2);
+	animation: deactivateOuterCircleWave 4s infinite;
+}
+
+.deactivate > div {
+	border-color: rgba(89, 150, 242, 0.6);
+	box-shadow: 0 0 5cqw 0 rgba(89, 150, 242, 0.4);
+	animation: deactivateMiddleCircleWave 4s 0.33s infinite;
+}
+
+.deactivate > div > div {
+	border-color: #5996f2;
+	box-shadow: 0 0 5cqw 0 rgba(89, 150, 242, 0.8);
+	animation: deactivateInnerCircleWave 4s 0.66s infinite;
+}
+
+.deactivate > div > div > div {
+	background-color: #5996f2;
+}
+
+.container > div {
+	width: 80cqw;
+	height: 80cqw;
+}
+
+.container > div > div {
+	width: 60cqw;
+	height: 60cqw;
+
+	container-type: size;
+}
+
+.container > div > div > div {
+	width: 100cqw;
+	height: 100cqw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container > div > div > div > svg {
+	width: 50cqw;
+	height: 50cqw;
+}
+
+.container > div > div > div > svg > path {
+	fill: #ffffff;
+	transform: scaleX(1.2) translateX(-7.5%);
+}
+
+.circle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	border: 1px solid;
+	overflow: hidden;
+}
