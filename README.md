@@ -49,6 +49,7 @@
 -   [Install](#install)
 -   [Software Architecture](#software-architecture)
 -   [Preview](#preview)
+-   [Documents](#documents)
 -   [Licence](#licence)
 -   [Contact](#contact)
 
