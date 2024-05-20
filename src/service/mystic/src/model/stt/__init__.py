@@ -9,10 +9,7 @@ class STT:
 		return self.client.audio.transcriptions.create(
 			model='whisper-1',
 			file=audio_file,
-			response_format='text'
-		) 
-
-	def __new__(cls, *args, **kwargs):
-		if not hasattr(cls, 'instance'):
-			cls.instance = super(STT, cls).__new__(cls)
-		return cls.instance
+			language='ko'
+		)
+	
+stt = STT()

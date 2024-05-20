@@ -1,7 +1,7 @@
-from fastapi	import APIRouter, HTTPException, Response
+from fastapi	import APIRouter, HTTPException
 from pydantic	import BaseModel
 from model.tts      import tts
-
+import re
 router = APIRouter(prefix="/tts", tags=["tts"])
 
 speaker = {
@@ -16,11 +16,14 @@ class TTSRequest(BaseModel):
 	text: str
 	speaker: str = "Basic"
 
-class TTSResponse(Response):
-	media_type = "audio/wav"
+class TTSResponse(BaseModel):
+	audio_data: str
 
 @router.post("/")
 async def tts(request: TTSRequest):
 	if request.speaker not in speaker:
 		raise HTTPException(status_code=400, detail="Bad Request")
-	return TTSResponse(content=speaker[request.speaker](request.text))
+	text = re.sub(r'[^\w\s]', '', request.text)
+	audio_data = speaker[request.speaker](text)
+	print(audio_data)
+	return TTSResponse(audio_data=audio_data)
