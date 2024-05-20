@@ -139,7 +139,7 @@
 <br/>
 
 ## Documents
-<a href="[https://drive.google.com/file/d/18bqswDEOVcPu1D90FBGsr8glIwOlZeSm/view?usp=sharing](https://drive.google.com/drive/folders/1eSJm0ph1X0O6X4s2CUQLJVXoRDN4CUk2)">
+<a href="https://drive.google.com/drive/folders/1eSJm0ph1X0O6X4s2CUQLJVXoRDN4CUk2">
 	최종 발표 자료
 </a>
 
