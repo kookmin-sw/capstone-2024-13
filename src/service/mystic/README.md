@@ -57,8 +57,9 @@ poetry install
  ## Example
 <img src="./assets/example.png" align="center" width="70%">  
 
-## Report
-- **[STT]()**
-- **[TTS]()**
-- **[Prompt Engineering]()**
-- **[Fine-tuning]()**
+## Report Link
+### [STT](https://docs.google.com/document/d/14RHoKZfyFNfVYgEx9k42CzwESSPpUaezV8eUKBeIZdM/edit?usp=drive_link)
+### [TTS](https://docs.google.com/document/d/13DItdXGWnylRBvb6YJtKM3PleCo2WBBLhTEI7Akn1VA/edit?usp=drive_link)
+### [Prompt Engineering]()
+### [Phi-2 Fine-tuning](https://docs.google.com/document/d/1lPlRPbOP3a8NM2pCD88eh4vGFol0i_vv70DzRQ58HHk/edit?usp=drive_link)
+### [EEVE Fine-tuning](https://docs.google.com/document/d/1oXcgNuUYAZWXLPOXb33iq3EAxDPCmtfttfXR1prcOO0/edit?usp=drive_link)
