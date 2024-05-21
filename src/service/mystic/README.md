@@ -35,7 +35,7 @@ poetry install
  ~~~
 
  To download the image captioning model, run the following command from the root of the project.
- ~~~
+~~~
  cd src/model
 ~~~
 ~~~
@@ -44,7 +44,7 @@ poetry install
 
 ~~~
  git clone https://huggingface.co/nlpconnect/vit-gpt2-image-captioning
- ~~~
+~~~
 
  For more details on image captioning, please refer to the [Link](https://huggingface.co/nlpconnect/vit-gpt2-image-captioning).
 
