@@ -55,27 +55,27 @@ Max permitted audio size in seconds|20
 ## Example
 ### [이상환 교수님](https://scholar.google.co.kr/citations?user=r_IjG60AAAAJ&hl=ko&oi=ao)
 ### 내가 그린 얼룩달룩 표범그림은 참 잘 그린 얼룩달룩 표범그림이고, 네가 그린 알룩달룩 표범그림은 참 잘 못 그린 알룩달룩 표범그림이다.
-<audio controls>
-    <source src='assets/lee_ex.mp3',type="audio/mpeg">
-</audio>
+
+[lee_ex.webm](https://github.com/kookmin-sw/capstone-2024-13/assets/54919634/d3ad9d9f-270a-4779-80e2-68eb36f48879)
+
 
 ### [박하명 교수님](https://scholar.google.co.kr/citations?user=PqGNewQAAAAJ&hl=ko&oi=sra)
 ### 어느날 한라산 산삼이 먹고 싶다며 나를 데려간 제주도에서 저기저 돌하르방 코는 아들 날 코인가.
-<audio controls>
-    <source src='assets/park_ex.mp3'>
-</audio>
+
+[park_ex.webm](https://github.com/kookmin-sw/capstone-2024-13/assets/54919634/1aadc110-bc76-4e0e-8371-b7f555771f0c)
+
 
 ### [래퍼 이영지](https://namu.wiki/w/%EC%9D%B4%EC%98%81%EC%A7%80)
 ### 앞 집 팥죽은 붉은 팥 풋팥죽이고 , 뒷집 콩죽은 햇콩단콩 콩죽,우리집 깨죽은 검은깨 깨죽인데 사람들은 햇콩 단콩 콩죽 깨죽 죽먹기를 싫어하더라.
-<audio controls>
-    <source src='assets/young_ex.mp3'>
-</audio>
+
+[young_ex.webm](https://github.com/kookmin-sw/capstone-2024-13/assets/54919634/eb3d5991-b859-4425-96b1-90eb93b7c48f)
+
 
 ### [스트리머 랄로](https://namu.wiki/w/%EB%9E%84%EB%A1%9C)
 ### 불편해? 불편하면 자세를 고쳐 앉아~ 보는 자세가 잘못된 거 아니에요,,,편하게들 보세요!
-<audio controls>
-    <source src='assets/ralo_ex.mp3'>
-</audio>
+
+[ralo_ex.webm](https://github.com/kookmin-sw/capstone-2024-13/assets/54919634/370eea15-69b4-44d2-b844-ed343e53a2b6)
+
 
 ## Reference
 ### [ⓍTTS](https://docs.coqui.ai/en/latest/models/xtts.html)
