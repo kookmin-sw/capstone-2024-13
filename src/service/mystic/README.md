@@ -23,7 +23,7 @@ This repository includes STT, TTS, LLM Prompt Engineering, LLM Fine-tuning, and 
  **[Interactive Conversations](https://github.com/kookmin-sw/capstone-2024-13/tree/main/src/service/mystic/src/chain)** : Engage in a natural conversation with your journal for a more immersive experience.
 
  **LLM Fine-tuning**: Enhance the conversational and summarization abilities of the LLM through fine-tuning.
- - [Phi-2 Fine-tuning]()
+ - [Phi-2 Fine-tuning](https://github.com/kookmin-sw/capstone-2024-13/tree/main/src/service/mystic/src/model/llm/phi-2)
  - [EEVE Fine-tuning](https://github.com/kookmin-sw/capstone-2024-13/tree/main/src/service/mystic/src/model/llm/eeve)
 
  **[LLM Prompt Engineering](https://github.com/kookmin-sw/capstone-2024-13/tree/main/src/service/mystic/src/template)**: Create a chatbot character using prompt engineering and reflect the desired personality in the character.
@@ -56,3 +56,9 @@ poetry install
 
  ## Example
 <img src="./assets/example.png" align="center" width="70%">  
+
+## Report
+- **[STT]()**
+- **[TTS]()**
+- **[Prompt Engineering]()**
+- **[Fine-tuning]()**
