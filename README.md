@@ -53,19 +53,18 @@
 
 ![13조_포스터](https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/98090e01-1ce6-4236-9dc3-61848fa8a6e7)
 
-
 <br/>
 <br/>
 
 ## Index
 
--   [Abstract](#abstract)
--   [Requirements](#requirements)
--   [Install](#install)
--   [Software Architecture](#software-architecture)
--   [Research](#research)
--   [Licence](#licence)
--   [Contact](#contact)
+- [Abstract](#abstract)
+- [Requirements](#requirements)
+- [Install](#install)
+- [Software Architecture](#software-architecture)
+- [Research](#research)
+- [Licence](#licence)
+- [Contact](#contact)
 
 <br/>
 <br/>
@@ -89,12 +88,12 @@
 
 ### [Docker](https://www.docker.com)
 
--   Download docker for your OS
+- Download docker for your OS
 
 #### Current version of docker with this repository
 
--   Docker version 25.0.3
--   Docker Compose version v2.24.5-desktop.1
+- Docker version 25.0.3
+- Docker Compose version v2.24.5-desktop.1
 
 ### Make
 
@@ -109,21 +108,21 @@
 
     $ cp .env.sample .env
 
--   Set your own value of environment variables in `.env` file
--   **You have to protect your `.env` file from being exposed to the public**
+- Set your own value of environment variables in `.env` file
+- **You have to protect your `.env` file from being exposed to the public**
 
 <br/>
 
 ### Dockerfile
 
--   You can change the contents of the Dockerfile to suit your needs.
+- You can change the contents of the Dockerfile to suit your needs.
 
 <br/>
 
 ### Volumes
 
--   Check the volumes' path in the `docker-compose.yml` file
--   The path will be mounted to the container
+- Check the volumes' path in the `docker-compose.yml` file
+- The path will be mounted to the container
 
 <br/>
 <br/>
@@ -132,15 +131,15 @@
 
 ### Supported Makefile commands
 
--   `make (up)`: Run and build containers, networks, volumes and images
--   `make down`: Stop and remove containers, networks, volumes and images
--   `make start`: Start containers
--   `make stop`: Stop containers
+- `make (up)`: Run and build containers, networks, volumes and images
+- `make down`: Stop and remove containers, networks, volumes and images
+- `make start`: Start containers
+- `make stop`: Stop containers
 
 ### Status
 
--   You can get the status of the containers with `docker ps`
--   You can get the log of the containers with `docker logs <container_name>`
+- You can get the status of the containers with `docker ps`
+- You can get the log of the containers with `docker logs <container_name>`
 
 <br/>
 <br/>
@@ -155,6 +154,14 @@
 ## Research
 
 ### [Secure](./secure)
+
+최근 몇 년 동안 웹 애플리케이션을 대상으로 한 사이버 보안 사건의 빈도와 심각성이 크게 증가했습니다.
+
+본 서비스에서 Secure research의 주요 목적은 웹 애플리케이션을 사이버 공격으로부터 사전에 보호하여 허가되지 않은 접근, 사용, 공개, 손상, 변경, 파괴 등으로부터 보호함으로써 무결성, 기밀성, 가용성을 제공하는 것입니다.
+
+현재까지 크게 모델링, 취약점 진단 그리고 보안 기법 적용, 3가지의 조사를 진행하였습다.
+
+자세한 내용은 [여기](./secure)에서 확인할 수 있습니다.
 
 <br/>
 
