@@ -53,6 +53,7 @@
 
 - IDOR Vulnerability
 
+  - using tool : [mongodb objectid prediction](/secure/tools/tuning-mongo-objectid-prediction/)
   - IDOR(Insecure Direct Object Reference) 취약점은 부적절한 인가 취약점으로 수평적/수직적 권한 상승이 발생하고, 이를 통해서 타 사용자 정보에 접근해 유출하거나 기존 권한으로는 사용이 불가능한 기능을 이용하는 문제가 생긴다.
   - 본 서비스에서는 인가되지 말아야 할 각 diary에 할당되는 Mongodb object_id 값을 URL 상에서 검색을 통해 조회가 가능한 것을 발견되었으며 또한, 인가되지 말아야 할 각 POST /diary/find 에서 본인의 album_id가 아닌 다른 사용자의 album_id에 해당하는 값을 request 값으로 보내게 되면, 앨범 내에 있는 모든 일기들을 response에서 확인이 가능한 것이 발견되었다.
 
