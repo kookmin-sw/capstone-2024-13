@@ -51,7 +51,7 @@
 <br/>
 <br/>
 
-[Poster.pdf](https://github.com/kookmin-sw/capstone-2024-13/files/15398486/13._.pdf)
+<img src="https://github.com/kookmin-sw/capstone-2024-13/files/15398486/13._.pdf" alt="poster" />
 
 <br/>
 <br/>
