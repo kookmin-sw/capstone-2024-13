@@ -10,7 +10,7 @@ let latestId = 0;
 
 const handleChange = async (
 	event: ChangeEvent<HTMLInputElement>,
-	setContent: Dispatch<SetStateAction<string>>,
+	setQuery: Dispatch<SetStateAction<string | undefined>>,
 	setDiaries: Dispatch<SetStateAction<Diary[]>>,
 	setIsSearching: Dispatch<SetStateAction<boolean>>,
 	searchTimeout: NodeJS.Timeout | undefined,
@@ -18,8 +18,16 @@ const handleChange = async (
 ) => {
 	const { value } = event.target;
 
-	setContent(value);
+	setQuery(value);
 	setIsSearching(true);
+
+	if (value.length === 0) {
+		setQuery(undefined);
+		setIsSearching(false);
+	}
+	if (value.length < 2) {
+		return;
+	}
 
 	const id = ++latestId;
 
@@ -43,12 +51,13 @@ const handleChange = async (
 };
 
 const SearchBar = (props: {
+	query: string | undefined;
+	setQuery: Dispatch<SetStateAction<string | undefined>>;
 	setDiaries: Dispatch<SetStateAction<Diary[]>>;
 	setIsSearching: Dispatch<SetStateAction<boolean>>;
 }) => {
-	const { setDiaries, setIsSearching } = props;
+	const { query, setQuery, setDiaries, setIsSearching } = props;
 	const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | undefined>(undefined);
-	const [content, setContent] = useState<string>('');
 
 	return (
 		<div className={style.container}>
@@ -62,7 +71,7 @@ const SearchBar = (props: {
 				<Search />
 				<input
 					type="text"
-					value={content}
+					value={query ? query : ''}
 					placeholder="검색어를 입력해주세요"
 					onClick={(event: MouseEvent<HTMLInputElement>) => {
 						event.stopPropagation();
@@ -70,7 +79,7 @@ const SearchBar = (props: {
 					onChange={(event: ChangeEvent<HTMLInputElement>) => {
 						handleChange(
 							event,
-							setContent,
+							setQuery,
 							setDiaries,
 							setIsSearching,
 							searchTimeout,

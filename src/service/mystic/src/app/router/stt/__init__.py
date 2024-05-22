@@ -12,7 +12,7 @@ class STTRequest(BaseModel):
 	audio_data: Any
 
 class STTResponse(BaseModel):
-	text: str
+	data: Any
 
 @router.post("/", response_model=STTResponse)
 async def stt(request: STTRequest):

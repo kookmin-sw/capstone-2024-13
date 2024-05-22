@@ -2,15 +2,18 @@ import { Trim } from '@miaooo/class-transformer-trim';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
-class STT {
+class TTS {
 	@IsNotEmpty()
 	@IsString()
 	@Trim()
-	@ApiProperty({ required: true, description: 'Connection ID' })
-	connectionId: string;
+	@ApiProperty()
+	text: string;
 
 	@IsNotEmpty()
-	audio_data: any;
+	@IsString()
+	@Trim()
+	@ApiProperty()
+	speaker: string;
 }
 
-export default STT;
+export default TTS;

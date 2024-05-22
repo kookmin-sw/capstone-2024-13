@@ -31,3 +31,8 @@
 	grid-column: 2;
 	margin: auto;
 }
+
+.notice {
+	grid-column: 1 / 4 !important;
+	justify-self: center !important;
+}

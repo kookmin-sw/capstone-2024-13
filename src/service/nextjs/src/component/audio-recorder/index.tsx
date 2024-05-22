@@ -27,9 +27,9 @@ const AudioRecorder = (props: {
 		if (analyser) {
 			const data = new Float32Array(analyser.frequencyBinCount);
 			analyser.getFloatFrequencyData(data);
-			if (!voiceDetected && data.some(value => -65 < value)) {
+			if (!voiceDetected && data.some(value => -50 < value)) {
 				setVoiceDetected(true);
-			} else if (voiceDetected && !data.some(value => -65 < value)) {
+			} else if (voiceDetected && !data.some(value => -50 < value)) {
 				setOnRecord(false);
 				setVoiceDetected(false);
 			}
@@ -63,11 +63,11 @@ const AudioRecorder = (props: {
 			} else if (stream && media && analyser && mediaStreamSource) {
 				if (voiceDetected) {
 					media.start();
-					media.ondataavailable = event => {
-						const blob = new Blob([event.data], { type: 'audio/wav' });
+					media.ondataavailable = (event: BlobEvent) => {
+						const blob = new Blob([event.data], { type: 'audio/webm' });
 						const fileReader = new FileReader();
 						fileReader.readAsDataURL(blob);
-						fileReader.onload = () => setBase64(fileReader.result as string);
+						fileReader.onload = () => setBase64((fileReader.result as string).split(',')[1]);
 					};
 				}
 			}
@@ -78,6 +78,16 @@ const AudioRecorder = (props: {
 			if (stream) {
 				stream.getTracks().forEach(track => track.stop());
 			}
+			if (analyser) {
+				analyser.disconnect();
+			}
+			if (mediaStreamSource) {
+				mediaStreamSource.disconnect();
+			}
+			setStream(null);
+			setMedia(null);
+			setAnalyser(null);
+			setMediaStreamSource(null);
 		}
 
 		return () => {

@@ -70,11 +70,28 @@ class MysticService {
 		}
 	}
 
-	async stt(connectionId: string, audio: any): Promise<any> {
+	async stt(connectionId: string, audio_data: any): Promise<any> {
 		try {
 			return await lastValueFrom(
-				this.httpService.post<any>('/stt', { connection_id: connectionId, file: audio }).pipe(
+				this.httpService.post<any>('/stt', { connection_id: connectionId, audio_data }).pipe(
 					map((response: AxiosResponse<any>) => {
+						return response.data;
+					}),
+					catchError((error: AxiosError) => {
+						throw error;
+					}),
+				),
+			);
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async tts(text: string, speaker: string): Promise<string> {
+		try {
+			return await lastValueFrom(
+				this.httpService.post<string>('/tts', { text, speaker }).pipe(
+					map((response: AxiosResponse<string>) => {
 						return response.data;
 					}),
 					catchError((error: AxiosError) => {

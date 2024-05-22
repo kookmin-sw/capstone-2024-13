@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react';
 import AuthContext from '@/context/auth';
 import Chat from '@/component/chat';
 import style from '@/style/container/(private)/diary/chat-interface/index.module.css';
@@ -10,7 +10,6 @@ import { Types } from 'mongoose';
 
 type ThemeType = {
 	id: number;
-	title: string;
 	name: string;
 	description: string;
 	src?: string;
@@ -20,14 +19,13 @@ type ThemeType = {
 const themes: ThemeType[] = [
 	{
 		id: 0,
-		title: 'hmpark',
 		name: '박하명',
 		description: '게임 매니아 교수',
 		src: '/image/Park.png',
 	},
-	{ id: 1, title: 'sanghwan', name: '이상환', description: '자상한 교수', src: '/image/Lee.png' },
-	{ id: 2, title: 'shin-chan', name: '짱구', description: '장난꾸러기', src: '/image/Shin.png' },
-	{ id: 3, title: 'repoter', name: '인턴기자', description: 'MZ대표' },
+	{ id: 1, name: '이상환', description: '자상한 교수', src: '/image/Lee.png' },
+	{ id: 2, name: '이영지', description: 'MZ 대통령', src: '/image/Young.png' },
+	{ id: 3, name: '짱구', description: '장난꾸러기', src: '/image/Shin.png' },
 ];
 
 const DiaryPageChatInterface = (props: {
@@ -35,34 +33,75 @@ const DiaryPageChatInterface = (props: {
 	connectionId: Types.ObjectId | null;
 	messages: string[];
 	setMessages: Dispatch<SetStateAction<string[]>>;
+	setIsCreating: Dispatch<SetStateAction<boolean>>;
 }) => {
-	const { theme, connectionId, messages, setMessages } = props;
+	const { theme, connectionId, messages, setMessages, setIsCreating } = props;
 	const { me } = useContext(AuthContext);
 	const [onRecord, setOnRecord] = useState<boolean>(true);
 	const [base64, setBase64] = useState<string | undefined>(undefined);
+	const [audioSrc, setAudioSrc] = useState<string | undefined>(undefined);
+	const divRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		const div = divRef.current;
+		if (div) {
+			div.scrollTop = div.scrollHeight;
+		}
+
 		if (base64) {
-			postFetcher('/mystic/stt', {
+			const audio_data = base64;
+			setBase64(undefined);
+			postFetcher<{ text: string }>('/mystic/stt', {
 				connectionId,
-				audio: base64,
+				audio_data,
 			})
-				.then((response: { content: string }) => {
-					setMessages([...messages, response.content]);
+				.then((response: { text: string }) => {
+					setMessages(prev => [...prev, response.text]);
+
+					postFetcher<{ content: string }>('/mystic/chat/invoke', {
+						connectionId,
+						content: response.text,
+					})
+						.then((response: { content: string }) => {
+							if (response.content.includes('종료')) {
+								setIsCreating(true);
+							} else {
+								postFetcher<{ audio_data: string }>('/mystic/tts', {
+									text: response.content,
+									speaker: themes[theme].src.split('/')[2].split('.')[0],
+								})
+									.then((response: { audio_data: string }) => {
+										const byteString = atob(response.audio_data);
+										const byteNumbers = new Array(byteString.length);
+										for (let i = 0; i < byteString.length; i++) {
+											byteNumbers[i] = byteString.charCodeAt(i);
+										}
+										const byteArray = new Uint8Array(byteNumbers);
+										const blob = new Blob([byteArray], { type: 'audio/wav' });
+										const url = URL.createObjectURL(blob);
+										setAudioSrc(url);
+									})
+									.catch((error: Error) => {
+										throw error;
+									});
+								setMessages(prev => [...prev, response.content]);
+							}
+						})
+						.catch((error: Error) => {
+							setMessages(prev => [...prev, '죄송합니다. 다시 말씀해 주세요.']);
+							throw error;
+						});
 				})
 				.catch((error: Error) => {
-					console.error(error);
-				})
-				.finally(() => {
-					setBase64(null);
 					setOnRecord(true);
+					console.error(error);
 				});
 		}
-	}, [connectionId, messages, setMessages, base64]);
+	}, [connectionId, messages, setMessages, base64, theme]);
 
 	return (
 		<div className={style.container}>
-			<div>
+			<div ref={divRef}>
 				{me &&
 					messages.map((message, index) =>
 						index % 2 === 0 ? (
@@ -97,6 +136,15 @@ const DiaryPageChatInterface = (props: {
 				onRecord={onRecord}
 				setOnRecord={setOnRecord}
 				setBase64={setBase64}
+			/>
+			<audio
+				autoPlay
+				src={audioSrc}
+				style={{ display: 'none' }}
+				onEnded={() => {
+					setOnRecord(true);
+					setAudioSrc(undefined);
+				}}
 			/>
 		</div>
 	);
