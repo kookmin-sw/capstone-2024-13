@@ -53,10 +53,10 @@ class MysticService {
 		}
 	}
 
-	async invoke(connectionId: string, content: string): Promise<any> {
+	async stt(connectionId: string, audio_data: any): Promise<any> {
 		try {
 			return await lastValueFrom(
-				this.httpService.post<any>('/chat/invoke', { connection_id: connectionId, content }).pipe(
+				this.httpService.post<any>('/stt', { connection_id: connectionId, audio_data }).pipe(
 					map((response: AxiosResponse<any>) => {
 						return response.data;
 					}),
@@ -70,10 +70,10 @@ class MysticService {
 		}
 	}
 
-	async stt(connectionId: string, audio_data: any): Promise<any> {
+	async invoke(connectionId: string, content: string): Promise<any> {
 		try {
 			return await lastValueFrom(
-				this.httpService.post<any>('/stt', { connection_id: connectionId, audio_data }).pipe(
+				this.httpService.post<any>('/chat/invoke', { connection_id: connectionId, content }).pipe(
 					map((response: AxiosResponse<any>) => {
 						return response.data;
 					}),
@@ -104,11 +104,28 @@ class MysticService {
 		}
 	}
 
-	async disconnect(connectionId: string): Promise<any> {
+	async summary(connectionId: string): Promise<string> {
 		try {
 			return await lastValueFrom(
-				this.httpService.post<any>('/disconnect', { connection_id: connectionId }).pipe(
-					map((response: AxiosResponse<any>) => {
+				this.httpService.post<string>('/chat/summary', { connection_id: connectionId }).pipe(
+					map((response: AxiosResponse<string>) => {
+						return response.data;
+					}),
+					catchError((error: AxiosError) => {
+						throw error;
+					}),
+				),
+			);
+		} catch (error) {
+			throw error;
+		}
+	}
+
+	async disconnect(connectionId: string): Promise<string> {
+		try {
+			return await lastValueFrom(
+				this.httpService.post<string>('/disconnect', { connection_id: connectionId }).pipe(
+					map((response: AxiosResponse<string>) => {
 						return response.data;
 					}),
 					catchError((error: AxiosError) => {

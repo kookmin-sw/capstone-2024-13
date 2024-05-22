@@ -22,9 +22,22 @@ const themes: ThemeType[] = [
 		name: '박하명',
 		description: '게임 매니아 교수',
 		src: '/image/Park.png',
+		audio: '/audio/Park-say-hello.wav',
 	},
-	{ id: 1, name: '이상환', description: '자상한 교수', src: '/image/Lee.png' },
-	{ id: 2, name: '이영지', description: 'MZ 대통령', src: '/image/Young.png' },
+	{
+		id: 1,
+		name: '이상환',
+		description: '자상한 교수',
+		src: '/image/Lee.png',
+		audio: '/audio/Lee-say-hello.wav',
+	},
+	{
+		id: 2,
+		name: '이영지',
+		description: 'MZ 대통령',
+		src: '/image/Young.png',
+		audio: '/audio/Young-say-hello.wav',
+	},
 	{ id: 3, name: '짱구', description: '장난꾸러기', src: '/image/Shin.png' },
 ];
 
@@ -41,6 +54,14 @@ const DiaryPageChatInterface = (props: {
 	const [base64, setBase64] = useState<string | undefined>(undefined);
 	const [audioSrc, setAudioSrc] = useState<string | undefined>(undefined);
 	const divRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const audio = themes[theme]?.audio;
+		if (audio) {
+			const audioElement = new Audio(audio);
+			audioElement.play();
+		}
+	}, [theme]);
 
 	useEffect(() => {
 		const div = divRef.current;
@@ -97,7 +118,7 @@ const DiaryPageChatInterface = (props: {
 					console.error(error);
 				});
 		}
-	}, [connectionId, messages, setMessages, base64, theme]);
+	}, [base64, connectionId, theme, messages, setMessages, setIsCreating]);
 
 	return (
 		<div className={style.container}>

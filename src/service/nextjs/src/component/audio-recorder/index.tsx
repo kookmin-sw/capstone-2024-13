@@ -23,88 +23,81 @@ const AudioRecorder = (props: {
 	const [voiceDetected, setVoiceDetected] = useState<boolean>(false);
 	const router = useRouter();
 
+	const startRecording = useCallback(() => {
+		setVoiceDetected(true);
+		media.start();
+		media.ondataavailable = (event: BlobEvent) => {
+			const blob = new Blob([event.data], { type: 'audio/webm' });
+			const fileReader = new FileReader();
+			fileReader.readAsDataURL(blob);
+			fileReader.onload = () => setBase64((fileReader.result as string).split(',')[1]);
+		};
+	}, [media, setBase64]);
+
+	const stopRecording = useCallback(() => {
+		setOnRecord(false);
+		setVoiceDetected(false);
+		mediaStreamSource.disconnect();
+		analyser.disconnect();
+		stream.getTracks().forEach(track => track.stop());
+		media.stop();
+		setStream(null);
+		setMedia(null);
+		setAnalyser(null);
+		setMediaStreamSource(null);
+	}, [stream, media, analyser, mediaStreamSource, setOnRecord]);
+
 	const detectVoice = useCallback(() => {
-		if (analyser) {
+		if (stream && media && analyser && mediaStreamSource && onRecord) {
 			const data = new Float32Array(analyser.frequencyBinCount);
 			analyser.getFloatFrequencyData(data);
-			if (!voiceDetected && data.some(value => -50 < value)) {
-				setVoiceDetected(true);
-			} else if (voiceDetected && !data.some(value => -50 < value)) {
-				setOnRecord(false);
-				setVoiceDetected(false);
+			if (!voiceDetected && data.some(value => -65 < value)) {
+				startRecording();
+			} else if (voiceDetected && !data.some(value => -65 < value)) {
+				stopRecording();
 			}
 		}
-	}, [setOnRecord, analyser, voiceDetected]);
+	}, [
+		stream,
+		media,
+		analyser,
+		mediaStreamSource,
+		voiceDetected,
+		startRecording,
+		stopRecording,
+		onRecord,
+	]);
 
 	useEffect(() => {
 		const detectInterval = setInterval(detectVoice, 500);
 
-		if (onRecord) {
-			if (!stream && !media && !analyser && !mediaStreamSource) {
-				if (!navigator.mediaDevices) {
-					router.refresh();
-					return;
-				}
-				navigator.mediaDevices
-					.getUserMedia({ audio: true })
-					.then((stream: MediaStream) => {
-						setStream(stream);
-						setMedia(new MediaRecorder(stream));
-						const audioContext = new AudioContext();
-						const analyser = audioContext.createAnalyser();
-						setAnalyser(analyser);
-						const mediaStreamSource = audioContext.createMediaStreamSource(stream);
-						setMediaStreamSource(mediaStreamSource);
-						mediaStreamSource.connect(analyser);
-					})
-					.catch(error => {
-						console.error(error);
-					});
-			} else if (stream && media && analyser && mediaStreamSource) {
-				if (voiceDetected) {
-					media.start();
-					media.ondataavailable = (event: BlobEvent) => {
-						const blob = new Blob([event.data], { type: 'audio/webm' });
-						const fileReader = new FileReader();
-						fileReader.readAsDataURL(blob);
-						fileReader.onload = () => setBase64((fileReader.result as string).split(',')[1]);
-					};
-				}
-			}
-		} else {
-			if (media) {
-				media.stop();
-			}
-			if (stream) {
-				stream.getTracks().forEach(track => track.stop());
-			}
-			if (analyser) {
-				analyser.disconnect();
-			}
-			if (mediaStreamSource) {
-				mediaStreamSource.disconnect();
-			}
-			setStream(null);
-			setMedia(null);
-			setAnalyser(null);
-			setMediaStreamSource(null);
+		if (!navigator.mediaDevices) {
+			router.refresh();
+			return;
+		}
+
+		if (onRecord && !stream && !media && !analyser && !mediaStreamSource) {
+			navigator.mediaDevices
+				.getUserMedia({ audio: true })
+				.then((stream: MediaStream) => {
+					setStream(stream);
+					setMedia(new MediaRecorder(stream));
+					const audioContext = new AudioContext();
+					const analyser = audioContext.createAnalyser();
+					setAnalyser(analyser);
+					const mediaStreamSource = audioContext.createMediaStreamSource(stream);
+					setMediaStreamSource(mediaStreamSource);
+					mediaStreamSource.connect(analyser);
+				})
+				.catch(error => {
+					console.error(error);
+				});
 		}
 
 		return () => {
 			clearInterval(detectInterval);
 		};
-	}, [
-		setBase64,
-		setOnRecord,
-		router,
-		detectVoice,
-		onRecord,
-		stream,
-		media,
-		analyser,
-		voiceDetected,
-		mediaStreamSource,
-	]);
+	}, [onRecord, stream, media, analyser, mediaStreamSource, detectVoice, router]);
 
 	return (
 		<div

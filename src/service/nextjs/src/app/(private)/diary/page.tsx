@@ -136,19 +136,20 @@ const DiaryPage = () => {
 			})
 				.then((response: { content: string }) => {
 					setContent(response.content);
+					postFetcher<{ content: string }>('/mystic/disconnect', {
+						connectionId,
+					})
+						.then((response: { content: string }) => {
+							setIsCreating(false);
+							setStep(step + 1);
+						})
+						.catch((error: AxiosError) => {
+							console.error(error);
+						});
 				})
 				.catch((error: AxiosError) => {
 					console.error(error);
 				});
-			postFetcher<{ content: string }>('/mystic/disconnect', {
-				connectionId,
-			})
-				.then((response: { content: string }) => {})
-				.catch((error: AxiosError) => {
-					console.error(error);
-				});
-			setIsCreating(false);
-			setStep(step + 1);
 		}
 	}, [isCreating, connectionId, step]);
 
