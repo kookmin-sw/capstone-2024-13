@@ -59,10 +59,24 @@ class MysticController {
 	@ApiBadRequestResponse({ description: 'Bad request' })
 	async stt(@Body() sttRequestDto: Dto.Request.STT): Promise<any> {
 		try {
-			return await this.mysticService.stt(sttRequestDto.connectionId, sttRequestDto.audio);
+			return await this.mysticService.stt(sttRequestDto.connectionId, sttRequestDto.audio_data);
 		} catch (error) {
 			throw new BadRequestException(
 				`Failed to convert speech to text: ${error.status}: ${error.message}`,
+			);
+		}
+	}
+
+	@Post('/tts')
+	@ApiOperation({ summary: 'Text to speech', description: 'Convert text to speech' })
+	@ApiOkResponse({ description: 'Converted successfully' })
+	@ApiBadRequestResponse({ description: 'Bad request' })
+	async tts(@Body() ttsRequestDto: Dto.Request.TTS): Promise<string> {
+		try {
+			return await this.mysticService.tts(ttsRequestDto.text, ttsRequestDto.speaker);
+		} catch (error) {
+			throw new BadRequestException(
+				`Failed to convert text to speech: ${error.status}: ${error.message}`,
 			);
 		}
 	}

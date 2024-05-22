@@ -7,17 +7,17 @@
 	justify-content: center;
 }
 
-.container > button {
-	width: 100cqw;
-	height: 20cqw;
-	color: #000000;
-	font-size: 5cqw;
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	gap: 2cqw;
+.button {
+	width: 100cqw !important;
+	height: 20cqw !important;
+	color: #000000 !important;
+	font-size: 5cqw !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	gap: 2cqw !important;
 }
 
-.container > button > span:nth-child(2) {
+.button > span:nth-child(2) {
 	margin-top: 0.6cqw;
 }

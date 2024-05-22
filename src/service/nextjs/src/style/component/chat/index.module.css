@@ -20,6 +20,10 @@
 	align-items: flex-end;
 }
 
+.right > div:last-child > span:last-child {
+	background-color: #dfecff;
+}
+
 .left > div:last-child > span:first-child,
 .right > div:first-child > span:first-child {
 	margin-bottom: 3.5cqw;
