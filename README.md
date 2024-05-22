@@ -38,6 +38,20 @@
 		중간 보고서
 	</a>
 </h4>
+<h4 align="center">
+	<a href="">
+		최종 발표 자료
+	</a>
+	&nbsp;·&nbsp;
+	<a href="">
+		최종 보고서
+	</a>
+</h4>
+
+<br/>
+<br/>
+
+[Poster.pdf](https://github.com/kookmin-sw/capstone-2024-13/files/15398486/13._.pdf)
 
 <br/>
 <br/>
@@ -48,8 +62,7 @@
 -   [Requirements](#requirements)
 -   [Install](#install)
 -   [Software Architecture](#software-architecture)
--   [Preview](#preview)
--   [Documents](#documents)
+-   [Research](#research)
 -   [Licence](#licence)
 -   [Contact](#contact)
 
@@ -57,6 +70,7 @@
 <br/>
 
 ## Abstract
+
 <span>이 프로젝트는 사용자가 AI와 음성으로 대화하며 일기를 작성할 수 있는 서비스를 개발하는 것을 목표로 합니다. 현대인들은 글을 쓰는 것에 부담을 느끼거나 바쁜 일상 속에서 시간이 부족하여 일기 작성을 꾸준히 하지 못하는 경우가 많습니다. 이러한 문제를 해결하기 위해, 본 서비스는 기존 일기 작성 방식이 아닌 음성 인식과 자연어 처리 기술을 활용한 새로운 방식을 제공하여 사용자로 하여금 쉽고 재밌게 일기를 작성할 수 있도록 돕습니다.</span>
 
 <span>본 프로젝트와 서비스는 다음과 같은 기대효과가 있습니다. STT와 TTS를 이용한 음성 대화 기반의 인터페이스를 제공하여 글을 작성하는 부담감을 완화시켜줍니다. 일기는 대규모 언어 모델이 생성해주는 질문에 대답하는 과정을 통해 작성되어 사용자가 일기를 작성할 때 오늘 무엇을 했는지, 어떤 일이 있었는지 생각해야하는 부담을 줄여줍니다. 사용자는 가상의 캐릭터와 대화하며 다른 누군가와 대화하는 것보다 오늘 있었던 일과 자신의 감정을 보다 진솔하게 이야기하고 정리할 수 있습니다.</span>
@@ -137,21 +151,13 @@
 <br/>
 <br/>
 
-## Preview
+## Research
 
-<div width="100%">
-	<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/4a7bb561-a855-4a68-8bf1-a2bdf52f3ad5" width="30%" height="30%" alt="Home preview image">
-	<img src="https://github.com/younganswer/capstone/assets/55086725/354a7c09-5bc2-45a8-8140-1614571582b8" width="30%" height="30%" alt="Diary preview image">
-	<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/d8b149c8-14c2-45b8-8bcf-c517cc44abe2" width="30%" height="30%" alt="Mypage preview image">
-</div>
-
-<br/>
-<br/>
-
-## Documents
-<a href="https://drive.google.com/drive/folders/1eSJm0ph1X0O6X4s2CUQLJVXoRDN4CUk2">
-	최종 발표 자료
-</a>
+-   [Secure](./secure)
+-   [AI](./src/service/mystic/)
+    -   [STT](./src/service/mystic/src/model/stt)
+    -   [LLM](./src/service/mystic/src/model/llm)
+    -   [TTS](./src/service/mystic/src/model/tts)
 
 <br/>
 <br/>
