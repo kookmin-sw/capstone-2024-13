@@ -63,7 +63,7 @@ const AlbumPageDiary = (props: { albumId: string; diary: Diary }) => {
 				) : (
 					<div className={style.image + ' ' + style.single}>
 						<div>
-							{images.length && (
+							{0 < images.length && (
 								<Image
 									src={images[0]}
 									alt="image"

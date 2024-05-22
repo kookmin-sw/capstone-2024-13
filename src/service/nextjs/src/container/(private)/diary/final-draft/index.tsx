@@ -18,16 +18,17 @@ const DiaryPageFinalDraft = (props: {
 
 	useEffect(() => {
 		const textarea = textareaRef.current;
+
 		if (textarea) {
 			textarea.style.height = 'auto';
 			textarea.style.height = `${textarea.scrollHeight + 8}px`;
 		}
-	}, []);
+	}, [content]);
 
 	return (
 		<div className={style.container}>
 			<div>
-				<Image src={images[0]} alt="Thumbnail" fill sizes="100%" priority />
+				{0 < images.length && <Image src={images[0]} alt="Thumbnail" fill sizes="100%" priority />}
 			</div>
 			<textarea
 				ref={textareaRef}
@@ -36,13 +37,7 @@ const DiaryPageFinalDraft = (props: {
 					event.preventDefault();
 					event.stopPropagation();
 				}}
-				onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {
-					const textarea = event.target;
-
-					setContent(textarea.value);
-					textarea.style.height = 'auto';
-					textarea.style.height = `${textarea.scrollHeight + 8}px`;
-				}}
+				onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setContent(event.target.value)}
 			/>
 			<div>
 				<label>

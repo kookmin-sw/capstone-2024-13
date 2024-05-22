@@ -49,6 +49,7 @@
 	border-radius: 5cqw;
 	overflow: hidden;
 	box-shadow: 0 0 1cqw 0 rgba(0, 0, 0, 0.1);
+	background-color: #dddddd;
 
 	container-type: size;
 }

@@ -29,6 +29,10 @@ const Theme = (props: {
 				event.preventDefault();
 				event.stopPropagation();
 				setTheme(id);
+				if (audio) {
+					const audioElement = new Audio(audio);
+					audioElement.play();
+				}
 			}}
 		>
 			<span className={style.description}>{description}</span>

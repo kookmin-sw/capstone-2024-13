@@ -36,6 +36,20 @@ class MysticController {
 		}
 	}
 
+	@Post('/stt')
+	@ApiOperation({ summary: 'Speech to text', description: 'Convert speech to text' })
+	@ApiOkResponse({ description: 'Converted successfully' })
+	@ApiBadRequestResponse({ description: 'Bad request' })
+	async stt(@Body() sttRequestDto: Dto.Request.STT): Promise<any> {
+		try {
+			return await this.mysticService.stt(sttRequestDto.connectionId, sttRequestDto.audio_data);
+		} catch (error) {
+			throw new BadRequestException(
+				`Failed to convert speech to text: ${error.status}: ${error.message}`,
+			);
+		}
+	}
+
 	@Post('/chat/invoke')
 	@ApiOperation({ summary: 'Invoke', description: 'Invoke chat service' })
 	@ApiOkResponse({ description: 'Invoked successfully' })
@@ -53,20 +67,6 @@ class MysticController {
 		}
 	}
 
-	@Post('/stt')
-	@ApiOperation({ summary: 'Speech to text', description: 'Convert speech to text' })
-	@ApiOkResponse({ description: 'Converted successfully' })
-	@ApiBadRequestResponse({ description: 'Bad request' })
-	async stt(@Body() sttRequestDto: Dto.Request.STT): Promise<any> {
-		try {
-			return await this.mysticService.stt(sttRequestDto.connectionId, sttRequestDto.audio_data);
-		} catch (error) {
-			throw new BadRequestException(
-				`Failed to convert speech to text: ${error.status}: ${error.message}`,
-			);
-		}
-	}
-
 	@Post('/tts')
 	@ApiOperation({ summary: 'Text to speech', description: 'Convert text to speech' })
 	@ApiOkResponse({ description: 'Converted successfully' })
@@ -77,6 +77,20 @@ class MysticController {
 		} catch (error) {
 			throw new BadRequestException(
 				`Failed to convert text to speech: ${error.status}: ${error.message}`,
+			);
+		}
+	}
+
+	@Post('/chat/summary')
+	@ApiOperation({ summary: 'Chat summary', description: 'Get chat summary' })
+	@ApiOkResponse({ description: 'Got chat summary successfully' })
+	@ApiBadRequestResponse({ description: 'Bad request' })
+	async summary(@Body() summaryRequestDto: Dto.Request.Summary): Promise<string> {
+		try {
+			return await this.mysticService.summary(summaryRequestDto.connectionId);
+		} catch (error) {
+			throw new BadRequestException(
+				`Failed to get chat summary: ${error.status}: ${error.message}`,
 			);
 		}
 	}

@@ -78,7 +78,7 @@ class DiaryController {
 			await this.albumService.findByIdAndUpdate({
 				id: recents._id,
 				update: {
-					thumbnail: diary.images[0],
+					thumbnail: 0 < diary.images.length ? diary.images[0] : '',
 					$inc: { count: 1 },
 				},
 			});

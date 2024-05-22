@@ -14,12 +14,31 @@ const themes: ThemeType[] = [
 	{
 		id: 0,
 		name: '박하명',
-		description: '게임 매니아 교수',
+		description: '친근한 교수님',
 		src: '/image/Park.png',
+		audio: '/audio/Park-click.wav',
 	},
-	{ id: 1, name: '이상환', description: '자상한 교수', src: '/image/Lee.png' },
-	{ id: 2, name: '이영지', description: 'MZ 대통령', src: '/image/Young.png' },
-	{ id: 3, name: '짱구', description: '장난꾸러기', src: '/image/Shin.png' },
+	{
+		id: 1,
+		name: '이상환',
+		description: '다정한 학장님',
+		src: '/image/Lee.png',
+		audio: '/audio/Lee-click.wav',
+	},
+	{
+		id: 2,
+		name: '이영지',
+		description: 'MZ 대통령',
+		src: '/image/Young.png',
+		audio: '/audio/Young-click.wav',
+	},
+	{
+		id: 3,
+		name: '짱구',
+		description: '장난꾸러기',
+		src: '/image/Shin.png',
+		audio: '/audio/Shin-click.wav',
+	},
 ];
 
 const DiaryPageThemeSelect = (props: {

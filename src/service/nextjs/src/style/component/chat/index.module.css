@@ -50,12 +50,16 @@
 	border-style: solid;
 }
 
+.right > div:first-child > span:last-child {
+	background-color: #dfecff;
+}
+
 .left > div:last-child > span:last-child::after {
 	border-color: #dddddd #dddddd transparent transparent;
 	left: -2.5cqw;
 }
 
 .right > div:first-child > span:last-child::after {
-	border-color: #dddddd transparent transparent #dddddd;
+	border-color: #dfecff transparent transparent #dfecff;
 	right: -2.5cqw;
 }
