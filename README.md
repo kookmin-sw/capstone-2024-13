@@ -51,7 +51,8 @@
 <br/>
 <br/>
 
-![13조_포스터.pdf](https://github.com/kookmin-sw/capstone-2024-13/files/15398495/13._.pdf)
+![13조_포스터](https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/98090e01-1ce6-4236-9dc3-61848fa8a6e7)
+
 
 <br/>
 <br/>
