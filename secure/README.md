@@ -69,6 +69,7 @@
 - Prompt Injection
 
   - 사용자의 입력에 의해서 프롬프트 템플릿 역할이 변경되지 않도록 전처리 과정이 필요하다고 분석하였고, 의심이 가는 메세지들을 전처리 하는 방법과, 챗봇 테마의 origin을 대화가 길어지게 될 때 변질될 수 있는 방법을 해결하기 위해 테마 템플릿을 재업데이트 해주는 방법 적용.
+  - [#41에서 해결](#https://github.com/kookmin-sw/capstone-2024-13/issues/41)
 
 - IDOR Vulnerability
 
@@ -80,8 +81,12 @@
 
   - 향후 더 보안을 신경쓰기 위해서는 API Endpoint의 세분화를 통해 filter를 input으로 못 주도록 하는 방법으로 개선이 필요하다고 판단했다.
 
+  - [#135에서 해결](https://github.com/kookmin-sw/capstone-2024-13/issues/135)
+  - [#203에서 해결](https://github.com/kookmin-sw/capstone-2024-13/issues/203)
+
 - Nosql Injection
-  - 악의적인 목적의 NoSQL query가 삽입되지 않도록 “$where”와 같은 mongoDB query 연산자에 대한 검증이 필요하다고 분석하였고 해당 사항 적용했다.
+  - 악의적인 목적의 NoSQL query가 삽입되지 않도록 “$where”와 같은 mongoDB query 연산자에 대한 검증이 필요하다고 분석하였고 해당 사항 적용예정
+  - [#209에서 확인 가능](https://github.com/kookmin-sw/capstone-2024-13/issues/209)
 
 #### Configure and Test Secure Elements
 
