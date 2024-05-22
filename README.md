@@ -154,11 +154,17 @@
 
 ## Research
 
--   [Secure](./secure)
--   [AI](./src/service/mystic/)
-    -   [STT](./src/service/mystic/src/model/stt)
-    -   [LLM](./src/service/mystic/src/model/llm)
-    -   [TTS](./src/service/mystic/src/model/tts)
+### [Secure](./secure)
+
+<br/>
+
+### [AI](./src/service/mystic/)
+
+#### [STT](./src/service/mystic/src/model/stt)
+
+#### [LLM](./src/service/mystic/src/model/llm)
+
+#### [TTS](./src/service/mystic/src/model/tts)
 
 <br/>
 <br/>
