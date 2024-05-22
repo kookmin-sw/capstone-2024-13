@@ -51,10 +51,7 @@
 <br/>
 <br/>
 
-
-[13조_포스터.pdf](https://github.com/kookmin-sw/capstone-2024-13/files/15398495/13._.pdf)
-
-<img src="https://github.com/kookmin-sw/capstone-2024-13/files/15398495/13._.pdf" alt="poster" />
+![13조_포스터.pdf](https://github.com/kookmin-sw/capstone-2024-13/files/15398495/13._.pdf)
 
 <br/>
 <br/>
