@@ -13,8 +13,7 @@ import style from '@/style/app/(private)/search/index.module.css';
 const SearchPage = () => {
 	const [isSearching, setIsSearching] = useState<boolean>(false);
 	const [query, setQuery] = useState<string | undefined>(undefined);
-	const [diaries, setDiaries] = useState<Diary[]>([]);
-	const router = useRouter();
+	const [diaries, setDiaries] = useState<Diary[] | null>(null);
 
 	useEffect(() => {
 		if (query === undefined) {
@@ -40,7 +39,9 @@ const SearchPage = () => {
 				setIsSearching={setIsSearching}
 			/>
 			<div>
-				{isSearching ? (
+				{diaries === null ? (
+					<CircularProgress />
+				) : isSearching ? (
 					query && 2 <= query.length ? (
 						<CircularProgress />
 					) : (
