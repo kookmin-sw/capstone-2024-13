@@ -167,11 +167,37 @@
 
 ### [AI](./src/service/mystic/)
 
+대규모 언어 모델의 발전으로 인공지능과의 자연스러운 대화가 가능해졌습니다. 이를 이용하여 원하는 유형의 챗봇과 대화하고, 대화를 일기로 작성하는 것이 가능해졌습니다. 본 프로젝트를 진행하기 위해 다양한 AI 기술이 사용되었습니다. 
+
+Mystic은 STT 및 TTS 기술을 사용하여 LLM과 대화하여 다이어리를 생성하는 API를 제공합니다.
+
+자세한 내용은 [여기](./src/service/mystic/)에서 확인할 수 있습니다.
+
+이 저장소에는 STT, TTS, LLM 프롬프트 엔지니어링, LLM 파인튜닝, 이미지 캡셔닝이 포함되어 있습니다.
+
 #### [STT](./src/service/mystic/src/model/stt)
+
+LLM에 사용자의 발화를 입력하기 위한 음성 인식기술이 필요합니다. 이를 위해 Speech-to-Text 기능을 구현하였습니다.
+
+현재 사용중인 모델은 open source model Whisper입니다. 다국어 입출력을 지원하며, 대규모 데이터셋을 통해 학습되었기 때문에 억양이나 소음에 강건한 정확도를 보입니다.
+
+자세한 내용은 [여기](./src/service/mystic/src/model/stt)에서 확인할 수 있습니다.
 
 #### [LLM](./src/service/mystic/src/model/llm)
 
+LLM은 챗봇을 통한 자연스러운 대화와, 대화를 통한 일기 생성을 위해 필요합니다. 이를 위해 Prompt Engineering과 Fine-tuning을 진행하였습니다.
+
+현재 사용중인 모델은 ChatGPT-3.5-turbo입니다. 현재 가장 많이 사용되는 모델 중 하나입니다. 질문에 대해 빠른 속도로 적절한 답변을 생성합니다.
+
+자세한 내용은 [여기](./src/service/mystic/src/model/llm)에서 확인할 수 있습니다.
+
 #### [TTS](./src/service/mystic/src/model/tts)
+
+LLM의 Output인 Text를 Speech 즉, 음성데이터로 변환하는 기술이 필요합니다. 이를 위해 Text-to-Speech 기능을 구현하였으며 추가적으로 유명인의 목소리를 합성하는 Voice Clonning 기능도 구현하였습니다.
+
+사용중인 모델은 ⓍTTS입니다. 이 모델은 다국어 음성을 생성할 수 있습니다. 고품질의 음성을 합성할 수 있으며, Streaming Inference latency는 200ms 미만입니다. 따라서 실시간성과 음성 품질을 모두 가져갈 수 있는 모델이라고 생각하여 선택하였습니다.
+
+자세한 내용은 [여기](./src/service/mystic/src/model/tts)에서 확인할 수 있습니다.
 
 <br/>
 <br/>
