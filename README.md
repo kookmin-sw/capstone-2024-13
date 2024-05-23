@@ -39,11 +39,11 @@
 	</a>
 </h4>
 <h4 align="center">
-	<a href="">
+	<a href="https://drive.google.com/file/d/12EZlTcL4rrr7-hEzrB5mWKGs9HC87D04/view?usp=sharing">
 		최종 발표 자료
 	</a>
 	&nbsp;·&nbsp;
-	<a href="">
+	<a href="https://drive.google.com/file/d/1KxlDWy-xwMcMIni7Vu_rrMb5wnlehqdu/view?usp=sharing">
 		최종 보고서
 	</a>
 </h4>
@@ -52,6 +52,11 @@
 <br/>
 
 ![13조_포스터](https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/98090e01-1ce6-4236-9dc3-61848fa8a6e7)
+
+<br/>
+<br/>
+
+[![소개 영상]((https://img.youtube.com/vi/TV4EOTYi94k/0.jpg))](https://youtu.be.com/TV4EOTYi94k)
 
 <br/>
 <br/>
