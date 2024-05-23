@@ -58,6 +58,8 @@
 
 ## 소개 영상
 
+👇 클릭 시 유튜브로 이동합니다.
+
 [![소개 영상](https://img.youtube.com/vi/7CjY-KQOSqg/0.jpg)](https://youtu.be/7CjY-KQOSqg)
 
 <br/>
