@@ -56,7 +56,7 @@
 <br/>
 <br/>
 
-[![소개 영상]((https://img.youtube.com/vi/TV4EOTYi94k/0.jpg))](https://youtu.be.com/TV4EOTYi94k)
+[![소개 영상]((https://img.youtube.com/vi/7CjY-KQOSqg/0.jpg))](https://youtu.be.com/7CjY-KQOSqg)
 
 <br/>
 <br/>
