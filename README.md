@@ -174,52 +174,58 @@
 
 현재까지 크게 모델링, 취약점 진단 그리고 보안 기법 적용, 3가지의 조사를 진행했습니다.
 
-자세한 내용은 [여기](./secure)에서 확인할 수 있습니다.
+Offensive research에 대한 자세한 내용은 [여기](./secure)에서 확인할 수 있습니다.
 
 <br/>
 <br/>
 
 ### [AI](./src/service/mystic/)
 
-대규모 언어 모델의 발전으로 인공지능과의 자연스러운 대화가 가능해졌습니다. 이를 이용하여 원하는 유형의 챗봇과 대화하고, 대화를 일기로 작성하는 것이 가능해졌습니다. 본 프로젝트를 진행하기 위해 다양한 AI 기술이 사용되었습니다. 
+대규모 언어 모델의 발전으로 인공지능과의 자연스러운 대화가 가능해졌습니다. 이를 이용하여 원하는 유형의 챗봇과 대화하고, 대화를 일기로 작성하는 것이 가능해졌습니다. 본 프로젝트에서는 다양한 AI 기술이 사용되었습니다.
 
 Mystic ML server는 STT, LLM, TTS 기술을 활용하여 챗봇과 대화 및 일기를 생성하는 API를 제공합니다.
 
-자세한 내용은 [여기](./src/service/mystic/)에서 확인할 수 있습니다.
+ML server에 대한 자세한 내용은 [여기](./src/service/mystic/)에서 확인할 수 있습니다.
 
 <br/>
 
 #### [STT](./src/service/mystic/src/model/stt)
 
-LLM에 사용자의 발화를 입력하기 위한 음성 인식기술이 필요합니다. 이를 위해 Speech-to-Text 기능을 구현하였습니다.
+LLM에 사용자의 발화를 입력하기 위한 음성 인식 기술이 필요합니다. 이를 위해 Speech-to-Text 모델을 도입하였습니다.
 
-현재 사용중인 모델은 open source model Whisper입니다. 다국어 입출력을 지원하며, 대규모 데이터셋을 통해 학습되었기 때문에 억양이나 소음에 강건한 정확도를 보입니다.
+Fast-speech model을 기반으로 한국어를 지원하기 위해 full fine-tuning을 진행했습니다. AI hub의 '한국어음성' 이라는 dataset을 사용하였습니다.
 
-자세한 내용은 [여기](./src/service/mystic/src/model/stt)에서 확인할 수 있습니다.
+하지만, AI hub dataset 구축 시 사용한 환경과 현재 환경의 차이로 인해 학습이 완료된 후에도 기능적인 요구 사항을 충족하지 못했습니다.
+
+따라서, 연구와 별개로 서비스에선 Open AI Whisper model을 사용하여 STT를 제공하게 됐습니다.
+
+연구에 관한 자세한 내용은 [여기](./src/service/mystic/src/model/stt)에서 확인할 수 있습니다.
 
 <br/>
 
 #### [LLM](./src/service/mystic/src/model/llm)
 
-챗봇과의 자연스러운 대화 경험과 일기 생성 기능을 제공하기 위해 LLM을 도입하였습니다.
+챗봇과의 자연스러운 대화 경험과 일기 생성 기능을 제공하기 위해 Large-Language-Model을 도입하였습니다.
 
 Phi-2 모델을 기반으로 QLoRA fine-tuning을 진행했습니다. 하지만, 3B개의 parameter를 가진 SLLM은 성능의 한계가 존재했습니다.
 
 자연스러운 대화 경험에 대한 요구 사항을 충족시키기 위해 Phi-2 모델 연구를 중단하고 GPT 모델을 기반으로하여 Prompt engineering을 진행했습니다.
 
-일기 요약 기능을 제공하기 위해 EEVE 모델을 기반으로 QLoRA fine-tuning을 진행했습니다.
+일기 요약 기능을 제공하기 위해 10B개의 parameter를 가진 EEVE 모델을 기반으로 QLoRA fine-tuning을 진행했습니다.
 
-자세한 내용은 [여기](./src/service/mystic/src/model/llm)에서 확인할 수 있습니다.
+연구에 관한 자세한 내용은 [여기](./src/service/mystic/src/model/llm)에서 확인할 수 있습니다.
 
 <br/>
 
 #### [TTS](./src/service/mystic/src/model/tts)
 
-LLM의 Output인 Text를 Speech 즉, 음성데이터로 변환하는 기술이 필요합니다. 이를 위해 Text-to-Speech 기능을 구현하였으며 추가적으로 유명인의 목소리를 합성하는 Voice Clonning 기능도 구현하였습니다.
+LLM의 Output인 Text를 Speech 즉, 음성 데이터로 변환하는 기술이 필요합니다. 이를 위해 Text-to-Speech 모델을 도입하였습니다.
 
-사용중인 모델은 ⓍTTS입니다. 이 모델은 다국어 음성을 생성할 수 있습니다. 고품질의 음성을 합성할 수 있으며, Streaming Inference latency는 200ms 미만입니다. 따라서 실시간성과 음성 품질을 모두 가져갈 수 있는 모델이라고 생각하여 선택하였습니다.
+ⓍTTS 모델을 기반으로 Voice Clonning을 위한 fine-tuning을 진행했습니다.
 
-자세한 내용은 [여기](./src/service/mystic/src/model/tts)에서 확인할 수 있습니다.
+현재 3명의 음성 데이터를 학습하였고, Streaming Inference latency는 200ms 미만입니다.
+
+연구에 관한 자세한 내용은 [여기](./src/service/mystic/src/model/tts)에서 확인할 수 있습니다.
 
 <br/>
 <br/>
