@@ -51,7 +51,7 @@
 <br/>
 <br/>
 
-![13조_포스터](https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/98090e01-1ce6-4236-9dc3-61848fa8a6e7)
+<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/98090e01-1ce6-4236-9dc3-61848fa8a6e7" alt="poster" width="100%" />
 
 <br/>
 <br/>
@@ -155,7 +155,7 @@
 
 ## Software Architecture
 
-![Software Architecture](./assets/Software%20Architecture.png)
+<img src="./assets/Software%20Architecture.png" alt="Software Architecture" width="100%" />
 
 <br/>
 <br/>
