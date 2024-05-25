@@ -260,3 +260,10 @@ a.sidebar-nav-item:focus {
 code {
     background-color: #f0f0f0;
 }
+
+.profile-image {
+    aspect-ratio: 1;
+    align: left;
+    width: 12rem;
+    height: 12rem;
+}
