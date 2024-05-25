@@ -2,7 +2,7 @@
 layout: page
 ---
 
-<h1 align="center" style="word-break: keep-all;">
+<h1 align="center">
 	아니 근데 오늘 진짜
 </h1>
 
