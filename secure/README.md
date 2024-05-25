@@ -1,5 +1,8 @@
 # Secure
 
+<br/>
+<br/>
+
 ## Index
 
 1. [Abstract](#abstract)
@@ -14,6 +17,9 @@
 
 3. [Report Link](#report-link)
 
+<br/>
+<br/>
+
 ## 1. Abstract
 
 최근 몇 년 동안 웹 애플리케이션을 대상으로 한 사이버 보안 사건의 빈도와 심각성이 크게 증가했다.
@@ -26,6 +32,9 @@
 
 위협 모델링은 우리 웹 애플리케이션에 특화된 잠재적 위협을 식별하고 이에 맞는 방어책을 설계하는 데 도움을 준다. 취약점 진단은 모의 해킹과 소스 코드 분석을 포함하여 보안 취약점을 탐지하고 이를 악용하기 전에 해결할 수 있게 한다. 이런 취약점 진단 결과를 바탕으로 완화 방안을 적용하고, 동일한 취약점이 다시 발생하지 않도록 재점검해 보안을 강화하기 위해 보안 기법을 적용한다.
 
+<br/>
+<br/>
+
 ## 2. Content
 
 ### 1. Threat Modeling
@@ -33,6 +42,8 @@
 위협 모델링은 애플리케이션 아키텍처에서 발생할 수 있는 취약점을 사전에 식별하는 방법이다. 여기에는 애플리케이션을 다이어그램화하고, 보안 결함을 식별하고, 이러한 결함을 완화하는 작업이 포함된다.
 
 "아니 근데 오늘 진짜" 프로젝트 서비스 대상으로는 OWASP top 10의 기준과 STRIDE Framework를 기반으로 위협 모델링을 진행했다.
+
+<br/>
 
 ### 2. Vulnerability Assessment
 
@@ -62,6 +73,8 @@
   - Nosql Injection 취약점은 SQL을 사용하는 것으로 알려진 DBMS를 제외한 나머지 Database에 대한 Injection 공격이다. 일반적으로 NoSQL 데이터베이스는 기존 SQL 데이터베이스보다 consistency check가 느슨하다. NoSQL 데이터베이스는 relational constraints와 consistency check를 덜 요구하기 때문에 성능이나 확장에서의 이점이 크지만 SQL 문법이 아닌 각각의 시스템의 쿼리 문법 등에 대한 Injection 공격은 동일하게 영향을 받는다.
 
   - 이 프로젝트에서는 MongoDB query를 input 값으로 Request를 진행하는데 이 때, Input으로 MongoDB query의 검증 처리가 되지 않아서, $ne, $where 같은 query 문을 request의 body에 포함시켜 서비스 전체 사용자 정보들을 response로 받아볼 수 있었고, 악의적으로 시간 지연 공격이 가능하다는 것이 발견되었다.
+
+<br/>
 
 ### 3. Apply Security Techniques
 
@@ -120,6 +133,9 @@ Result of Test :
 | Failed transactions:     | 252              |
 | Longest transaction:     | 13.24            |
 | Shortest transaction:    | 0.00             |
+
+<br/>
+<br/>
 
 ## 3. Report Link
 
