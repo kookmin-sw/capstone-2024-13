@@ -92,6 +92,7 @@ html {
     margin-top: 0;
     font-family: "Abril Fatface", serif;
     font-size: 3.25rem;
+    word-break: keep-all;
 }
 
 /* Sidebar nav */
