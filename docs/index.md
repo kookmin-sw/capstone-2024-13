@@ -168,7 +168,7 @@ layout: page
 
 <br/>
 
-### [Secure](./secure)
+### [Secure]({{site.url}}/secure)
 
 최근 몇 년 동안 웹 애플리케이션을 대상으로 한 사이버 보안 사건의 빈도와 심각성이 크게 증가했습니다.
 
@@ -176,22 +176,22 @@ layout: page
 
 현재까지 크게 모델링, 취약점 진단 그리고 보안 기법 적용, 3가지의 조사를 진행했습니다.
 
-Offensive research에 대한 자세한 내용은 [여기](./secure)에서 확인할 수 있습니다.
+Offensive research에 대한 자세한 내용은 [여기]({{site.url}}/secure)에서 확인할 수 있습니다.
 
 <br/>
 <br/>
 
-### [AI](./src/service/mystic/)
+### [AI]({{site.url}}/src/service/mystic/)
 
 대규모 언어 모델의 발전으로 인공지능과의 자연스러운 대화가 가능해졌습니다. 이를 이용하여 원하는 유형의 챗봇과 대화하고, 대화를 일기로 작성하는 것이 가능해졌습니다. 본 프로젝트에서는 다양한 AI 기술이 사용되었습니다.
 
 Mystic ML server는 STT, LLM, TTS 기술을 활용하여 챗봇과 대화 및 일기를 생성하는 API를 제공합니다.
 
-ML server에 대한 자세한 내용은 [여기](./src/service/mystic/)에서 확인할 수 있습니다.
+ML server에 대한 자세한 내용은 [여기]({{site.url}}/src/service/mystic/)에서 확인할 수 있습니다.
 
 <br/>
 
-#### [STT](./src/service/mystic/src/model/stt)
+#### [STT]({{site.url}}/src/service/mystic/src/model/stt)
 
 LLM에 사용자의 발화를 입력하기 위한 음성 인식 기술이 필요합니다. 이를 위해 Speech-to-Text 모델을 도입하였습니다.
 
@@ -201,11 +201,11 @@ Fast-speech model을 기반으로 한국어를 지원하기 위해 full fine-tun
 
 따라서, 연구와 별개로 서비스에선 Open AI Whisper model을 사용하여 STT를 제공하게 됐습니다.
 
-연구에 관한 자세한 내용은 [여기](./src/service/mystic/src/model/stt)에서 확인할 수 있습니다.
+연구에 관한 자세한 내용은 [여기]({{site.url}}/src/service/mystic/src/model/stt)에서 확인할 수 있습니다.
 
 <br/>
 
-#### [LLM](./src/service/mystic/src/model/llm)
+#### [LLM]({{site.url}}/src/service/mystic/src/model/llm)
 
 챗봇과의 자연스러운 대화 경험과 일기 생성 기능을 제공하기 위해 Large-Language-Model을 도입하였습니다.
 
@@ -215,11 +215,11 @@ Phi-2 모델을 기반으로 QLoRA fine-tuning을 진행했습니다. 하지만,
 
 일기 요약 기능을 제공하기 위해 10B개의 parameter를 가진 EEVE 모델을 기반으로 QLoRA fine-tuning을 진행했습니다.
 
-연구에 관한 자세한 내용은 [여기](./src/service/mystic/src/model/llm)에서 확인할 수 있습니다.
+연구에 관한 자세한 내용은 [여기]({{site.url}}/src/service/mystic/src/model/llm)에서 확인할 수 있습니다.
 
 <br/>
 
-#### [TTS](./src/service/mystic/src/model/tts)
+#### [TTS]({{site.url}}/src/service/mystic/src/model/tts)
 
 LLM의 Output인 Text를 Speech 즉, 음성 데이터로 변환하는 기술이 필요합니다. 이를 위해 Text-to-Speech 모델을 도입하였습니다.
 
@@ -227,14 +227,14 @@ LLM의 Output인 Text를 Speech 즉, 음성 데이터로 변환하는 기술이 
 
 현재 3명의 음성 데이터를 학습하였고, Streaming Inference latency는 200ms 미만입니다.
 
-연구에 관한 자세한 내용은 [여기](./src/service/mystic/src/model/tts)에서 확인할 수 있습니다.
+연구에 관한 자세한 내용은 [여기]({{site.url}}/src/service/mystic/src/model/tts)에서 확인할 수 있습니다.
 
 <br/>
 <br/>
 
 ## Licence
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE]({{site.url}}/LICENSE) file for details.
 
 <br/>
 <br/>
