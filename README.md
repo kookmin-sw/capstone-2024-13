@@ -201,9 +201,13 @@ LLM에 사용자의 발화를 입력하기 위한 음성 인식기술이 필요�
 
 #### [LLM](./src/service/mystic/src/model/llm)
 
-LLM은 챗봇을 통한 자연스러운 대화와, 대화를 통한 일기 생성을 위해 필요합니다. 이를 위해 Prompt Engineering과 Fine-tuning을 진행하였습니다.
+챗봇과의 자연스러운 대화 경험과 일기 생성 기능을 제공하기 위해 LLM을 도입하였습니다.
 
-현재 사용중인 모델은 ChatGPT-3.5-turbo입니다. 현재 가장 많이 사용되는 모델 중 하나입니다. 질문에 대해 빠른 속도로 적절한 답변을 생성합니다.
+Phi-2 모델을 기반으로 QLoRA fine-tuning을 진행했습니다. 하지만, 3B개의 parameter를 가진 SLLM은 성능의 한계가 존재했습니다.
+
+자연스러운 대화 경험에 대한 요구 사항을 충족시키기 위해 Phi-2 모델 연구를 중단하고 GPT 모델을 기반으로하여 Prompt engineering을 진행했습니다.
+
+일기 요약 기능을 제공하기 위해 EEVE 모델을 기반으로 QLoRA fine-tuning을 진행했습니다.
 
 자세한 내용은 [여기](./src/service/mystic/src/model/llm)에서 확인할 수 있습니다.
 
