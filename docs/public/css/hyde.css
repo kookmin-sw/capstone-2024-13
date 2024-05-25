@@ -32,12 +32,17 @@
 html {
     font-family: "PT Sans", Helvetica, Arial, sans-serif;
 }
-@media (min-width: 48em) {
+@media (min-width: 60em) {
     html {
         font-size: 16px;
     }
 }
-@media (min-width: 60em) {
+@media (min-width: 75em) {
+    html {
+        font-size: 20px;
+    }
+}
+@media (min-width: 90em) {
     html {
         font-size: 24px;
     }
@@ -56,7 +61,7 @@ html {
     color: rgba(255, 255, 255, 0.5);
     background-color: #202020;
 }
-@media (min-width: 48em) {
+@media (min-width: 60em) {
     .sidebar {
         position: fixed;
         top: 0;
@@ -66,18 +71,26 @@ html {
         text-align: left;
     }
     .sidebar-about {
-        margin-bottom: 8rem;
+        margin-bottom: 10.5rem;
     }
     .sidebar-nav {
-        margin-bottom: 8rem !important;
+        margin-bottom: 10.5rem !important;
     }
 }
-@media (min-width: 60em) {
+@media (min-width: 75em) {
     .sidebar-about {
-        margin-bottom: 4rem;
+        margin-bottom: 7rem;
     }
     .sidebar-nav {
-        margin-bottom: 4rem !important;
+        margin-bottom: 7rem !important;
+    }
+}
+@media (min-width: 90em) {
+    .sidebar-about {
+        margin-bottom: 4.5rem;
+    }
+    .sidebar-nav {
+        margin-bottom: 4.5rem !important;
     }
 }
 
@@ -117,7 +130,7 @@ a.sidebar-nav-item:focus {
  * contents to the bottom of the sidebar in tablets and up.
  */
 
-@media (min-width: 48em) {
+@media (min-width: 60em) {
     .sidebar-sticky {
         position: absolute;
         right: 1rem;
@@ -137,17 +150,16 @@ a.sidebar-nav-item:focus {
     padding-bottom: 4rem;
 }
 
-@media (min-width: 48em) {
+@media (min-width: 60em) {
     .content {
         max-width: 40rem;
-        margin-left: 20rem;
+        margin-left: 24rem;
         margin-right: 2rem;
     }
 }
-
-@media (min-width: 64em) {
+@media (min-width: 75em) {
     .content {
-        margin-left: 22rem;
+        margin-left: 24rem;
         margin-right: 4rem;
     }
 }
@@ -158,7 +170,7 @@ a.sidebar-nav-item:focus {
  * Flip the orientation of the page by placing the `.sidebar` on the right.
  */
 
-@media (min-width: 48em) {
+@media (min-width: 60em) {
     .layout-reverse .sidebar {
         left: auto;
         right: 0;
@@ -169,7 +181,7 @@ a.sidebar-nav-item:focus {
     }
 }
 
-@media (min-width: 64em) {
+@media (min-width: 75em) {
     .layout-reverse .content {
         margin-left: 4rem;
         margin-right: 22rem;
@@ -264,28 +276,6 @@ code {
 .profile-image {
     aspect-ratio: 1;
     align: left;
-}
-@media (min-width: 43em) {
-    .profile-image {
-        width: 6rem;
-        height: 6rem;
-    }
-}
-@media (min-width: 48em) {
-    .profile-image {
-        width: 10rem;
-        height: 10rem;
-    }
-}
-@media (min-width: 53em) {
-    .profile-image {
-        width: 6rem;
-        height: 6rem;
-    }
-}
-@media (min-width: 58em) {
-    .profile-image {
-        width: 10rem;
-        height: 10rem;
-    }
+    width: 10rem;
+    height: 10rem;
 }
