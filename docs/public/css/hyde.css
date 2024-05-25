@@ -66,6 +66,14 @@ html {
         text-align: left;
     }
     .sidebar-about {
+        margin-bottom: 8rem;
+    }
+    .sidebar-nav {
+        margin-bottom: 8rem !important;
+    }
+}
+@media (min-width: 60em) {
+    .sidebar-about {
         margin-bottom: 4rem;
     }
     .sidebar-nav {
