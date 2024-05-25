@@ -243,9 +243,9 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 #### 장정안 (팀장) &nbsp;&nbsp;[@jeongahn](https://github.com/jeongahn)
 
-<div style="display: flex; gap: 1rem;">
-<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/1e1510b1-ef67-4b51-a26f-c43732682617" width="148" height="148" style="aspect-ratio: 1; margin: 1rem 0;" alt="jeongahn">
-<pre>
+<div style="width: 100%; display: flex; gap: 1rem;">
+<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/1e1510b1-ef67-4b51-a26f-c43732682617" width="148" height="148" style="aspect-ratio: 1;" alt="jeongahn">
+<pre style="flex: 1; background-color: #f0f0f0;">
 <code>Student ID: 20191658
 Email: inetty@kookmin.ac.kr
 Role: Offensive Security Researcher, Frontend Developer
@@ -262,9 +262,9 @@ Role: Offensive Security Researcher, Frontend Developer
 
 #### 황영서 &nbsp;&nbsp;[@younganswer](https://github.com/younganswer)
 
-<div style="display: flex; gap: 1rem;">
-<img src="https://github.com/younganswer/capstone/assets/55086725/71a27285-3ab5-4829-a82f-16e9af05dcd5" width="148" height="148" style="aspect-ratio: 1; margin: 1rem 0;" alt="younganswer">
-<pre>
+<div style="width: 100%; display: flex; gap: 1rem;">
+<img src="https://github.com/younganswer/capstone/assets/55086725/71a27285-3ab5-4829-a82f-16e9af05dcd5" width="148" height="148" style="aspect-ratio: 1;" alt="younganswer">
+<pre style="flex: 1; background-color: #f0f0f0;">
 <code>Student ID: 20191691
 Email: younganswer@kookmin.ac.kr
 Role: Cloud Engineer, Full Stack Developer
@@ -280,9 +280,9 @@ Role: Cloud Engineer, Full Stack Developer
 
 #### 윤현승 &nbsp;&nbsp;[@yoon2000](https://github.com/yoon2000)
 
-<div style="display: flex; gap: 1rem;">
-<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/dce87a63-8710-4f3e-b134-ff55cf87bcf0" width="148" height="148" style="aspect-ratio: 1; margin: 1rem 0;" alt="yoon2000">
-<pre>
+<div style="width: 100%; display: flex; gap: 1rem;">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/dce87a63-8710-4f3e-b134-ff55cf87bcf0" width="148" height="148" style="aspect-ratio: 1;" alt="yoon2000">
+<pre style="flex: 1; background-color: #f0f0f0;">
 <code>Student ID: 20191634
 Email: yoonhs02@kookmin.ac.kr
 Role: Full stack Developer
@@ -298,9 +298,9 @@ Role: Full stack Developer
 
 #### 조현준 &nbsp;&nbsp;[@hyunjoon0208](https://github.com/hyunjoon0208)
 
-<div style="display: flex; gap: 1rem;">
-<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/8c76e63a-607f-4002-b6ff-a693b20ff926" width="148" height="148" style="aspect-ratio: 1; margin: 1rem 0;" alt="hyunjoon0208">
-<pre>
+<div style="width: 100%; display: flex; gap: 1rem;">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/8c76e63a-607f-4002-b6ff-a693b20ff926" width="148" height="148" style="aspect-ratio: 1;" alt="hyunjoon0208">
+<pre style="flex: 1; background-color: #f0f0f0;">
 <code>Student ID: 20191674
 Email: juatis96@kookmin.ac.kr
 Role: MLOps
@@ -315,9 +315,9 @@ Role: MLOps
 
 #### 최선우 &nbsp;&nbsp;[@woonsango](https://github.com/woonsango)
 
-<div style="display: flex; gap: 1rem;">
-<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/a1a824ba-6fbc-47a3-9d9d-6b9c2e5e4302" width="148" height="148" style="aspect-ratio: 1; margin: 1rem 0;" alt="woonsango">
-<pre>
+<div style="width: 100%; display: flex; gap: 1rem;">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/a1a824ba-6fbc-47a3-9d9d-6b9c2e5e4302" width="148" height="148" style="aspect-ratio: 1;" alt="woonsango">
+<pre style="flex: 1; background-color: #f0f0f0;">
 <code>Student ID: 20223149
 Email: doldol9080@kookmin.ac.kr
 Role: AI Developer
