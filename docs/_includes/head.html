@@ -9,6 +9,10 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1"
     />
 
+    <script>
+        console.log({{ site.baseurl }});
+    </script>
+
     <title>
         {% if page.title == "Home" %} {{ site.title }} &middot; {{ site.tagline
         }} {% else %} {{ page.title }} &middot; {{ site.title }} {% endif %}
