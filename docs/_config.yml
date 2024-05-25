@@ -9,8 +9,8 @@ relative_permalinks: true
 # Setup
 title: 아니 근데 오늘 진짜
 description: "AI 대화형 일기 서비스"
-url: https://github.com/kookmin-sw/capstone-2024-13
-baseurl: /docs
+url: https://you-know-what.com
+baseurl: /auth/login
 
 author:
     name: "Kookmin-SW/Capstone-13"
