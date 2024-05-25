@@ -264,6 +264,28 @@ code {
 .profile-image {
     aspect-ratio: 1;
     align: left;
-    width: 12rem;
-    height: 12rem;
+}
+@media (min-width: 43em) {
+    .profile-image {
+        width: 6rem;
+        height: 6rem;
+    }
+}
+@media (min-width: 48em) {
+    .profile-image {
+        width: 10rem;
+        height: 10rem;
+    }
+}
+@media (min-width: 53em) {
+    .profile-image {
+        width: 6rem;
+        height: 6rem;
+    }
+}
+@media (min-width: 58em) {
+    .profile-image {
+        width: 10rem;
+        height: 10rem;
+    }
 }
