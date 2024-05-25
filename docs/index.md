@@ -244,7 +244,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 #### 장정안 (팀장) &nbsp;&nbsp;[@jeongahn](https://github.com/jeongahn)
 
 <div style="width: 100%; display: flex; gap: 1rem;">
-<img src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/1e1510b1-ef67-4b51-a26f-c43732682617" width="148" height="148" style="aspect-ratio: 1;" alt="jeongahn">
+<img align="left" src="https://github.com/kookmin-sw/capstone-2024-13/assets/55086725/1e1510b1-ef67-4b51-a26f-c43732682617" width="148" height="148" style="aspect-ratio: 1;" alt="jeongahn">
 <pre style="flex: 1; background-color: #f0f0f0;">
 <code>Student ID: 20191658
 Email: inetty@kookmin.ac.kr
@@ -263,7 +263,7 @@ Role: Offensive Security Researcher, Frontend Developer
 #### 황영서 &nbsp;&nbsp;[@younganswer](https://github.com/younganswer)
 
 <div style="width: 100%; display: flex; gap: 1rem;">
-<img src="https://github.com/younganswer/capstone/assets/55086725/71a27285-3ab5-4829-a82f-16e9af05dcd5" width="148" height="148" style="aspect-ratio: 1;" alt="younganswer">
+<img align="left" src="https://github.com/younganswer/capstone/assets/55086725/71a27285-3ab5-4829-a82f-16e9af05dcd5" width="148" height="148" style="aspect-ratio: 1;" alt="younganswer">
 <pre style="flex: 1; background-color: #f0f0f0;">
 <code>Student ID: 20191691
 Email: younganswer@kookmin.ac.kr
