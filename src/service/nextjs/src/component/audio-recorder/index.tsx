@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from 'react';
 import style from '@/style/component/audio-recorder/index.module.css';
 import { Mic, SettingsVoice } from '@mui/icons-material';
 
@@ -22,6 +22,8 @@ const AudioRecorder = (props: {
 	);
 	const [voiceDetected, setVoiceDetected] = useState<boolean>(false);
 	const router = useRouter();
+	const startBeep = useMemo(() => new Audio('/public/audio/start-beep.wav'), []);
+	const endBeep = useMemo(() => new Audio('/public/audio/end-beep.wav'), []);
 
 	const startRecording = useCallback(() => {
 		setVoiceDetected(true);
@@ -35,6 +37,7 @@ const AudioRecorder = (props: {
 	}, [media, setBase64]);
 
 	const stopRecording = useCallback(() => {
+		endBeep.play();
 		setOnRecord(false);
 		setVoiceDetected(false);
 		mediaStreamSource.disconnect();
@@ -45,10 +48,11 @@ const AudioRecorder = (props: {
 		setMedia(null);
 		setAnalyser(null);
 		setMediaStreamSource(null);
-	}, [stream, media, analyser, mediaStreamSource, setOnRecord]);
+	}, [stream, media, analyser, mediaStreamSource, setOnRecord, endBeep]);
 
 	const detectVoice = useCallback(() => {
 		if (stream && media && analyser && mediaStreamSource && onRecord) {
+			startBeep.play();
 			const data = new Float32Array(analyser.frequencyBinCount);
 			analyser.getFloatFrequencyData(data);
 			if (!voiceDetected && data.some(value => -65 < value)) {
@@ -66,6 +70,7 @@ const AudioRecorder = (props: {
 		startRecording,
 		stopRecording,
 		onRecord,
+		startBeep,
 	]);
 
 	useEffect(() => {
