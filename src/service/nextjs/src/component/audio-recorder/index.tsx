@@ -12,8 +12,19 @@ const AudioRecorder = (props: {
 	setOnRecord?: Dispatch<SetStateAction<boolean>>;
 	base64?: string | undefined;
 	setBase64?: Dispatch<SetStateAction<string | undefined>>;
+	type?: string | undefined;
+	setType?: Dispatch<SetStateAction<string | undefined>>;
 }) => {
-	const { width = '100cqw', height = '100cqw', onRecord, setOnRecord, base64, setBase64 } = props;
+	const {
+		width = '100cqw',
+		height = '100cqw',
+		onRecord,
+		setOnRecord,
+		base64,
+		setBase64,
+		type,
+		setType,
+	} = props;
 	const [stream, setStream] = useState<MediaStream | null>(null);
 	const [media, setMedia] = useState<MediaRecorder | null>(null);
 	const [analyser, setAnalyser] = useState<AnalyserNode | null>(null);
@@ -29,12 +40,12 @@ const AudioRecorder = (props: {
 		setVoiceDetected(true);
 		media.start();
 		media.ondataavailable = (event: BlobEvent) => {
-			const blob = new Blob([event.data], { type: 'audio/webm' });
+			const blob = new Blob([event.data], { type });
 			const fileReader = new FileReader();
 			fileReader.readAsDataURL(blob);
 			fileReader.onload = () => setBase64((fileReader.result as string).split(',')[1]);
 		};
-	}, [media, setBase64]);
+	}, [type, media, setBase64]);
 
 	const stopRecording = useCallback(() => {
 		endBeep.play();
@@ -85,12 +96,20 @@ const AudioRecorder = (props: {
 			navigator.mediaDevices
 				.getUserMedia({ audio: true })
 				.then((stream: MediaStream) => {
+					const mimeTypes = ['audio/webm', 'audio/mp4'];
+					for (const mimeType of mimeTypes) {
+						if (MediaRecorder.isTypeSupported(mimeType)) {
+							setType(mimeType);
+							break;
+						}
+					}
+
 					setStream(stream);
 					setMedia(new MediaRecorder(stream));
 					const audioContext = new AudioContext();
 					const analyser = audioContext.createAnalyser();
-					setAnalyser(analyser);
 					const mediaStreamSource = audioContext.createMediaStreamSource(stream);
+					setAnalyser(analyser);
 					setMediaStreamSource(mediaStreamSource);
 					mediaStreamSource.connect(analyser);
 				})

@@ -53,6 +53,7 @@ const DiaryPageChatInterface = (props: {
 	const [onRecord, setOnRecord] = useState<boolean>(true);
 	const [base64, setBase64] = useState<string | undefined>(undefined);
 	const [audioSrc, setAudioSrc] = useState<string | undefined>(undefined);
+	const [type, setType] = useState<string | undefined>(undefined);
 	const divRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -75,6 +76,7 @@ const DiaryPageChatInterface = (props: {
 			postFetcher<{ text: string }>('/mystic/stt', {
 				connectionId,
 				audio_data,
+				type,
 			})
 				.then((response: { text: string }) => {
 					setMessages(prev => [...prev, response.text]);
@@ -157,6 +159,8 @@ const DiaryPageChatInterface = (props: {
 				onRecord={onRecord}
 				setOnRecord={setOnRecord}
 				setBase64={setBase64}
+				type={type}
+				setType={setType}
 			/>
 			<audio
 				autoPlay

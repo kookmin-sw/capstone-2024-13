@@ -53,10 +53,10 @@ class MysticService {
 		}
 	}
 
-	async stt(connectionId: string, audio_data: any): Promise<any> {
+	async stt(connectionId: string, audio_data: any, type: string): Promise<any> {
 		try {
 			return await lastValueFrom(
-				this.httpService.post<any>('/stt', { connection_id: connectionId, audio_data }).pipe(
+				this.httpService.post<any>('/stt', { connection_id: connectionId, audio_data, type }).pipe(
 					map((response: AxiosResponse<any>) => {
 						return response.data;
 					}),

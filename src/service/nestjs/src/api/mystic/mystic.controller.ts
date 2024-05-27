@@ -42,7 +42,11 @@ class MysticController {
 	@ApiBadRequestResponse({ description: 'Bad request' })
 	async stt(@Body() sttRequestDto: Dto.Request.STT): Promise<any> {
 		try {
-			return await this.mysticService.stt(sttRequestDto.connectionId, sttRequestDto.audio_data);
+			return await this.mysticService.stt(
+				sttRequestDto.connectionId,
+				sttRequestDto.audio_data,
+				sttRequestDto.type,
+			);
 		} catch (error) {
 			throw new BadRequestException(
 				`Failed to convert speech to text: ${error.status}: ${error.message}`,

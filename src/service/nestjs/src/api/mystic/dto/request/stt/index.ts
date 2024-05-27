@@ -11,6 +11,12 @@ class STT {
 
 	@IsNotEmpty()
 	audio_data: any;
+
+	@IsNotEmpty()
+	@IsString()
+	@Trim()
+	@ApiProperty({ required: true, description: 'type' })
+	type: string;
 }
 
 export default STT;
