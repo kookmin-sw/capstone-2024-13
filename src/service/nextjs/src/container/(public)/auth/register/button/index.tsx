@@ -17,7 +17,7 @@ const handleClick = (
 	postRegister({ nickname }, undefined, undefined, file)
 		.then(response => {
 			setMe(response);
-			router.push('/');
+			router.push('/album');
 			alert('회원가입이 완료되었습니다.');
 		})
 		.catch(error => {
