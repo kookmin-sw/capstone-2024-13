@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext } from 'react';
 import AlbumContext from '@/context/album';
 import Album from '@/container/(private)/album/album';
