@@ -7,8 +7,18 @@ const LoginCallbackPage = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		console.log('LoginCallbackPage useEffect');
-		router.push('/');
+		if (navigator.serviceWorker) {
+			navigator.serviceWorker
+				.register('/sw.js')
+				.then((registration: ServiceWorkerRegistration) => {
+					console.log('Service Worker registration successful with scope:', registration.scope);
+				})
+				.catch((error: Error) => {
+					console.error('Service Worker registration failed:', error);
+				});
+		}
+
+		router.push('/album');
 	}, [router]);
 
 	return null;
