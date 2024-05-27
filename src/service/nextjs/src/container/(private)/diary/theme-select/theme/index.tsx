@@ -1,4 +1,4 @@
-import { Dispatch, MouseEvent, SetStateAction } from 'react';
+import { Dispatch, MouseEvent, SetStateAction, useMemo } from 'react';
 import Image from 'next/image';
 import style from '@/style/container/(private)/diary/theme-select/theme/index.module.css';
 
@@ -21,6 +21,7 @@ const Theme = (props: {
 		src = '/image/default-image-00.png',
 		audio,
 	} = props;
+	const audioElement = useMemo(() => new Audio(audio), [audio]);
 
 	return (
 		<div
@@ -29,8 +30,7 @@ const Theme = (props: {
 				event.preventDefault();
 				event.stopPropagation();
 				setTheme(id);
-				if (audio) {
-					const audioElement = new Audio(audio);
+				if (audioElement) {
 					audioElement.play();
 				}
 			}}
