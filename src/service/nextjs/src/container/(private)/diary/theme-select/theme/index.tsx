@@ -20,6 +20,7 @@ const Theme = (props: {
 		setTheme,
 		src = '/image/default-image-00.png',
 		audio,
+		onClick,
 	} = props;
 	const audioElement = useMemo(() => new Audio(audio), [audio]);
 
@@ -33,6 +34,7 @@ const Theme = (props: {
 				if (audioElement) {
 					audioElement.play();
 				}
+				onClick && onClick();
 			}}
 		>
 			<span className={style.description}>{description}</span>
