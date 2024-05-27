@@ -33,46 +33,60 @@ const AudioRecorder = (props: {
 	);
 	const [voiceDetected, setVoiceDetected] = useState<boolean>(false);
 	const router = useRouter();
-	const startBeep = useMemo(() => new Audio('/public/audio/start-beep.wav'), []);
-	const endBeep = useMemo(() => new Audio('/public/audio/end-beep.wav'), []);
+	const startBeep = useMemo(() => new Audio('/audio/Start-beep.wav'), []);
+	const endBeep = useMemo(() => new Audio('/audio/End-beep.wav'), []);
 
-	const startRecording = useCallback(() => {
-		setVoiceDetected(true);
-		media.start();
-		media.ondataavailable = (event: BlobEvent) => {
-			const blob = new Blob([event.data], { type });
-			const fileReader = new FileReader();
-			fileReader.readAsDataURL(blob);
-			fileReader.onload = () => setBase64((fileReader.result as string).split(',')[1]);
-		};
+	const startRecording = useCallback(async () => {
+		try {
+			setVoiceDetected(true);
+			media.start();
+			media.ondataavailable = (event: BlobEvent) => {
+				const blob = new Blob([event.data], { type });
+				const fileReader = new FileReader();
+				fileReader.readAsDataURL(blob);
+				fileReader.onload = () => setBase64((fileReader.result as string).split(',')[1]);
+			};
+		} catch (error) {
+			console.error(error);
+		}
 	}, [type, media, setBase64]);
 
-	const stopRecording = useCallback(() => {
-		endBeep.play();
-		setOnRecord(false);
-		setVoiceDetected(false);
-		mediaStreamSource.disconnect();
-		analyser.disconnect();
-		stream.getTracks().forEach(track => track.stop());
-		media.stop();
-		setStream(null);
-		setMedia(null);
-		setAnalyser(null);
-		setMediaStreamSource(null);
-	}, [stream, media, analyser, mediaStreamSource, setOnRecord, endBeep]);
+	const stopRecording = useCallback(async () => {
+		try {
+			if (endBeep) {
+				await endBeep.play();
+			}
+			setOnRecord(false);
+			setVoiceDetected(false);
+			mediaStreamSource.disconnect();
+			analyser.disconnect();
+			stream.getTracks().forEach(track => track.stop());
+			media.stop();
+			setStream(null);
+			setMedia(null);
+			setAnalyser(null);
+			setMediaStreamSource(null);
+		} catch (error) {
+			console.error(error);
+		}
+	}, [setOnRecord, endBeep, stream, media, analyser, mediaStreamSource]);
 
-	const detectVoice = useCallback(() => {
-		if (stream && media && analyser && mediaStreamSource && onRecord) {
-			startBeep.play();
-			const data = new Float32Array(analyser.frequencyBinCount);
-			analyser.getFloatFrequencyData(data);
-			if (!voiceDetected && data.some(value => -65 < value)) {
-				startRecording();
-			} else if (voiceDetected && !data.some(value => -65 < value)) {
-				stopRecording();
+	const detectVoice = useCallback(async () => {
+		if (onRecord && stream && media && analyser && mediaStreamSource) {
+			try {
+				const data = new Float32Array(analyser.frequencyBinCount);
+				analyser.getFloatFrequencyData(data);
+				if (!voiceDetected && data.some(value => -65 < value)) {
+					startRecording();
+				} else if (voiceDetected && !data.some(value => -65 < value)) {
+					stopRecording();
+				}
+			} catch (error) {
+				console.error(error);
 			}
 		}
 	}, [
+		onRecord,
 		stream,
 		media,
 		analyser,
@@ -80,8 +94,6 @@ const AudioRecorder = (props: {
 		voiceDetected,
 		startRecording,
 		stopRecording,
-		onRecord,
-		startBeep,
 	]);
 
 	useEffect(() => {
@@ -112,6 +124,9 @@ const AudioRecorder = (props: {
 					setAnalyser(analyser);
 					setMediaStreamSource(mediaStreamSource);
 					mediaStreamSource.connect(analyser);
+					if (startBeep) {
+						startBeep.play();
+					}
 				})
 				.catch(error => {
 					console.error(error);
@@ -121,7 +136,17 @@ const AudioRecorder = (props: {
 		return () => {
 			clearInterval(detectInterval);
 		};
-	}, [onRecord, stream, media, analyser, mediaStreamSource, detectVoice, router]);
+	}, [
+		detectVoice,
+		router,
+		onRecord,
+		stream,
+		media,
+		analyser,
+		mediaStreamSource,
+		setType,
+		startBeep,
+	]);
 
 	return (
 		<div

@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, SetStateAction, useContext, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import AuthContext from '@/context/auth';
 import Chat from '@/component/chat';
 import style from '@/style/container/(private)/diary/chat-interface/index.module.css';
@@ -50,19 +50,13 @@ const DiaryPageChatInterface = (props: {
 }) => {
 	const { theme, connectionId, messages, setMessages, setIsCreating } = props;
 	const { me } = useContext(AuthContext);
-	const [onRecord, setOnRecord] = useState<boolean>(true);
+	const [onRecord, setOnRecord] = useState<boolean>(false);
 	const [base64, setBase64] = useState<string | undefined>(undefined);
-	const [audioSrc, setAudioSrc] = useState<string | undefined>(undefined);
+	const [audioSrc, setAudioSrc] = useState<string | undefined>(
+		theme ? themes[theme].audio : undefined,
+	);
 	const [type, setType] = useState<string | undefined>(undefined);
 	const divRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const audio = themes[theme]?.audio;
-		if (audio) {
-			const audioElement = new Audio(audio);
-			audioElement.play();
-		}
-	}, [theme]);
 
 	useEffect(() => {
 		const div = divRef.current;
@@ -120,7 +114,7 @@ const DiaryPageChatInterface = (props: {
 					console.error(error);
 				});
 		}
-	}, [base64, connectionId, theme, messages, setMessages, setIsCreating]);
+	}, [base64, connectionId, type, theme, messages, setMessages, setIsCreating]);
 
 	return (
 		<div className={style.container}>
