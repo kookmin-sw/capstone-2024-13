@@ -53,7 +53,7 @@ const DiaryPageChatInterface = (props: {
 	const [onRecord, setOnRecord] = useState<boolean>(false);
 	const [base64, setBase64] = useState<string | undefined>(undefined);
 	const [audioSrc, setAudioSrc] = useState<string | undefined>(
-		theme ? themes[theme].audio : undefined,
+		theme === null ? undefined : themes[theme].audio,
 	);
 	const [type, setType] = useState<string | undefined>(undefined);
 	const divRef = useRef<HTMLDivElement>(null);
