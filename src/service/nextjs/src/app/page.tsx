@@ -7,7 +7,7 @@ export default function Home() {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (navigator.serviceWorker) {
+		if (navigator.serviceWorker && !navigator.serviceWorker.controller) {
 			navigator.serviceWorker
 				.register('/sw.js')
 				.then((registration: ServiceWorkerRegistration) => {
@@ -20,6 +20,9 @@ export default function Home() {
 					router.push('/album');
 					return;
 				});
+		} else {
+			router.push('/album');
+			return;
 		}
 	}, [router]);
 
